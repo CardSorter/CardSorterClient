@@ -1,3 +1,6 @@
+/**
+ * Data model representing the card
+ */
 export default class Card {
   /**
    *
@@ -10,8 +13,4 @@ export default class Card {
     this.title = title;
     this.description = description;
   }
-  
-  setCategory(categoryID) {
-    this.categoryID = categoryID;
-  } 
 }

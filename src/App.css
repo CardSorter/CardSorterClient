@@ -1,33 +1,60 @@
 .App {
-  text-align: center;
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* Header */
+header {
   align-items: center;
+  box-shadow: 0px 2px 6px rgb(168, 168, 168); 
+  display: flex;
+  flex-direction: row;
+  max-height: 60px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  position: relative;
+  z-index: 1;
+}
+
+header #logo {
+  font-family: 'Dancing Script', cursive;
+}
+
+header button {
+  background: radial-gradient(circle at 10%, #D1C3FF, #BAA5FF);
+  border: 0;
+  border-radius: 20px;
   color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  position: absolute;
+  right: 40px;
+  width: 100px;
 }
 
-.App-link {
-  color: #61dafb;
+/* This panel splits the screen into two peices */
+#main-panel {
+  display: flex;
+  flex-direction: row;
+  height: 94%;
+  overflow: hidden;  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul#container {
+  border-right: dashed 2px #707070;
+  height: 100%;
+  overflow: auto;
+  padding: 10px;
+}
+
+/* Card */
+.card {
+  border: solid 1px #8b8b8b;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgb(226, 226, 226);
+  cursor: move;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
 }

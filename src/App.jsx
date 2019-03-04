@@ -1,25 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import PopulateContainer from './elements/containers/PopulateContainer.jsx';
+import Header from './elements/components/Header.jsx';
 import './App.css';
 
+/**
+ * App route
+ */
 class App extends Component {
+  /**
+   * React render
+   * @return {Component}
+   */
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header />
+        <div id="main-panel">
+          <PopulateContainer />
+        </div>
       </div>
     );
   }

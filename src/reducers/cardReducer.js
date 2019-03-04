@@ -1,25 +1,41 @@
 import {combineReducers} from 'redux';
 
 import * as cardActions from '../actions/cardAction';
-import initialState from './boardState';
 import debugconsole from '../debug/Debugconsole';
 import Category from '../elements/Category';
 
 /**
  *
  * @param {boardState} state
- * @param {cardActions.CREATE_CATEGORY} action
+ * @param {cardActions} action
+ * @return {boardState}
  */
-function categories(state=initialState, action) {
+function categories(state={}, action) {
   switch (action.type) {
     case cardActions.CREATE_CATEGORY: {
-      const category = new Category(action.payload.categoryID, action.payload.title);
+      const id = action.payload.categoryID;
+      const category = new Category(id, action.payload.title);
       category.addCard(action.payload.cardID);
 
-      return [
-        ...state,
-        category
-      ];
+      const newState = Object.assign({}, state);
+      newState[id] = category;
+      return newState;
+    }
+    case cardActions.ADD_CARD_CATEGORY: {
+      const cardID = action.payload.cardID;
+      const categoryID = action.payload.categoryID;
+      const newState = Object.assign({}, state);
+
+      newState[categoryID].addCard(cardID);
+      return newState;
+    }
+    case cardActions.REMOVE_CARD_CATEGORY: {
+      const cardID = action.payload.cardID;
+      const categoryID = action.payload.categoryID;
+      const newState = Object.assign({}, state);
+
+      newState[categoryID].removeCard(cardID);
+      return newState;
     }
     default:
       return state;
@@ -32,15 +48,16 @@ function categories(state=initialState, action) {
  * @param {ReduxAction} action
  * @return {boardState}
  */
-function cards(state=initialState, action) {
+function container(state={}, action) {
   switch (action.type) {
-    case cardActions.ADD_CARD_CATEGORY: {
-      debugconsole('Adding card');
-      return state;
+    case cardActions.ADD_CARD_CONTAINER: {
+      return [
+        ...state,
+        action.payload.cardID,
+      ];
     }
-    case cardActions.REMOVE_CARD_CATEGORY: {
-      debugconsole('Removing card');
-      return state;
+    case cardActions.REMOVE_CARD_CONTAINER: {
+      return [...state].filter((x) => x !== action.payload.cardID);
     }
     default:
       return state;
@@ -50,7 +67,7 @@ function cards(state=initialState, action) {
 
 const app = combineReducers({
   categories,
-  cards,
+  container,
 });
 
 export default app;
