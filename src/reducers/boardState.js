@@ -3,6 +3,9 @@ const initialState = {
   categories: {
     /* CategoryId: Category */
   },
+  ui: {
+    showingDescription: undefined,
+  },
 };
 
 export default initialState;

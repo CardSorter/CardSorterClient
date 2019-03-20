@@ -1,7 +1,4 @@
-import {combineReducers} from 'redux';
-
 import * as cardActions from '../actions/cardAction';
-import debugconsole from '../debug/Debugconsole';
 import Category from '../elements/Category';
 
 /**
@@ -10,7 +7,7 @@ import Category from '../elements/Category';
  * @param {cardActions} action
  * @return {boardState}
  */
-function categories(state={}, action) {
+export default function categories(state={}, action) {
   switch (action.type) {
     case cardActions.CREATE_CATEGORY: {
       const id = action.payload.categoryID;
@@ -41,33 +38,3 @@ function categories(state={}, action) {
       return state;
   }
 }
-
-/**
- *
- * @param {boardState} state
- * @param {ReduxAction} action
- * @return {boardState}
- */
-function container(state={}, action) {
-  switch (action.type) {
-    case cardActions.ADD_CARD_CONTAINER: {
-      return [
-        ...state,
-        action.payload.cardID,
-      ];
-    }
-    case cardActions.REMOVE_CARD_CONTAINER: {
-      return [...state].filter((x) => x !== action.payload.cardID);
-    }
-    default:
-      return state;
-  }
-}
-
-
-const app = combineReducers({
-  categories,
-  container,
-});
-
-export default app;

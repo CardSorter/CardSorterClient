@@ -1,17 +1,10 @@
 import {connect} from 'react-redux';
 import Container from '../components/Container.jsx';
-import cards from '../../staticContent/cards';
+import parseCards from '../../helpers/cardParser';
 
 
 const mapStateToProps = (state) => {
-  // Add the card item based on it's id
-  const cardsArr = [];
-  for (const cardID of state.container) {
-    cardsArr.push(cards[cardID]);
-  }
-  return {
-    cards: cardsArr,
-  };
+  return parseCards(state.container);
 };
 
 const mapDispatchToProps = (dispatch) => {

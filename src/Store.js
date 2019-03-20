@@ -1,7 +1,8 @@
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
+import logger from 'redux-logger';
 
 import debugConsole from './debug/Debugconsole';
-import app from './reducers/cardReducer';
+import app from './reducers/indexReducer';
 import initialState from './reducers/boardState';
 import runTest from './tests';
 
@@ -9,13 +10,14 @@ import runTest from './tests';
  *
  */
 export default function initializeStore() {
-  const store = createStore(app, initialState);
+  const store = createStore(app, initialState, applyMiddleware(logger));
   // const store = createStore(app, window.STATE_FROM_SERVER);
 
-  debugConsole(store.getState());
-
-  const unsuscribe = store.subscribe(() => debugConsole(store.getState()));
+  const unsuscribe = store.subscribe(() => {});
+  // () => debugConsole(store.getState())
   runTest(store);
+
+  // debugConsole(store.getState());
 
   unsuscribe();
   return store;

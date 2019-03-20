@@ -1,3 +1,7 @@
+ul {
+  list-style: none;
+}
+
 .App {
   height: 100%;
   position: absolute;
@@ -37,7 +41,7 @@ header button {
 #main-panel {
   display: flex;
   flex-direction: row;
-  height: 94%;
+  height: calc(100% - 60px);
   overflow: hidden;  
 }
 
@@ -46,6 +50,14 @@ ul#container {
   height: 100%;
   overflow: auto;
   padding: 10px;
+}
+
+/* This is the container of the Categories */
+#board {
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;  
 }
 
 /* Card */
@@ -57,4 +69,92 @@ ul#container {
   margin-bottom: 10px;
   padding: 10px;
   text-align: center;
+}
+
+.card.minimized {
+  align-items: center;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  height: 1.2rem; width: 200px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  position: relative;
+  text-align: start;
+}
+
+.card.minimized h4 {
+  display: inline;
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin: 0; 
+}
+
+.card.minimized .desc-container {
+  margin-left: auto;
+  flex-direction: row;
+}
+
+.card.minimized .desc-btn {
+  background-color: #BAA5FF;
+  border: 0;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  height: 1.2rem; width: 1.2rem;
+}
+
+.card.minimized .desc-pop {
+  align-items: center;
+  background-color: white;
+  border: solid 4px #BAA5FF;
+  box-shadow: 0 2px 6px rgb(168, 168, 168);
+  position: absolute;
+  left: 215px;
+  margin: 0;
+  transform: translateY(-60%);
+  z-index: 10;
+  width: 150px;
+}
+
+.card.minimized .desc-pop p {
+  font-size: 1rem;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.card.minimized .desc-pop::after {
+  content: '';
+  height: 0; width: 0;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #BAA5FF;
+  border-bottom: 15px solid transparent;
+  position: absolute;
+  left: -17px; top: 0;
+}
+
+/* Category */
+.category {
+  align-items: center;
+  border: solid 2px #8b8b8b;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgb(0, 0, 0, 16%);
+  display: flex;
+  flex-direction: column;
+}
+
+.category h3 {
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.category ul {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.category li {
+  margin: 0;
 }

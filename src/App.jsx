@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PopulateContainer from './elements/containers/PopulateContainer.jsx';
+import PopulateBoard from './elements/containers/PopulateBoard.jsx';
 import Header from './elements/components/Header.jsx';
 import './App.css';
 
@@ -17,6 +18,7 @@ class App extends Component {
         <Header />
         <div id="main-panel">
           <PopulateContainer />
+          <PopulateBoard />
         </div>
       </div>
     );
