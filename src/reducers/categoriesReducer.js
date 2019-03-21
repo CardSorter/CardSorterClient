@@ -10,7 +10,7 @@ import Category from '../elements/Category';
 export default function categories(state={}, action) {
   switch (action.type) {
     case cardActions.CREATE_CATEGORY: {
-      const id = action.payload.categoryID;
+      const id = action.payload.categoryID || Date.now();
       const category = new Category(id, action.payload.title);
       category.addCard(action.payload.cardID);
 

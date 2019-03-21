@@ -6,8 +6,8 @@ const Container = ({cards}) => (
   <ul id='container'>
     {
       cards.map((card) => (
-        <CardItem key={card.id} title={card.title}
-          description={card.description} />
+        <CardItem key={card.id} id={card.id} title={card.title}
+          description={card.description} position={-1} />
       ))
     }
   </ul>
