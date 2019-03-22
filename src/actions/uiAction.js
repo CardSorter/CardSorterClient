@@ -1,5 +1,7 @@
 export const SHOW_DESCRICTION = 'SHOW_DESCRIPTION';
 export const HIDE_ALL_DESCRIPTIONS = 'HIDE_ALL_DESCRIPTIONS';
+export const SHOW_TITLE_BOX = 'SHOW_TITLE_BOX';
+export const HIDE_ALL_BOXES = 'HIDE_ALL_BOXES';
 
 /**
  * Shows the description of a specified card
@@ -26,3 +28,30 @@ export function hideAllDescriptions() {
     error: false,
   };
 }
+
+/**
+ * Shows the textbox of the category, so the user can change the title.
+ * @param {Number} categoryID
+ * @return {JSON} the action
+ */
+export function showTitleBoxOnCategory(categoryID) {
+  return {
+    type: SHOW_TITLE_BOX,
+    payload: {
+      categoryID: categoryID,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Hides all the textboxes.
+ * @return {JSON} the action
+ */
+export function hideAllTitleBoxes() {
+  return {
+    type: HIDE_ALL_BOXES,
+    error: false,
+  };
+}
+

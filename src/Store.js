@@ -1,7 +1,6 @@
 import {applyMiddleware, createStore} from 'redux';
 import logger from 'redux-logger';
 
-import debugConsole from './debug/Debugconsole';
 import app from './reducers/indexReducer';
 import initialState from './reducers/boardState';
 import runTest from './tests';

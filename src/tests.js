@@ -1,4 +1,5 @@
 import * as cardActions from './actions/cardAction';
+import * as categoryAction from './actions/categoryAction';
 import cards from './staticContent/cards';
 
 /**
@@ -11,9 +12,9 @@ function templatePopulate(store) {
     store.dispatch(cardActions.addCardToContainer(card.id));
   }
   // Create some categories
-  store.dispatch(cardActions.createCategory(1, 'Category1', 2));
+  store.dispatch(categoryAction.createCategory(1, 'Category1', 2));
   store.dispatch(cardActions.removeCardFromContainer(2));
-  store.dispatch(cardActions.createCategory(2, 'Category2', 3));
+  store.dispatch(categoryAction.createCategory(2, 'Category2', 3));
   store.dispatch(cardActions.removeCardFromContainer(3));
   // Add some other cards to the categories
   store.dispatch(cardActions.addCardToCategory(4, 1));

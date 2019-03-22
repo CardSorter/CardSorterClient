@@ -27,12 +27,17 @@ function collect(connect, monitor) {
   };
 }
 
-const Board = ({categories, onClick, onCardClick,
-  onCardDrop, onDrop, descriptionID, connectDropTarget, isOver}) => {
+const Board = ({categories, onClick, onCardClick, onCategTitleClick,
+  changeTitleID, onCardDrop, onDrop, descriptionID, onCategTitleChange,
+  onCategTitleFinish, connectDropTarget, isOver}) => {
   categories = categories.map((category) => (
     <CategoryItem key={'k' + category.id} id={category.id}
       title={category.title} cards={category.cards} onClick={onCardClick}
-      onCardDrop={onCardDrop} descriptionID={descriptionID}/>
+      onTitleChange={onCategTitleChange}
+      onTitleClick={onCategTitleClick} onCardDrop={onCardDrop}
+      onTitleFinish={onCategTitleFinish}
+      showTitleBox={category.id === changeTitleID}
+      descriptionID={descriptionID}/>
   ));
 
   return connectDropTarget(<ul id='board' onClick={onClick}>

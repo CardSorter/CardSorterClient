@@ -5,6 +5,7 @@ const initialState = {
   },
   ui: {
     showingDescription: undefined,
+    changeTitle: undefined,
   },
 };
 

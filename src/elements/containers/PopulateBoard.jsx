@@ -1,9 +1,9 @@
-import React from 'react';
 import {connect} from 'react-redux';
 
 import Board from '../components/Board.jsx';
 import * as uiAction from '../../actions/uiAction';
 import * as cardAction from '../../actions/cardAction';
+import * as categoryAction from '../../actions/categoryAction';
 
 import * as text from '../../localization/text';
 
@@ -25,24 +25,61 @@ function removeCardFromParent(dispatch, cardPosition, cardID) {
   }
 }
 
+/**
+ * Looks for an empty category and removes it from the state
+ * @param {Category[]} categories
+ * @return {Category[]} the modified categories list
+ */
+function deleteEmptyCategories(categories) {
+  for (const i in categories) {
+    if (categories[i].cards.length < 1) {
+      // Only one category can be empty on each state update
+      categories.splice(i, 1);
+      break;
+    }
+  }
+  return categories;
+}
+
 const mapStateToProps = (state) => {
   // Convert to array
-  const categories = Object.values(state.categories);
+  const categories = deleteEmptyCategories(
+      Object.values(state.categories));
   const showingDescription = state.ui['showingDescription'];
-  return {categories: categories, descriptionID: showingDescription};
+  const changeTitle = state.ui['changeTitle'];
+
+  return {categories: categories, descriptionID: showingDescription,
+    changeTitleID: changeTitle};
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: () => {
-      // Hide the descriptions on user click
+      // Hide the descriptions and category renaming on user click
       dispatch(uiAction.hideAllDescriptions());
+      dispatch(uiAction.hideAllTitleBoxes());
     },
     onDrop: (cardID, cardPosition) => {
       // Create the new category, containing the dropped card
       removeCardFromParent(dispatch, cardPosition, cardID);
-      dispatch(cardAction.createCategory(undefined,
+      dispatch(categoryAction.createCategory(undefined,
           text.categoryTitle(), cardID));
+    },
+    onCategTitleClick: (event, categoryID) => {
+      event.stopPropagation();
+      dispatch(uiAction.showTitleBoxOnCategory(categoryID));
+    },
+    onCategTitleChange: (event, categoryID) => {
+      let title = event.target.value;
+      title = title.replace(/\s\s+/g, ' ').trim();
+      title = (title.length > 0) ? title : text.categoryTitle();
+      dispatch(categoryAction.renameCategory(categoryID, title));
+    },
+    onCategTitleFinish: (event) => {
+      event.stopPropagation();
+      if (event.charCode === 13) {
+        dispatch(uiAction.hideAllTitleBoxes());
+      }
     },
     onCardClick: (event, cardID) => {
       event.stopPropagation();

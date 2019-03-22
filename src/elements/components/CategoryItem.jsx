@@ -26,12 +26,23 @@ function collect(connect, monitor) {
   };
 }
 
-const CategoryItem = ({id, title, cards, onClick,
-  onCardDrop, descriptionID, connectDropTarget, isOver}) => {
+const CategoryItem = ({id, title, cards, onClick, showTitleBox,
+  onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
+  descriptionID, connectDropTarget, isOver}) => {
   cards = parseCards(cards).cards;
   return connectDropTarget(
       <li className='category'>
-        <h3>{title}</h3>
+        {
+          showTitleBox &&
+          <input type='text' defaultValue={title}
+            onChange={(e)=>onTitleChange(e, id)}
+            onKeyPress={(e)=>onTitleFinish(e)}
+            onClick={(e)=>e.stopPropagation()}></input>
+        }
+        {
+          !showTitleBox &&
+          <h3 onClick={(e)=>onTitleClick(e, id)}>{title}</h3>
+        }
         <ul>{
           cards.map((card) => (
             <CardItem key={card.id} id={card.id} title={card.title}

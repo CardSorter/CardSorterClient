@@ -1,4 +1,5 @@
 import * as cardActions from '../actions/cardAction';
+import * as categoryAction from '../actions/categoryAction';
 import Category from '../elements/Category';
 
 /**
@@ -9,13 +10,20 @@ import Category from '../elements/Category';
  */
 export default function categories(state={}, action) {
   switch (action.type) {
-    case cardActions.CREATE_CATEGORY: {
+    case categoryAction.CREATE_CATEGORY: {
       const id = action.payload.categoryID || Date.now();
       const category = new Category(id, action.payload.title);
       category.addCard(action.payload.cardID);
 
       const newState = Object.assign({}, state);
       newState[id] = category;
+      return newState;
+    }
+    case categoryAction.RENAME_CATEGORY: {
+      const id = action.payload.categoryID;
+      const newState = Object.assign({}, state);
+
+      newState[id].title = action.payload.title;
       return newState;
     }
     case cardActions.ADD_CARD_CATEGORY: {
