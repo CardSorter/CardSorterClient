@@ -1,3 +1,5 @@
+import 'babel-polyfill'; // Ensure all polyfills are present
+
 import React, {Component} from 'react';
 import {DragDropContextProvider} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';

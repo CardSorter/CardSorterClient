@@ -12,9 +12,10 @@ const cardSource = {
 };
 
 /**
- * 
- * @param {*} connect 
- * @param {*} monitor 
+ *
+ * @param {*} connect
+ * @param {*} monitor
+ * @return {*}
  */
 function collect(connect, monitor) {
   return {

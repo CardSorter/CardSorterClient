@@ -1,11 +1,14 @@
 const initialState = {
+  cards: {
+    status: undefined,
+  },
   container: [],
   categories: {
     /* CategoryId: Category */
   },
   ui: {
-    showingDescription: undefined,
     changeTitle: undefined,
+    showingDescription: undefined,
   },
 };
 
