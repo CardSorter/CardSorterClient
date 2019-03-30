@@ -19,6 +19,13 @@ export default function categories(state={}, action) {
       newState[id] = category;
       return newState;
     }
+    case categoryAction.REMOVE_CATEGORY: {
+      const categoryID = action.payload.categoryID;
+      const newState = Object.assign({}, state);
+
+      delete newState[categoryID];
+      return newState;
+    }
     case categoryAction.RENAME_CATEGORY: {
       const id = action.payload.categoryID;
       const newState = Object.assign({}, state);

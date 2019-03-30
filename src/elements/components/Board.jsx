@@ -11,6 +11,7 @@ const boardTarget = {
       // Handle the drop only if a category did not handle it first
       props.onDrop(card.id, card.position);
     }
+    props.removeEmptyCategories(props.categories);
   },
 };
 
@@ -29,7 +30,7 @@ function collect(connect, monitor) {
 
 const Board = ({categories, onClick, onCardClick, onCategTitleClick,
   changeTitleID, onCardDrop, onDrop, descriptionID, onCategTitleChange,
-  onCategTitleFinish, connectDropTarget, isOver}) => {
+  onCategTitleFinish, removeEmptyCategories, connectDropTarget, isOver}) => {
   categories = categories.map((category) => (
     <CategoryItem key={'k' + category.id} id={category.id}
       title={category.title} cards={category.cards} onClick={onCardClick}

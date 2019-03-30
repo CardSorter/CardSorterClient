@@ -27,24 +27,22 @@ function removeCardFromParent(dispatch, cardPosition, cardID) {
 
 /**
  * Looks for an empty category and removes it from the state
+ * @param {function} dispatch
  * @param {Category[]} categories
- * @return {Category[]} the modified categories list
  */
-function deleteEmptyCategories(categories) {
+function deleteEmptyCategories(dispatch, categories) {
   for (const i in categories) {
     if (categories[i].cards.length < 1) {
       // Only one category can be empty on each state update
-      categories.splice(i, 1);
+      dispatch(categoryAction.removeCategory(categories[i].id));
       break;
     }
   }
-  return categories;
 }
 
 const mapStateToProps = (state) => {
   // Convert to array
-  const categories = deleteEmptyCategories(
-      Object.values(state.categories));
+  const categories = Object.values(state.categories);
   const showingDescription = state.ui['showingDescription'];
   const changeTitle = state.ui['changeTitle'];
 
@@ -60,10 +58,15 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(uiAction.hideAllTitleBoxes());
     },
     onDrop: (cardID, cardPosition) => {
+      // This is *only* executed only if the OnCardDrop didn't
       // Create the new category, containing the dropped card
       removeCardFromParent(dispatch, cardPosition, cardID);
       dispatch(categoryAction.createCategory(undefined,
           text.categoryTitle(), cardID));
+    },
+    removeEmptyCategories: (categories) => {
+      // This is triggered on every drop on the Board
+      deleteEmptyCategories(dispatch, categories);
     },
     onCategTitleClick: (event, categoryID) => {
       event.stopPropagation();
