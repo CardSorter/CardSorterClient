@@ -9,6 +9,7 @@ const initialState = {
   ui: {
     changeTitle: undefined,
     showingDescription: undefined,
+    studyID: undefined,
   },
 };
 

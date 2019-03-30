@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch';
 import * as responseStatus from '../staticContent/responseStatus';
+import {saveStudyID} from './uiAction';
 import debugConsole from '../debug/Debugconsole';
 
 export const IMPORT_CARD = 'IMPORT_CARD';
@@ -103,6 +104,7 @@ export function requestCards(status, response, error) {
  */
 export function fetchCards(studyID) {
   return function(dispatch) {
+    dispatch(saveStudyID(studyID));
     dispatch(requestCards(responseStatus.IS_FETCHING));
 
     fetch('http://127.0.0.1:5000/sort_endpoint?cards=true&study_id='+studyID)

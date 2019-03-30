@@ -6,7 +6,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import PopulateContainer from './elements/containers/PopulateContainer.jsx';
 import PopulateBoard from './elements/containers/PopulateBoard.jsx';
-import Header from './elements/components/Header.jsx';
+import PopulateHeader from './elements/containers/PopulateHeader.jsx';
 import './App.css';
 
 /**
@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <DragDropContextProvider backend={HTML5Backend}>
         <div className="App">
-          <Header />
+          <PopulateHeader />
           <div id="main-panel">
             <PopulateContainer />
             <PopulateBoard />

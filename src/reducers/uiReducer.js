@@ -28,6 +28,16 @@ export default function ui(state={}, action) {
         'changeTitle': undefined,
       });
     }
+    case uiAction.SAVE_STUDY_ID: {
+      return Object.assign({}, state, {
+        'studyID': action.payload.studyID,
+      });
+    }
+    case uiAction.SENDING_SORT: {
+      return Object.assign({}, state, {
+        'sendingSort': action.payload.status,
+      });
+    }
     default: {
       return state;
     }
