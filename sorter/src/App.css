@@ -1,0 +1,172 @@
+ul {
+  list-style: none;
+}
+
+.App {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+/* Header */
+header {
+  align-items: center;
+  box-shadow: 0px 2px 6px rgb(168, 168, 168); 
+  display: flex;
+  flex-direction: row;
+  max-height: 60px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+header #logo {
+  font-family: 'Dancing Script', cursive;
+}
+
+header button {
+  background: radial-gradient(circle at 10%, #D1C3FF, #BAA5FF);
+  border: 0;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  position: absolute;
+  right: 40px;
+  width: 100px;
+}
+
+/* This panel splits the screen into two peices */
+#main-panel {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 60px);
+  overflow: hidden;  
+}
+
+ul#container {
+  border-right: dashed 2px #707070;
+  height: 100%;
+  overflow: auto;
+  padding: 10px;
+}
+
+/* This is the container of the Categories */
+#board {
+  align-items: flex-start;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  width: 100%;  
+}
+
+/* Card */
+.card {
+  background-color: white;
+  border: solid 1px #8b8b8b;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgb(226, 226, 226);
+  cursor: move;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.card.minimized {
+  align-items: center;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  height: 1.2rem; width: 200px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  position: relative;
+  text-align: start;
+}
+
+.card.minimized h4 {
+  display: inline;
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin: 0; 
+}
+
+.card.minimized .desc-container {
+  margin-left: auto;
+  flex-direction: row;
+}
+
+.card.minimized .desc-btn {
+  background-color: #BAA5FF;
+  border: 0;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  height: 1.2rem; width: 1.2rem;
+}
+
+.card.minimized .desc-pop {
+  align-items: center;
+  background-color: white;
+  border: solid 4px #BAA5FF;
+  box-shadow: 0 2px 6px rgb(168, 168, 168);
+  position: absolute;
+  left: 215px;
+  margin: 0;
+  transform: translateY(-60%);
+  z-index: 10;
+  width: 150px;
+}
+
+.card.minimized .desc-pop p {
+  font-size: 1rem;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.card.minimized .desc-pop::after {
+  content: '';
+  height: 0; width: 0;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #BAA5FF;
+  border-bottom: 15px solid transparent;
+  position: absolute;
+  left: -17px; top: 0;
+}
+
+/* Category */
+.category {
+  align-items: center;
+  border: solid 2px #8b8b8b;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgb(0, 0, 0, 16%);
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+}
+
+.category h3 {
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.category ul {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.category li {
+  margin: 0;
+}
+
+.category input {
+  border: solid 1px #707070;
+  border-radius: 5px;
+  height: 30px;
+  margin: 5px;
+}
