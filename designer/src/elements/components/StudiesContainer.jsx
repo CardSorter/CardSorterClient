@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StudyItem from './StudyItem.jsx';
+import CreateStudyItem from './CreateStudyItem.jsx';
 
 const StudiesContainer = ({studies}) => (
   <ul className="studies-container">
@@ -11,6 +12,7 @@ const StudiesContainer = ({studies}) => (
           completedNo={Study.completedNo} abandonedNo={Study.abandonedNo}
           launcedDate={Study.launcedDate} editDate={Study.editDate} endDate={Study.endDate}/>)
     }
+    <CreateStudyItem />
   </ul>
 );
 

@@ -123,6 +123,9 @@ header .profile img {
 
 /* Studies Container */
 ul.studies-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   padding: 0 10%;
 }
 
@@ -137,7 +140,7 @@ li.studyItem {
   border: solid 2px white;
   box-shadow: 0 2px 6px rgb(0, 0, 0, .16);
   cursor: pointer;
-  display:flex;
+  display: flex;
   flex-direction: column;
   height: 14rem; width: 100%;
   overflow: hidden;
@@ -191,4 +194,18 @@ li.studyItem .dates .launched {
   border-right: solid 1px black;
   padding-right: .5rem;
   margin-right: .5rem;
+}
+
+/* Create study card */
+
+button.createStudyCard {
+  background-color: white;
+  border: solid 2px white;
+  box-shadow: 0 2px 6px rgb(0, 0, 0, .16);
+  cursor: pointer;
+  height: 14rem; width: 14rem;
+}
+
+button.createStudyCard:hover {
+  border: solid 2px var(--color-purple);
 }
