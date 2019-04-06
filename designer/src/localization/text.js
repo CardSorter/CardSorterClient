@@ -46,3 +46,20 @@ export function endedOn() {
 export function studies() {
   return 'STUDIES';
 }
+
+/**
+ * The 'Filter' text on the fitlering menu
+ * @return {String} the filter text
+ */
+export function filter() {
+  return 'FILTER';
+}
+
+
+/**
+ * The 'ongoing' text on the fitlering menu
+ * @return {String} the ongoing text
+ */
+export function ongoing() {
+  return 'ongoing';
+}

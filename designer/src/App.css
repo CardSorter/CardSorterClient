@@ -209,3 +209,25 @@ button.createStudyCard {
 button.createStudyCard:hover {
   border: solid 2px var(--color-purple);
 }
+
+/* Filter element */
+
+.filter-container {
+  align-items: center;
+  display: flex;
+  height: 8rem;
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-left: 10%;
+}
+
+.filter-container a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-left: 1rem;
+}
+
+.filter-container a.active {
+  font-weight: bold;
+}
