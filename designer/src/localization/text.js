@@ -63,3 +63,67 @@ export function filter() {
 export function ongoing() {
   return 'ongoing';
 }
+
+/**
+ * The 'create a new study' text on the createStudy page
+ * @return {String} the Create a new study text
+ */
+export function createStudy() {
+  return 'Create a new study';
+}
+
+/**
+ * The 'Basic Information' text on the createStudy page
+ * @return {String} the Basic Information text
+ */
+export function basicInformation() {
+  return 'Basic Information';
+}
+
+/**
+ * The 'Title' text on the createStudy page
+ * @return {String} the Title text
+ */
+export function title() {
+  return 'Title';
+}
+
+/**
+ * The 'Description' text on the createStudy page
+ * @return {String} the Description text
+ */
+export function description() {
+  return 'Description';
+}
+
+/**
+ * The 'of' word on the createStudy page
+ * @return {String} the of word
+ */
+export function of() {
+  return 'of';
+}
+
+/**
+ * The 'cards' word on the createStudy page
+ * @return {String} the cards word
+ */
+export function cards() {
+  return 'Cards';
+}
+
+/**
+ * The 'card name' text on the createStudy page
+ * @return {String} the card name word
+ */
+export function cardName() {
+  return 'Card name';
+}
+
+/**
+ * The 'add card' text on the createStudy page
+ * @return {String} the add card word
+ */
+export function addCard() {
+  return 'Add Card';
+}

@@ -10,7 +10,7 @@ import demoImage from '../demo/profile.jpeg';
 /**
  *
  */
-class Main extends Component {
+export default class Main extends Component {
   /**
    * @return {ReactDOM}
    */
@@ -24,5 +24,3 @@ class Main extends Component {
     );
   }
 }
-
-export default Main;
