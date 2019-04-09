@@ -354,6 +354,29 @@ button.createStudyCard:hover {
   width: 4rem;
 }
 
+.study-creation-card .url-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.study-creation-card .url-container > *:nth-child(1) {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.study-creation-card .url-container button.copy {
+  background: 0;
+  background-image: url('./icons/copy.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  cursor: pointer;
+  height: 3rem; width: 3rem;
+}
+
+
 /* Page 2 */
 
 .study-creation-card form.cards {

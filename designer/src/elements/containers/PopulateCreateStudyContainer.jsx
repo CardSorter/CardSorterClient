@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         onPrev: (title, desc, url) => {
         },
+        url: 'cardsorter.com/sort/title',
       };
     },
   };
