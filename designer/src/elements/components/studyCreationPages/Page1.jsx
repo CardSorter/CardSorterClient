@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {createStudy, basicInformation, title, description, of}
-  from '../../../localization/text';
+import localizedText from '../../../localization/LocalizedText';
 
 const Page1 = ({defaultProps}) => (
   <div className='study-creation-card'>
-    <h1>{createStudy()}</h1>
-    <h2>{basicInformation()}</h2>
+    <h1>{localizedText.text.createStudy}</h1>
+    <h2>{localizedText.text.basicInformation}</h2>
 
     <form>
-      <input type='text' placeholder={title()} onChange={(e)=>
+      <input type='text' placeholder={localizedText.text.title} onChange={(e)=>
         defaultProps().onChange('title', e)}></input>
-      <textarea placeholder={description()} rows='10' cols='30' onChange={(e)=>
+      <textarea placeholder={localizedText.text.description} rows='10' cols='30' onChange={(e)=>
         defaultProps().onChange('title', e)}></textarea>
-      <input type='text' placeholder={title()} onChange={(e)=>
+      <input type='text' placeholder={localizedText.text.title} onChange={(e)=>
         defaultProps().onChange('title', e)}></input>
     </form>
     <div className="bottom-container">
@@ -25,7 +24,7 @@ const Page1 = ({defaultProps}) => (
       </div>
       <div className="page-no-container">
         <p>1</p>
-        <p>{of()}</p>
+        <p>{localizedText.text.of}</p>
         <p>3</p>
       </div>
     </div>

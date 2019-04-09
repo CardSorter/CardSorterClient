@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as text from '../../localization/text';
+import localizedText from '../../localization/LocalizedText';
 
 const StudyItem = ({title, isLive, completedNo, abandonedNo,
   launcedDate, editDate, endDate}) => (
@@ -18,26 +18,26 @@ const StudyItem = ({title, isLive, completedNo, abandonedNo,
       }
     </div>
     <div className='participants'>
-      <p className='completed'>{completedNo} {text.completed()}</p>
-      <p className='abandoned'>{abandonedNo} {text.abandonded()}</p>
+      <p className='completed'>{completedNo} {localizedText.text.completed}</p>
+      <p className='abandoned'>{abandonedNo} {localizedText.text.abandonded}</p>
     </div>
     <div className='dates'>
       <p className='launched'>
-        {text.launchedOn()} <time
+        {localizedText.text.launchedOn} <time
           dateTime={launcedDate}>{launcedDate.getDate()} {launcedDate.getMonth()} {launcedDate.getFullYear()}</time>
       </p>
       {/* If the endDate is defined show only the end and the launched date */}
       {
         !endDate &&
         <p className='edited'>
-          {text.editedOn()} <time
+          {localizedText.text.editedOn} <time
             dateTime={editDate}>{editDate.getDate()} {editDate.getMonth()} {editDate.getFullYear()}</time>
         </p>
       }
       {
         endDate &&
         <p className='ended'>
-          {text.endedOn()} <time
+          {localizedText.text.endedOn} <time
             dateTime={endDate}>{endDate.getDate()} {endDate.getMonth()} {endDate.getFullYear()}</time>
         </p>
       }

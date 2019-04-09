@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 
 import app from './reducers/indexReducer';
 import initialState from './reducers/stateSchema';
+import localizedText from './localization/LocalizedText';
 
 import {runTests} from './tests/simpleImporting';
 
@@ -15,6 +16,7 @@ export default function initializeStore() {
       thunkMiddleware,
       logger));
   // const store = createStore(app, window.STATE_FROM_SERVER);
+  localizedText.initialize('en-us');
 
   const unsuscribe = store.subscribe(() => {});
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {studies} from '../../localization/text';
+import localizedText from '../../localization/LocalizedText';
 
 const Header = ({username, profilePic}) => (
   <header>
     <p id="logo">Card Sorter</p>
-    <h1>{studies()}</h1>
+    <h1>{localizedText.text.studies}</h1>
     <div className="profile">
       <p>{username}</p>
       <img src={profilePic} alt='Profile' />

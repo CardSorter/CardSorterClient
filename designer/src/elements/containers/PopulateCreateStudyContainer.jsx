@@ -26,6 +26,14 @@ const mapDispatchToProps = (dispatch) => {
         },
       };
     },
+    page3: () =>{
+      return {
+        onNext: (title, desc, url) =>{
+        },
+        onPrev: (title, desc, url) => {
+        },
+      };
+    },
   };
 };
 

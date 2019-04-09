@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {createStudy, cards, description, cardName, addCard, of}
-  from '../../../localization/text';
+import localizedText from '../../../localization/LocalizedText';
 
 const Page2 = ({defaultProps}) => (
   <div className="study-creation-card">
-    <h1>{createStudy()}</h1>
-    <h2>{cards()}</h2>
+    <h1>{localizedText.text.createStudy}</h1>
+    <h2>{localizedText.text.cards}</h2>
 
     <form className="cards">
       <div className="card-container">
         <div className="card">
-          <input type="text" placeholder={cardName()}></input>
-          <input type="text" placeholder={description()}></input>
+          <input type="text" placeholder={localizedText.text.cardName}></input>
+          <input type="text" placeholder={localizedText.text.description}></input>
         </div>
       </div>
-      <button>{addCard()}</button>
+      <button>{localizedText.text.addCard}</button>
     </form>
     <div className="bottom-container">
       <div className="btn-container">
@@ -26,7 +25,7 @@ const Page2 = ({defaultProps}) => (
       </div>
       <div className="page-no-container">
         <p>2</p>
-        <p>{of()}</p>
+        <p>{localizedText.text.of}</p>
         <p>3</p>
       </div>
     </div>
