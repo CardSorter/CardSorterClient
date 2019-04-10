@@ -8,12 +8,12 @@ import demoImage from '../demo/profile.jpeg';
 /**
  * @return {ReactDOM} The study creation page.
  */
-const CreateStudy = ({page}) => {
+const CreateStudy = ({page, history}) => {
   console.log(page);
   return (
     <main>
       <Header username='John' profilePic={demoImage}/>
-      <PopulateCreateStudyContainer currentPage={page}/>
+      <PopulateCreateStudyContainer currentPage={page} history={history}/>
     </main>);
 };
 

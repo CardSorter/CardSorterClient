@@ -5,7 +5,10 @@ const initialState = {
     studies: [],
   },
   studyCreation: {
-    currentPage: 1,
+    title: undefined,
+    description: undefined,
+    urlPrefix: 'cardsorter.com/sort/user/',
+    url: undefined,
   },
 };
 

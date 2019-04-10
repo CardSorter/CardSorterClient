@@ -361,9 +361,18 @@ button.createStudyCard:hover {
   margin-top: 3rem;
 }
 
+.study-creation-card .url-container input {
+  margin: 0;
+  margin-right: 1rem;
+}
+
 .study-creation-card .url-container > *:nth-child(1) {
   font-size: 2rem;
   margin-right: 1rem;
+}
+
+.study-creation-card .url-container .url-small {
+  font-size: 1.5rem;
 }
 
 .study-creation-card .url-container button.copy {
