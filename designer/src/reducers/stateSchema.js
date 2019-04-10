@@ -9,6 +9,13 @@ const initialState = {
     description: undefined,
     urlPrefix: 'cardsorter.com/sort/user/',
     url: undefined,
+    cards: {
+      1: {
+        id: 1,
+        name: undefined,
+        description: undefined,
+      },
+    },
   },
 };
 

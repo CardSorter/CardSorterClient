@@ -2,26 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import localizedText from '../../../localization/LocalizedText';
+import Card from './Card.jsx';
 
-const Page2 = ({defaultProps}) => (
+const Page2 = ({values, dispatch}) => (
   <div className="study-creation-card">
     <h1>{localizedText.text.createStudy}</h1>
     <h2>{localizedText.text.cards}</h2>
 
     <form className="cards">
       <div className="card-container">
-        <div className="card">
-          <input type="text" placeholder={localizedText.text.cardName}></input>
-          <input type="text" placeholder={localizedText.text.description}></input>
-        </div>
+        {
+          values.cards.map((card) => (
+            <Card key={'card'+card.id} name={card.name}
+              description={card.description} onNameChange={(e) =>
+                dispatch.onCardNameChange(card.id, e)}
+              onDescriptionChange={(e) =>
+                dispatch.onCardDescriptionChange(card.id, e)}/>
+          ))
+        }
       </div>
-      <button>{localizedText.text.addCard}</button>
+      <button type="button" onClick={dispatch.onCreateCard}>
+        {localizedText.text.addCard}</button>
     </form>
     <div className="bottom-container">
       <div className="btn-container">
         <button className="prev"
-          onClick={defaultProps().onNext}></button>
-        <button className="next" onClick={defaultProps().onPrev}></button>
+          onClick={dispatch.onPrev}></button>
+        <button className="next" onClick={dispatch.onNext}></button>
       </div>
       <div className="page-no-container">
         <p>2</p>
@@ -31,5 +38,10 @@ const Page2 = ({defaultProps}) => (
     </div>
   </div>
 );
+
+Page2.propTypes = {
+  values: PropTypes.object.isRequired,
+  dispatch: PropTypes.object.isRequired,
+};
 
 export default Page2;

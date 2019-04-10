@@ -1,6 +1,4 @@
-import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 
 import StudyCreationContainer from '../components/StudyCreationContainer.jsx';
 import * as studyCreationAction from '../../actions/studyCreationAction';
@@ -31,6 +29,9 @@ function onElementChange(dispatch, name, event) {
         dispatch(studyCreationAction.changeURL(value));
         break;
       }
+      default: {
+        break;
+      }
     }
   } catch (err) {
     return;
@@ -44,28 +45,42 @@ const mapStateToProps = (state, ownProps) => {
       title: state.studyCreation.title,
       url: state.studyCreation.urlPrefix,
     },
+    page2Values: {
+      cards: Object.values(state.studyCreation.cards),
+    },
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     page1Dispatch: {
-      onChange: (name, event) =>
-        onElementChange(dispatch, name, event),
-
+      onChange: (name, event) => {
+        onElementChange(dispatch, name, event);
+      },
       onNext: () =>{
         ownProps.history.push('./2');
       },
-      onPrev: (title, desc, url) => {
+      onPrev: () => {
       },
     },
-    page2: () =>{
-      return {
-        onNext: (title, desc, url) =>{
-        },
-        onPrev: (title, desc, url) => {
-        },
-      };
+    page2Dispatch: {
+      onCreateCard: () => {
+        dispatch(studyCreationAction.addCard(Date.now()));
+      },
+      onCardNameChange: (id, event) => {
+        const name = event.target.value;
+        dispatch(studyCreationAction.changeCardName(id, name));
+      },
+      onCardDescriptionChange: (id, event) => {
+        const description = event.target.value;
+        dispatch(studyCreationAction.changeCardDescription(id, description));
+      },
+      onNext: () =>{
+        ownProps.history.push('./3');
+      },
+      onPrev: () => {
+        ownProps.history.push('./1');
+      },
     },
     page3: () =>{
       return {

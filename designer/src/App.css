@@ -396,12 +396,14 @@ button.createStudyCard:hover {
 }
 
 .study-creation-card .card-container {
-
+  max-height: 70%;
+  overflow: auto;
 }
 
 .study-creation-card .card-container .card {
   align-items: center;
   display: flex;
+  margin-bottom: 2rem;
 }
 
 .study-creation-card .card-container .card input{
