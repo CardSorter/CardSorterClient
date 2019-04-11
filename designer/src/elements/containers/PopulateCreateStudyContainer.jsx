@@ -48,6 +48,10 @@ const mapStateToProps = (state, ownProps) => {
     page2Values: {
       cards: Object.values(state.studyCreation.cards),
     },
+    page3Values: {
+      message: state.studyCreation.thanksMessage,
+      url: state.studyCreation.urlPrefix + state.studyCreation.url,
+    },
   };
 };
 
@@ -82,14 +86,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         ownProps.history.push('./1');
       },
     },
-    page3: () =>{
-      return {
-        onNext: (title, desc, url) =>{
-        },
-        onPrev: (title, desc, url) => {
-        },
-        url: 'cardsorter.com/sort/user/title',
-      };
+    page3Dispatch: {
+      onMessageChange: (e) => {
+        const message = e.target.value;
+        dispatch(studyCreationAction.changeThanksMessage(message));
+      },
+      onNext: () =>{
+      },
+      onPrev: () => {
+        ownProps.history.push('./2');
+      },
     },
   };
 };

@@ -294,7 +294,7 @@ button.createStudyCard:hover {
   margin-bottom: .5rem;
 }
 
-.study-creation-card button.next {
+.study-creation-card .btn-container button {
   background-color: var(--color-purple);
   border: 0;
   border-radius: 50%;
@@ -440,4 +440,12 @@ button.createStudyCard:hover {
   height: 100%; width: 3rem;
   position: absolute;
   top: 0; left: .5rem;
+}
+
+/* Page 3 */
+.study-creation-card button.create {
+  border-radius: 2rem;
+  color: white;
+  font-weight: bold;
+  width: 8rem;
 }

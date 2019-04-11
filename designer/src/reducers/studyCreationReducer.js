@@ -44,6 +44,11 @@ export default function studyCreationReducer(state={}, action) {
         action.payload.description;
       return newState;
     }
+    case studyCreationActions.CHANGE_THANKS_MESSAGE: {
+      return Object.assign({}, state, {
+        'thanksMessage': action.payload.message,
+      });
+    }
     default: {
       return state;
     }

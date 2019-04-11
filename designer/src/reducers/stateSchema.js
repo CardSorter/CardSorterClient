@@ -16,6 +16,7 @@ const initialState = {
         description: undefined,
       },
     },
+    thanksMessage: undefined,
   },
 };
 

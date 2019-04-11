@@ -4,6 +4,8 @@ export const CHANGE_URL = 'CHANGE_URL';
 export const ADD_CARD = 'ADD_CARD';
 export const CHANGE_CARD_NAME = 'CHANGE_CARD_NAME';
 export const CHANGE_CARD_DESCRIPTION = 'CHANGE_CARD_DESCRIPTION';
+export const CHANGE_THANKS_MESSAGE = 'CHANGE_THANKS_MESSAGE';
+export const CREATE_SORT = 'CREATE_SORT';
 
 /**
  * Changes the title of the study that is going to be created.
@@ -100,3 +102,36 @@ export function changeCardDescription(id, description) {
     error: false,
   };
 }
+
+/**
+ * Changes the thanks message of the study.
+ * @param {String} message
+ * @return {JSON} the action
+ */
+export function changeThanksMessage(message) {
+  return {
+    type: CHANGE_THANKS_MESSAGE,
+    payload: {
+      message: message,
+    },
+    error: false,
+  };
+};
+
+/**
+ * Async action for sending the sreated study to the server.
+ * @param {*} status
+ * @param {JSON} response
+ * @param {*} error
+ * @return {JSON} the action
+ */
+export function createSort(status, response, error) {
+  return {
+    type: CREATE_SORT,
+    payload: {
+      status: status,
+      reponse: response,
+      error: error,
+    },
+  };
+};

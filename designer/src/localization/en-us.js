@@ -17,5 +17,6 @@ export default {
   addCard: 'Add Card',
   message: 'Message',
   thanksMessage: 'Thanks message',
+  create: 'Create',
 };
 
