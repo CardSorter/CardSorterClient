@@ -2,10 +2,12 @@ import {connect} from 'react-redux';
 
 import StudiesContainer from '../components/StudiesContainer.jsx';
 
-const mapStateToProps = (state) => {
-  console.log('Studies:', state.studies);
+const mapStateToProps = (state, ownProps) => {
   return {
     studies: state.studies.studies,
+    onCreateClick: () => {
+      ownProps.history.push('./create/1');
+    },
   };
 };
 

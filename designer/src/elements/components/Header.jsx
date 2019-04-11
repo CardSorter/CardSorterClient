@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Header = ({username, profilePic}) => (
   <header>
-    <p id="logo">Card Sorter</p>
+    <a href="/" id="logo">Card Sorter</a>
     <div className="profile">
       <p>{username}</p>
       <img src={profilePic} alt='Profile' />

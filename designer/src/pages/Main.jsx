@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import '../App.css';
 import Header from '../elements/components/Header.jsx';
@@ -7,20 +7,16 @@ import PopulateStudiesContainer
 import Filters from '../elements/components/Filters.jsx';
 import demoImage from '../demo/profile.jpeg';
 
+
 /**
- *
+ * The main page.
+ * @return {ReactDOM}
  */
-export default class Main extends Component {
-  /**
-   * @return {ReactDOM}
-   */
-  render() {
-    return (
-      <main>
-        <Header username='John' profilePic={demoImage}/>
-        <Filters ongoing={true} completed={true} />
-        <PopulateStudiesContainer />
-      </main>
-    );
-  }
-}
+const Main = ({history}) =>
+  (<main>
+    <Header username='John' profilePic={demoImage}/>
+    <Filters ongoing={true} completed={true} />
+    <PopulateStudiesContainer history={history}/>
+  </main>);
+
+export default Main;

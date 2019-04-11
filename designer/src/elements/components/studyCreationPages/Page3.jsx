@@ -35,4 +35,9 @@ const Page3 = ({values, dispatch}) => (
   </div>
 );
 
+Page3.propTypes = {
+  values: PropTypes.object.isRequired,
+  dispatch: PropTypes.object.isRequired,
+};
+
 export default Page3;

@@ -42,6 +42,7 @@ const Page1 = ({values, dispatch}) => (
 );
 
 Page1.propTypes = {
+  values: PropTypes.object.isRequired,
   dispatch: PropTypes.object.isRequired,
 };
 

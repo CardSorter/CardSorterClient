@@ -9,7 +9,6 @@ import demoImage from '../demo/profile.jpeg';
  * @return {ReactDOM} The study creation page.
  */
 const CreateStudy = ({page, history}) => {
-  console.log(page);
   return (
     <main>
       <Header username='John' profilePic={demoImage}/>

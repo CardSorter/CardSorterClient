@@ -44,6 +44,7 @@ table {
 /* END OF RESET */
 
 :root {
+  --color-black: #181818;
   --color-green: #94F4CD;
   --color-light-green: #B3EED8;
   --color-red: #F4A394;
@@ -91,11 +92,14 @@ header h1 {
 }
 
 header #logo {
+  color: var(--color-black);
+  cursor: pointer;
   font-family: 'Dancing Script', cursive;
   font-size: 2.2rem;
   font-weight: bold;
   margin-left: 30px;
   margin-right: auto;
+  text-decoration: none;
 }
 
 header .profile {

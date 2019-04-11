@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import StudyItem from './StudyItem.jsx';
 import CreateStudyItem from './CreateStudyItem.jsx';
 
-const StudiesContainer = ({studies}) => (
+const StudiesContainer = ({studies, onCreateClick}) => (
   <ul className="studies-container">
     {
       studies.map((Study) =>
@@ -12,12 +12,13 @@ const StudiesContainer = ({studies}) => (
           completedNo={Study.completedNo} abandonedNo={Study.abandonedNo}
           launcedDate={Study.launcedDate} editDate={Study.editDate} endDate={Study.endDate}/>)
     }
-    <CreateStudyItem />
+    <CreateStudyItem onClick={onCreateClick}/>
   </ul>
 );
 
 StudiesContainer.propTypes = {
   studies: PropTypes.array.isRequired,
+  onCreateClick: PropTypes.func.isRequired,
 };
 
 export default StudiesContainer;
