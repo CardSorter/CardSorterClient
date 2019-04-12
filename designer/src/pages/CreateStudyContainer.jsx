@@ -5,7 +5,6 @@ import CreateStudy from './CreateStudy.jsx';
 const mapStateToProps = (state, ownProps) => {
   return {
     history: ownProps.history,
-    page: parseInt(ownProps.match.params.page),
   };
 };
 

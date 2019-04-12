@@ -14,7 +14,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <Route exact path='/' component={Main}/>
-        <Route path='/create/:page' component={CreateStudy} />
+        <Route path='/create' component={CreateStudy} />
       </Router>
     </Provider>, document.getElementById('root'));
 

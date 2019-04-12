@@ -1,3 +1,4 @@
+import * as StatusEnum from '../static/StatusEnum';
 import * as studyCreationActions from '../actions/studyCreationAction';
 
 /**
@@ -48,6 +49,19 @@ export default function studyCreationReducer(state={}, action) {
       return Object.assign({}, state, {
         'thanksMessage': action.payload.message,
       });
+    }
+    case studyCreationActions.SHOW_PAGE: {
+      const newState = Object.assign({}, state);
+      newState['ui'].currentPage = action.payload.pageNo;
+      return newState;
+    }
+    case studyCreationActions.CHECK_TITLE: {
+      const newState = Object.assign({}, state);
+      if (action.payload.status === StatusEnum.SUCCESS) {
+        newState.ui.validTitle = action.payload.validTitle;
+      }
+      newState.ui.titleFetching = action.payload.status;
+      return newState;
     }
     default: {
       return state;

@@ -17,6 +17,11 @@ const initialState = {
       },
     },
     thanksMessage: undefined,
+    ui: {
+      currentPage: 1,
+      titleFetching: undefined,
+      validTitle: true,
+    },
   },
 };
 

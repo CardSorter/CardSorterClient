@@ -1,3 +1,5 @@
+import * as StatusEnum from '../static/StatusEnum';
+
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
 export const CHANGE_URL = 'CHANGE_URL';
@@ -5,7 +7,11 @@ export const ADD_CARD = 'ADD_CARD';
 export const CHANGE_CARD_NAME = 'CHANGE_CARD_NAME';
 export const CHANGE_CARD_DESCRIPTION = 'CHANGE_CARD_DESCRIPTION';
 export const CHANGE_THANKS_MESSAGE = 'CHANGE_THANKS_MESSAGE';
-export const CREATE_SORT = 'CREATE_SORT';
+export const CREATE_STUDY = 'CREATE_STUDY';
+export const SHOW_PAGE = 'SHOW_PAGE';
+
+export const CHECK_TITLE = 'CHECK_TITLE';
+export const SEND_STUDY = 'SEND_STUDY';
 
 /**
  * Changes the title of the study that is going to be created.
@@ -119,19 +125,104 @@ export function changeThanksMessage(message) {
 };
 
 /**
+ * Changes the showing page.
+ * @param {Number} pageNo
+ * @return {JSON} the action
+ */
+export function showPage(pageNo) {
+  return {
+    type: SHOW_PAGE,
+    payload: {
+      pageNo: pageNo,
+    },
+    error: false,
+  };
+}
+
+
+/**
+ * Async action for checking the validity of the title.
+ * @param {StatusEnum} status
+ * @param {Boolean} validTitle
+ * @param {Error} error
+ * @return {JSON} the action
+ */
+export function checkTitle(status, validTitle, error) {
+  return {
+    type: CHECK_TITLE,
+    payload: {
+      status: status,
+      payload: {
+        validTitle: validTitle,
+      },
+    },
+    error: error,
+  };
+}
+
+/**
  * Async action for sending the sreated study to the server.
  * @param {*} status
  * @param {JSON} response
  * @param {*} error
  * @return {JSON} the action
  */
-export function createSort(status, response, error) {
+export function createStudy(status, response, error) {
   return {
-    type: CREATE_SORT,
+    type: CREATE_STUDY,
     payload: {
       status: status,
       reponse: response,
       error: error,
     },
   };
-};
+}
+
+/* Thunk actions */
+
+/**
+ *
+ * @param {*} title
+ * @return {func}
+ */
+export function sendTitle(title) {
+  return function(dispatch) {
+    dispatch(checkTitle(StatusEnum.IS_FETCHING));
+    fetch('http://127.0.0.1:5000/studies_endpoint?title', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: title,
+      }),
+    })
+        .then(
+            (response) => response.json().then((json) =>
+              dispatch(checkTitle(StatusEnum.SUCCESS, json.isValid))
+            )
+        );
+  };
+}
+
+/**
+ * @param {Object} study
+ * @return {func}
+ */
+export default function sendStudy(study) {
+  return function(dispatch) {
+    dispatch(createStudy(StatusEnum.IS_FETCHING));
+    fetch('http://127.0.0.1:5000/studies_endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(study),
+    })
+        .then(
+            (response) => response.json().then((json) =>
+              dispatch(checkTitle(StatusEnum.SUCCESS, json.isValid))
+            )
+        );
+  };
+}

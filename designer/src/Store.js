@@ -6,6 +6,7 @@ import app from './reducers/indexReducer';
 import initialState from './reducers/stateSchema';
 import localizedText from './localization/LocalizedText';
 
+import {fetchStudies} from './actions/studyAction';
 import {runTests} from './tests/simpleImporting';
 
 /**
@@ -20,7 +21,9 @@ export default function initializeStore() {
 
   const unsuscribe = store.subscribe(() => {});
 
-  runTests(store);
+  // runTests(store);
+  store.dispatch(fetchStudies());
+
 
   unsuscribe();
   return store;

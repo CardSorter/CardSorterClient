@@ -1,19 +1,21 @@
+import fetch from 'cross-fetch';
+import * as StatusEnum from '../static/StatusEnum';
+import debugConsole from '../debug/debugConsole';
+
 export const LOAD_STUDIES = 'LOAD_STUDIES';
-export const FETCH_STUDIES = 'FETCH_STUDIES';
+export const REQUEST_STUDIES = 'REQUEST_STUDIES';
 
 /**
  *
- * @param {Boolean} isFetching
- * @param {Boolean} didInvalidate
+ * @param {StatusEnum} status
  * @param {Error} error
  * @return {JSON} the action
  */
-export function fetchStudies(isFetching, didInvalidate, error) {
+export function requestStudies(status, error) {
   return {
-    type: FETCH_STUDIES,
+    type: REQUEST_STUDIES,
     payload: {
-      isFetching: isFetching,
-      didInvalidate: didInvalidate,
+      status: status,
     },
     error: error || false,
   };
@@ -32,5 +34,26 @@ export function loadStudies(studies) {
       studies: studies,
     },
     error: false,
+  };
+}
+
+/* Thunk actions */
+
+/**
+ * Fetches the studies from the server.
+ * @return {func}
+ */
+export function fetchStudies() {
+  return function(dispatch) {
+    dispatch(requestStudies(StatusEnum.IS_FETCHING));
+
+    fetch('http://127.0.0.1:5000/studies_endpoint')
+        .then(
+            (response) => response.json().then((json) => {
+              dispatch(requestStudies(StatusEnum.SUCCESS));
+              dispatch(loadStudies(json.studies));
+            }),
+            (error) => debugConsole(error)
+        );
   };
 }

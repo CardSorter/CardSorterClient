@@ -38,11 +38,12 @@ function onElementChange(dispatch, name, event) {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    currentPage: ownProps.currentPage,
+    currentPage: state.studyCreation.ui.currentPage,
     page1Values: {
       title: state.studyCreation.title,
+      titleValidity: state.studyCreation.ui.validTitle,
       url: state.studyCreation.urlPrefix,
     },
     page2Values: {
@@ -61,8 +62,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       onChange: (name, event) => {
         onElementChange(dispatch, name, event);
       },
-      onNext: () =>{
-        ownProps.history.push('./2');
+      onNext: () => {
+        dispatch(studyCreationAction.showPage(2));
       },
       onPrev: () => {
       },
@@ -80,10 +81,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(studyCreationAction.changeCardDescription(id, description));
       },
       onNext: () =>{
-        ownProps.history.push('./3');
+        dispatch(studyCreationAction.showPage(3));
       },
       onPrev: () => {
-        ownProps.history.push('./1');
+        dispatch(studyCreationAction.showPage(1));
       },
     },
     page3Dispatch: {
@@ -92,9 +93,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(studyCreationAction.changeThanksMessage(message));
       },
       onNext: () =>{
+        
       },
       onPrev: () => {
-        ownProps.history.push('./2');
+        dispatch(studyCreationAction.showPage(2));
       },
     },
   };
