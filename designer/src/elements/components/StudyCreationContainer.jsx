@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Page1 from './studyCreationPages/Page1.jsx';
@@ -16,6 +17,9 @@ const StudyCreationContainer = ({currentPage, page1Values, page1Dispatch,
   } else
   if (currentPage === 3) {
     render = <Page3 values={page3Values} dispatch={page3Dispatch} />;
+  } else
+  if (currentPage === -1) {
+    render = <Redirect to='/'/>;
   }
   return render;
 };

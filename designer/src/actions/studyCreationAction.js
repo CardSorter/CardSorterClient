@@ -1,4 +1,5 @@
 import * as StatusEnum from '../static/StatusEnum';
+import * as studyActions from './studyAction';
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
@@ -161,7 +162,7 @@ export function checkTitle(status, validTitle, error) {
 }
 
 /**
- * Async action for sending the sreated study to the server.
+ * Async action for sending the created study to the server.
  * @param {*} status
  * @param {JSON} response
  * @param {*} error
@@ -209,7 +210,7 @@ export function sendTitle(title) {
  * @param {Object} study
  * @return {func}
  */
-export default function sendStudy(study) {
+export function sendStudy(study) {
   return function(dispatch) {
     dispatch(createStudy(StatusEnum.IS_FETCHING));
     fetch('http://127.0.0.1:5000/studies_endpoint', {
@@ -220,8 +221,11 @@ export default function sendStudy(study) {
       body: JSON.stringify(study),
     })
         .then(
-            (response) => response.json().then((json) =>
-              dispatch(checkTitle(StatusEnum.SUCCESS, json.isValid))
+            (response) => response.json().then((json) => {
+              console.log('Json:', json);
+              dispatch(studyActions.addStudy(json.study));
+              dispatch(createStudy(StatusEnum.SUCCESS, json.study));
+            }
             )
         );
   };

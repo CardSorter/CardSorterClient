@@ -63,6 +63,14 @@ export default function studyCreationReducer(state={}, action) {
       newState.ui.titleFetching = action.payload.status;
       return newState;
     }
+    case studyCreationActions.CREATE_STUDY: {
+      const newState = Object.assign({}, state);
+      if (action.payload.status === StatusEnum.SUCCESS) {
+        newState.ui.currentPage = -1;
+      }
+      newState.ui.studySending = action.payload.status;
+      return newState;
+    }
     default: {
       return state;
     }

@@ -4,6 +4,7 @@ import debugConsole from '../debug/debugConsole';
 
 export const LOAD_STUDIES = 'LOAD_STUDIES';
 export const REQUEST_STUDIES = 'REQUEST_STUDIES';
+export const ADD_STUDY = 'ADD_STUDY';
 
 /**
  *
@@ -32,6 +33,21 @@ export function loadStudies(studies) {
     type: LOAD_STUDIES,
     payload: {
       studies: studies,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Adds a study to the existing list of studies.
+ * @param {StudyCard} study
+ * @return {JSON} the action
+ */
+export function addStudy(study) {
+  return {
+    type: ADD_STUDY,
+    payload: {
+      study: study,
     },
     error: false,
   };

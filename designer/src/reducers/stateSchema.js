@@ -5,10 +5,10 @@ const initialState = {
     studies: [],
   },
   studyCreation: {
-    title: undefined,
-    description: undefined,
+    title: 'Title',
+    description: 'Description',
     urlPrefix: 'cardsorter.com/sort/user/',
-    url: undefined,
+    url: 'Title',
     cards: {
       1: {
         id: 1,
@@ -16,11 +16,12 @@ const initialState = {
         description: undefined,
       },
     },
-    thanksMessage: undefined,
+    thanksMessage: 'Thanks',
     ui: {
       currentPage: 1,
       titleFetching: undefined,
       validTitle: true,
+      studySending: undefined,
     },
   },
 };

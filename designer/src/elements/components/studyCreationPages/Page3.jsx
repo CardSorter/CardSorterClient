@@ -23,7 +23,8 @@ const Page3 = ({values, dispatch}) => (
       <div className="btn-container">
         <button className="prev"
           onClick={dispatch.onPrev}></button>
-        <button className="create" onClick={dispatch.onNext}>
+        <button className="create" onClick={() =>
+          dispatch.onNext(values.study)}>
           {localizedText.text.create}</button>
       </div>
       <div className="page-no-container">

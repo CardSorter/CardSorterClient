@@ -38,6 +38,21 @@ function onElementChange(dispatch, name, event) {
   }
 }
 
+/**
+ * Constructs the state object that is going to be send.
+ * @param {Object} state
+ * @return {Object}
+ */
+function constructState(state) {
+  return {
+    title: state.title,
+    description: state.description,
+    url: state.url,
+    cards: state.cards,
+    message: state.thanksMessage,
+  };
+}
+
 const mapStateToProps = (state) => {
   return {
     currentPage: state.studyCreation.ui.currentPage,
@@ -52,6 +67,7 @@ const mapStateToProps = (state) => {
     page3Values: {
       message: state.studyCreation.thanksMessage,
       url: state.studyCreation.urlPrefix + state.studyCreation.url,
+      study: constructState(state.studyCreation),
     },
   };
 };
@@ -92,8 +108,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         const message = e.target.value;
         dispatch(studyCreationAction.changeThanksMessage(message));
       },
-      onNext: () =>{
-        
+      onNext: (study) =>{
+        dispatch(studyCreationAction.sendStudy(study));
       },
       onPrev: () => {
         dispatch(studyCreationAction.showPage(2));
