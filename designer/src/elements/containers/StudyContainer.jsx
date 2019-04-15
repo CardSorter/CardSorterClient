@@ -54,6 +54,8 @@ function getGraphValues(state) {
         percentage: state.study.participants.completion,
         sub: state.study.participants.completed,
         total: state.study.participants.total,
+        entity: L.text.users,
+        action: L.text.completedTheStudy,
       };
     }
     case 1: {
@@ -61,6 +63,8 @@ function getGraphValues(state) {
         percentage: state.study.cards.average,
         sub: state.study.cards.sorted,
         total: state.study.cards.total,
+        entity: L.text.cards,
+        action: L.text.wereSorterInAverage,
       };
     }
     case 2: {
@@ -68,6 +72,8 @@ function getGraphValues(state) {
         percentage: state.study.categories.similarity,
         sub: state.study.categories.similar,
         total: state.study.categories.total,
+        entity: L.text.categories,
+        action: L.text.couldBeMergedInto,
       };
     }
     default: {
@@ -99,8 +105,9 @@ function getData(state) {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
+    isFetching: state.study.isFetching,
     title: state.study.title,
     isLive: state.study.isLive,
     launched: state.study.launched,
@@ -115,8 +122,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    loadStudy: () => dispatch(studyAction.fetchStudy(ownProps.id)),
     menuDispatch: {
       onClicks: {
         participant: () => {

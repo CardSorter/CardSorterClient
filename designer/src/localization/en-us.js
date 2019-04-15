@@ -16,6 +16,7 @@ export default {
   completed: 'Completed',
   completedTheStudy: 'completed the study',
   completion: 'completion',
+  couldBeMergedInto: 'could be merged into',
   create: 'Create',
   createStudy: 'Create a new study',
   description: 'Description',
@@ -38,5 +39,6 @@ export default {
   timeTaken: 'time taken',
   title: 'Title',
   users: 'users',
+  wereSorterInAverage: 'were sorter in average',
 };
 

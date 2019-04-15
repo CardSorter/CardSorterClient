@@ -18,8 +18,8 @@ const DataTable = ({headers, data}) => {
             data.map((line) =>
               <tr key={'line'+line}>
                 {
-                  line.map((item) =>
-                    <td key={'item'+item}>{item}</td>
+                  line.map((item, index) =>
+                    <td key={'item'+index}>{item}</td>
                   )
                 }
               </tr>

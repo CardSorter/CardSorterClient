@@ -7,11 +7,11 @@ import demoImage from '../demo/profile.jpeg';
 /**
  * @return {ReactDOM} The study page.
  */
-const StudyPage = ({history, id}) => {
+const StudyPage = ({history, match}) => {
   return (
     <main>
       <Header username='John' profilePic={demoImage}/>
-      <StudyContainer id={id}/>
+      <StudyContainer id={match.params.id}/>
     </main>);
 };
 
