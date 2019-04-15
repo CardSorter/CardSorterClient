@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StudyMenu from '../components/studyPageElements/StudyMenu.jsx';
+import DataTable from '../components/studyPageElements/DataTable.jsx';
+import BarGraph from '../components/studyPageElements/BarGraph.jsx';
 import L from '../../localization/LocalizedText';
 
-const Study = ({title, isLive, launched, menuValues, menuDispatch}) => (
+const Study = ({title, isLive, launched, menuValues, menuDispatch,
+  graphValues, tableValues, tableDispatch}) => (
   <div className="study-page">
     <span className="header">
       <h1>{title}</h1>
@@ -30,6 +33,11 @@ const Study = ({title, isLive, launched, menuValues, menuDispatch}) => (
     </span>
     <StudyMenu selectedNo={menuValues.selectedNo} onClicks=
       {menuDispatch.onClicks}/>
+    <div className="content">
+      <BarGraph percentage={graphValues.percentage} sub={graphValues.sub}
+        total={graphValues.total}/>
+      <DataTable headers={tableValues.headers} data={tableValues.data}/>
+    </div>
   </div>
 );
 
@@ -39,6 +47,9 @@ Study.propTypes = {
   launched: PropTypes.objectOf(Date).isRequired,
   menuValues: PropTypes.object.isRequired,
   menuDispatch: PropTypes.object.isRequired,
+  graphValues: PropTypes.object.isRequired,
+  tableValues: PropTypes.object.isRequired,
+  tableDispatch: PropTypes.object.isRequired,
 };
 
 export default Study;
