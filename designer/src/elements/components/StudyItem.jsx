@@ -15,6 +15,7 @@ const StudyItem = ({title, isLive, completedNo, abandonedNo,
       {
         !isLive &&
         <span className='activeSquare notLive'></span>
+
       }
     </div>
     <div className='participants'>

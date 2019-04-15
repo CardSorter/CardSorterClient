@@ -1,6 +1,7 @@
 export default {
   completed: 'Completed',
   abandonded: 'Abandoned',
+  active: 'Active',
   launchedOn: 'Launched on',
   editedOn: 'Last edited on',
   endedOn: 'Ended on',
@@ -17,6 +18,12 @@ export default {
   addCard: 'Add Card',
   message: 'Message',
   thanksMessage: 'Thanks message',
+  inactive: 'Inactive',
   create: 'Create',
+  participant: 'participant',
+  cards: 'cards',
+  categories: 'categories',
+  similarityMatrix: 'similarity matrix',
+  clusters: 'clusters',
 };
 

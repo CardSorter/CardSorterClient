@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import './index.css';
 import Main from './pages/Main.jsx';
 import CreateStudy from './pages/CreateStudyContainer.jsx';
+import StudyPage from './pages/StudyPage.jsx';
 import initializeStore from './Store';
 import * as serviceWorker from './serviceWorker';
 
@@ -14,7 +15,8 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <Route exact path='/' component={Main}/>
-        <Route path='/create' component={CreateStudy} />
+        <Route path='/create' component={CreateStudy}/>
+        <Route path='/study/:id' component={StudyPage}/>
       </Router>
     </Provider>, document.getElementById('root'));
 

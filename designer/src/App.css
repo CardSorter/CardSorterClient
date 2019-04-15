@@ -177,7 +177,7 @@ li.studyItem .header h3 {
   font-size: 2rem;
 }
 
-li.studyItem .header span.activeSquare {
+span.activeSquare {
   border-radius: 0.5rem;
   display: inline-block;
   height: 2rem; width: 2rem;
@@ -452,4 +452,71 @@ button.createStudyCard:hover {
   color: white;
   font-weight: bold;
   width: 8rem;
+}
+
+/* Study Page */
+
+.study-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.study-page span.header {
+  align-items: baseline;
+  display: flex;
+  font-size: 3rem;
+  justify-content: center;
+}
+
+.study-page span.header button {
+  background: 0;
+  background-image: url('./icons/cog-solid.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  border: 0;
+  height: 2rem; width: 2rem;
+  margin-left: .7rem;
+  opacity: .8;
+}
+
+.study-page span.active {
+  align-items: center;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 300;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.study-page span.active .active-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.study-page span.active .active-container p {
+  border-right: solid 1px var(--color-black);
+  margin-right: .5rem;
+  padding: 0 .5rem 0 1rem;
+}
+
+.study-page .study-menu {
+  margin-top: 1rem;
+}
+
+.study-page .study-menu button {
+  background: 0;
+  border: 0;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+.study-page .study-menu button.selected {
+  font-weight: 400;
 }

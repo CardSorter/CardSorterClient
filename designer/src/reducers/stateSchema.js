@@ -24,6 +24,34 @@ const initialState = {
       studySending: undefined,
     },
   },
+  study: {
+    isFetching: undefined,
+    id: 1,
+    title: 'Title',
+    isLive: true,
+    launched: new Date(2019, 3, 12),
+    ended: undefined,
+    selectedItem: 0,
+    participants: {
+      completion: undefined,
+      total: undefined,
+      completed: undefined,
+      data: [],
+    },
+    cards: {
+      average: undefined,
+      total: undefined,
+      sorted: undefined,
+      data: [],
+    },
+    categories: {
+      similarity: undefined,
+      total: undefined,
+      similar: undefined,
+      merged: undefined,
+      data: [],
+    },
+  },
 };
 
 export default initialState;
