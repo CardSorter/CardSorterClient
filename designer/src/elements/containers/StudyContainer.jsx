@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 
 import Study from '../components/Study.jsx';
 import L from '../../localization/LocalizedText';
+import * as studyAction from '../../actions/studyPageAction';
 
 /**
  * Finds the proper header strings based on the selected item on the study menu.
@@ -119,19 +120,17 @@ const mapDispatchToProps = (dispatch) => {
     menuDispatch: {
       onClicks: {
         participant: () => {
-
+          dispatch(studyAction.changeView(0));
         },
         cards: () => {
-
+          dispatch(studyAction.changeView(1));
         },
         categories: () => {
-
+          dispatch(studyAction.changeView(2));
         },
         similarityMatrix: () => {
-
         },
         clusters: () => {
-
         },
       },
     },

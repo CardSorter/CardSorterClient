@@ -1,3 +1,5 @@
+import * as studyActions from '../actions/studyPageAction';
+
 /**
  *
  * @param {stateSchema} state
@@ -6,6 +8,11 @@
  */
 export default function studyPageReducer(state={}, action) {
   switch (action.type) {
+    case studyActions.CHANGE_VIEW: {
+      return Object.assign({}, state, {
+        'selectedItem': action.payload.no,
+      });
+    }
     default: {
       return state;
     }
