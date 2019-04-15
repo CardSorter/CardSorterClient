@@ -14,6 +14,8 @@ export default {
   category: 'category',
   clusters: 'clusters',
   completed: 'Completed',
+  completedTheStudy: 'completed the study',
+  completion: 'completion',
   create: 'Create',
   createStudy: 'Create a new study',
   description: 'Description',
@@ -26,6 +28,7 @@ export default {
   message: 'Message',
   of: 'of',
   ongoing: 'ongoing',
+  outOf: 'out of',
   participant: 'participant',
   participantNo: 'participant no',
   participants: 'participants',
@@ -34,5 +37,6 @@ export default {
   thanksMessage: 'Thanks message',
   timeTaken: 'time taken',
   title: 'Title',
+  users: 'users',
 };
 
