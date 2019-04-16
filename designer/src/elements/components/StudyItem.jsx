@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import localizedText from '../../localization/LocalizedText';
 
 const StudyItem = ({title, isLive, completedNo, abandonedNo,
-  launchedDate, editDate, endDate}) => (
-  <li className='studyItem'>
+  launchedDate, editDate, endDate, onClick}) => (
+  <li className='studyItem' onClick={onClick}>
     <div className='header'>
       <h3>{title}</h3>
       {
@@ -54,6 +54,7 @@ StudyItem.propTypes = {
   launchedDate: PropTypes.instanceOf(Date).isRequired,
   editDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
+  onClick: PropTypes.func.isRequired,
 };
 
 export default StudyItem;

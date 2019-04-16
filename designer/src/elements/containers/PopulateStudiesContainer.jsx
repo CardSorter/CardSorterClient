@@ -5,6 +5,9 @@ import StudiesContainer from '../components/StudiesContainer.jsx';
 const mapStateToProps = (state, ownProps) => {
   return {
     studies: state.studies.studies,
+    onStudyClick: (id) => {
+      ownProps.history.push('./study/'+id);
+    },
     onCreateClick: () => {
       ownProps.history.push('./create');
     },
@@ -12,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+  };
 };
 
 const PopulateStudiesContainer = connect(

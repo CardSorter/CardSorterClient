@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import StudyItem from './StudyItem.jsx';
 import CreateStudyItem from './CreateStudyItem.jsx';
 
-const StudiesContainer = ({studies, onCreateClick}) => (
+const StudiesContainer = ({studies, onStudyClick, onCreateClick}) => (
   <ul className="studies-container">
     {
       studies.map((Study, index) =>
         <StudyItem key={'studyItem'+index} title={Study.title} isLive={Study.isLive}
           completedNo={Study.completedNo} abandonedNo={Study.abandonedNo}
-          launchedDate={Study.launchedDate} editDate={Study.editDate} endDate={Study.endDate}/>)
+          launchedDate={Study.launchedDate} editDate={Study.editDate}
+          endDate={Study.endDate} onClick={() => onStudyClick(Study.id)}/>)
     }
     <CreateStudyItem onClick={onCreateClick}/>
   </ul>
