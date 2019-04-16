@@ -7,10 +7,10 @@ import CreateStudyItem from './CreateStudyItem.jsx';
 const StudiesContainer = ({studies, onCreateClick}) => (
   <ul className="studies-container">
     {
-      studies.map((Study) =>
-        <StudyItem key={'studyItem'+Study.id} title={Study.title} isLive={Study.isLive}
+      studies.map((Study, index) =>
+        <StudyItem key={'studyItem'+index} title={Study.title} isLive={Study.isLive}
           completedNo={Study.completedNo} abandonedNo={Study.abandonedNo}
-          launcedDate={Study.launcedDate} editDate={Study.editDate} endDate={Study.endDate}/>)
+          launchedDate={Study.launchedDate} editDate={Study.editDate} endDate={Study.endDate}/>)
     }
     <CreateStudyItem onClick={onCreateClick}/>
   </ul>

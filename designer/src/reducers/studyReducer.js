@@ -1,5 +1,6 @@
 import * as studyActions from '../actions/studyAction';
 import StudyCard from '../elements/StudyCard';
+import * as StatusEnum from '../static/StatusEnum';
 
 /**
  *
@@ -10,27 +11,34 @@ import StudyCard from '../elements/StudyCard';
 export default function studyReducer(state={}, action) {
   switch (action.type) {
     case studyActions.LOAD_STUDIES: {
-      return Object.assign({}, state, {
-        'studies': action.payload.studies.map(
-            ({id, title, isLive, completedNo, abandonedNo,
-              launcedDate, editDate, endDate}) => new StudyCard(
-                id, title, isLive, completedNo, abandonedNo,
-                new Date(launcedDate),
-                new Date(editDate),
-                new Date(endDate)
-            )
-        ),
-      });
+      const newState = Object.assign({}, state);
+
+      if (action.payload.status === StatusEnum.SUCCESS) {
+        if (!action.payload.studies || action.payload.studies.length === 0) {
+          newState.studies = [];
+        } else {
+          newState.studies = action.payload.studies.map(
+              ({id, title, isLive, completedNo, abandonedNo,
+                launchedDate, editDate, endDate}) => new StudyCard(
+                  id, title, isLive, completedNo, abandonedNo,
+                  new Date(launchedDate),
+                  new Date(editDate),
+                  !isLive? new Date(endDate) : undefined
+              )
+          );
+        };
+      }
+      newState.isFetching = action.payload.status !== StatusEnum.SUCCESS;
+      return newState;
     }
     case studyActions.ADD_STUDY: {
       const newState = Object.assign({}, state);
-      console.log(action.payload.study);
       const study = action.payload.study;
 
       newState.studies.push(new StudyCard(
           study.id, study.title, study.isLive, study.completedNo,
           study.abandonedNo,
-          new Date(study.launcedDate),
+          new Date(study.launchedDate),
           new Date(study.editDate),
           undefined));
       return newState;

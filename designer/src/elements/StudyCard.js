@@ -10,18 +10,18 @@ export default class StudyCard {
    * @param {Boolean} isLive
    * @param {Number} completedNo
    * @param {Number} abandonedNo
-   * @param {Date} launcedDate
+   * @param {Date} launchedDate
    * @param {Date} editDate
    * @param {Date} endDate
    */
   constructor(id, title, isLive, completedNo, abandonedNo,
-      launcedDate, editDate, endDate) {
+      launchedDate, editDate, endDate) {
     this.id = id;
     this.title = title;
     this.isLive = isLive;
     this.completedNo = completedNo;
     this.abandonedNo = abandonedNo;
-    this.launcedDate = launcedDate;
+    this.launchedDate = launchedDate;
     this.editDate = editDate;
     this.endDate = endDate;
   }

@@ -19,23 +19,23 @@ export default function studyPageReducer(state={}, action) {
         newState.launched = new Date(study.launched);
         newState.ended = study.ended ? new Date(study.ended): undefined;
         newState.participants = {
-          completion: study.participants.completion,
-          total: study.participants.total,
-          completed: study.participants.completed,
-          data: study.participants.data,
+          completion: study.sort ? study.participants.completion: '0%',
+          total: study.sort ? study.participants.total: 0,
+          completed: study.sort ? study.participants.completed: 0,
+          data: study.sort ? study.participants.data: [],
         };
         newState.cards = {
-          average: study.cards.average,
-          total: study.cards.total,
-          sorted: study.cards.sorted,
-          data: study.cards.data,
+          average: study.sort ? study.cards.average: '0%',
+          total: study.sort ? study.cards.total: 0,
+          sorted: study.sort ? study.cards.sorted: 0,
+          data: study.sort ? study.cards.data: [],
         };
         newState.categories = {
-          similarity: study.categories.similarity,
-          total: study.categories.total,
-          similar: study.categories.similar,
-          merged: study.categories.merged,
-          data: study.categories.data,
+          similarity: study.sort ? study.categories.similarity: '0%',
+          total: study.sort ? study.categories.total: 0,
+          similar: study.sort ? study.categories.similar: 0,
+          merged: study.sort ? study.categories.merged: 0,
+          data: study.sort ? study.categories.data: [],
         };
       }
 

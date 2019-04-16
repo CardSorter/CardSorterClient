@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import localizedText from '../../localization/LocalizedText';
 
 const StudyItem = ({title, isLive, completedNo, abandonedNo,
-  launcedDate, editDate, endDate}) => (
+  launchedDate, editDate, endDate}) => (
   <li className='studyItem'>
     <div className='header'>
       <h3>{title}</h3>
@@ -25,7 +25,7 @@ const StudyItem = ({title, isLive, completedNo, abandonedNo,
     <div className='dates'>
       <p className='launched'>
         {localizedText.text.launchedOn} <time
-          dateTime={launcedDate}>{launcedDate.getDate()} {launcedDate.getMonth()} {launcedDate.getFullYear()}</time>
+          dateTime={launchedDate}>{launchedDate.getDate()} {launchedDate.getMonth()} {launchedDate.getFullYear()}</time>
       </p>
       {/* If the endDate is defined show only the end and the launched date */}
       {
@@ -51,7 +51,7 @@ StudyItem.propTypes = {
   isLive: PropTypes.bool.isRequired,
   completedNo: PropTypes.number.isRequired,
   abandonedNo: PropTypes.number.isRequired,
-  launcedDate: PropTypes.instanceOf(Date).isRequired,
+  launchedDate: PropTypes.instanceOf(Date).isRequired,
   editDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
 };

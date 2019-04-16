@@ -67,9 +67,9 @@ class Study extends Component {
 }
 
 Study.propTypes = {
-  title: PropTypes.string.isRequired,
-  isLive: PropTypes.bool.isRequired,
-  launched: PropTypes.objectOf(Date).isRequired,
+  title: PropTypes.string,
+  isLive: PropTypes.bool,
+  launched: PropTypes.objectOf(Date),
   menuValues: PropTypes.object.isRequired,
   menuDispatch: PropTypes.object.isRequired,
   graphValues: PropTypes.object.isRequired,
