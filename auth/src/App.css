@@ -1,0 +1,154 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* END OF RESET */
+
+:root {
+  --color-black: #181818;
+  --color-green: #94F4CD;
+  --color-light-green: #B3EED8;
+  --color-red: #F4A394;
+  --color-light-red: #F5BCB2;
+  --color-purple: #BAA5FF;
+  --color-purple-light: #CABCFA;
+  --color-washed-purple: #C4c6E7;
+
+  --shadow: 0 2px 6px rgb(0, 0, 0, .16);
+
+  --height-header: 8rem;
+}
+
+html, body {
+  color: var(--color-black);
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  height: 100%;
+  margin: 0;
+}
+
+#root, main {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+/* Login Page */
+
+.container {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 40rem; width: 40rem;
+  padding: 3rem;
+}
+
+.container::after {
+  background-color: #181818;
+  background-image: url('https://picsum.photos/g/1920/1080/?random');
+  background-position: center;
+  content: '';
+  height: 100%; width: 100%;
+  position: absolute;
+  top:0; left: 0;
+  z-index: -1;
+}
+
+.container > p {
+  align-self: flex-end;
+  font-size: 3rem;
+}
+
+.container > p::first-letter {
+  text-transform: capitalize;
+}
+
+.container button {
+  background: 0;
+  border: 0;
+  color: var(--color-light-red);
+  cursor: pointer;
+  font-size: 1.4rem;
+  text-decoration: underline;
+}
+
+.container form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.container form input {
+  background: 0;
+  border: solid 1px rgba(0, 0, 0, .5);
+  border-radius: .5rem;
+  font-size: 1.4rem;
+  height: 4.5rem;
+  margin-bottom: 1rem;
+  text-indent: 2rem;
+  width: 100%;
+}
+
+.container form input:nth-child(1) {
+  margin-bottom: 4rem;
+}
+
+.container form button.login {
+  background: radial-gradient(circle at 0% 90%, var(--color-washed-purple), var(--color-purple));
+  border-radius: 1.5rem;
+  color: white;
+  font-size: 1.7rem;
+  font-weight: bold;
+  height: 4rem; width: 50%;
+  margin-top: 6rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.container button.register {
+  align-self: flex-start;
+  margin-top: auto;
+}
