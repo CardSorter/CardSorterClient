@@ -12,10 +12,6 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
-  "dev-dependencies": {
-    "eslint-config-google": "^0.12.0",
-    "eslint-plugin-react": "^7.12.4"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -30,5 +26,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-config-google": "^0.12.0",
+    "eslint-plugin-react": "^7.12.4"
+  }
 }

@@ -1,13 +1,22 @@
+// eslint-disable-next-line no-unused-vars
 import React, {Component} from 'react';
 
 import '../App.css';
+// eslint-disable-next-line no-unused-vars
 import RegisterContainer from '../elements/containers/RegisterContainer.jsx';
 
+/**
+ * The register page.
+ */
 class RegisterPage extends Component {
+  /**
+   * React render function.
+   * @return {ReactDOM}
+   */
   render() {
     return (
       <main className="App">
-        <RegisterContainer/>
+        <RegisterContainer history={this.props.history}/>
       </main>
     );
   }
