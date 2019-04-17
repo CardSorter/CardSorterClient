@@ -87,8 +87,9 @@ html, body {
 
 .container::after {
   background-color: #181818;
-  background-image: url('https://picsum.photos/g/1920/1080/?random');
+  background-image: url('https://picsum.photos/g/2560/1080/?random');
   background-position: center;
+  background-size: cover;
   content: '';
   height: 100%; width: 100%;
   position: absolute;
@@ -127,17 +128,19 @@ html, body {
   border-radius: .5rem;
   font-size: 1.4rem;
   height: 4.5rem;
-  margin-bottom: 1rem;
   text-indent: 2rem;
   width: 100%;
 }
 
-.container form input:nth-child(1) {
+.container form input {
   margin-bottom: 4rem;
 }
 
-.container form button.login {
-  background: radial-gradient(circle at 0% 90%, var(--color-washed-purple), var(--color-purple));
+.container form > *:nth-last-of-type(1) {
+  margin-bottom: 1rem;
+}
+
+.container form button.action {
   border-radius: 1.5rem;
   color: white;
   font-size: 1.7rem;
@@ -148,7 +151,27 @@ html, body {
   text-transform: uppercase;
 }
 
+.container form button.action.login {
+  background: radial-gradient(circle at 0% 90%, var(--color-washed-purple), var(--color-purple));
+}
+
 .container button.register {
   align-self: flex-start;
   margin-top: auto;
+}
+
+/* Register Page */
+
+.container form button.action.signup {
+  background: radial-gradient(circle at 0% 90%, var(--color-light-red), var(--color-red));
+}
+
+.container button.back {
+  background-image: url('./icons/back-btn.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  height: 2.5rem; width: 2.5rem;
+  opacity: .8;
+  position: absolute;
 }

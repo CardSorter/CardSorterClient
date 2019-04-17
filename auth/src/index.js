@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 
 import './index.css';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import initializeStore from './Store';
 import * as serviceWorker from './serviceWorker';
 
@@ -13,6 +14,7 @@ ReactDOM.render(
 <Provider store={store}>
   <Router>
     <Route exact path='/' component={LoginPage}/>
+    <Route path='/register' component={RegisterPage}/>
   </Router>
 </Provider>, document.getElementById('root'));
 

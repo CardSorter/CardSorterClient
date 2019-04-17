@@ -1,8 +1,11 @@
 export default {
+  email: 'email',
   forgotYourPassword: 'forgot your password?',
   hiAgain: 'hi again!',
-  login: 'login',
+  hiThere: 'hi there!',
+  login: 'log in',
   password: 'password',
   register: 'register',
+  signUp: 'sign up',
   username: 'username',
 };
