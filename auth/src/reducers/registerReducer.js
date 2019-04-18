@@ -1,4 +1,5 @@
 import * as registerActions from '../actions/registerAction';
+import * as StatusEnum from '../static/StatusEnum';
 
 /**
  *
@@ -29,6 +30,35 @@ export default function registerReducer(state={}, action) {
         'password': undefined,
         'email': undefined,
       });
+    }
+    case registerActions.CLEAR_USERNAME_ERROR: {
+      return Object.assign({}, state, {
+        'usernameError': undefined,
+      });
+    }
+    case registerActions.CLEAR_EMAIL_ERROR: {
+      return Object.assign({}, state, {
+        'emailError': undefined,
+      });
+    }
+    case registerActions.SENDING_CREDENTIALS: {
+      const newState = Object.assign({}, state, {
+        'isSending': action.payload.status !== StatusEnum.SUCCESS,
+      });
+      if (action.payload.status === StatusEnum.SUCCESS) {
+        if (action.payload.location) {
+          // Redirect to main page
+          window.location.replace(action.payload.location);
+          return newState;
+        }
+        if (action.error.message === 'DUPLICATE USERNAME') {
+          newState.usernameError = 'DUPLICATE';
+        } else
+        if (action.error.message === 'DUPLICATE EMAIL') {
+          newState.emailError = 'DUPLICATE';
+        }
+      }
+      return newState;
     }
     default:
       return state;

@@ -4,6 +4,9 @@ import * as StatusEnum from '../static/StatusEnum';
 export const CHANGE_USERNAME = 'CHANGE_USERNAME';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 export const CLEAR_CREDENTIALS = 'CLEAR_CREDENTIALS';
+export const CLEAR_USERNAME_ERROR = 'CLEAR_USERNAME_ERROR';
+export const CLEAR_PASSWORD_ERROR = 'CLEAR_PASSWORD_ERROR';
+
 
 export const SENDING_CREDENTIALS = 'SEND_CREDENTIALS';
 
@@ -50,6 +53,32 @@ export function clearCredentials() {
 }
 
 /**
+ * Clears the username error field.
+ * @return {JSON} the action.
+ */
+export function clearUsernameError() {
+  return {
+    type: CLEAR_USERNAME_ERROR,
+    payload: {
+    },
+    error: false,
+  };
+}
+
+/**
+ * Clears the password error field.
+ * @return {JSON} the action.
+ */
+export function clearPasswordError() {
+  return {
+    type: CLEAR_PASSWORD_ERROR,
+    payload: {
+    },
+    error: false,
+  };
+}
+
+/**
  * Async function that caries the data send to the server.
  * @param {StatusEnum} status
  * @param {JSON} response
@@ -90,6 +119,10 @@ export function sendCredentials(username, password) {
     })
         .then(
             (response) => response.json().then((json) => {
+              // delete previous auth token
+              document.cookie
+                = 'auth_token= ;expires = Thu, 01 Jan 1970 00:00:00 GMT';
+              // append the new one
               document.cookie = 'auth_token='+json.auth_token+';';
               dispatch(sendingCredentials(
                   StatusEnum.SUCCESS, json.location, json.error));

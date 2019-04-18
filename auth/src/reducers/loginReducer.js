@@ -25,6 +25,16 @@ export default function loginReducer(state={}, action) {
         'password': undefined,
       });
     }
+    case loginActions.CLEAR_USERNAME_ERROR: {
+      return Object.assign({}, state, {
+        'usernameError': undefined,
+      });
+    }
+    case loginActions.CLEAR_PASSWORD_ERROR: {
+      return Object.assign({}, state, {
+        'passwordError': undefined,
+      });
+    }
     case loginActions.SENDING_CREDENTIALS: {
       const newState = Object.assign({}, state, {
         'isSending': action.payload.status !== StatusEnum.SUCCESS,
@@ -36,10 +46,10 @@ export default function loginReducer(state={}, action) {
           return newState;
         }
         if (action.error.message === 'USERNAME NOT FOUND') {
-          newState.username_error = 'NOT FOUND';
+          newState.usernameError = 'NOT FOUND';
         } else
         if (action.error.message === 'INVALID PASSWORD') {
-          newState.password_error = 'INVALID';
+          newState.passwordError = 'INVALID';
         }
       }
       return newState;

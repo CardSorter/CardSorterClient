@@ -7,6 +7,8 @@ const mapStateToProps = (state) => {
   return {
     username: state.login.username,
     password: state.login.password,
+    usernameError: state.login.usernameError,
+    passwordError: state.login.passwordError,
   };
 };
 
@@ -24,11 +26,24 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     },
     onLogin: (username, password) => {
+      dispatch(loginActions.clearUsernameError());
+      dispatch(loginActions.clearPasswordError());
       dispatch(loginActions.sendCredentials(username, password));
     },
     onRegister: () => {
       dispatch(loginActions.clearCredentials());
       ownProps.history.push('./register');
+    },
+    onErrorShow: {
+      // Clear the errors after some time
+      usernameErrorShowing: () => {
+        setTimeout(() => dispatch(loginActions.clearUsernameError()),
+            5000);
+      },
+      passwordErrorShowing: () => {
+        setTimeout(() => dispatch(loginActions.clearPasswordError()),
+            5000);
+      },
     },
   };
 };

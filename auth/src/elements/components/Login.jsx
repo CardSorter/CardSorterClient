@@ -5,27 +5,48 @@ import PropTypes from 'prop-types';
 import L from '../../localization/LocalizedText';
 
 const Login = ({onUsernameChange, onPasswordChange, onForgot,
-  onLogin, onRegister, username, password}) => (
-  <div className="container">
-    <p>{L.text.hiAgain}</p>
-    <form>
-      <input type="text" className="username" onChange={onUsernameChange}
-        placeholder={L.text.username}/>
+  onLogin, onRegister, username, password, usernameError, passwordError,
+  onErrorShow}) => {
+  if (usernameError) {
+    onErrorShow.usernameErrorShowing();
+  }
+  if (passwordError) {
+    onErrorShow.passwordErrorShowing();
+  }
+  return (
+    <div className="container">
+      <p>{L.text.hiAgain}</p>
+      <form>
+        <div className="error-holder">
+          <input type="text" className="username" onChange={onUsernameChange}
+            placeholder={L.text.username}/>
+          {
+            usernameError &&
+            <div className="error-message"><p>{usernameError}</p></div>
+          }
+        </div>
 
-      <input type="password" className="password" onChange={onPasswordChange}
-        placeholder={L.text.password}/>
+        <div className="error-holder">
+          <input type="password" className="password last"
+            onChange={onPasswordChange} placeholder={L.text.password}/>
+          {
+            passwordError &&
+            <div className="error-message"><p>{passwordError}</p></div>
+          }
+        </div>
 
-      <button type="button" className="reset"
-        onClick={onForgot}>{L.text.forgotYourPassword}</button>
+        <button type="button" className="reset"
+          onClick={onForgot}>{L.text.forgotYourPassword}</button>
 
-      <button type="button" className="action login"
-        onClick={() => onLogin(username, password)}>{L.text.login}</button>
-    </form>
+        <button type="button" className="action login"
+          onClick={() => onLogin(username, password)}>{L.text.login}</button>
+      </form>
 
-    <button className="register"
-      onClick={onRegister}>{L.text.register}</button>
-  </div>
-);
+      <button className="register"
+        onClick={onRegister}>{L.text.register}</button>
+    </div>
+  );
+};
 
 Login.propTypes = {
   onUsernameChange: PropTypes.func.isRequired,
@@ -35,6 +56,9 @@ Login.propTypes = {
   onRegister: PropTypes.func.isRequired,
   username: PropTypes.string,
   password: PropTypes.string,
+  usernameError: PropTypes.string,
+  passwordError: PropTypes.string,
+  onErrorShow: PropTypes.object.isRequired,
 };
 
 export default Login;
