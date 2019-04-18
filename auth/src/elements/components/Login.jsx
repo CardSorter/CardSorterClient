@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import L from '../../localization/LocalizedText';
 
 const Login = ({onUsernameChange, onPasswordChange, onForgot,
-  onLogin, onRegister}) => (
+  onLogin, onRegister, username, password}) => (
   <div className="container">
     <p>{L.text.hiAgain}</p>
     <form>
@@ -19,7 +19,7 @@ const Login = ({onUsernameChange, onPasswordChange, onForgot,
         onClick={onForgot}>{L.text.forgotYourPassword}</button>
 
       <button type="button" className="action login"
-        onClick={onLogin}>{L.text.login}</button>
+        onClick={() => onLogin(username, password)}>{L.text.login}</button>
     </form>
 
     <button className="register"
@@ -33,6 +33,8 @@ Login.propTypes = {
   onForgot: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
   onRegister: PropTypes.func.isRequired,
+  username: PropTypes.string,
+  password: PropTypes.string,
 };
 
 export default Login;

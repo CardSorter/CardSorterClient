@@ -1,6 +1,11 @@
+import fetch from 'cross-fetch';
+import * as StatusEnum from '../static/StatusEnum';
+
 export const CHANGE_USERNAME = 'CHANGE_USERNAME';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 export const CLEAR_CREDENTIALS = 'CLEAR_CREDENTIALS';
+
+export const SENDING_CREDENTIALS = 'SEND_CREDENTIALS';
 
 /**
  * Changes the username in the login screen.
@@ -41,5 +46,54 @@ export function clearCredentials() {
     type: CLEAR_CREDENTIALS,
     payload: {},
     error: false,
+  };
+}
+
+/**
+ * Async function that caries the data send to the server.
+ * @param {StatusEnum} status
+ * @param {JSON} response
+ * @param {Error} error
+ * @return {JSON} the action.
+ */
+export function sendingCredentials(status, response, error) {
+  return {
+    type: SENDING_CREDENTIALS,
+    payload: {
+      status: status,
+      location: response,
+    },
+    error: error,
+  };
+}
+
+/* Thunk actions */
+
+/**
+ * Sends the credentials to the server.
+ * @param {String} username
+ * @param {String} password
+ * @return {func}
+ */
+export function sendCredentials(username, password) {
+  return function(dispatch) {
+    dispatch(sendingCredentials(StatusEnum.IS_SENDING));
+    fetch('http://127.0.0.1:5000/user_endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'username': username,
+        'password': password,
+      }),
+    })
+        .then(
+            (response) => response.json().then((json) => {
+              document.cookie = 'auth_token='+json.auth_token+';';
+              dispatch(sendingCredentials(
+                  StatusEnum.SUCCESS, json.location, json.error));
+            })
+        );
   };
 }

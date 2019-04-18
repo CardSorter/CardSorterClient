@@ -4,7 +4,10 @@ import * as loginActions from '../../actions/loginAction';
 import Login from '../components/Login.jsx';
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    username: state.login.username,
+    password: state.login.password,
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -20,8 +23,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onForgot: () => {
 
     },
-    onLogin: () => {
-
+    onLogin: (username, password) => {
+      dispatch(loginActions.sendCredentials(username, password));
     },
     onRegister: () => {
       dispatch(loginActions.clearCredentials());

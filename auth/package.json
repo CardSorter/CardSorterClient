@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cross-fetch": "^3.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
@@ -31,5 +32,5 @@
     "eslint-config-google": "^0.12.0",
     "eslint-plugin-react": "^7.12.4"
   },
-  "homepage" : "localhost:5000/auth"
+  "homepage": "localhost:5000/auth"
 }

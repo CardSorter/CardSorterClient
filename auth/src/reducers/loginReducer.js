@@ -1,4 +1,5 @@
 import * as loginActions from '../actions/loginAction';
+import * as StatusEnum from '../static/StatusEnum';
 
 /**
  *
@@ -23,6 +24,25 @@ export default function loginReducer(state={}, action) {
         'username': undefined,
         'password': undefined,
       });
+    }
+    case loginActions.SENDING_CREDENTIALS: {
+      const newState = Object.assign({}, state, {
+        'isSending': action.payload.status !== StatusEnum.SUCCESS,
+      });
+      if (action.payload.status === StatusEnum.SUCCESS) {
+        if (action.payload.location) {
+          // Redirect to main page
+          window.location.replace(action.payload.location);
+          return newState;
+        }
+        if (action.error.message === 'USERNAME NOT FOUND') {
+          newState.username_error = 'NOT FOUND';
+        } else
+        if (action.error.message === 'INVALID PASSWORD') {
+          newState.password_error = 'INVALID';
+        }
+      }
+      return newState;
     }
     default:
       return state;
