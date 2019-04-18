@@ -11,12 +11,12 @@ import * as serviceWorker from './serviceWorker';
 
 const store = initializeStore();
 ReactDOM.render(
-<Provider store={store}>
-  <Router>
-    <Route exact path='/' component={LoginPage}/>
-    <Route path='/register' component={RegisterPage}/>
-  </Router>
-</Provider>, document.getElementById('root'));
+    <Provider store={store}>
+      <Router basename={'/auth'}>
+        <Route exact path='/' component={LoginPage}/>
+        <Route path='/register' component={RegisterPage}/>
+      </Router>
+    </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

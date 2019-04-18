@@ -222,7 +222,6 @@ export function sendStudy(study) {
     })
         .then(
             (response) => response.json().then((json) => {
-              console.log('Json:', json);
               dispatch(studyActions.addStudy(json.study));
               dispatch(createStudy(StatusEnum.SUCCESS, json.study));
             }

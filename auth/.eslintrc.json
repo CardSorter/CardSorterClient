@@ -3,7 +3,7 @@
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": "google",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"

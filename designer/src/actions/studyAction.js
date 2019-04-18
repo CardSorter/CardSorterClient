@@ -1,4 +1,6 @@
 import fetch from 'cross-fetch';
+
+import auth from '../auth/authenticator';
 import * as StatusEnum from '../static/StatusEnum';
 import debugConsole from '../debug/debugConsole';
 
@@ -45,14 +47,24 @@ export function addStudy(study) {
  * @return {func}
  */
 export function fetchStudies() {
+  auth.getCookie();
   return function(dispatch) {
     dispatch(loadStudies(StatusEnum.IS_FETCHING));
 
     fetch('http://127.0.0.1:5000/studies_endpoint')
         .then(
-            (response) => response.json().then((json) => {
-              dispatch(loadStudies(StatusEnum.SUCCESS, json.studies));
-            }),
+            (response) => {
+              response.json().then((json) => {
+                if (response.status === 401) {
+                  // Redirect
+                  setTimeout(window.location.reload(true), 1000);
+                  window.location.replace(json.location);
+                } else {
+                  dispatch(loadStudies(StatusEnum.SUCCESS, json.studies));
+                }
+              },
+              (error) => debugConsole('Error on decoding json: ', error));
+            },
             (error) => debugConsole(error)
         );
   };

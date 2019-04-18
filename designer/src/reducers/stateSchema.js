@@ -1,4 +1,6 @@
 const initialState = {
+  header: {
+  },
   studies: {
     isFetching: undefined,
     didInvalidate: undefined,

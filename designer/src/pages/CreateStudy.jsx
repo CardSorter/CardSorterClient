@@ -1,6 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import Header from '../elements/components/Header.jsx';
+// eslint-disable-next-line no-unused-vars
+import Header from '../elements/containers/HeaderContainer.jsx';
+// eslint-disable-next-line no-unused-vars
 import PopulateCreateStudyContainer 
   from '../elements/containers/PopulateCreateStudyContainer.jsx';
 import demoImage from '../demo/profile.jpeg';

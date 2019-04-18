@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 
+import * as loginActions from '../../actions/loginAction';
 import Login from '../components/Login.jsx';
 
 const mapStateToProps = (state) => {
@@ -10,9 +11,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onUsernameChange: (e) => {
       const username = e.target.value;
+      dispatch(loginActions.changeUsername(username));
     },
     onPasswordChange: (e) => {
       const password = e.target.value;
+      dispatch(loginActions.changePassword(password));
     },
     onForgot: () => {
 
@@ -21,6 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     },
     onRegister: () => {
+      dispatch(loginActions.clearCredentials());
       ownProps.history.push('./register');
     },
   };
