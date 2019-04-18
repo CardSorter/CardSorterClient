@@ -47,25 +47,29 @@ export function addStudy(study) {
  * @return {func}
  */
 export function fetchStudies() {
-  auth.getCookie();
   return function(dispatch) {
     dispatch(loadStudies(StatusEnum.IS_FETCHING));
 
-    // fetch('http://127.0.0.1:5000/studies_endpoint')
-    //     .then(
-    //         (response) => {
-    //           response.json().then((json) => {
-    //             if (response.status === 401) {
-    //               // Redirect
-    //               setTimeout(window.location.reload(true), 1000);
-    //               window.location.replace(json.location);
-    //             } else {
-    //               dispatch(loadStudies(StatusEnum.SUCCESS, json.studies));
-    //             }
-    //           },
-    //           (error) => debugConsole('Error on decoding json: ', error));
-    //         },
-    //         (error) => debugConsole(error)
-    //     );
+    fetch('http://127.0.0.1:5000/studies_endpoint',{
+      method: 'GET',
+      headers: {
+        'Authorization': auth.getToken(),
+      },
+    })
+        .then(
+            (response) => {
+              response.json().then((json) => {
+                if (response.status === 401) {
+                  // Redirect
+                  setTimeout(window.location.reload(true), 1000);
+                  window.location.replace(json.location);
+                } else {
+                  dispatch(loadStudies(StatusEnum.SUCCESS, json.studies));
+                }
+              },
+              (error) => debugConsole('Error on decoding json: ', error));
+            },
+            (error) => debugConsole(error)
+        );
   };
 }

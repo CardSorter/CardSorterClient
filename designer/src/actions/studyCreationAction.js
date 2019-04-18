@@ -1,5 +1,6 @@
 import * as StatusEnum from '../static/StatusEnum';
 import * as studyActions from './studyAction';
+import auth from '../auth/authenticator';
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
@@ -217,13 +218,20 @@ export function sendStudy(study) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': auth.getToken(),
       },
       body: JSON.stringify(study),
     })
         .then(
             (response) => response.json().then((json) => {
-              dispatch(studyActions.addStudy(json.study));
-              dispatch(createStudy(StatusEnum.SUCCESS, json.study));
+              if (response.status === 401) {
+                // Redirect
+                setTimeout(window.location.reload(true), 1000);
+                window.location.replace(json.location);
+              } else {
+                dispatch(studyActions.addStudy(json.study));
+                dispatch(createStudy(StatusEnum.SUCCESS, json.study));
+              }
             }
             )
         );

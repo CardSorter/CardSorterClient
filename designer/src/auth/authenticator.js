@@ -5,9 +5,10 @@ class Authenticator {
   /**
    * Gets the auth token from the cookie send by the server during
    * the login/registration phase.
+   * @return {String} the jws auth token.
    */
   getToken() {
-    console.log(this.getCookie('auth_token'));
+    return this.getCookie('auth_token');
   }
 }
 

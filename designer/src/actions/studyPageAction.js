@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch';
 import * as StatusEnum from '../static/StatusEnum';
+import auth from '../auth/authenticator';
 import debugConsole from '../debug/debugConsole';
 
 export const CHANGE_VIEW = 'CHANGE_VIEW';
@@ -41,7 +42,7 @@ export function loadStudy(status, response, error) {
 /* Thunk actions */
 
 /**
- * @param {Number} id
+ * @param {String} id
  * @return {func}
  */
 export function fetchStudy(id) {
@@ -49,10 +50,19 @@ export function fetchStudy(id) {
     dispatch(loadStudy(StatusEnum.IS_FETCHING));
     fetch('http://127.0.0.1:5000/studies_endpoint?id='+id, {
       method: 'GET',
+      headers: {
+        'Authorization': auth.getToken(),
+      },
     })
         .then(
             (response) => response.json().then((json) => {
-              dispatch(loadStudy(StatusEnum.SUCCESS, json.study));
+              if (response.status === 401) {
+                // Redirect
+                setTimeout(window.location.reload(true), 1000);
+                window.location.replace(json.location);
+              } else {
+                dispatch(loadStudy(StatusEnum.SUCCESS, json.study));
+              }
             }
             )
         );
