@@ -3,6 +3,7 @@ import fetch from 'cross-fetch';
 import auth from '../auth/authenticator';
 import * as StatusEnum from '../static/StatusEnum';
 import debugConsole from '../debug/debugConsole';
+import api from '.api';
 
 export const LOAD_STUDIES = 'LOAD_STUDIES';
 export const ADD_STUDY = 'ADD_STUDY';
@@ -50,7 +51,7 @@ export function fetchStudies() {
   return function(dispatch) {
     dispatch(loadStudies(StatusEnum.IS_FETCHING));
 
-    fetch('http://127.0.0.1:5000/studies_endpoint',{
+    fetch(api+'/studies_endpoint',{
       method: 'GET',
       headers: {
         'Authorization': auth.getToken(),

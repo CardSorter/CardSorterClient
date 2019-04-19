@@ -1,6 +1,7 @@
 import * as StatusEnum from '../static/StatusEnum';
 import * as studyActions from './studyAction';
 import auth from '../auth/authenticator';
+import api from '.api';
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
@@ -214,7 +215,7 @@ export function sendTitle(title) {
 export function sendStudy(study) {
   return function(dispatch) {
     dispatch(createStudy(StatusEnum.IS_FETCHING));
-    fetch('http://127.0.0.1:5000/studies_endpoint', {
+    fetch(api+'/studies_endpoint', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

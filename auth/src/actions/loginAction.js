@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch';
 import * as StatusEnum from '../static/StatusEnum';
+import api from './api';
 
 export const CHANGE_USERNAME = 'CHANGE_USERNAME';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
@@ -107,7 +108,7 @@ export function sendingCredentials(status, response, error) {
 export function sendCredentials(username, password) {
   return function(dispatch) {
     dispatch(sendingCredentials(StatusEnum.IS_SENDING));
-    fetch('http://127.0.0.1:5000/user_endpoint', {
+    fetch(api+'/user_endpoint', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

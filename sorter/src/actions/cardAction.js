@@ -2,6 +2,7 @@ import fetch from 'cross-fetch';
 import * as responseStatus from '../staticContent/responseStatus';
 import {saveStudyID} from './uiAction';
 import debugConsole from '../debug/Debugconsole';
+import api from '.api';
 
 export const IMPORT_CARD = 'IMPORT_CARD';
 export const ADD_CARD_CATEGORY = 'ADD_CARD_CATEGORY';
@@ -107,7 +108,7 @@ export function fetchCards(studyID) {
     dispatch(saveStudyID(studyID));
     dispatch(requestCards(responseStatus.IS_FETCHING));
 
-    fetch('http://127.0.0.1:5000/sort_endpoint?cards=true&study_id='+studyID)
+    fetch(api+'/sort_endpoint?cards=true&study_id='+studyID)
         .then(
             (response) => response.json().then((json) =>{
               // Load the cards

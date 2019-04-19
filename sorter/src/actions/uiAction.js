@@ -1,4 +1,5 @@
 import * as responseStatus from '../staticContent/responseStatus';
+import api from '.api';
 
 export const SHOW_DESCRICTION = 'SHOW_DESCRIPTION';
 export const HIDE_ALL_DESCRIPTIONS = 'HIDE_ALL_DESCRIPTIONS';
@@ -101,7 +102,7 @@ export function sendingSort(status) {
 export function sendSort(studyID, container, categories) {
   return function(dispatch) {
     dispatch(sendingSort(responseStatus.IS_SENDING));
-    fetch('http://127.0.0.1:5000/sort_endpoint', {
+    fetch(api+'/sort_endpoint', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
