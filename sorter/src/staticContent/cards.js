@@ -1,4 +1,4 @@
 /**
  * Static holder for the cards
  */
-export default [];
+export default {};

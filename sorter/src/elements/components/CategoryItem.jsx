@@ -48,7 +48,7 @@ const CategoryItem = ({id, title, cards, onClick, showTitleBox,
             <CardItem key={card.id} id={card.id} title={card.title}
               description={card.description} minimized={true}
               position={id}
-              onClick={(event) => onClick(event, card.id)}
+              onClick={(event) => onClick(event, card.id, card.description)}
               showDescription={card.id===descriptionID}/>
           ))
         }</ul>

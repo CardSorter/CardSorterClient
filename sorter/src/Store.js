@@ -19,8 +19,10 @@ export default function initializeStore() {
   // () => debugConsole(store.getState())
   // runTest(store);
 
+  // Get the path id
+  const id = window.location.href.split('/')[3];
   // Load the cards
-  store.dispatch(fetchCards(1));
+  store.dispatch(fetchCards(id));
 
   // debugConsole(store.getState());
 

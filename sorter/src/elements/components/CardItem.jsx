@@ -37,7 +37,7 @@ const CardItem = ({id, title, description, minimized, position,
         }
         {
           /* Show the description button */
-          minimized &&
+          (minimized && description) &&
             <div className="desc-container">
               <button onClick={onClick} className="desc-btn">
                 ?

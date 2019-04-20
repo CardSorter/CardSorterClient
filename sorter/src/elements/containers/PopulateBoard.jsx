@@ -84,9 +84,11 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(uiAction.hideAllTitleBoxes());
       }
     },
-    onCardClick: (event, cardID) => {
+    onCardClick: (event, cardID, description) => {
       event.stopPropagation();
-      dispatch(uiAction.showDescription(cardID));
+      if (description && description.length > 0) {
+        dispatch(uiAction.showDescription(cardID));
+      }
     },
     onCardDrop: (cardID, cardPosition, categoryID) => {
       removeCardFromParent(dispatch, cardPosition, cardID);

@@ -89,7 +89,7 @@ ul#container {
 .card.minimized h4 {
   display: inline;
   font-weight: 100;
-  font-size: 1.2rem;
+  font-size: 80%;
   margin: 0; 
 }
 
@@ -121,7 +121,6 @@ ul#container {
 }
 
 .card.minimized .desc-pop p {
-  font-size: 1rem;
   margin: 0;
   margin-left: 5px;
 }
