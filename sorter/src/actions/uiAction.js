@@ -1,5 +1,5 @@
 import * as responseStatus from '../staticContent/responseStatus';
-import api from '.api';
+import api from './api';
 
 export const SHOW_DESCRICTION = 'SHOW_DESCRIPTION';
 export const HIDE_ALL_DESCRIPTIONS = 'HIDE_ALL_DESCRIPTIONS';

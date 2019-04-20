@@ -31,7 +31,7 @@ const initialState = {
     id: undefined,
     title: undefined,
     isLive: undefined,
-    launched: undefined,
+    launchedDate: undefined,
     ended: undefined,
     selectedItem: 0,
     participants: {

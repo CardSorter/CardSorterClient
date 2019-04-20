@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import * as responseStatus from '../staticContent/responseStatus';
 import {saveStudyID} from './uiAction';
 import debugConsole from '../debug/Debugconsole';
-import api from '.api';
+import api from './api';
 
 export const IMPORT_CARD = 'IMPORT_CARD';
 export const ADD_CARD_CATEGORY = 'ADD_CARD_CATEGORY';

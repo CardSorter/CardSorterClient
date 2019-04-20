@@ -16,7 +16,7 @@ export default function studyPageReducer(state={}, action) {
         newState.id = study.id;
         newState.title = study.title;
         newState.isLive = study.isLive;
-        newState.launched = new Date(study.launched);
+        newState.launchedDate = new Date(study.launchedDate);
         newState.ended = study.ended ? new Date(study.ended): undefined;
         newState.participants = {
           completion: study.sort ? study.participants.completion: '0%',

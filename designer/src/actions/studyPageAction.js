@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import * as StatusEnum from '../static/StatusEnum';
 import auth from '../auth/authenticator';
 import debugConsole from '../debug/debugConsole';
-import api from '.api';
+import api from './api';
 
 export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const LOAD_STUDY = 'LOAD_STUDY';
@@ -51,8 +51,11 @@ export function fetchStudy(id) {
     dispatch(loadStudy(StatusEnum.IS_FETCHING));
     fetch(api+'/studies_endpoint?id='+id, {
       method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
       headers: {
         'Authorization': auth.getToken(),
+        'Access-Control-Allow-Credentials': true,
       },
     })
         .then(

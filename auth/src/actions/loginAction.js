@@ -124,7 +124,7 @@ export function sendCredentials(username, password) {
               document.cookie
                 = 'auth_token= ;expires = Thu, 01 Jan 1970 00:00:00 GMT';
               // append the new one
-              document.cookie = 'auth_token='+json.auth_token+';';
+              document.cookie = 'auth_token='+json.auth_token+'; path=/';
               dispatch(sendingCredentials(
                   StatusEnum.SUCCESS, json.location, json.error));
             })

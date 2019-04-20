@@ -110,7 +110,7 @@ const mapStateToProps = (state) => {
     isFetching: state.study.isFetching,
     title: state.study.title,
     isLive: state.study.isLive,
-    launched: state.study.launched,
+    launched: state.study.launchedDate,
     menuValues: {
       selectedNo: state.study.selectedItem,
     },
