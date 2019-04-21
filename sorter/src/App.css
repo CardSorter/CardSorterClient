@@ -1,3 +1,12 @@
+body, html {
+  color: var(--color-black);
+  font-size: 10px;
+}
+
+:root {
+  --color-black: #181818;
+}
+
 ul {
   list-style: none;
 }
@@ -20,8 +29,10 @@ header {
   z-index: 1;
 }
 
-header #logo {
+#logo {
+  color: var(--color-black);
   font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
 }
 
 header button {
@@ -168,4 +179,29 @@ ul#container {
   border-radius: 5px;
   height: 30px;
   margin: 5px;
+}
+
+/* Thanks screen */
+
+.thanks-screen {
+  align-items: center; 
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; width: 100vw;
+  justify-content: center;
+  left: 0; top: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 100;
+}
+
+.thanks-screen img {
+  height: 50vh; width: auto;
+  padding-bottom: 3rem;
+}
+
+.thanks-screen h2 {
+  color: var(--color-black);
+  font-size: 3rem;
 }

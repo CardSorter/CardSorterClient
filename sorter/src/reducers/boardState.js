@@ -11,6 +11,8 @@ const initialState = {
     showingDescription: undefined,
     studyID: undefined,
     sendingSort: undefined,
+    renderThanks: undefined,
+    thanksMessage: undefined,
   },
 };
 

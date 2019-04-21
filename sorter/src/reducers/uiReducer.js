@@ -38,6 +38,16 @@ export default function ui(state={}, action) {
         'sendingSort': action.payload.status,
       });
     }
+    case uiAction.SAVE_THANKS_MESSAGE: {
+      return Object.assign({}, state, {
+        'thanksMessage': action.payload.message,
+      });
+    }
+    case uiAction.RENDER_THANKS_MESSAGE: {
+      return Object.assign({}, state, {
+        'renderThanks': true,
+      });
+    }
     default: {
       return state;
     }

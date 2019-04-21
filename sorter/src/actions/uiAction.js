@@ -8,6 +8,8 @@ export const SHOW_TITLE_BOX = 'SHOW_TITLE_BOX';
 export const HIDE_ALL_BOXES = 'HIDE_ALL_BOXES';
 export const SAVE_STUDY_ID = 'SAVE_STUDY_ID';
 export const SENDING_SORT = 'SENDING_SORT';
+export const SAVE_THANKS_MESSAGE = 'SAVE_THANKS_MESSAGE';
+export const RENDER_THANKS_MESSAGE = 'RENDER_THANKS_MESSAGE';
 
 /**
  * Shows the description of a specified card
@@ -77,6 +79,33 @@ export function saveStudyID(studyID) {
 }
 
 /**
+ * Saves the thanks message of the study.
+ * @param {String} message
+ * @return {JSON} the action
+ */
+export function saveThanksMessage(message) {
+  return {
+    type: SAVE_THANKS_MESSAGE,
+    payload: {
+      message: message,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Flags that the thanks message screen must be shown
+ * @return {JSON} the action
+ */
+export function renderThanksMessage() {
+  return {
+    type: RENDER_THANKS_MESSAGE,
+    payload: {},
+    error: false,
+  };
+}
+
+/**
  * Saves the status of the send request
  * @param {ResponseStatus} status
  * @return {JSON} the action
@@ -118,6 +147,8 @@ export function sendSort(studyID, container, categories) {
         (response) => response.json().then((json) => {
           console.log(json);
           dispatch(sendingSort(responseStatus.SUCCESS));
+          dispatch(saveThanksMessage(json.message));
+          dispatch(renderThanksMessage());
         })
     );
   };

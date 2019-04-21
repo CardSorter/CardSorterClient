@@ -10,6 +10,8 @@ const mapStateToProps = (state) => {
   return {
     studyID: state.ui.studyID,
     container: state.container, categories: state.categories,
+    renderThanks: state.ui.renderThanks,
+    thanksMessage: state.ui.thanksMessage,
   };
 };
 

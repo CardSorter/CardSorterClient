@@ -1,4 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
+import PropTypes from 'prop-types';
+
+// eslint-disable-next-line no-unused-vars
 import CardItem from './CardItem.jsx';
 
 const List = ({cards}) => (
@@ -12,10 +16,8 @@ const List = ({cards}) => (
   </ul>
 );
 
-// TODO
-// Container.protoTypes = {
-//   cards: PropTypes.arrayOf(
-//   )
-// }
+List.propTypes = {
+  cards: PropTypes.array.isRequired,
+};
 
 export default List;
