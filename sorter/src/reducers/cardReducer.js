@@ -13,11 +13,10 @@ export default function card(state={}, action) {
     case cardActions.REQUEST_CARDS: {
       const response = action.payload.response;
       if (response) {
-        for (card of response.cards) {
+        for (const card of response.cards) {
           cards[card.id] =
               new Card(card.id, card.name, card.description);
         }
-        console.log(cards);
       }
       return Object.assign({}, state, {
         'status': action.payload.status,

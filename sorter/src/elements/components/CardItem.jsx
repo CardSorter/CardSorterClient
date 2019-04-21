@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 import {DragSource} from 'react-dnd';
@@ -52,6 +53,9 @@ const CardItem = ({id, title, description, minimized, position,
               }
             </div>
         }
+        {
+          /* The "drag to add" action */
+        }
       </li>);
 };
 
@@ -66,4 +70,5 @@ CardItem.propTypes = {
 };
 
 
+// eslint-disable-next-line new-cap
 export default DragSource(itemTypes.CARD, cardSource, collect)(CardItem);

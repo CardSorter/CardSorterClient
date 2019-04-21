@@ -1,6 +1,7 @@
 export const CREATE_CATEGORY = 'CREATE_CATEGORY';
 export const REMOVE_CATEGORY = 'REMOVE_CATEGORY';
 export const RENAME_CATEGORY = 'RENAME_CATEGORY';
+export const NORMALIZE_CATEGORIES = 'NORMALIZE_CATEGORIES';
 
 /**
  *
@@ -48,6 +49,20 @@ export function renameCategory(categoryID, title) {
       categoryID: categoryID,
       title: title,
     },
+    error: false,
+  };
+}
+
+/**
+ * Normalizes the categories in a way that is recognizable by the server.
+ * This includes actions like changing the non-set by the user values to none.
+ * This function should be called before the sending to the server.
+ * @return {JSON} the action
+ */
+export function normalizeCategories() {
+  return {
+    type: NORMALIZE_CATEGORIES,
+    payload: {},
     error: false,
   };
 }

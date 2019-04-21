@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Container from '../components/Container.jsx';
+import List from '../components/List.jsx';
 import parseCards from '../../helpers/cardParser';
 
 
@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const PopulateContainer = connect(
+const ListContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Container);
+)(List);
 
-export default PopulateContainer;
+export default ListContainer;

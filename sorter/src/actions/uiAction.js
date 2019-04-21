@@ -1,4 +1,5 @@
 import * as responseStatus from '../staticContent/responseStatus';
+import {normalizeCategories} from './categoryAction';
 import api from './api';
 
 export const SHOW_DESCRICTION = 'SHOW_DESCRIPTION';
@@ -101,6 +102,7 @@ export function sendingSort(status) {
  */
 export function sendSort(studyID, container, categories) {
   return function(dispatch) {
+    dispatch(normalizeCategories());
     dispatch(sendingSort(responseStatus.IS_SENDING));
     fetch(api+'/sort_endpoint', {
       method: 'POST',
@@ -113,7 +115,10 @@ export function sendSort(studyID, container, categories) {
         container: container,
       }),
     }).then(
-        () => dispatch(sendingSort(responseStatus.SUCCESS))
+        (response) => response.json().then((json) => {
+          console.log(json);
+          dispatch(sendingSort(responseStatus.SUCCESS));
+        })
     );
   };
 }

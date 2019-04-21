@@ -2,6 +2,8 @@ import * as cardActions from '../actions/cardAction';
 import * as categoryAction from '../actions/categoryAction';
 import Category from '../elements/Category';
 
+import {categoryTitle} from '../localization/text';
+
 /**
  *
  * @param {boardState} state
@@ -47,6 +49,18 @@ export default function categories(state={}, action) {
       const newState = Object.assign({}, state);
 
       newState[categoryID].removeCard(cardID);
+      return newState;
+    }
+    case categoryAction.NORMALIZE_CATEGORIES: {
+      const newState = Object.assign({}, state);
+      for (const categoryID in newState) {
+        if ({}.hasOwnProperty.call(newState, categoryID)) {
+          const category = newState[categoryID];
+          if (category.title === categoryTitle()) {
+            category.title = 'not set';
+          }
+        }
+      }
       return newState;
     }
     default:

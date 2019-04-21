@@ -1,7 +1,7 @@
 import React from 'react';
 import CardItem from './CardItem.jsx';
 
-const Container = ({cards}) => (
+const List = ({cards}) => (
   <ul id='container'>
     {
       cards.map((card) => (
@@ -18,4 +18,4 @@ const Container = ({cards}) => (
 //   )
 // }
 
-export default Container;
+export default List;

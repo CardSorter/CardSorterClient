@@ -97,9 +97,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const PopulateBoard = connect(
+const BoardContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
 )(Board);
 
-export default PopulateBoard;
+export default BoardContainer;

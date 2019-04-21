@@ -1,12 +1,17 @@
 import 'babel-polyfill'; // Ensure all polyfills are present
 
+// eslint-disable-next-line no-unused-vars
 import React, {Component} from 'react';
+// eslint-disable-next-line no-unused-vars
 import {DragDropContextProvider} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import PopulateContainer from './elements/containers/PopulateContainer.jsx';
-import PopulateBoard from './elements/containers/PopulateBoard.jsx';
-import PopulateHeader from './elements/containers/PopulateHeader.jsx';
+// eslint-disable-next-line no-unused-vars
+import ListContainer from './elements/containers/ListContainer.jsx';
+// eslint-disable-next-line no-unused-vars
+import BoardContainer from './elements/containers/BoardContainer.jsx';
+// eslint-disable-next-line no-unused-vars
+import HeaderContainer from './elements/containers/HeaderContainer.jsx';
 import './App.css';
 
 /**
@@ -21,10 +26,10 @@ class App extends Component {
     return (
       <DragDropContextProvider backend={HTML5Backend}>
         <div className="App">
-          <PopulateHeader />
+          <HeaderContainer />
           <div id="main-panel">
-            <PopulateContainer />
-            <PopulateBoard />
+            <ListContainer />
+            <BoardContainer />
           </div>
         </div>
       </DragDropContextProvider>
