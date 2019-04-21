@@ -1,8 +1,10 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 import {DropTarget} from 'react-dnd';
 
 import {itemTypes} from '../../staticContent/dragConstants';
+// eslint-disable-next-line no-unused-vars
 import CardItem from './CardItem.jsx';
 import parseCards from '../../helpers/cardParser';
 
@@ -60,5 +62,6 @@ CategoryItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
+// eslint-disable-next-line new-cap
 export default DropTarget(itemTypes.CARD,
     categoryTarget, collect)(CategoryItem);

@@ -127,7 +127,9 @@ export function sendingSort(status) {
  * @param {Number} studyID
  * @param {Number[]} container
  * @param {Category[]} categories
- * @return {function}
+ * @param {String} cardsSorted
+ * @param {Number} categoriesCreated
+ * @return {func}
  */
 export function sendSort(studyID, container, categories) {
   return function(dispatch) {
@@ -145,7 +147,6 @@ export function sendSort(studyID, container, categories) {
       }),
     }).then(
         (response) => response.json().then((json) => {
-          console.log(json);
           dispatch(sendingSort(responseStatus.SUCCESS));
           dispatch(saveThanksMessage(json.message));
           dispatch(renderThanksMessage());

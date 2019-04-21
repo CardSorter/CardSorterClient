@@ -13,6 +13,8 @@ const initialState = {
     sendingSort: undefined,
     renderThanks: undefined,
     thanksMessage: undefined,
+    cardsSorted: undefined,
+    categoriesCreated: undefined,
   },
 };
 

@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
   // TODO: This may not be a very good solution
   return {
     studyID: state.ui.studyID,
-    container: state.container, categories: state.categories,
+    container: state.container,
+    categories: state.categories,
     renderThanks: state.ui.renderThanks,
     thanksMessage: state.ui.thanksMessage,
   };
