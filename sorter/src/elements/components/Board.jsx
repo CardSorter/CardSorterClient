@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import {DropTarget} from 'react-dnd';
 
 import {itemTypes} from '../../staticContent/dragConstants';
+// eslint-disable-next-line no-unused-vars
 import CategoryItem from './CategoryItem';
 
 const boardTarget = {
@@ -55,5 +57,6 @@ const Board = ({categories, onClick, onCardClick, onCategTitleClick,
 // }
 
 
+// eslint-disable-next-line new-cap
 export default DropTarget(itemTypes.CARD,
     boardTarget, collect)(Board);

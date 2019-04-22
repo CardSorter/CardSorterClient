@@ -10,6 +10,23 @@ export const SAVE_STUDY_ID = 'SAVE_STUDY_ID';
 export const SENDING_SORT = 'SENDING_SORT';
 export const SAVE_THANKS_MESSAGE = 'SAVE_THANKS_MESSAGE';
 export const RENDER_THANKS_MESSAGE = 'RENDER_THANKS_MESSAGE';
+export const TOOGLE_ON_BOARDING = 'TOOGLE_ON_BOARDING';
+
+
+/**
+ * Toogle the onboarding screen, that helps the user understand what to do.
+ * @param {Boolean} show
+ * @return {JSON} the action
+ */
+export function toogleOnBoarding(show) {
+  return {
+    type: TOOGLE_ON_BOARDING,
+    payload: {
+      showOnBoarding: show,
+    },
+    error: false,
+  };
+}
 
 /**
  * Shows the description of a specified card

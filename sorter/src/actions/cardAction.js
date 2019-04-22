@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 import * as responseStatus from '../staticContent/responseStatus';
-import {saveStudyID} from './uiAction';
+import {saveStudyID, toogleOnBoarding} from './uiAction';
 import debugConsole from '../debug/Debugconsole';
 import api from './api';
 
@@ -122,6 +122,8 @@ export function fetchCards(studyID) {
               for (const card of json.cards) {
                 dispatch(addCardToContainer(card.id));
               }
+              // Show the onboarding screen
+              dispatch(toogleOnBoarding(true));
             }),
             (error) => debugConsole(error)
         );

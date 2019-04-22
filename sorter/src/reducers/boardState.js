@@ -8,6 +8,7 @@ const initialState = {
     /* CategoryId: Category */
   },
   ui: {
+    showOnBoarding: undefined,
     changeTitle: undefined,
     showingDescription: undefined,
     studyID: undefined,

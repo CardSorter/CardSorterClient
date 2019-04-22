@@ -8,6 +8,11 @@ import * as uiAction from '../actions/uiAction';
  */
 export default function ui(state={}, action) {
   switch (action.type) {
+    case uiAction.TOOGLE_ON_BOARDING: {
+      return Object.assign({}, state, {
+        'showOnBoarding': action.payload.showOnBoarding,
+      });
+    }
     case uiAction.SHOW_DESCRICTION: {
       return Object.assign({}, state, {
         'showingDescription': action.payload.cardID,

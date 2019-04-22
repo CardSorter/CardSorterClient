@@ -15,9 +15,12 @@ import BoardContainer from './elements/containers/BoardContainer.jsx';
 import HeaderContainer from './elements/containers/HeaderContainer.jsx';
 // eslint-disable-next-line no-unused-vars
 import MessageScreen from './elements/components/MessageScreen.jsx';
+// eslint-disable-next-line no-unused-vars
+import OnBoardingContainer from './elements/containers/OnBoardingContainer.jsx';
 
 import thanksImage from './icons/thanks-icon.svg';
 import notFoundImage from './icons/not-found.svg';
+
 import L from './localization/LocalizedText';
 import './App.css';
 
@@ -45,15 +48,17 @@ class App extends Component {
           <MessageScreen message={L.text.studyNotFound} image={notFoundImage}/>
         </main>);
     } else {
-      render = (<DragDropContextProvider backend={HTML5Backend}>
-        <div className="App">
-          <HeaderContainer />
-          <div id="main-panel">
-            <ListContainer />
-            <BoardContainer />
+      render = (
+        <DragDropContextProvider backend={HTML5Backend}>
+          <OnBoardingContainer />
+          <div className="App">
+            <HeaderContainer />
+            <div id="main-panel">
+              <ListContainer />
+              <BoardContainer />
+            </div>
           </div>
-        </div>
-      </DragDropContextProvider>);
+        </DragDropContextProvider>);
     }
 
     return render;

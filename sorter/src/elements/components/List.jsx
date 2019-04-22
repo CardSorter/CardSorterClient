@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import CardItem from './CardItem.jsx';
 
 const List = ({cards}) => (
-  <ul id='container'>
+  <ul id='list'>
     {
       cards.map((card) => (
         <CardItem key={card.id} id={card.id} title={card.title}
