@@ -2,7 +2,7 @@ import * as cardActions from '../actions/cardAction';
 import * as categoryAction from '../actions/categoryAction';
 import Category from '../elements/Category';
 
-import {categoryTitle} from '../localization/text';
+import L from '../localization/LocalizedText';
 
 /**
  *
@@ -56,7 +56,7 @@ export default function categories(state={}, action) {
       for (const categoryID in newState) {
         if ({}.hasOwnProperty.call(newState, categoryID)) {
           const category = newState[categoryID];
-          if (category.title === categoryTitle()) {
+          if (category.title === L.text.clickToRename) {
             category.title = 'not set';
           }
         }

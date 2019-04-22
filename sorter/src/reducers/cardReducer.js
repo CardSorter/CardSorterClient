@@ -20,6 +20,7 @@ export default function card(state={}, action) {
       }
       return Object.assign({}, state, {
         'status': action.payload.status,
+        'notFound': action.payload.error ? true : false,
       });
     }
     default:

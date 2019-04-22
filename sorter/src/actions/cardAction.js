@@ -111,6 +111,11 @@ export function fetchCards(studyID) {
     fetch(api+'/sort_endpoint?cards=true&study_id='+studyID)
         .then(
             (response) => response.json().then((json) =>{
+              if (response.status === 404) {
+                dispatch(requestCards(responseStatus.SUCCESS,
+                    undefined, json.error));
+                return;
+              }
               // Load the cards
               dispatch(requestCards(responseStatus.SUCCESS, json));
               // Show the cards

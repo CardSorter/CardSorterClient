@@ -108,15 +108,17 @@ export function renderThanksMessage() {
 /**
  * Saves the status of the send request
  * @param {ResponseStatus} status
+ * @param {JSON} response
+ * @param {JSON} error
  * @return {JSON} the action
  */
-export function sendingSort(status) {
+export function sendingSort(status, response, error) {
   return {
     type: SENDING_SORT,
     payload: {
       status: status,
     },
-    error: false,
+    error: error,
   };
 }
 

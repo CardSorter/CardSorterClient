@@ -183,7 +183,7 @@ ul#container {
 
 /* Thanks screen */
 
-.thanks-screen {
+.message-screen {
   align-items: center; 
   background: white;
   display: flex;
@@ -196,12 +196,16 @@ ul#container {
   z-index: 100;
 }
 
-.thanks-screen img {
+.message-screen img {
   height: 50vh; width: auto;
   padding-bottom: 3rem;
 }
 
-.thanks-screen h2 {
+.message-screen h2 {
   color: var(--color-black);
   font-size: 3rem;
+}
+
+.message-screen h2::first-letter {
+  text-transform: uppercase; 
 }

@@ -1,5 +1,6 @@
 const initialState = {
   cards: {
+    notFound: undefined,
     status: undefined,
   },
   container: [],

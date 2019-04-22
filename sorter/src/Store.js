@@ -5,6 +5,7 @@ import logger from 'redux-logger';
 import app from './reducers/indexReducer';
 import initialState from './reducers/boardState';
 import {fetchCards} from './actions/cardAction';
+import L from './localization/LocalizedText';
 
 /**
  * @return {Store}
@@ -18,6 +19,9 @@ export default function initializeStore() {
   const unsuscribe = store.subscribe(() => {});
   // () => debugConsole(store.getState())
   // runTest(store);
+
+  // Initialize locale
+  L.initialize('en-us');
 
   // Get the path id
   const id = window.location.href.split('/')[3];

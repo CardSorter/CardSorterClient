@@ -5,7 +5,7 @@ import * as uiAction from '../../actions/uiAction';
 import * as cardAction from '../../actions/cardAction';
 import * as categoryAction from '../../actions/categoryAction';
 
-import * as text from '../../localization/text';
+import L from '../../localization/LocalizedText';
 
 /**
  * Removes the card with the given id from it's current parent
@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
       // Create the new category, containing the dropped card
       removeCardFromParent(dispatch, cardPosition, cardID);
       dispatch(categoryAction.createCategory(undefined,
-          text.categoryTitle(), cardID));
+          L.text.clickToRename, cardID));
     },
     removeEmptyCategories: (categories) => {
       // This is triggered on every drop on the Board
@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch) => {
     onCategTitleChange: (event, categoryID) => {
       let title = event.target.value;
       title = title.replace(/\s\s+/g, ' ').trim();
-      title = (title.length > 0) ? title : text.categoryTitle();
+      title = (title.length > 0) ? title : L.text.clickToRename;
       dispatch(categoryAction.renameCategory(categoryID, title));
     },
     onCategTitleFinish: (event) => {
