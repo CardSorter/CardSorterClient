@@ -3,6 +3,12 @@ body, html {
   font-size: 10px;
 }
 
+@media (min-width: 1921px) {
+  html, body {
+    font-size: 13px;
+  }
+}
+
 :root {
   --color-black: #181818;
 
@@ -70,7 +76,8 @@ ul#list {
 /* This is the container of the Categories */
 #board {
   align-items: flex-start;
-  display: grid; 
+  display: grid;
+  font-size: 1.3rem;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
@@ -158,13 +165,24 @@ ul#list {
   box-shadow: 0 2px 4px rgb(0, 0, 0, 16%);
   display: flex;
   flex-direction: column;
+  max-height: 25rem;
+  overflow-y: auto;
+  position: relative;
   width: 240px;
+}
+
+.category.max-height {
+  height: 25rem;
 }
 
 .category h3 {
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-decoration: underline;
+}
+
+.category h3::first-letter {
+  text-transform: uppercase;
 }
 
 .category ul {
@@ -178,11 +196,69 @@ ul#list {
   margin: 0;
 }
 
-.category input {
+.category .title-input {
+  align-items: center;
+  display: flex;
+  height: 3rem;
+  margin: .5rem;
+  position: relative;
+}
+
+.category .title-input button {
+  background: 0;
+  background-image: url('./icons/verified.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  cursor: pointer;
+  height: 100%; width: 2rem;
+  margin-left: .5rem;
+}
+
+.category .title-input input {
   border: solid 1px #707070;
   border-radius: 5px;
-  height: 30px;
-  margin: 5px;
+  height: 100%;
+}
+
+.category .drop-to-add {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  justify-content: center;
+  height: 100%; width: 100%;
+  left: 0; top: 0; 
+  opacity: .8;
+  position: absolute;
+  z-index: 10;
+}
+
+.category .drop-to-add img {
+  height: auto; width: 50%;
+}
+
+/* This is shown when the user hovers a card to the board */
+.category.drop-to-create {
+  align-items: center;
+  background: 0;
+  border-style: dashed;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  height: 25rem;
+  opacity: .8;
+}
+
+.category.drop-to-create img {
+  height: auto; width: 50%;
+  opacity: .7;
+} 
+
+.category.drop-to-create p {
+  font-size: 1.3rem;
 }
 
 /* Message (thanks, not found) screen */

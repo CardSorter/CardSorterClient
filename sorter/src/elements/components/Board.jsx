@@ -5,6 +5,8 @@ import {DropTarget} from 'react-dnd';
 import {itemTypes} from '../../staticContent/dragConstants';
 // eslint-disable-next-line no-unused-vars
 import CategoryItem from './CategoryItem';
+import L from '../../localization/LocalizedText';
+import plusImage from '../../icons/plus.svg';
 
 const boardTarget = {
   drop(props, monitor) {
@@ -26,7 +28,7 @@ const boardTarget = {
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
+    isOver: monitor.isOver({shallow: true}),
   };
 }
 
@@ -46,6 +48,14 @@ const Board = ({categories, onClick, onCardClick, onCategTitleClick,
   return connectDropTarget(<ul id='board' onClick={onClick}>
     {
       categories
+    }
+    {
+      /* Show the 'create new category' */
+      isOver &&
+      <div className="category drop-to-create">
+        <img src={plusImage}></img>
+        <p>{L.text.dropToCreateCategory}</p>
+      </div>
     }
   </ul>);
 };

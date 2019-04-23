@@ -79,6 +79,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(categoryAction.renameCategory(categoryID, title));
     },
     onCategTitleFinish: (event) => {
+      if (!event) {
+        dispatch(uiAction.hideAllTitleBoxes());
+        return;
+      }
       event.stopPropagation();
       if (event.charCode === 13) {
         dispatch(uiAction.hideAllTitleBoxes());

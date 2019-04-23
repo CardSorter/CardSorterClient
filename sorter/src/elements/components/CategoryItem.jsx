@@ -7,6 +7,9 @@ import {itemTypes} from '../../staticContent/dragConstants';
 // eslint-disable-next-line no-unused-vars
 import CardItem from './CardItem.jsx';
 import parseCards from '../../helpers/cardParser';
+import L from '../../localization/LocalizedText';
+
+import plusImage from '../../icons/plus.svg';
 
 const categoryTarget = {
   drop(props, monitor) {
@@ -33,17 +36,28 @@ const CategoryItem = ({id, title, cards, onClick, showTitleBox,
   descriptionID, connectDropTarget, isOver}) => {
   cards = parseCards(cards).cards;
   return connectDropTarget(
-      <li className='category'>
+      <li className={(isOver) ? 'category max-height' : 'category'}>
         {
           showTitleBox &&
-          <input type='text' defaultValue={title}
-            onChange={(e)=>onTitleChange(e, id)}
-            onKeyPress={(e)=>onTitleFinish(e)}
-            onClick={(e)=>e.stopPropagation()}></input>
+          <div className="title-input">
+            <input type='text' defaultValue={title}
+              onChange={(e)=>onTitleChange(e, id)}
+              onKeyPress={(e)=>onTitleFinish(e)}
+              onClick={(e)=>e.stopPropagation()}></input>
+            <button type="button" onClick={()=>onTitleFinish()}></button>
+          </div>
         }
         {
           !showTitleBox &&
           <h3 onClick={(e)=>onTitleClick(e, id)}>{title}</h3>
+        }
+        {
+          /* Show the 'drop to add to category' */
+          isOver &&
+          <div className="drop-to-add">
+            <img src={plusImage}></img>
+            <p>{L.text.dropToAdd}</p>
+          </div>
         }
         <ul>{
           cards.map((card) => (
