@@ -25,10 +25,10 @@ export default function studyPageReducer(state={}, action) {
           data: study.participants ? study.participants.data: [],
         };
         newState.cards = {
-          average: study.sort ? study.cards.average: '0%',
-          total: study.sort ? study.cards.total: 0,
-          sorted: study.sort ? study.cards.sorted: 0,
-          data: study.sort ? study.cards.data: [],
+          average: study.cards ? study.cards.average: '0%',
+          total: study.cards ? study.cards.total: 0,
+          sorted: study.cards ? study.cards.sorted: 0,
+          data: study.cards ? study.cards.data: [],
         };
         newState.categories = {
           similarity: study.sort ? study.categories.similarity: '0%',

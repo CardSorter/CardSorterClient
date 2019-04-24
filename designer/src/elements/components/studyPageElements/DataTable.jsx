@@ -19,9 +19,13 @@ const DataTable = ({headers, data}) => {
             data.map((line) =>
               <tr key={'line'+line}>
                 {
-                  line.map((item, index) =>
-                    <td key={'item'+index}>{item}</td>
-                  )
+                  line.map((item, index) => {
+                    if (item instanceof Array) {
+                      return <td key={'item'+index}><ul>{item.map((child) =>
+                        <li>{child}</li>)}</ul></td>;
+                    }
+                    return <td key={'item'+index}>{item}</td>;
+                  })
                 }
               </tr>
             )

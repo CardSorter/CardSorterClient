@@ -620,3 +620,7 @@ button.createStudyCard:hover {
   padding-top: 2rem;
   text-align: left;
 }
+
+.study-page .content table td ul li:not(:first-child){
+  margin-top: 1rem;
+}
