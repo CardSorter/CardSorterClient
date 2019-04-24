@@ -16,13 +16,13 @@ const DataTable = ({headers, data}) => {
         </thead>
         <tbody>
           {
-            data.map((line) =>
-              <tr key={'line'+line}>
+            data.map((line, index) =>
+              <tr key={'line'+index}>
                 {
                   line.map((item, index) => {
                     if (item instanceof Array) {
-                      return <td key={'item'+index}><ul>{item.map((child) =>
-                        <li>{child}</li>)}</ul></td>;
+                      return <td key={'item'+index}><ul>{item.map((child, index) =>
+                        <li key={'child'+index}>{child}</li>)}</ul></td>;
                     }
                     return <td key={'item'+index}>{item}</td>;
                   })
