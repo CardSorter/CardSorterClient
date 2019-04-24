@@ -59,7 +59,7 @@ table {
 }
 
 html, body {
-  font-family: 'Lato', sans-serif;
+  font-family: "LatoWeb", sans-serif;
   font-size: 10px;
   height: 100%;
   margin: 0;
@@ -70,7 +70,7 @@ html, body {
 }
 
 .emphasized {
-  font-weight: 400;
+  font-family: "LatoWeb", sans-serif;
 }
 
 .disabled {
@@ -206,7 +206,7 @@ li.studyItem .participants .completed {
 li.studyItem .dates {
   align-self: flex-start;
   font-size: 1.4rem;
-  font-weight: 300;
+  font-family:'LatoWebLight';
   margin: auto 0 3rem 1rem;
 }
 
@@ -237,7 +237,7 @@ button.createStudyCard:hover {
   display: flex;
   height: 8rem;
   font-size: 1.3rem;
-  font-weight: 300;
+  font-family:'LatoWebLight';
   margin-left: 10%;
 }
 
@@ -271,7 +271,7 @@ button.createStudyCard:hover {
 }
 
 .study-creation-card h2 {
-  font-weight: 300;
+  font-family:'LatoWebLight';
   font-size: 1.5rem;
   margin-top: .2rem;
 }
@@ -359,7 +359,7 @@ button.createStudyCard:hover {
   align-items: center;
   display: flex;
   font-size: 1.5rem;
-  font-weight: 300;
+  font-family:'LatoWebLight';
   justify-content: space-between;
   width: 4rem;
 }
@@ -492,7 +492,7 @@ button.createStudyCard:hover {
   align-items: center;
   display: flex;
   font-size: 1.5rem;
-  font-weight: 300;
+  font-family:'LatoWebLight';
   justify-content: center;
   margin-top: 1rem;
 }
@@ -517,14 +517,13 @@ button.createStudyCard:hover {
   background: 0;
   border: 0;
   cursor: pointer;
-  font-family: 'Lato', sans-serif;
+  font-family:'LatoWebLight';
   font-size: 1.5rem;
-  font-weight: 300;
   text-transform: capitalize;
 }
 
 .study-page .study-menu button.selected {
-  font-weight: 400;
+  font-family: "LatoWeb", sans-serif;
 }
 
 .study-page .content {
@@ -583,13 +582,13 @@ button.createStudyCard:hover {
 }
 
 .study-page .content .bar-graph-container .graphic .index p {
-  font-weight: 300;
+  font-family:'LatoWebLight';
   text-align: right;
   transform: translate(5%, 0);
 }
 
 .study-page .content .bar-graph-container .description {
-  font-weight: 300;
+  font-family:'LatoWebLight';
   text-align: center;
 }
 
@@ -616,7 +615,7 @@ button.createStudyCard:hover {
 }
 
 .study-page .content table td {
-  font-weight: 300;
+  font-family:'LatoWebLight';
   padding-top: 2rem;
   text-align: left;
 }
