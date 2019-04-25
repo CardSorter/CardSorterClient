@@ -1,5 +1,6 @@
 const initialState = {
   header: {
+    username: undefined,
   },
   studies: {
     isFetching: undefined,

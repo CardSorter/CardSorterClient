@@ -1,7 +1,6 @@
 import fetch from 'cross-fetch';
 import * as StatusEnum from '../static/StatusEnum';
 import auth from '../auth/authenticator';
-import debugConsole from '../debug/debugConsole';
 import api from './api';
 
 export const CHANGE_VIEW = 'CHANGE_VIEW';

@@ -7,7 +7,7 @@ import initialState from './reducers/stateSchema';
 import localizedText from './localization/LocalizedText';
 
 import {fetchStudies} from './actions/studyAction';
-import {runTests} from './tests/simpleImporting';
+import {fetchUsername} from './actions/headerAction';
 
 /**
  * @return {Store}
@@ -22,6 +22,7 @@ export default function initializeStore() {
   const unsuscribe = store.subscribe(() => {});
 
   // runTests(store);
+  store.dispatch(fetchUsername());
   store.dispatch(fetchStudies());
 
 

@@ -4,6 +4,7 @@ import Header from '../components/Header.jsx';
 
 const mapStateToProps = (state) => {
   return {
+    username: state.header.username,
   };
 };
 
