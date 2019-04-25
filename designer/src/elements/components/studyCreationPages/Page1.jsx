@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -16,15 +17,6 @@ const Page1 = ({values, dispatch}) => (
       <textarea placeholder={values.description ||
         localizedText.text.description} rows='10' cols='30' onChange={(e)=>
         dispatch.onChange('description', e)}></textarea>
-
-      <div className="url-container">
-        <p className="url-small">{values.url}</p>
-        <input type='text' placeholder={values.title ||
-          localizedText.text.title} onChange={(e)=>
-          dispatch.onChange('url', e)}></input>
-        <button className="copy" type="button"></button>
-      </div>
-
     </form>
     <div className="bottom-container">
       <div className="btn-container">

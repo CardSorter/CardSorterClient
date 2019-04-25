@@ -11,7 +11,6 @@ const initialState = {
     title: 'Title',
     description: 'Description',
     urlPrefix: 'cardsorter.com/sort/user/',
-    url: 'Title',
     cards: {
       1: {
         id: 1,

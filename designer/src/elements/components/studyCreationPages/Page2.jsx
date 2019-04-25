@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import localizedText from '../../../localization/LocalizedText';
+// eslint-disable-next-line no-unused-vars
 import Card from './Card.jsx';
 
 const Page2 = ({values, dispatch}) => (
