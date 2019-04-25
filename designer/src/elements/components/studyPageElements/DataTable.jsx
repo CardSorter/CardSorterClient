@@ -21,8 +21,9 @@ const DataTable = ({headers, data}) => {
                 {
                   line.map((item, index) => {
                     if (item instanceof Array) {
-                      return <td key={'item'+index}><ul>{item.map((child, index) =>
-                        <li key={'child'+index}>{child}</li>)}</ul></td>;
+                      return <td key={'item'+index}><ul>{
+                        item.map((child, index) =>
+                          <li key={'child'+index}>{child}</li>)}</ul></td>;
                     }
                     return <td key={'item'+index}>{item}</td>;
                   })

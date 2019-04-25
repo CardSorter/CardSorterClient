@@ -31,11 +31,11 @@ export default function studyPageReducer(state={}, action) {
           data: study.cards ? study.cards.data: [],
         };
         newState.categories = {
-          similarity: study.sort ? study.categories.similarity: '0%',
-          total: study.sort ? study.categories.total: 0,
-          similar: study.sort ? study.categories.similar: 0,
-          merged: study.sort ? study.categories.merged: 0,
-          data: study.sort ? study.categories.data: [],
+          similarity: study.categories ? study.categories.similarity: '0%',
+          total: study.categories ? study.categories.total: 0,
+          similar: study.categories ? study.categories.similar: 0,
+          merged: study.categories ? study.categories.merged: 0,
+          data: study.categories ? study.categories.data: [],
         };
       }
 
