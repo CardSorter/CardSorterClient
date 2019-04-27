@@ -47,6 +47,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             5000);
       },
     },
+    onFormKeyPress: (e, username, password, email) => {
+      if (e.key === 'Enter') {
+        dispatch(registerActions.clearUsernameError());
+        dispatch(registerActions.clearEmailError());
+        dispatch(registerActions.sendCredentials(username, password, email));
+      }
+    },
   };
 };
 

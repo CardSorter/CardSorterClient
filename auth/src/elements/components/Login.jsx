@@ -6,7 +6,7 @@ import L from '../../localization/LocalizedText';
 
 const Login = ({onUsernameChange, onPasswordChange, onForgot,
   onLogin, onRegister, username, password, usernameError, passwordError,
-  onErrorShow}) => {
+  onErrorShow, onFormKeyPress}) => {
   if (usernameError) {
     onErrorShow.usernameErrorShowing();
   }
@@ -16,7 +16,7 @@ const Login = ({onUsernameChange, onPasswordChange, onForgot,
   return (
     <div className="container">
       <p>{L.text.hiAgain}</p>
-      <form>
+      <form onKeyPress={(e) => onFormKeyPress(e, username, password)}>
         <div className="error-holder">
           <input type="text" className="username" onChange={onUsernameChange}
             placeholder={L.text.username}/>
