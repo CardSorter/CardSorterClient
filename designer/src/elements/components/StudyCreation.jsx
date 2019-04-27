@@ -1,22 +1,33 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line no-unused-vars
 import Page1 from './studyCreationPages/Page1.jsx';
+// eslint-disable-next-line no-unused-vars
 import Page2 from './studyCreationPages/Page2.jsx';
+// eslint-disable-next-line no-unused-vars
 import Page3 from './studyCreationPages/Page3.jsx';
+// eslint-disable-next-line no-unused-vars
+import SuccessPage from './studyCreationPages/SuccessPage.jsx';
 
 const StudyCreationContainer = ({currentPage, page1Values, page1Dispatch,
-  page2Values, page2Dispatch, page3Values, page3Dispatch}) => {
+  page2Values, page2Dispatch, page3Values, page3Dispatch,
+  page4Values, page4Dispatch}) => {
   let render;
   if (currentPage === 1) {
-    render = <Page1 values={page1Values} dispatch={page1Dispatch} />;
+    render = <Page1 values={page1Values} dispatch={page1Dispatch}/>;
   } else
   if (currentPage === 2) {
-    render = <Page2 values={page2Values} dispatch={page2Dispatch} />;
+    render = <Page2 values={page2Values} dispatch={page2Dispatch}/>;
   } else
   if (currentPage === 3) {
-    render = <Page3 values={page3Values} dispatch={page3Dispatch} />;
+    render = <Page3 values={page3Values} dispatch={page3Dispatch}/>;
+  } else
+  if (currentPage === 4) {
+    render = <SuccessPage values={page4Values} dispatch={page4Dispatch}/>;
   } else
   if (currentPage === -1) {
     render = <Redirect to='/'/>;
@@ -32,6 +43,8 @@ StudyCreationContainer.propTypes = {
   page2Dispatch: PropTypes.object.isRequired,
   page3Values: PropTypes.object.isRequired,
   page3Dispatch: PropTypes.object.isRequired,
+  page4Values: PropTypes.object.isRequired,
+  page4Dispatch: PropTypes.object.isRequired,
 };
 
 export default StudyCreationContainer;

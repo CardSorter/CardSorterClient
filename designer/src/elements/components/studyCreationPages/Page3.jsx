@@ -14,10 +14,6 @@ const Page3 = ({values, dispatch}) => (
         onChange={(e) => dispatch.onMessageChange(e)}
         placeholder={values.message || localizedText.text.thanksMessage}>
       </textarea>
-      <div className="url-container">
-        <p className="url">{values.url}</p>
-        <button className="copy" type="button"></button>
-      </div>
     </form>
 
     <div className="bottom-container">

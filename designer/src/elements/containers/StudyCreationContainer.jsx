@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import StudyCreationContainer from '../components/StudyCreationContainer.jsx';
+import StudyCreation from '../components/StudyCreation.jsx';
 import * as studyCreationAction from '../../actions/studyCreationAction';
 
 /**
@@ -9,7 +9,6 @@ import * as studyCreationAction from '../../actions/studyCreationAction';
  * @param {String} name the name of the element that has been changed:
  * - title
  * - description
- * - url
  * @param {SyntheticEvent} event the event that has been triggered
  */
 function onElementChange(dispatch, name, event) {
@@ -18,15 +17,10 @@ function onElementChange(dispatch, name, event) {
     switch (name) {
       case 'title': {
         dispatch(studyCreationAction.changeTitle(value));
-        dispatch(studyCreationAction.changeURL(value));
         break;
       }
       case 'description': {
         dispatch(studyCreationAction.changeDescription(value));
-        break;
-      }
-      case 'url': {
-        dispatch(studyCreationAction.changeURL(value));
         break;
       }
       default: {
@@ -47,7 +41,6 @@ function constructState(state) {
   return {
     title: state.title,
     description: state.description,
-    url: state.url,
     cards: state.cards,
     message: state.thanksMessage,
   };
@@ -59,15 +52,16 @@ const mapStateToProps = (state) => {
     page1Values: {
       title: state.studyCreation.title,
       titleValidity: state.studyCreation.ui.validTitle,
-      url: state.studyCreation.urlPrefix,
     },
     page2Values: {
       cards: Object.values(state.studyCreation.cards),
     },
     page3Values: {
       message: state.studyCreation.thanksMessage,
-      url: state.studyCreation.urlPrefix + state.studyCreation.url,
       study: constructState(state.studyCreation),
+    },
+    page4Values: {
+      url: state.studyCreation.url,
     },
   };
 };
@@ -115,12 +109,21 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(studyCreationAction.showPage(2));
       },
     },
+    page4Dispatch: {
+      onCopy: (urlRef) => {
+        urlRef.current.select();
+        document.execCommand('copy');
+      },
+      onButtonClick: () => {
+        dispatch(studyCreationAction.openStudyPage());
+      },
+    },
   };
 };
 
-const PopulateCreateStudyContainer = connect(
+const StudyCreationContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(StudyCreationContainer);
+)(StudyCreation);
 
-export default PopulateCreateStudyContainer;
+export default StudyCreationContainer;

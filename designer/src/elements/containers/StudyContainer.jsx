@@ -111,6 +111,7 @@ const mapStateToProps = (state) => {
     title: state.study.title,
     isLive: state.study.isLive,
     launched: state.study.launchedDate,
+    noParticipants: state.study.noParticipants,
     menuValues: {
       selectedNo: state.study.selectedItem,
     },

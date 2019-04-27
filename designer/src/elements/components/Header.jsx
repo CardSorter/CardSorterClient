@@ -2,20 +2,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Header = ({username, profilePic}) => (
-  <header>
+import demoImage from '../../icons/sample-user.svg';
+
+const Header = ({username, profilePic}) => {
+  return (<header>
     <a href="/" id="logo">Card Sorter</a>
     <div className="profile">
       <p>{username}</p>
-      <img src={profilePic} alt='Profile' />
+      <img src={demoImage} alt='Profile' />
     </div>
-  </header>
-);
+  </header>);
+};
 
 Header.propTypes = {
   username: PropTypes.string.isRequired,
   profilePic: PropTypes.string.isRequired,
 };
-
 
 export default Header;

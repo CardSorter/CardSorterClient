@@ -1,13 +1,19 @@
+// eslint-disable-next-line no-unused-vars
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line no-unused-vars
 import StudyMenu from '../components/studyPageElements/StudyMenu.jsx';
+// eslint-disable-next-line no-unused-vars
 import DataTable from '../components/studyPageElements/DataTable.jsx';
+// eslint-disable-next-line no-unused-vars
 import BarGraph from '../components/studyPageElements/BarGraph.jsx';
+// eslint-disable-next-line no-unused-vars
+import NoParticipants from './studyPageElements/NoParticipants.jsx';
 import L from '../../localization/LocalizedText';
 
 /**
- * 
+ *
  */
 class Study extends Component {
   /**
@@ -23,10 +29,15 @@ class Study extends Component {
    */
   render() {
     const {isFetching, title, isLive, launched, menuValues,
-      menuDispatch, graphValues, tableValues, tableDispatch} = this.props;
+      menuDispatch, graphValues, tableValues,
+      tableDispatch, noParticipants} = this.props;
 
     if (isFetching || isFetching === undefined) {
       return <p>Loading...</p>;
+    }
+
+    if (noParticipants) {
+      return <NoParticipants/>;
     }
 
     return (

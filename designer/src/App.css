@@ -59,6 +59,7 @@ table {
 }
 
 html, body {
+  color: var(--color-black);
   font-family: "LatoWeb", sans-serif;
   font-size: 10px;
   height: 100%;
@@ -81,6 +82,24 @@ html, body {
   html, body {
     font-size: 13px;
   }
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h1::first-letter {
+  text-transform: capitalize;
+}
+
+button {
+  background-color: var(--color-purple);
+  border: 0;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  height: 3rem; width: 10rem;
+  position: relative;
 }
 
 /* Header */
@@ -222,6 +241,7 @@ button.createStudyCard {
   background-color: white;
   border: solid 2px white;
   box-shadow: 0 2px 6px rgb(0, 0, 0, .16);
+  color: var(--color-black);
   cursor: pointer;
   height: 14rem; width: 14rem;
 }
@@ -364,38 +384,6 @@ button.createStudyCard:hover {
   width: 4rem;
 }
 
-.study-creation-card .url-container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-}
-
-.study-creation-card .url-container input {
-  margin: 0;
-  margin-right: 1rem;
-}
-
-.study-creation-card .url-container > *:nth-child(1) {
-  font-size: 2rem;
-  margin-right: 1rem;
-}
-
-.study-creation-card .url-container .url-small {
-  font-size: 1.5rem;
-}
-
-.study-creation-card .url-container button.copy {
-  background: 0;
-  background-image: url('./icons/copy.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 0;
-  cursor: pointer;
-  height: 3rem; width: 3rem;
-}
-
-
 /* Page 2 */
 
 .study-creation-card form.cards {
@@ -453,11 +441,82 @@ button.createStudyCard:hover {
 }
 
 /* Page 3 */
+
 .study-creation-card button.create {
   border-radius: 2rem;
   color: white;
   font-weight: bold;
   width: 8rem;
+}
+
+/* Success page */
+
+.success-page {
+  align-items: center;
+  height: calc(100% - var(--height-header));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.success-page h1 {
+  margin-bottom: 3rem;
+}
+
+.success-page img {
+  height: 50vh; width: auto;
+}
+
+.success-page .actions-container {
+  align-items: center;
+  display: flex;
+  margin-top: 3rem;
+}
+
+.success-page .actions-container .url-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.success-page .actions-container .url-container input {
+  margin: 0;
+  margin-right: 1rem;
+}
+
+.success-page .actions-container .url-container > *:nth-child(1) {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.success-page .actions-container .url-container .url-small {
+  font-size: 1.5rem;
+}
+
+.success-page .actions-container .url-container textarea {
+  border: none;
+  font-family: 'LatoWeb', sans-serif;
+  height: auto;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  text-align: center;
+}
+
+.success-page .actions-container .url-container button.copy {
+  background: 0;
+  background-image: url('./icons/copy.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  cursor: pointer;
+  height: 3rem; width: 3rem;
+}
+
+.success-page .actions-container > button {
+  border-radius: 1.2rem;
+  height: 4rem;
+  margin-right: 2rem;
 }
 
 /* Study Page */
@@ -622,4 +681,22 @@ button.createStudyCard:hover {
 
 .study-page .content table td ul li:not(:first-child){
   margin-top: 1rem;
+}
+
+/* Study page -> No participants page */
+
+.no-participants-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - var(--height-header));
+}
+
+.no-participants-page h1 {
+  margin-bottom: 3rem;
+}
+
+.no-participants-page img {
+  height: 50vh; width: auto;
 }

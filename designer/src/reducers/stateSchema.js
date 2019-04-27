@@ -1,6 +1,7 @@
 const initialState = {
   header: {
     username: undefined,
+    profilePic: '../icons/sample-user.svg',
   },
   studies: {
     isFetching: undefined,
@@ -10,7 +11,7 @@ const initialState = {
   studyCreation: {
     title: 'Title',
     description: 'Description',
-    urlPrefix: 'cardsorter.com/sort/user/',
+    url: undefined,
     cards: {
       1: {
         id: 1,
@@ -34,6 +35,7 @@ const initialState = {
     launchedDate: undefined,
     ended: undefined,
     selectedItem: 0,
+    noParticipants: true,
     participants: {
       completion: undefined,
       total: undefined,

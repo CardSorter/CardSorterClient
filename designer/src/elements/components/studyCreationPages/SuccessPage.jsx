@@ -1,0 +1,35 @@
+// eslint-disable-next-line no-unused-vars
+import React, {useRef} from 'react';
+// eslint-disable-next-line no-unused-vars
+import PropTypes from 'prop-types';
+
+import L from '../../../localization/LocalizedText';
+import successImage from '../../../icons/success.svg';
+
+const SuccessPage = ({values, dispatch}) => {
+  const urlRef = useRef(null);
+
+  return (
+    <div className="success-page">
+      <h1>{L.text.studyCreated}</h1>
+      <img src={successImage} alt="Welcome to your new study!"></img>
+      <div className="actions-container">
+        <button onClick={() =>
+          dispatch.onButtonClick(values.url)}>Go to study</button>
+        <div className="url-container">
+          <textarea className="url" ref={urlRef}
+            defaultValue={values.url}></textarea>
+          <button className="copy" type="button" onClick={() =>
+            dispatch.onCopy(urlRef)}></button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+SuccessPage.propTypes = {
+  values: PropTypes.object.isRequired,
+  dispatch: PropTypes.object.isRequired,
+};
+
+export default SuccessPage;

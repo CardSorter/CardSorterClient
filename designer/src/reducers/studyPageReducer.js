@@ -18,6 +18,7 @@ export default function studyPageReducer(state={}, action) {
         newState.isLive = study.isLive;
         newState.launchedDate = new Date(study.launchedDate);
         newState.ended = study.ended ? new Date(study.ended): undefined;
+        newState.noParticipants = study.participants === 0 ? true : false;
         newState.participants = {
           completion: study.participants ? study.participants.completion: '0%',
           total: study.participants ? study.participants.total: 0,

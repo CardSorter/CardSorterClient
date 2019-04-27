@@ -19,11 +19,6 @@ export default function studyCreationReducer(state={}, action) {
         'description': action.payload.description,
       });
     }
-    case studyCreationActions.CHANGE_URL: {
-      return Object.assign({}, state, {
-        'url': action.payload.url,
-      });
-    }
     case studyCreationActions.ADD_CARD: {
       const newState = Object.assign({}, state);
       newState['cards'][action.payload.id] = {
@@ -63,10 +58,15 @@ export default function studyCreationReducer(state={}, action) {
       newState.ui.titleFetching = action.payload.status;
       return newState;
     }
+    case studyCreationActions.OPEN_STUDY_PAGE: {
+      window.location.assign(state.url);
+      return state;
+    }
     case studyCreationActions.CREATE_STUDY: {
       const newState = Object.assign({}, state);
       if (action.payload.status === StatusEnum.SUCCESS) {
-        newState.ui.currentPage = -1;
+        newState.url = action.payload.study.url;
+        newState.ui.currentPage = 4;
       }
       newState.ui.studySending = action.payload.status;
       return newState;

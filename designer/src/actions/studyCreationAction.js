@@ -5,13 +5,13 @@ import api from './api';
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
-export const CHANGE_URL = 'CHANGE_URL';
 export const ADD_CARD = 'ADD_CARD';
 export const CHANGE_CARD_NAME = 'CHANGE_CARD_NAME';
 export const CHANGE_CARD_DESCRIPTION = 'CHANGE_CARD_DESCRIPTION';
 export const CHANGE_THANKS_MESSAGE = 'CHANGE_THANKS_MESSAGE';
 export const CREATE_STUDY = 'CREATE_STUDY';
 export const SHOW_PAGE = 'SHOW_PAGE';
+export const OPEN_STUDY_PAGE = 'OPEN_STUDY_PAGE';
 
 export const CHECK_TITLE = 'CHECK_TITLE';
 export const SEND_STUDY = 'SEND_STUDY';
@@ -41,21 +41,6 @@ export function changeDescription(description) {
     type: CHANGE_DESCRIPTION,
     payload: {
       description: description,
-    },
-    error: false,
-  };
-}
-
-/**
- * Changes the url of the study that is going to be created.
- * @param {String} url
- * @return {JSON} the action
- */
-export function changeURL(url) {
-  return {
-    type: CHANGE_URL,
-    payload: {
-      url: url,
     },
     error: false,
   };
@@ -175,9 +160,22 @@ export function createStudy(status, response, error) {
     type: CREATE_STUDY,
     payload: {
       status: status,
-      reponse: response,
+      study: response,
       error: error,
     },
+  };
+}
+
+/**
+ * Redirects to the created study.
+ * @return {JSON} the action
+ */
+export function openStudyPage() {
+  return {
+    type: OPEN_STUDY_PAGE,
+    payload: {
+    },
+    error: false,
   };
 }
 
