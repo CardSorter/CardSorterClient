@@ -38,6 +38,7 @@ export default function studyPageReducer(state={}, action) {
           merged: study.categories ? study.categories.merged: 0,
           data: study.categories ? study.categories.data: [],
         };
+        newState.similarityMatrix = study.similarityMatrix;
       }
 
       newState.isFetching = action.payload.status !== StatusEnum.SUCCESS;
@@ -46,6 +47,18 @@ export default function studyPageReducer(state={}, action) {
     case studyActions.CHANGE_VIEW: {
       return Object.assign({}, state, {
         'selectedItem': action.payload.no,
+      });
+    }
+    case studyActions.CHANGE_HOVERED_CARDS: {
+      const selectedCards = [];
+      for (let i = 0; i < state.similarityMatrix.length; i++) {
+        selectedCards.push(
+            i === action.payload.index1 ||
+            i === action.payload.index2
+        );
+      }
+      return Object.assign({}, state, {
+        'selectedCards': selectedCards,
       });
     }
     default: {

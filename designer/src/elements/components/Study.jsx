@@ -10,6 +10,8 @@ import DataTable from '../components/studyPageElements/DataTable.jsx';
 import BarGraph from '../components/studyPageElements/BarGraph.jsx';
 // eslint-disable-next-line no-unused-vars
 import NoParticipants from './studyPageElements/NoParticipants.jsx';
+// eslint-disable-next-line no-unused-vars
+import SimilarityMatrix from './studyPageElements/SimilarityMatrix.jsx';
 import L from '../../localization/LocalizedText';
 
 /**
@@ -30,7 +32,8 @@ class Study extends Component {
   render() {
     const {isFetching, title, isLive, launched, menuValues,
       menuDispatch, graphValues, tableValues,
-      tableDispatch, noParticipants} = this.props;
+      tableDispatch, noParticipants, similarityPage,
+      similarityMatrix, similarityHover, selectedCards} = this.props;
 
     if (isFetching || isFetching === undefined) {
       return <p>Loading...</p>;
@@ -66,12 +69,21 @@ class Study extends Component {
         </span>
         <StudyMenu selectedNo={menuValues.selectedNo} onClicks=
           {menuDispatch.onClicks}/>
-        <div className="content">
-          <BarGraph percentage={graphValues.percentage} sub={graphValues.sub}
-            total={graphValues.total} entity={graphValues.entity}
-            action={graphValues.action}/>
-          <DataTable headers={tableValues.headers} data={tableValues.data}/>
-        </div>
+        {
+          similarityPage &&
+          <SimilarityMatrix data={similarityMatrix} onHover={similarityHover}
+            selected={selectedCards}/>
+        }
+        {
+          !similarityPage &&
+            <div className="content">
+              <BarGraph percentage={graphValues.percentage}
+                sub={graphValues.sub}
+                total={graphValues.total} entity={graphValues.entity}
+                title={graphValues.title} action={graphValues.action}/>
+              <DataTable headers={tableValues.headers} data={tableValues.data}/>
+            </div>
+        }
       </div>
     );
   };

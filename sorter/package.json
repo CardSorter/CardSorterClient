@@ -31,5 +31,5 @@
     "eslint-plugin-react": "^7.12.4",
     "redux-logger": "^3.0.6"
   },
-  "homepage": "./sort"
+  "homepage": "http://83.212.97.237/sort/"
 }

@@ -13,7 +13,8 @@ import L from './localization/LocalizedText';
 export default function initializeStore() {
   const store = createStore(app, initialState, applyMiddleware(
       thunkMiddleware,
-      logger));
+      logger
+  ));
   // const store = createStore(app, window.STATE_FROM_SERVER);
 
   const unsuscribe = store.subscribe(() => {});
@@ -23,8 +24,9 @@ export default function initializeStore() {
   // Initialize locale
   L.initialize('en-us');
 
-  // Get the path id
-  const id = window.location.href.split('/')[3];
+  // Get the id param
+  const url = new URL(window.location.href);
+  const id = url.searchParams.get('id');
   // Load the cards
   store.dispatch(fetchCards(id));
 

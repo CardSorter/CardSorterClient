@@ -34,7 +34,7 @@ const OnBoarding = ({show, onClick}) => {
 };
 
 OnBoarding.propTypes = {
-  show: PropTypes.bool.isRequired,
+  show: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
 };
 

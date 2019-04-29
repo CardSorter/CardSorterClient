@@ -523,6 +523,7 @@ button.createStudyCard:hover {
 
 .study-page {
   align-items: center;
+  color: var(--color-black);
   display: flex;
   flex-direction: column;
   height: calc(100% - var(--height-header));
@@ -542,6 +543,7 @@ button.createStudyCard:hover {
   background-position: bottom;
   background-repeat: no-repeat;
   border: 0;
+  color: var(--color-black);
   height: 2rem; width: 2rem;
   margin-left: .7rem;
   opacity: .8;
@@ -569,15 +571,19 @@ button.createStudyCard:hover {
 }
 
 .study-page .study-menu {
+  color: var(--color-black);
   margin-top: 1rem;
 }
 
 .study-page .study-menu button {
   background: 0;
   border: 0;
+  color: var(--color-black);
   cursor: pointer;
   font-family:'LatoWebLight';
   font-size: 1.5rem;
+  font-weight: 400;
+  height: auto; width: auto;
   text-transform: capitalize;
 }
 
@@ -681,6 +687,73 @@ button.createStudyCard:hover {
 
 .study-page .content table td ul li:not(:first-child){
   margin-top: 1rem;
+}
+
+/* Study page -> Similarity matrix */
+
+.study-page .similarirty-matrix {
+  align-items: flex-start;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  min-height: calc(100% - var(--height-header) - 5rem); width: 90%;
+  position: relative;
+  justify-content: flex-end;
+}
+
+.study-page .similarirty-matrix table {
+  font-size: 2rem;
+  margin: 2rem 5rem;
+}
+
+.study-page .similarirty-matrix table tr {
+  height: 3.5rem;
+}
+
+.study-page .similarirty-matrix table td {
+  border: solid 2px white;
+  cursor: default;
+  text-align: center;
+  vertical-align: middle;
+  width: 3.5rem;
+}
+
+.study-page .similarirty-matrix table td:not(:last-child):hover {
+  background-color: var(--color-purple);
+}
+
+.study-page .similarirty-matrix table td.hovered {
+  background-color: var(--color-purple);
+}
+
+.study-page .similarirty-matrix table td:last-child {
+  align-items: center;
+  display: flex;
+  position: absolute;
+  height: 3rem; width: auto;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+td.color-20 {
+  background-color: #F5F5F5;
+}
+
+td.color-40 {
+  background-color: #DCDCDC;
+}
+
+td.color-60 {
+  background-color: #C8C8C8;
+}
+
+td.color-80 {
+  background-color: #B0B0B0;
+}
+
+td.color-100 {
+  background-color: #989898;
 }
 
 /* Study page -> No participants page */

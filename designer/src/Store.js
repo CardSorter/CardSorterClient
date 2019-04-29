@@ -15,13 +15,13 @@ import {fetchUsername} from './actions/headerAction';
 export default function initializeStore() {
   const store = createStore(app, initialState, applyMiddleware(
       thunkMiddleware,
-      logger));
-  // const store = createStore(app, window.STATE_FROM_SERVER);
+      logger
+  ));
+
   localizedText.initialize('en-us');
 
   const unsuscribe = store.subscribe(() => {});
 
-  // runTests(store);
   store.dispatch(fetchUsername());
   store.dispatch(fetchStudies());
 

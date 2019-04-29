@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
 
-const BarGraph = ({percentage, sub, total, entity, action}) => {
+const BarGraph = ({percentage, sub, total, entity, title, action}) => {
   return (
     <div className="bar-graph-container">
-      <p>{L.text.completion}</p>
+      <p>{title}</p>
       <div className="graphic">
         <div className="completion" style={{height: percentage}}>
         </div>
@@ -29,6 +29,7 @@ BarGraph.propTypes = {
   sub: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   entity: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   action: PropTypes.string.isRequired,
 };
 

@@ -11,7 +11,7 @@ const Header = ({studyID, container, categories, onFinishClick}) => (
 );
 
 Header.propTypes = {
-  studyID: PropTypes.string.isRequired,
+  studyID: PropTypes.string,
   container: PropTypes.array,
   categories: PropTypes.object,
   onFinishClick: PropTypes.func.isRequired,

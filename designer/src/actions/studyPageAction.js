@@ -5,6 +5,7 @@ import api from './api';
 
 export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const LOAD_STUDY = 'LOAD_STUDY';
+export const CHANGE_HOVERED_CARDS = 'CHANGE_HOVERED_CARDS';
 
 /**
  * Changes the view that the study page is showing.
@@ -16,6 +17,23 @@ export function changeView(viewNo) {
     type: CHANGE_VIEW,
     payload: {
       no: viewNo,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Changes the selected card labels, when a percentage is selected.
+ * @param {Number} card1Index
+ * @param {Number} card2Index
+ * @return {JSON} the action.
+ */
+export function changeHoveredCards(card1Index, card2Index) {
+  return {
+    type: CHANGE_HOVERED_CARDS,
+    payload: {
+      index1: card1Index,
+      index2: card2Index,
     },
     error: false,
   };

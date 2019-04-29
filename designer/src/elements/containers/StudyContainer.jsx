@@ -55,6 +55,7 @@ function getGraphValues(state) {
         sub: state.study.participants.completed,
         total: state.study.participants.total,
         entity: L.text.users,
+        title: L.text.completion,
         action: L.text.completedTheStudy,
       };
     }
@@ -64,6 +65,7 @@ function getGraphValues(state) {
         sub: state.study.cards.sorted,
         total: state.study.cards.total,
         entity: L.text.cards,
+        title: L.text.averageSort,
         action: L.text.wereSorterInAverage,
       };
     }
@@ -73,6 +75,7 @@ function getGraphValues(state) {
         sub: state.study.categories.similar,
         total: state.study.categories.total,
         entity: L.text.categories,
+        title: L.text.similarity,
         action: L.text.couldBeMergedInto,
       };
     }
@@ -112,6 +115,7 @@ const mapStateToProps = (state) => {
     isLive: state.study.isLive,
     launched: state.study.launchedDate,
     noParticipants: state.study.noParticipants,
+    similarityPage: state.study.selectedItem === 3,
     menuValues: {
       selectedNo: state.study.selectedItem,
     },
@@ -120,6 +124,8 @@ const mapStateToProps = (state) => {
       headers: getHeaders(state),
       data: getData(state),
     },
+    similarityMatrix: state.study.similarityMatrix,
+    selectedCards: state.study.selectedCards,
   };
 };
 
@@ -138,6 +144,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch(studyAction.changeView(2));
         },
         similarityMatrix: () => {
+          dispatch(studyAction.changeView(3));
         },
         clusters: () => {
         },
@@ -145,6 +152,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     tableDispatch: {
 
+    },
+    similarityHover: (index1, index2) => {
+      dispatch(studyAction.changeHoveredCards(index1, index2));
     },
   };
 };

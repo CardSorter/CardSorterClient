@@ -55,6 +55,8 @@ const initialState = {
       merged: undefined,
       data: [],
     },
+    similarityMatrix: undefined,
+    selectedCards: [],
   },
 };
 
