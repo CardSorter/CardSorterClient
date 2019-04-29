@@ -3,15 +3,12 @@ import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import PropTypes from 'prop-types';
 
-import helloImage from '../../icons/hello.svg';
 import downArrow from '../../icons/down-arrow-sketch.svg';
 
 const OnBoarding = ({show, onClick}) => {
   if (show) {
     return (
       <div className="on-boarding-screen" onClick={(e) => onClick(e)}>
-        <img src={helloImage}></img>
-        <h2>Hello!</h2>
         <div className="list-explainer">
           <img src={downArrow} alt="Arrow pointing to the left of the screen"
             className="arrow"></img>
