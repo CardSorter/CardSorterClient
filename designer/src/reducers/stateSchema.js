@@ -11,7 +11,8 @@ const initialState = {
   studyCreation: {
     title: 'Title',
     description: 'Description',
-    url: undefined,
+    url_to_study: undefined,
+    share_url: undefined,
     cards: {
       1: {
         id: 1,

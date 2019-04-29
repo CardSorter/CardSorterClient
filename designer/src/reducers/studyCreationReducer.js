@@ -59,13 +59,14 @@ export default function studyCreationReducer(state={}, action) {
       return newState;
     }
     case studyCreationActions.OPEN_STUDY_PAGE: {
-      window.location.assign(state.url);
+      window.location.assign(state.url_to_study);
       return state;
     }
     case studyCreationActions.CREATE_STUDY: {
       const newState = Object.assign({}, state);
       if (action.payload.status === StatusEnum.SUCCESS) {
-        newState.url = action.payload.study.url;
+        newState.url_to_study = action.payload.study.url_to_study;
+        newState.share_url = action.payload.study.share_url;
         newState.ui.currentPage = 4;
       }
       newState.ui.studySending = action.payload.status;

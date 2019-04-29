@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
       study: constructState(state.studyCreation),
     },
     page4Values: {
-      url: state.studyCreation.url,
+      share_url: state.studyCreation.share_url,
     },
   };
 };
