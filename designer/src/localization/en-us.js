@@ -30,6 +30,7 @@ export default {
   message: 'Message',
   noParticipantsYet: 'no participants yet',
   of: 'of',
+  ofTheParticipants: 'of the participants.',
   ongoing: 'ongoing',
   outOf: 'out of',
   participant: 'participant',
@@ -43,6 +44,7 @@ export default {
   timeTaken: 'time taken',
   title: 'Title',
   users: 'users',
+  wasGroupedTogetherBy: 'was grouped together by ',
   wereSorterInAverage: 'were sorter in average',
 };
 

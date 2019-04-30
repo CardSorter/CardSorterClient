@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import L from '../../../localization/LocalizedText';
+
 const SimilarityMatrix = ({data, selected, onHover}) => {
   return (
     <div className="similarirty-matrix">
@@ -23,17 +25,24 @@ const SimilarityMatrix = ({data, selected, onHover}) => {
                 if (item < 80) {
                   style += 80;
                 } else
-                if (item < 100) {
+                if (item <= 100) {
                   style += 100;
                 }
 
                 if (index2 === line.length - 1) {
+                  // Add different style to the text
                   style = selected[index] ? 'hovered' : '';
                 }
                 return (
                   <td key={'item'+index+','+index2}
                     className={style} onMouseOver={() =>
-                      onHover(index, index2)}>{item}</td>
+                      onHover(index, index2)}
+                    // Append the title based on the row/column label
+                    title={
+                      data[index2][data[index2].length - 1] + ' | ' +
+                      line[line.length - 1] + ' ' +
+                      L.text.wasGroupedTogetherBy + ' ' +
+                      item + '% ' + L.text.ofTheParticipants}>{item}</td>
                 );
               })}
             </tr>
