@@ -31,8 +31,8 @@ class Study extends Component {
    */
   render() {
     const {isFetching, title, isLive, launched, menuValues,
-      menuDispatch, graphValues, tableValues,
-      tableDispatch, noParticipants, similarityPage,
+      menuDispatch, graphValues, tableValues, shareUrl,
+      tableDispatch, noParticipants, similarityPage, copyUrl,
       similarityMatrix, similarityHover, selectedCards} = this.props;
 
     if (isFetching || isFetching === undefined) {
@@ -40,7 +40,7 @@ class Study extends Component {
     }
 
     if (noParticipants) {
-      return <NoParticipants/>;
+      return <NoParticipants shareUrl={shareUrl} copyUrl={copyUrl}/>;
     }
 
     return (

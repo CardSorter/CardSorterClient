@@ -504,27 +504,27 @@ button.createStudyCard:hover {
   margin-top: 3rem;
 }
 
-.success-page .actions-container .url-container {
+.url-container {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.success-page .actions-container .url-container input {
+.url-container input {
   margin: 0;
   margin-right: 1rem;
 }
 
-.success-page .actions-container .url-container > *:nth-child(1) {
+.url-container > *:nth-child(1) {
   font-size: 2rem;
   margin-right: 1rem;
 }
 
-.success-page .actions-container .url-container .url-small {
+.url-container .url-small {
   font-size: 1.5rem;
 }
 
-.success-page .actions-container .url-container textarea {
+.url-container textarea {
   border: none;
   font-family: 'LatoWeb', sans-serif;
   height: auto;
@@ -534,7 +534,7 @@ button.createStudyCard:hover {
   text-align: center;
 }
 
-.success-page .actions-container .url-container button.copy {
+.url-container button.copy {
   background: 0;
   background-image: url('./icons/copy.svg');
   background-position: center;

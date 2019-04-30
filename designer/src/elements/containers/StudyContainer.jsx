@@ -116,6 +116,7 @@ const mapStateToProps = (state) => {
     launched: state.study.launchedDate,
     noParticipants: state.study.noParticipants,
     similarityPage: state.study.selectedItem === 3,
+    shareUrl: state.study.shareUrl,
     menuValues: {
       selectedNo: state.study.selectedItem,
     },
@@ -155,6 +156,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     similarityHover: (index1, index2) => {
       dispatch(studyAction.changeHoveredCards(index1, index2));
+    },
+    copyUrl: (urlRef) => {
+      urlRef.current.select();
+      document.execCommand('copy');
     },
   };
 };
