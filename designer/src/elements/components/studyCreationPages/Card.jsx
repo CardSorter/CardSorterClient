@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,7 +9,8 @@ const Card = ({name, description, onNameChange, onDescriptionChange}) => (
     <input type="text" placeholder={name ||
       localizedText.text.cardName} onChange={(e) => onNameChange(e)}></input>
     <input type="text" placeholder={description ||
-      localizedText.text.description} onChange={(e) => onDescriptionChange(e)}></input>
+      localizedText.text.description} onChange={(e) =>
+      onDescriptionChange(e)}></input>
   </div>
 );
 

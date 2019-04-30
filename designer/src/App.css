@@ -281,7 +281,7 @@ button.createStudyCard:hover {
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  height: 80%;
+  height: 80vh;
   margin: 1rem 10% 0 10%;
   position: relative;
 }
@@ -415,17 +415,23 @@ button.createStudyCard:hover {
   align-items: stretch;
   display: flex;
   flex-direction: column;
-  width: 80%;
+  max-height: 55%; width: 80%;
+  position: relative;
+}
+
+.error-holder {
+  height: 100%;
 }
 
 .study-creation-card .card-container {
-  max-height: 70%;
-  overflow: auto;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .study-creation-card .card-container .card {
   align-items: center;
   display: flex;
+  height: 4rem;
   margin-bottom: 2rem;
 }
 
@@ -447,7 +453,7 @@ button.createStudyCard:hover {
   color: white;
   cursor: pointer;
   font-weight: bold;
-  height: 3rem; width: 10rem;
+  min-height: 3rem; width: 10rem;
   margin-top: 1.5rem;
   padding-left: 1rem;
   position: relative;
