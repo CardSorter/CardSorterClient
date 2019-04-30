@@ -45,17 +45,29 @@ export default function studyCreationReducer(state={}, action) {
         'thanksMessage': action.payload.message,
       });
     }
+    case studyCreationActions.TOGGLE_TITLE_ERROR: {
+      return Object.assign({}, state, {
+        'errorTitle': action.payload.status,
+      });
+    }
+    case studyCreationActions.TOGGLE_DESCRIPTION_ERROR: {
+      return Object.assign({}, state, {
+        'errorDescription': action.payload.status,
+      });
+    }
+    case studyCreationActions.TOGGLE_CARD_ERROR: {
+      return Object.assign({}, state, {
+        'errorCards': action.payload.status,
+      });
+    }
+    case studyCreationActions.TOGGLE_THANKS_ERROR: {
+      return Object.assign({}, state, {
+        'errorMessage': action.payload.status,
+      });
+    }
     case studyCreationActions.SHOW_PAGE: {
       const newState = Object.assign({}, state);
       newState['ui'].currentPage = action.payload.pageNo;
-      return newState;
-    }
-    case studyCreationActions.CHECK_TITLE: {
-      const newState = Object.assign({}, state);
-      if (action.payload.status === StatusEnum.SUCCESS) {
-        newState.ui.validTitle = action.payload.validTitle;
-      }
-      newState.ui.titleFetching = action.payload.status;
       return newState;
     }
     case studyCreationActions.OPEN_STUDY_PAGE: {

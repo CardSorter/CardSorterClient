@@ -24,6 +24,7 @@ export default {
   editedOn: 'Last edited on',
   endedOn: 'Ended on',
   filter: 'FILTER',
+  fillMeOut: 'fill me out',
   frequency: 'frequency',
   inactive: 'Inactive',
   launchedOn: 'Launched on',

@@ -9,10 +9,14 @@ const initialState = {
     studies: [],
   },
   studyCreation: {
-    title: 'Title',
-    description: 'Description',
+    title: undefined,
+    description: undefined,
     url_to_study: undefined,
     share_url: undefined,
+    errorTitle: false,
+    errorDescription: false,
+    errorCards: false,
+    errorMessage: false,
     cards: {
       1: {
         id: 1,
@@ -20,7 +24,7 @@ const initialState = {
         description: undefined,
       },
     },
-    thanksMessage: 'Thanks',
+    thanksMessage: undefined,
     ui: {
       currentPage: 1,
       titleFetching: undefined,

@@ -12,8 +12,11 @@ export const CHANGE_THANKS_MESSAGE = 'CHANGE_THANKS_MESSAGE';
 export const CREATE_STUDY = 'CREATE_STUDY';
 export const SHOW_PAGE = 'SHOW_PAGE';
 export const OPEN_STUDY_PAGE = 'OPEN_STUDY_PAGE';
+export const TOGGLE_TITLE_ERROR = 'TOGGLE_TITLE_ERROR';
+export const TOGGLE_DESCRIPTION_ERROR = 'TOGGLE_DESCRIPTION_ERROR';
+export const TOGGLE_CARD_ERROR = 'TOGGLE_CARD_ERROR';
+export const TOGGLE_THANKS_ERROR = 'TOGGLE_THANKS_ERROR';
 
-export const CHECK_TITLE = 'CHECK_TITLE';
 export const SEND_STUDY = 'SEND_STUDY';
 
 /**
@@ -127,24 +130,63 @@ export function showPage(pageNo) {
   };
 }
 
-
 /**
- * Async action for checking the validity of the title.
- * @param {StatusEnum} status
- * @param {Boolean} validTitle
- * @param {Error} error
- * @return {JSON} the action
+ * Toogle the error flag on the title input.
+ * @param {Boolean} status
+ * @return {JSON} the action.
  */
-export function checkTitle(status, validTitle, error) {
+export function toggleTitleError(status) {
   return {
-    type: CHECK_TITLE,
+    type: TOGGLE_TITLE_ERROR,
     payload: {
       status: status,
-      payload: {
-        validTitle: validTitle,
-      },
     },
-    error: error,
+    error: false,
+  };
+}
+
+/**
+ * Toogle the error flag on the description input.
+ * @param {Boolean} status
+ * @return {JSON} the action.
+ */
+export function toggleDescriptionError(status) {
+  return {
+    type: TOGGLE_DESCRIPTION_ERROR,
+    payload: {
+      status: status,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Toogle the error flag on the card input.
+ * @param {Boolean} status
+ * @return {JSON} the action.
+ */
+export function toggleCardError(status) {
+  return {
+    type: TOGGLE_CARD_ERROR,
+    payload: {
+      status: status,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Toogle the error flag on the thanks input.
+ * @param {Boolean} status
+ * @return {JSON} the action.
+ */
+export function toggleThanksError(status) {
+  return {
+    type: TOGGLE_THANKS_ERROR,
+    payload: {
+      status: status,
+    },
+    error: false,
   };
 }
 
@@ -180,31 +222,6 @@ export function openStudyPage() {
 }
 
 /* Thunk actions */
-
-/**
- *
- * @param {*} title
- * @return {func}
- */
-export function sendTitle(title) {
-  return function(dispatch) {
-    dispatch(checkTitle(StatusEnum.IS_FETCHING));
-    fetch('http://127.0.0.1:5000/studies_endpoint?title', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: title,
-      }),
-    })
-        .then(
-            (response) => response.json().then((json) =>
-              dispatch(checkTitle(StatusEnum.SUCCESS, json.isValid))
-            )
-        );
-  };
-}
 
 /**
  * @param {Object} study

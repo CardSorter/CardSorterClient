@@ -2,31 +2,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import localizedText from '../../../localization/LocalizedText';
+import L from '../../../localization/LocalizedText';
 
-const Page1 = ({values, dispatch}) => (
+const Page1 = ({values, errors, dispatch}) => (
   <div className='study-creation-card'>
-    <h1>{localizedText.text.createStudy}</h1>
-    <h2>{localizedText.text.basicInformation}</h2>
+    <h1>{L.text.createStudy}</h1>
+    <h2>{L.text.basicInformation}</h2>
 
     <form>
-      <input type='text' placeholder={values.title ||
-        localizedText.text.title} onChange={(e)=>
-        dispatch.onChange('title', e)}></input>
-
-      <textarea placeholder={values.description ||
-        localizedText.text.description} rows='10' cols='30' onChange={(e)=>
-        dispatch.onChange('description', e)}></textarea>
+      <div className="error-holder">
+        <input type='text' placeholder={values.title ||
+          L.text.title} onChange={(e)=>
+          dispatch.onChange('title', e)}></input>
+        {
+          errors.title &&
+          <div className="error-message"><p>{L.text.fillMeOut}</p></div>
+        }
+      </div>
+      <div className="error-holder">
+        <textarea placeholder={values.description ||
+          L.text.description} rows='10' cols='30' onChange={(e)=>
+          dispatch.onChange('description', e)}></textarea>
+        {
+          errors.description &&
+          <div className="error-message"><p>{L.text.fillMeOut}</p></div>
+        }
+      </div>
     </form>
     <div className="bottom-container">
       <div className="btn-container">
         <button className="prev disabled"
           onClick={dispatch.onPrev}></button>
-        <button className="next" onClick={dispatch.onNext}></button>
+        <button className="next" onClick={() =>
+          dispatch.onNext(values.title, values.description)}></button>
       </div>
       <div className="page-no-container">
         <p>1</p>
-        <p>{localizedText.text.of}</p>
+        <p>{L.text.of}</p>
         <p>3</p>
       </div>
     </div>
@@ -35,6 +47,7 @@ const Page1 = ({values, dispatch}) => (
 
 Page1.propTypes = {
   values: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
   dispatch: PropTypes.object.isRequired,
 };
 
