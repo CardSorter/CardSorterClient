@@ -729,13 +729,14 @@ button.createStudyCard:hover {
   flex-direction: column;
   margin: 2rem 0;
   min-height: calc(100% - var(--height-header) - 5rem); width: 90%;
+  overflow: auto;
   position: relative;
-  justify-content: flex-end;
 }
 
 .study-page .similarirty-matrix table {
   font-size: 2rem;
-  margin: 2rem 5rem;
+  margin: auto 5rem 2rem 5rem;
+  margin-top: minmax(2rem, auto);
 }
 
 .study-page .similarirty-matrix table tr {

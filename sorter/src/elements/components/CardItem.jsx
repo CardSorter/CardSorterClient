@@ -28,29 +28,22 @@ function collect(connect, monitor) {
 
 const CardItem = ({id, title, description, minimized, position,
   onClick, showDescription, connectDragSource, isDragging}) => {
-  const classString = minimized ? 'card minimized' : 'card';
+  const classString = (!minimized || showDescription) ?
+    'card' : 'card minimized';
   return connectDragSource(
       <li className={classString}>
         <h4>{title}</h4>
         {
-          /* Hide the description */
-          !minimized && <p>{description}</p>
+          /* Show the description */
+          (!minimized || showDescription) && <p>{description}</p>
         }
         {
           /* Show the description button */
-          (minimized && description) &&
+          (minimized && description && !showDescription) &&
             <div className="desc-container">
               <button onClick={onClick} className="desc-btn">
-                ?
+                <p>?</p>
               </button>
-              {
-                showDescription &&
-                <div className="desc-pop">
-                  <p>
-                    {description}
-                  </p>
-                </div>
-              }
             </div>
         }
         {

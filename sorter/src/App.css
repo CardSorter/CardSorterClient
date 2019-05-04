@@ -1,5 +1,51 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* END OF RESET */
+
 body, html {
   color: var(--color-black);
+  font-family: "LatoWeb", sans-serif;
   font-size: 10px;
 }
 
@@ -32,7 +78,7 @@ header {
   box-shadow: 0px 2px 6px rgb(168, 168, 168); 
   display: flex;
   flex-direction: row;
-  max-height: var(--height-header);
+  height: var(--height-header);
   justify-content: center;
   position: relative;
   z-index: 1;
@@ -69,7 +115,7 @@ ul#list {
   border-right: dashed 2px #707070;
   height: 100%;
   overflow: auto;
-  padding: 10px;
+  padding: 2rem;
   width: var(--width-list);
 }
 
@@ -78,9 +124,12 @@ ul#list {
   align-items: flex-start;
   display: grid;
   font-size: 1.3rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
+  grid-auto-rows: max-content;
   gap: 10px;
+  overflow-y: scroll;
+  padding: 2rem;
   width: 100%;  
 }
 
@@ -88,31 +137,38 @@ ul#list {
 .card {
   background-color: white;
   border: solid 1px #8b8b8b;
-  border-radius: 10px;
+  border-radius: 1rem;
   box-shadow: 0 2px 2px rgb(226, 226, 226);
   cursor: move;
-  margin-bottom: 10px;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 7rem; width: 14rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
   text-align: center;
 }
 
+.card h4 {
+  font-size: 1.5rem;
+}
+
 .card.minimized {
-  align-items: center;
   border-radius: 0;
   box-shadow: none;
   display: flex;
-  height: 1.2rem; width: 200px;
+  flex-direction: row;
+  height: auto; width: 20rem;
   margin-bottom: 10px;
   padding-left: 5px;
   position: relative;
   text-align: start;
+  justify-content: center;
 }
 
 .card.minimized h4 {
-  display: inline;
-  font-weight: 100;
-  font-size: 80%;
-  margin: 0; 
+  font-family: 'LatoWebLight';
+  font-size: 1.2rem;
 }
 
 .card.minimized .desc-container {
@@ -126,25 +182,10 @@ ul#list {
   border-radius: 50%;
   color: white;
   cursor: pointer;
-  height: 1.2rem; width: 1.2rem;
-}
-
-.card.minimized .desc-pop {
-  align-items: center;
-  background-color: white;
-  border: solid 4px #BAA5FF;
-  box-shadow: 0 2px 6px rgb(168, 168, 168);
-  position: absolute;
-  left: 215px;
-  margin: 0;
-  transform: translateY(-60%);
-  z-index: 10;
-  width: 150px;
-}
-
-.card.minimized .desc-pop p {
-  margin: 0;
-  margin-left: 5px;
+  font-size: 1.2rem;
+  height: 1.5rem; width: 1.5rem;
+  position: relative;
+  text-align: center;
 }
 
 .card.minimized .desc-pop::after {
@@ -166,7 +207,9 @@ ul#list {
   display: flex;
   flex-direction: column;
   max-height: 25rem;
+  overflow-x: hidden;
   overflow-y: auto;
+  padding: .5rem;
   position: relative;
   width: 240px;
 }
@@ -178,6 +221,7 @@ ul#list {
 .category h3 {
   cursor: pointer;
   font-size: 1.5rem;
+  margin: 1rem 0;
   text-decoration: underline;
 }
 
