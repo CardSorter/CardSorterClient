@@ -5,7 +5,6 @@ import React from 'react';
 import Header from '../elements/containers/HeaderContainer.jsx';
 // eslint-disable-next-line no-unused-vars
 import StudyContainer from '../elements/containers/StudyContainer.jsx';
-import demoImage from '../demo/profile.jpeg';
 
 /**
  * @return {ReactDOM} The study page.
@@ -13,7 +12,7 @@ import demoImage from '../demo/profile.jpeg';
 const StudyPage = ({history, match}) => {
   return (
     <main>
-      <Header username='John' profilePic={demoImage}/>
+      <Header showBackButton={true}/>
       <StudyContainer id={match.params.id}/>
     </main>);
 };

@@ -117,15 +117,65 @@ header h1 {
   font-size: 1.7rem;
 }
 
-header #logo {
+header .logo-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-right: auto;
+  text-decoration: none;
+}
+
+header .logo-container #logo {
   color: var(--color-black);
   cursor: pointer;
   font-family: 'Dancing Script', cursive;
   font-size: 2.2rem;
   font-weight: bold;
-  margin-left: 30px;
-  margin-right: auto;
   text-decoration: none;
+}
+
+header .logo-container button#back {
+  align-items: center;
+  background: 0;
+  display: flex;
+  color: var(--color-black);
+  font-family: 'LatoWebLight';
+  position: relative;
+}
+
+header .logo-container button#back .arrow {
+  margin-right: .5rem;
+  position: relative;
+  width: 2.5rem;
+}
+
+header .logo-container button#back .arrow .shaft {
+  background: var(--color-black);
+  display: block;
+  height: 1px; width: 2.5rem;
+  position: relative;
+}
+
+header .logo-container button#back .arrow .shaft::before,
+header .logo-container button#back .arrow .shaft::after {
+  background: var(--color-black);
+  content: '';
+  display: block;
+  height: 1px;
+  left: 0; top: 0;
+  position: absolute;
+  width: .8rem;
+}
+
+header .logo-container button#back .arrow .shaft::before {
+  transform-origin: 0;
+  transform: rotate(40deg);
+}
+
+header .logo-container button#back .arrow .shaft::after {
+  transform-origin: 0;
+  transform: rotate(-40deg);
 }
 
 header .profile {

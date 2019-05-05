@@ -44,6 +44,7 @@ export default {
   thanksMessage: 'Thanks message',
   timeTaken: 'time taken',
   title: 'Title',
+  toFront: 'to Front',
   users: 'users',
   wasGroupedTogetherBy: 'was grouped together by ',
   wereSorterInAverage: 'were sorter in average',

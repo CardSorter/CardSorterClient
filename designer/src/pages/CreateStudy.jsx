@@ -6,7 +6,6 @@ import Header from '../elements/containers/HeaderContainer.jsx';
 // eslint-disable-next-line no-unused-vars
 import StudyCreationContainer
   from '../elements/containers/StudyCreationContainer.jsx';
-import demoImage from '../demo/profile.jpeg';
 
 /**
  * @return {ReactDOM} The study creation page.
@@ -14,7 +13,7 @@ import demoImage from '../demo/profile.jpeg';
 const CreateStudy = ({history}) => {
   return (
     <main>
-      <Header username='John' profilePic={demoImage}/>
+      <Header showBackButton={true}/>
       <StudyCreationContainer history={history}/>
     </main>);
 };

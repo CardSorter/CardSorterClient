@@ -17,7 +17,7 @@ import Filters from '../elements/components/Filters.jsx';
  */
 const Main = ({history}) =>
   (<main>
-    <Header username='John' />
+    <Header showBackButton={false}/>
     <Filters ongoing={true} completed={true} />
     <PopulateStudiesContainer history={history}/>
   </main>);
