@@ -14,12 +14,17 @@ const SuccessPage = ({values, dispatch}) => {
       <h1>{L.text.studyCreated}</h1>
       <img src={successImage} alt="Welcome to your new study!"></img>
       <div className="actions-container">
-        <button onClick={dispatch.onButtonClick}>Go to study</button>
-        <div className="url-container">
-          <textarea className="url" ref={urlRef}
-            defaultValue={values.share_url}></textarea>
-          <button className="copy" type="button" onClick={() =>
-            dispatch.onCopy(urlRef)}></button>
+        <div className="button-container">
+          <button onClick={dispatch.onButtonClick}>Go to study</button>
+        </div>
+        <div className="share-container">
+          <div className="url-container">
+            <textarea className="url" ref={urlRef}
+              defaultValue={values.share_url}></textarea>
+            <button className="copy" type="button" onClick={() =>
+              dispatch.onCopy(urlRef)}></button>
+          </div>
+          <p>Share this url with the participants</p>
         </div>
       </div>
     </div>
