@@ -70,8 +70,23 @@ html, body {
 #root, main {
   align-items: center;
   display: flex;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
+}
+
+#logo {
+  background: -webkit-linear-gradient(left,var(--color-purple), var(--color-black) 3rem);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-black);
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  position: absolute;
+  text-decoration: none;
+  top: 3rem;
 }
 
 /* Login Page */
