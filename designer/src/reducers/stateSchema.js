@@ -2,6 +2,7 @@ const initialState = {
   header: {
     username: undefined,
     profilePic: '../icons/sample-user.svg',
+    profileUnfold: false,
   },
   studies: {
     isFetching: undefined,

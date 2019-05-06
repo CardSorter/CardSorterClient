@@ -75,6 +75,11 @@ html, body {
   font-family: "LatoWeb", sans-serif;
 }
 
+.unfunctional {
+  cursor: default !important;
+  opacity: .5 !important;
+}
+
 .disabled {
   display: none;
 }
@@ -105,11 +110,11 @@ button {
 
 /* Header */
 header {
-  align-items: center;
+  /* align-items: center; */
   background-color: white;
   display: flex;
   flex-direction: row;
-  height: var(--height-header); width: 100%;
+  height: minmax(var(--height-header), max-content); width: 100%;
   justify-content: center;
 }
 
@@ -121,8 +126,9 @@ header .logo-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
-  margin-right: auto;
+  margin: auto;
+  margin-top: 3rem;
+  margin-left: 3rem;
   text-decoration: none;
 }
 
@@ -179,19 +185,45 @@ header .logo-container button#back .arrow .shaft::after {
 }
 
 header .profile {
-  align-items: center;
+  align-content: center;
   border: solid 5px var(--color-washed-purple);
   border-radius: 2rem;
   display: flex;
-  justify-content: space-evenly;
-  margin-left: auto;
-  margin-right: 30px;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 2rem;
+  margin-right: 3rem;
   padding: .4rem;
   position: relative;
   width: minmax(12rem, auto);
 }
 
-header .profile::after {
+header .profile.unfold {
+  height: max-content;
+}
+
+header .profile .header {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+header .profile .content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: .6rem;
+}
+
+header .profile .content > button {
+  background: 0;
+  color: var(--color-black);
+  font-family: 'LatoWebLight';
+  margin-top: .4rem;
+}
+
+header .profile .header::after {
   border-left: 1rem solid transparent;
   border-right: 1rem solid transparent;
   border-top: 1rem solid rgba(0, 0, 0, .8);

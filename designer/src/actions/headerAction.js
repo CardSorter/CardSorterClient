@@ -3,7 +3,37 @@ import api from './api';
 import auth from '../auth/authenticator';
 import * as StatusEnum from '../static/StatusEnum';
 
+export const TOGGLE_PROFILE_SETTINGS = 'SHOW_PROFILE_SETTINGS';
 export const REQUEST_USERNAME = 'REQUEST_USERNAME';
+export const LOGOUT = 'LOGOUT';
+
+/**
+ * Shows the user profile setting. Flags the settings to be unfolded.
+ * @param {Boolean} toggle
+ * @return {JSON} the action.
+ */
+export function toggleProfileSettings(toggle) {
+  return {
+    type: TOGGLE_PROFILE_SETTINGS,
+    payload: {
+      toggle: toggle,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Performs the logout of the user by deleting the auth token.
+ * @return {JSON} the action.
+ */
+export function logout() {
+  return {
+    type: LOGOUT,
+    payload: {
+    },
+    error: false,
+  };
+}
 
 /**
  * Async action that requests the current username (based on the jws token).

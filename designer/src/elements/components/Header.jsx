@@ -5,10 +5,13 @@ import PropTypes from 'prop-types';
 import demoImage from '../../icons/sample-user.svg';
 import L from '../../localization/LocalizedText';
 
-const Header = ({username, profilePic, showBackButton}) => {
+const Header = ({username, profilePic, showBackButton, profileUnfold,
+  onProfileClick, onLogoutClick}) => {
+  const style = (!profileUnfold) ? 'profile' : 'profile unfold';
+
   return (<header>
     <a className="logo-container" href="/">
-      <a href="/" id="logo">Card Sorter</a>
+      <p id="logo">Card Sorter</p>
       {
         showBackButton &&
         <button id="back">
@@ -19,9 +22,18 @@ const Header = ({username, profilePic, showBackButton}) => {
         </button>
       }
     </a>
-    <div className="profile">
-      <p>{username}</p>
-      <img src={demoImage} alt='Profile' />
+    <div className={style} onClick={() => onProfileClick(profileUnfold)}>
+      <div className="header">
+        <p>{username}</p>
+        <img src={demoImage} alt='Profile' />
+      </div>
+      {
+        profileUnfold &&
+      <div className="content">
+        <button className="unfunctional">Settings</button>
+        <button onClick={onLogoutClick}>Log out</button>
+      </div>
+      }
     </div>
   </header>);
 };
