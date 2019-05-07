@@ -6,6 +6,7 @@ import api from './api';
 export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const LOAD_STUDY = 'LOAD_STUDY';
 export const CHANGE_HOVERED_CARDS = 'CHANGE_HOVERED_CARDS';
+export const LOAD_CLUSTERS = 'LOAD_CLUSTERS';
 
 /**
  * Changes the view that the study page is showing.
@@ -57,9 +58,28 @@ export function loadStudy(status, response, error) {
   };
 }
 
+/**
+ * Async action for loading a study, given an id.
+ * @param {StatusEnum} status
+ * @param {JSON} response
+ * @param {Error} error
+ * @return {JSON} the action.
+ */
+export function loadClusters(status, response, error) {
+  return {
+    type: LOAD_CLUSTERS,
+    payload: {
+      status: status,
+      clusters: response,
+    },
+    error: error,
+  };
+}
+
 /* Thunk actions */
 
 /**
+ * Fetches the study's attributes from the backend
  * @param {String} id
  * @return {func}
  */
@@ -88,4 +108,36 @@ export function fetchStudy(id) {
             )
         );
   };
+}
+
+/**
+ * Fetches the study's clusters from the backend
+ * @param {String} id
+ * @return {func}
+ */
+export function fetchClusters(id) {
+  return function(dispatch) {
+    dispatch(loadClusters(StatusEnum.IS_FETCHING));
+    fetch(api+'/studies_endpoint?id='+id+'&clusters='+true, {
+      method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Authorization': auth.getToken(),
+        'Access-Control-Allow-Credentials': true,
+      },
+    })
+        .then(
+            (response) => response.json().then((json) => {
+              if (response.status === 401) {
+                // Redirect
+                setTimeout(window.location.reload(true), 1000);
+                window.location.replace(json.location);
+              } else {
+                dispatch(loadClusters(StatusEnum.SUCCESS, json.clusters));
+              }
+            }
+            )
+        );
+  }
 }

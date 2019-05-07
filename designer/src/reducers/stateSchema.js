@@ -40,7 +40,7 @@ const initialState = {
     isLive: undefined,
     launchedDate: undefined,
     ended: undefined,
-    selectedItem: 0,
+    selectedItem: 4,
     noParticipants: true,
     shareUrl: undefined,
     participants: {
@@ -64,6 +64,8 @@ const initialState = {
     },
     similarityMatrix: undefined,
     selectedCards: [],
+    clusters: {},
+    clustersFetching: undefined,
   },
 };
 

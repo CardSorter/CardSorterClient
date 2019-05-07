@@ -12,6 +12,8 @@ import BarGraph from '../components/studyPageElements/BarGraph.jsx';
 import NoParticipants from './studyPageElements/NoParticipants.jsx';
 // eslint-disable-next-line no-unused-vars
 import SimilarityMatrix from './studyPageElements/SimilarityMatrix.jsx';
+// eslint-disable-next-line no-unused-vars
+import Dendrogram from './studyPageElements/Dendrogram.jsx';
 import L from '../../localization/LocalizedText';
 
 /**
@@ -23,6 +25,7 @@ class Study extends Component {
    */
   componentDidMount() {
     this.props.loadStudy();
+    this.props.loadClusters();
   }
 
   /**
@@ -32,8 +35,9 @@ class Study extends Component {
   render() {
     const {isFetching, title, isLive, launched, menuValues,
       menuDispatch, graphValues, tableValues, shareUrl,
-      tableDispatch, noParticipants, similarityPage, copyUrl,
-      similarityMatrix, similarityHover, selectedCards} = this.props;
+      clustersPage, noParticipants, similarityPage, copyUrl,
+      similarityMatrix, similarityHover, selectedCards,
+      clusters, clustersFetching} = this.props;
 
     if (isFetching || isFetching === undefined) {
       return <p>Loading...</p>;
@@ -70,12 +74,16 @@ class Study extends Component {
         <StudyMenu selectedNo={menuValues.selectedNo} onClicks=
           {menuDispatch.onClicks}/>
         {
+          clustersPage &&
+          <Dendrogram data={clusters} fetcing={clustersFetching}/>
+        }
+        {
           similarityPage &&
           <SimilarityMatrix data={similarityMatrix} onHover={similarityHover}
             selected={selectedCards}/>
         }
         {
-          !similarityPage &&
+          !(similarityPage || clustersPage) &&
             <div className="content">
               <BarGraph percentage={graphValues.percentage}
                 sub={graphValues.sub}
@@ -90,6 +98,8 @@ class Study extends Component {
 }
 
 Study.propTypes = {
+  loadStudy: PropTypes.func.isRequired,
+  loadClusters: PropTypes.func.isRequired,
   title: PropTypes.string,
   isLive: PropTypes.bool,
   launched: PropTypes.objectOf(Date),
@@ -97,7 +107,9 @@ Study.propTypes = {
   menuDispatch: PropTypes.object.isRequired,
   graphValues: PropTypes.object.isRequired,
   tableValues: PropTypes.object.isRequired,
-  tableDispatch: PropTypes.object.isRequired,
+  clustersPage: PropTypes.bool,
+  clusters: PropTypes.object,
+  clustersFetching: PropTypes.bool,
 };
 
 export default Study;

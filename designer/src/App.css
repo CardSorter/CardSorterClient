@@ -110,7 +110,6 @@ button {
 
 /* Header */
 header {
-  /* align-items: center; */
   background-color: white;
   display: flex;
   flex-direction: row;
@@ -901,4 +900,30 @@ td.color-100 {
 
 .no-participants-page img {
   height: 50vh; width: auto;
+}
+
+/* Study page -> Cluster page */
+
+.dendrogram #data {
+  transform: scaleX(-1);
+}
+
+.node text {
+  color: var(--color-black);
+  font-size: 1.2rem;
+}
+
+.node circle {
+  fill: var(--color-black);
+}
+
+.node--internal circle {
+  fill: var(--color-black);
+}
+
+.link {
+  fill: none;
+  stroke: #555;
+  stroke-opacity: 0.4;
+  stroke-width: .2rem;
 }

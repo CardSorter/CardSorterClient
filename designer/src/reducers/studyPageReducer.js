@@ -45,6 +45,16 @@ export default function studyPageReducer(state={}, action) {
       newState.isFetching = action.payload.status !== StatusEnum.SUCCESS;
       return newState;
     }
+    case studyActions.LOAD_CLUSTERS: {
+      let clusters = {};
+      if (action.payload.status === StatusEnum.SUCCESS) {
+        clusters = action.payload.clusters;
+      }
+      return Object.assign({}, state, {
+        'clusters': clusters,
+        'clustersFetching': action.payload.status !== StatusEnum.SUCCESS,
+      });
+    }
     case studyActions.CHANGE_VIEW: {
       return Object.assign({}, state, {
         'selectedItem': action.payload.no,

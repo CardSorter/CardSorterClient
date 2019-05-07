@@ -116,6 +116,7 @@ const mapStateToProps = (state) => {
     launched: state.study.launchedDate,
     noParticipants: state.study.noParticipants,
     similarityPage: state.study.selectedItem === 3,
+    clustersPage: state.study.selectedItem === 4,
     shareUrl: state.study.shareUrl,
     menuValues: {
       selectedNo: state.study.selectedItem,
@@ -127,12 +128,15 @@ const mapStateToProps = (state) => {
     },
     similarityMatrix: state.study.similarityMatrix,
     selectedCards: state.study.selectedCards,
+    clusters: state.study.clusters,
+    clustersFetching: state.study.clustersFetching,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     loadStudy: () => dispatch(studyAction.fetchStudy(ownProps.id)),
+    loadClusters: () => dispatch(studyAction.fetchClusters(ownProps.id)),
     menuDispatch: {
       onClicks: {
         participant: () => {
@@ -148,6 +152,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch(studyAction.changeView(3));
         },
         clusters: () => {
+          dispatch(studyAction.changeView(4));
         },
       },
     },
