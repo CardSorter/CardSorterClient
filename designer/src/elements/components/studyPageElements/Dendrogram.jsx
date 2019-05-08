@@ -30,13 +30,15 @@ class Dendrogram extends Component {
 
     // Create the cluster layout:
     // 100 is the margin I will have on the right side
+    const cluserWidth = width - 100;
     const cluster = d3.cluster()
-        .size([height, width - 100]);
+        .size([height, cluserWidth]);
 
     // Give the data to this cluster layout:
     const root = d3.hierarchy(data, function(d) {
       return d.children;
     });
+
     cluster(root);
 
     // Add the links between nodes:
@@ -45,11 +47,16 @@ class Dendrogram extends Component {
         .enter()
         .append('path')
         .attr('d', function(d) {
-          // Coordinates of inflexion
-          return 'M' + d.y + ',' + d.x
-                  + 'C' + (d.parent.y + 10) + ',' + d.x
-                  + ' ' + (d.parent.y + 40) + ',' + d.parent.x
-                  + ' ' + d.parent.y + ',' + d.parent.x;
+          return 'M' + (cluserWidth -
+            cluserWidth * (d.data.distance/100)) + ',' + d.x
+                  + 'L' + (cluserWidth -
+                    cluserWidth * (d.parent.data.distance/100)) + ',' + d.x
+                  + 'L' + (cluserWidth -
+                    cluserWidth * (d.parent.data.distance/100))
+                    + ',' + d.parent.x;
+        })
+        .attr('stroke-width', function(d) {
+          return d.data.hierarchy +'px';
         })
         .attr('class', 'link');
 
@@ -66,7 +73,9 @@ class Dendrogram extends Component {
         });
 
     node.append('circle')
-        .attr('r', 3);
+        .attr('r', function(d) {
+          return d.data.children.length === 0 ? 3 * d.data.hierarchy : 0;
+        });
 
     node.append('text')
         .attr('dy', 3)
@@ -84,6 +93,10 @@ class Dendrogram extends Component {
   render() {
     return (
       <div className="dendrogram">
+        <div id="aggreement-axis">
+          <p>100% aggreement</p>
+          <p>0%</p>
+        </div>
         <div className="" id="data"></div>
       </div>
     );

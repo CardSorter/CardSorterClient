@@ -904,8 +904,26 @@ td.color-100 {
 
 /* Study page -> Cluster page */
 
+.dendrogram {
+  box-shadow: var(--shadow);
+  margin: 2rem 0;
+}
+
+.dendrogram #aggreement-axis {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-left: 50px;
+  margin-right: 4rem;
+  opacity: .8;
+  width: calc(100% - (50px + 4rem));
+}
+
 .dendrogram #data {
   transform: scaleX(-1);
+  padding: 1rem;
 }
 
 .node text {
@@ -924,6 +942,6 @@ td.color-100 {
 .link {
   fill: none;
   stroke: #555;
-  stroke-opacity: 0.4;
-  stroke-width: .2rem;
+  stroke-opacity: 1;
+  stroke-linejoin: round;
 }
