@@ -1,6 +1,8 @@
 import {applyMiddleware, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-// import logger from 'redux-logger';
+import logger from 'redux-logger';
+
+import env from './enviroment';
 
 import app from './reducers/indexReducer';
 import initialState from './reducers/boardState';
@@ -11,11 +13,14 @@ import L from './localization/LocalizedText';
  * @return {Store}
  */
 export default function initializeStore() {
+  const middleware = [thunkMiddleware];
+  if (env !== 'PRODUCTION') {
+    middleware.push(logger);
+  }
+
   const store = createStore(app, initialState, applyMiddleware(
-      thunkMiddleware,
-      // logger
+      ...middleware
   ));
-  // const store = createStore(app, window.STATE_FROM_SERVER);
 
   const unsuscribe = store.subscribe(() => {});
   // () => debugConsole(store.getState())
