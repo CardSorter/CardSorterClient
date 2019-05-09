@@ -40,7 +40,7 @@ const initialState = {
     isLive: undefined,
     launchedDate: undefined,
     ended: undefined,
-    selectedItem: 4,
+    selectedItem: 0,
     noParticipants: true,
     shareUrl: undefined,
     participants: {
