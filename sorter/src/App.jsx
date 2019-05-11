@@ -39,7 +39,8 @@ class App extends Component {
     if (renderThanks) {
       render = (
         <main>
-          <MessageScreen message={thanksMessage} image={thanksImage}/>
+          <MessageScreen message={thanksMessage} image={thanksImage}
+            submessage={'('+L.text.youCanCloseThisTab+')'}/>
         </main>);
     } else
     if (studyNotFound) {

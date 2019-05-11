@@ -22,9 +22,13 @@ const Filters = ({ongoing: ongoingAttr, completed: completedAttr}) => {
   return (
     <div className="filter-container">
       <p>{localizedText.text.filter}</p>
-      <a href={ongoingRef} className={ongoingStyle}>
+      {/* <a href={ongoingRef} className={ongoingStyle}>
         {localizedText.text.ongoing}</a>
       <a href={completedRef} className={completedStyle}>
+        {localizedText.text.completed}</a> */}
+      <a className={ongoingStyle}>
+        {localizedText.text.ongoing}</a>
+      <a className={completedStyle}>
         {localizedText.text.completed}</a>
     </div>
   );

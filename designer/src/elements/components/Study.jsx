@@ -51,7 +51,7 @@ class Study extends Component {
       <div className="study-page">
         <span className="header">
           <h1>{title}</h1>
-          <button className="edit"></button>
+          <button className="edit unfunctional"></button>
         </span>
         <span className="active">
           {

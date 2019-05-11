@@ -3,4 +3,5 @@ export default {
   studyNotFound: 'study not found',
   dropToAdd: 'drop to add',
   dropToCreateCategory: 'drop to create a category',
+  youCanCloseThisTab: 'you can close this tab',
 };
