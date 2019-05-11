@@ -39,7 +39,9 @@ const Login = ({onUsernameChange, onPasswordChange, onForgot,
           onClick={onForgot}>{L.text.forgotYourPassword}</button>
 
         <button type="button" className="action login"
-          onClick={() => onLogin(username, password)}>{L.text.login}</button>
+          onClick={() => onLogin(username, password)}>
+          <p>{L.text.login}</p>
+        </button>
       </form>
 
       <button className="register"

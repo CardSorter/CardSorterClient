@@ -16,7 +16,7 @@ class LoginPage extends Component {
   render() {
     return (
       <main className="App">
-        <span id="logo">CardSorter</span>
+        <div id="logo"><p>CardSorter</p></div>
         <LoginContainer history={this.props.history}/>
       </main>
     );

@@ -6,9 +6,9 @@ const Header = ({studyID, container, categories,
   timeStarted, onFinishClick}) => (
   <header>
     <h1 id="logo">Card Sorter</h1>
-    <button onClick={() =>
+    <button className="btn--main" onClick={() =>
       onFinishClick(studyID, container, categories,
-          timeStarted)}>Finish</button>
+          timeStarted)}><p>Finish</p></button>
   </header>
 );
 

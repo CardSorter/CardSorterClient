@@ -16,6 +16,7 @@ class RegisterPage extends Component {
   render() {
     return (
       <main className="App">
+        <span id="logo"><p>CardSorter</p></span>
         <RegisterContainer history={this.props.history}/>
       </main>
     );

@@ -38,7 +38,7 @@ const Register = ({onUsernameChange, onPasswordChange, onEmailChange,
         </div>
         <button type="button" className="action signup"
           onClick={() => onSignUp(username, password, email)}>
-          {L.text.signUp}</button>
+          <p>{L.text.signUp}</p></button>
       </form>
     </div>
   );
