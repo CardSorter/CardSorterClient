@@ -2,11 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Header = ({studyID, container, categories, onFinishClick}) => (
+const Header = ({studyID, container, categories,
+  timeStarted, onFinishClick}) => (
   <header>
     <h1 id="logo">Card Sorter</h1>
     <button onClick={() =>
-      onFinishClick(studyID, container, categories)}>Finish</button>
+      onFinishClick(studyID, container, categories,
+          timeStarted)}>Finish</button>
   </header>
 );
 

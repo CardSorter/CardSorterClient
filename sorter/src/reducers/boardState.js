@@ -17,6 +17,8 @@ const initialState = {
     thanksMessage: undefined,
     cardsSorted: undefined,
     categoriesCreated: undefined,
+    timeStarted: undefined,
+    timeEnded: undefined,
   },
 };
 

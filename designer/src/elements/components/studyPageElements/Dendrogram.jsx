@@ -27,7 +27,6 @@ class Dendrogram extends Component {
     if (fetching) {
       return;
     }
-    console.log(data);
 
     // set the dimensions and margins of the graph
     const width = window.innerWidth - 100;
@@ -116,7 +115,8 @@ class Dendrogram extends Component {
 };
 
 Dendrogram.propTypes = {
-
+  data: PropTypes.object,
+  fetching: PropTypes.bool.isRequired,
 };
 
 export default Dendrogram;

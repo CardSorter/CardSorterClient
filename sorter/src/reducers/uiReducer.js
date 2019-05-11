@@ -53,6 +53,16 @@ export default function ui(state={}, action) {
         'renderThanks': true,
       });
     }
+    case uiAction.START_SORT: {
+      return Object.assign({}, state, {
+        'timeStarted': Date.now(),
+      });
+    }
+    case uiAction.END_SORT: {
+      return Object.assign({}, state, {
+        'timeEnded': Date.now(),
+      });
+    }
     default: {
       return state;
     }

@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import Header from '../components/Header.jsx';
-import {sendSort} from '../../actions/uiAction';
+import {sendSort, endSort} from '../../actions/uiAction';
 
 
 const mapStateToProps = (state) => {
@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
   // TODO: This may not be a very good solution
   return {
     studyID: state.ui.studyID,
+    timeStarted: state.ui.timeStarted,
     container: state.container,
     categories: state.categories,
   };
@@ -16,8 +17,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFinishClick: (studyID, container, categories) => {
-      dispatch(sendSort(studyID, container, categories));
+    onFinishClick: (studyID, container, categories,
+        timeStarted) => {
+      dispatch(endSort());
+      dispatch(sendSort(studyID, container, categories,
+          timeStarted, Date.now()));
     },
   };
 };

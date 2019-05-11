@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import OnBoarding from '../components/OnBoarding';
-import {toogleOnBoarding} from '../../actions/uiAction';
+import {toogleOnBoarding, startSort} from '../../actions/uiAction';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     onClick: (e) => {
       e.stopPropagation();
       dispatch(toogleOnBoarding(false));
+      dispatch(startSort());
     },
   };
 };

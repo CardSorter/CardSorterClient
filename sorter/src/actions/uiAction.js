@@ -11,6 +11,8 @@ export const SENDING_SORT = 'SENDING_SORT';
 export const SAVE_THANKS_MESSAGE = 'SAVE_THANKS_MESSAGE';
 export const RENDER_THANKS_MESSAGE = 'RENDER_THANKS_MESSAGE';
 export const TOOGLE_ON_BOARDING = 'TOOGLE_ON_BOARDING';
+export const START_SORT = 'START_SORT';
+export const END_SORT = 'END_SORT';
 
 
 /**
@@ -123,6 +125,30 @@ export function renderThanksMessage() {
 }
 
 /**
+ * Defines that the sorting has started.
+ * @return {JSON} the action
+ */
+export function startSort() {
+  return {
+    type: START_SORT,
+    payload: {},
+    error: false,
+  };
+}
+
+/**
+ * Defines that the sorting has ended.
+ * @return {JSON} the action
+ */
+export function endSort() {
+  return {
+    type: END_SORT,
+    payload: {},
+    error: false,
+  };
+}
+
+/**
  * Saves the status of the send request
  * @param {ResponseStatus} status
  * @param {JSON} response
@@ -146,12 +172,14 @@ export function sendingSort(status, response, error) {
  * @param {Number} studyID
  * @param {Number[]} container
  * @param {Category[]} categories
- * @param {String} cardsSorted
- * @param {Number} categoriesCreated
+ * @param {Date} timeStarted
+ * @param {Date} timeEnded
  * @return {func}
  */
-export function sendSort(studyID, container, categories) {
+export function sendSort(studyID, container, categories,
+    timeStarted, timeEnded) {
   return function(dispatch) {
+    const seconds = timeEnded - timeStarted;
     dispatch(normalizeCategories());
     dispatch(sendingSort(responseStatus.IS_SENDING));
     fetch(api+'/sort_endpoint', {
@@ -163,6 +191,7 @@ export function sendSort(studyID, container, categories) {
         studyID: studyID,
         categories: categories,
         container: container,
+        time: seconds,
       }),
     }).then(
         (response) => response.json().then((json) => {
