@@ -915,10 +915,10 @@ td.color-100 {
   font-size: 1.2rem;
   justify-content: space-between;
   margin-top: 2rem;
-  margin-left: 50px;
+  margin-left: 15rem;
   margin-right: 4rem;
   opacity: .8;
-  width: calc(100% - (50px + 4rem));
+  width: calc(100% - (15rem + 4rem));
 }
 
 .dendrogram #data {

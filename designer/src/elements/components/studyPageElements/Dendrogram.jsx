@@ -4,6 +4,18 @@ import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 
 /**
+ * Maps the distance & the hierarchical y of the cluster to the graph
+ * @param {Number} distance
+ * @param {Number} realY
+ * @param {Number} cluserWidth
+ * @return {Number} [0-100]
+ */
+function mapY(distance, realY, cluserWidth) {
+  const distanceY = cluserWidth - cluserWidth * (distance/100);
+  return distanceY * 0.8 + realY * 0.2;
+}
+
+/**
  *
  */
 class Dendrogram extends Component {
@@ -15,6 +27,7 @@ class Dendrogram extends Component {
     if (fetching) {
       return;
     }
+    console.log(data);
 
     // set the dimensions and margins of the graph
     const width = window.innerWidth - 100;
@@ -30,7 +43,7 @@ class Dendrogram extends Component {
 
     // Create the cluster layout:
     // 100 is the margin I will have on the right side
-    const cluserWidth = width - 100;
+    const cluserWidth = width - 200;
     const cluster = d3.cluster()
         .size([height, cluserWidth]);
 
@@ -47,16 +60,15 @@ class Dendrogram extends Component {
         .enter()
         .append('path')
         .attr('d', function(d) {
-          return 'M' + (cluserWidth -
-            cluserWidth * (d.data.distance/100)) + ',' + d.x
-                  + 'L' + (cluserWidth -
-                    cluserWidth * (d.parent.data.distance/100)) + ',' + d.x
-                  + 'L' + (cluserWidth -
-                    cluserWidth * (d.parent.data.distance/100))
-                    + ',' + d.parent.x;
+          const line = 'M' + mapY(d.data.distance, d.y, cluserWidth) + ',' + d.x
+                  + 'L' + mapY(d.parent.data.distance, d.parent.y, cluserWidth)
+                  + ',' + d.x
+                  + 'L' + mapY(d.parent.data.distance, d.parent.y, cluserWidth)
+                  + ',' + d.parent.x;
+          return line;
         })
         .attr('stroke-width', function(d) {
-          return d.data.hierarchy +'px';
+          return (d.data.hierarchy * 1.2) + 'px';
         })
         .attr('class', 'link');
 
