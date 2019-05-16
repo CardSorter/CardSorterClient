@@ -35,7 +35,7 @@ const Login = ({onUsernameChange, onPasswordChange, onForgot,
           }
         </div>
 
-        <button type="button" className="reset"
+        <button type="button" className="reset unavailable"
           onClick={onForgot}>{L.text.forgotYourPassword}</button>
 
         <button type="button" className="action login"
@@ -44,8 +44,7 @@ const Login = ({onUsernameChange, onPasswordChange, onForgot,
         </button>
       </form>
 
-      <button className="register"
-        onClick={onRegister}>{L.text.register}</button>
+      <button className="register unavailable">{L.text.register}</button>
     </div>
   );
 };

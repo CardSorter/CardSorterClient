@@ -102,6 +102,11 @@ html, body {
   z-index: 1;
 }
 
+.unavailable {
+  cursor: default !important;
+  opacity: .6 !important;
+}
+
 /* Login Page */
 
 .container {
