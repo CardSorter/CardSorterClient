@@ -1,7 +1,8 @@
 import {connect} from 'react-redux';
 
 import Header from '../components/Header.jsx';
-import {sendSort, endSort} from '../../actions/uiAction';
+import {sendSort, endSort, togglePopup} from '../../actions/uiAction';
+import L from '../../localization/LocalizedText';
 
 
 const mapStateToProps = (state) => {
@@ -12,16 +13,20 @@ const mapStateToProps = (state) => {
     timeStarted: state.ui.timeStarted,
     container: state.container,
     categories: state.categories,
+    comment: state.ui.popup.content,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onFinishClick: (studyID, container, categories,
-        timeStarted) => {
+        timeStarted, comment) => {
       dispatch(endSort());
       dispatch(sendSort(studyID, container, categories,
-          timeStarted, Date.now()));
+          timeStarted, Date.now(), comment));
+    },
+    onCommentClick: () => {
+      dispatch(togglePopup(true, L.text.addComment));
     },
   };
 };

@@ -19,6 +19,11 @@ const initialState = {
     categoriesCreated: undefined,
     timeStarted: undefined,
     timeEnded: undefined,
+    popup: {
+      show: false,
+      title: 'Add a comment',
+      content: undefined,
+    },
   },
 };
 

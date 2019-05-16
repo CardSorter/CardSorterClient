@@ -53,6 +53,19 @@ export default function ui(state={}, action) {
         'renderThanks': true,
       });
     }
+    case uiAction.TOGGLE_POPUP: {
+      const newState = Object.assign({}, state);
+      newState.popup.show = action.payload.flag;
+      newState.popup.title = action.payload.title;
+
+      return newState;
+    }
+    case uiAction.POPUP_CHANGE_CONTENT: {
+      const newState = Object.assign({}, state);
+      newState.popup.content = action.payload.content;
+
+      return newState;
+    }
     case uiAction.START_SORT: {
       return Object.assign({}, state, {
         'timeStarted': Date.now(),

@@ -3,12 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Header = ({studyID, container, categories,
-  timeStarted, onFinishClick}) => (
+  timeStarted, onFinishClick, onCommentClick, comment}) => (
   <header>
     <h1 id="logo">Card Sorter</h1>
+    <button className="btn--secondary" onClick={onCommentClick}>
+      <p>Add a comment</p>
+    </button>
     <button className="btn--main" onClick={() =>
       onFinishClick(studyID, container, categories,
-          timeStarted)}><p>Finish</p></button>
+          timeStarted, comment)}><p>Finish</p></button>
   </header>
 );
 
@@ -17,6 +20,7 @@ Header.propTypes = {
   container: PropTypes.array,
   categories: PropTypes.object,
   onFinishClick: PropTypes.func.isRequired,
+  comment: PropTypes.string,
 };
 
 export default Header;

@@ -11,6 +11,8 @@ export const SENDING_SORT = 'SENDING_SORT';
 export const SAVE_THANKS_MESSAGE = 'SAVE_THANKS_MESSAGE';
 export const RENDER_THANKS_MESSAGE = 'RENDER_THANKS_MESSAGE';
 export const TOOGLE_ON_BOARDING = 'TOOGLE_ON_BOARDING';
+export const TOGGLE_POPUP = 'TOGGLE_POPUP';
+export const POPUP_CHANGE_CONTENT = 'POPUP_CHANGE_CONTENT';
 export const START_SORT = 'START_SORT';
 export const END_SORT = 'END_SORT';
 
@@ -125,6 +127,38 @@ export function renderThanksMessage() {
 }
 
 /**
+ * Toggles a popup with the specified title.
+ * @param {Bool} flag
+ * @param {String} title
+ * @return {JSON} the action
+ */
+export function togglePopup(flag, title) {
+  return {
+    type: TOGGLE_POPUP,
+    payload: {
+      flag: flag,
+      title: title,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Changes the content of the text area.
+ * @param {String} content
+ * @return {JSON} the action
+ */
+export function popupChangeContent(content) {
+  return {
+    type: POPUP_CHANGE_CONTENT,
+    payload: {
+      content: content,
+    },
+    error: false,
+  };
+}
+
+/**
  * Defines that the sorting has started.
  * @return {JSON} the action
  */
@@ -174,10 +208,11 @@ export function sendingSort(status, response, error) {
  * @param {Category[]} categories
  * @param {Date} timeStarted
  * @param {Date} timeEnded
+ * @param {String} comment
  * @return {func}
  */
 export function sendSort(studyID, container, categories,
-    timeStarted, timeEnded) {
+    timeStarted, timeEnded, comment) {
   return function(dispatch) {
     const seconds = timeEnded - timeStarted;
     dispatch(normalizeCategories());
@@ -192,6 +227,7 @@ export function sendSort(studyID, container, categories,
         categories: categories,
         container: container,
         time: seconds,
+        comment: comment,
       }),
     }).then(
         (response) => response.json().then((json) => {

@@ -58,10 +58,11 @@ body, html {
 :root {
   --color-purple: #D1C3FF;
   --color-purple-white: rgb(242, 238, 253);
+  --color-secondary: #B0561A;
   --color-black: #181818;
 
   --height-header: 60px;
-  --width-list: 20rem;
+  --width-list: 22rem;
 }
 
 ul {
@@ -75,9 +76,8 @@ ul {
 }
 
 /* General styles */
-.btn--main {
-  background: transparent;
-  border: solid 3px #BAA5FF;
+.btn--main, .btn--secondary {
+  border: 0;
   border-radius: .2rem;
   box-sizing: border-box;
   color: var(--color-black);
@@ -86,36 +86,73 @@ ul {
   font-weight: bold;
   padding: 10px;
   position: absolute;
-  width: 10rem;
 }
 
-.btn--main > p {
+.btn--main > p,
+.btn--secondary > p {
   position: relative;
   z-index: 2;
 }
 
-.btn--main:hover {
-  color: white;
+.btn--main:hover,
+.btn--secondary:hover {
   transition: .3s;
 }
 
-.btn--main::before {
-  background: radial-gradient(circle at 10%, #D1C3FF, #BAA5FF);
+.btn--main::before,
+.btn--secondary::before {
   box-sizing: border-box;
   border-radius: .2rem;
   content: '';
   height: 4rem; width: 0;
   position: absolute;
-  right: -3px; top: -3px;
   transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   z-index: 0;
 }
 
-.btn--main:hover::before {
-  left: -3px; right: auto;
+.btn--main:hover::before,
+.btn--secondary:hover::before {
+  right: auto;
+  width: 100%;
+}
+
+.btn--main {
+  background: radial-gradient(circle at 10%, #D1C3FF, #BAA5FF);
+  color: white;
+  right: 4rem;
   width: 10rem;
 }
 
+.btn--main::before {
+  background: black;
+  opacity: .2;
+  right: 0; top: 0;
+}
+
+.btn--main:hover::before {
+  left: 0;
+}
+
+.btn--secondary {
+  background: 0;
+  border: solid 2px var(--color-secondary);
+  box-sizing: border-box;
+  right: calc(4rem + 10rem + 2rem); /* right_finish_button + width_finish_button + whitespace */
+  width: 15rem;
+}
+
+.btn--secondary:hover {
+  color: white;
+}
+
+.btn--secondary::before {
+  background-color: var(--color-secondary);
+  right: -2px; top: -2px;
+}
+
+.btn--secondary:hover::before {
+  left: 0;
+}
 
 /* Header */
 header {
@@ -135,11 +172,6 @@ header {
   font-size: 2.5rem;
 }
 
-header button {
-  right: 40px;
-  width: 100px;
-}
-
 /* This panel splits the screen into two peices */
 #main-panel {
   display: flex;
@@ -154,6 +186,66 @@ ul#list {
   overflow: auto;
   padding: 2rem;
   width: var(--width-list);
+}
+
+/* The popup */
+
+.popup-container {
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 30%);
+  display: flex;
+  height: 100vh; width: 100vw;
+  justify-content: center;
+  position: absolute;
+  z-index: 1000;
+}
+
+.popup-container > .popup {
+  background: white;
+  border-radius: .2rem;
+  height: 50vh; width: 50vw;
+  margin-top: 2rem;
+  padding: 2rem;
+  position: relative;
+}
+
+.popup-container > .popup > h1 {
+  color: var(--color-black);
+  font-size: 2rem;
+}
+
+.popup-container > .popup > h1::first-letter {
+  text-transform: capitalize;
+}
+
+.popup-container > .popup > form > textarea {
+  box-sizing: border-box;
+  height: 30vh; width: 100%;
+  margin-top: 2rem;
+  resize: none;
+}
+
+.popup-container > .popup > form > .btn-container {
+  bottom: 2rem; right: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: absolute;
+  width: 100%;
+}
+
+.popup-container > .popup > form > .btn-container > button {
+  left: 0;right: 0;top: 0;
+  position: relative;
+  width: 10rem;
+}
+
+.popup-container > .popup > form > .btn-container > button::first-letter {
+  text-transform: capitalize;
+}
+
+.popup-container > .popup > form > .btn-container > button.sumbit {
+  margin-left: 2rem;
 }
 
 /* This is the container of the Categories */

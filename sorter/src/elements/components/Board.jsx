@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import PropTypes from 'prop-types';
 import {DropTarget} from 'react-dnd';
 
 import {itemTypes} from '../../staticContent/dragConstants';
@@ -60,11 +61,10 @@ const Board = ({categories, onClick, onCardClick, onCategTitleClick,
   </ul>);
 };
 
-// TODO
-// Board.protoTypes = {
-//   cards: PropTypes.arrayOf(
-//   )
-// }
+
+Board.propTypes = {
+  categories: PropTypes.array.isRequired,
+};
 
 
 // eslint-disable-next-line new-cap
