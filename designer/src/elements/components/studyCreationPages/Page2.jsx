@@ -32,9 +32,11 @@ const Page2 = ({values, errors, dispatch}) => {
             <div className="error-message"><p>{L.text.fillMeOut}</p></div>
           }
         </div>
-        <button type="button" onClick={() =>
+        <button type="button" className="btn-primary" onClick={() =>
           dispatch.onCreateCard(cardContainerRef)}>
-          {L.text.addCard}</button>
+          <span id="plus-icon"></span>
+          <p>{L.text.addCard}</p>
+        </button>
       </form>
       <div className="bottom-container">
         <div className="btn-container">

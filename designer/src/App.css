@@ -49,9 +49,10 @@ table {
   --color-light-green: #B3EED8;
   --color-red: #F4A394;
   --color-light-red: #F5BCB2;
-  --color-purple: #BAA5FF;
-  --color-purple-light: #CABCFA;
-  --color-washed-purple: #C4c6E7;
+  --color-primary: #938ABA;
+  --color-primary-light: #B3ACD9;
+  --color-primary-dark: #7B71A3;
+  --color-washed-primary: #C4c6E7;
   --color-error: #D24D57;
 
   --shadow: 0 2px 6px rgb(0, 0, 0, .16);
@@ -99,13 +100,84 @@ h1::first-letter {
 }
 
 button {
-  background-color: var(--color-purple);
   border: 0;
   color: white;
   cursor: pointer;
   font-weight: bold;
   height: 3rem; width: 10rem;
   position: relative;
+}
+
+.btn-primary, .btn-secondary {
+  border-radius: .2rem;
+  box-sizing: border-box;
+  height: 4rem;
+}
+
+.btn-primary > *,
+.btn-secondary > * {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transition: .3s;
+}
+
+.btn-primary::before,
+.btn-secondary::before {
+  box-sizing: border-box;
+  border-radius: .2rem;
+  content: '';
+  height: 4rem; width: 0;
+  position: absolute;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  z-index: 0;
+}
+
+.btn-primary:hover::before,
+.btn-secondary:hover::before {
+  right: auto;
+  width: 100%;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  right: 4rem;
+  width: 10rem;
+}
+
+.btn-primary::before {
+  background: black;
+  opacity: .2;
+  right: 0; top: 0;
+}
+
+.btn-primary:hover::before {
+  left: 0;
+}
+
+.btn-secondary {
+  background: 0;
+  border: solid 2px var(--color-secondary);
+  box-sizing: border-box;
+  right: calc(4rem + 10rem + 2rem); /* right_finish_button + width_finish_button + whitespace */
+  width: 15rem;
+}
+
+.btn-secondary:hover {
+  color: white;
+}
+
+.btn-secondary::before {
+  background-color: var(--color-secondary);
+  right: -2px; top: -2px;
+}
+
+.btn-secondary:hover::before {
+  left: 0;
 }
 
 /* Header */
@@ -186,7 +258,7 @@ header .logo-container button#back .arrow .shaft::after {
 
 header .profile {
   align-content: center;
-  border: solid 5px var(--color-washed-purple);
+  border: solid 5px var(--color-washed-primary);
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -276,7 +348,7 @@ li.studyItem {
 }
 
 li.studyItem:hover {
-  border: solid 2px var(--color-purple);
+  border: solid 2px var(--color-primary);
 }
 
 li.studyItem > * {
@@ -335,7 +407,7 @@ button.createStudyCard {
 }
 
 button.createStudyCard:hover {
-  border: solid 2px var(--color-purple);
+  border: solid 2px var(--color-primary);
 }
 
 /* Filter element */
@@ -365,7 +437,7 @@ button.createStudyCard:hover {
 .study-creation-card {
   align-items: center;
   background-color: white;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   display: flex;
   flex-direction: column;
   height: 80vh;
@@ -437,7 +509,7 @@ button.createStudyCard:hover {
 }
 
 .study-creation-card .btn-container button {
-  background-color: var(--color-purple);
+  background-color: var(--color-primary);
   border: 0;
   border-radius: 50%;
   cursor: pointer;
@@ -534,28 +606,22 @@ button.createStudyCard:hover {
 
 .study-creation-card form.cards button {
   align-self: center;
-  background-color: var(--color-purple);
-  border: 0;
-  border-radius: 2rem;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  min-height: 3rem; width: 10rem;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 4rem; width: 11rem;
   margin-top: 1.5rem;
-  padding-left: 1rem;
   position: relative;
 }
 
-.study-creation-card form.cards button::after {
+.study-creation-card form.cards #plus-icon {
   background-image: url('./icons/plus-white.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1rem;
-  content: '';
   display: block;
-  height: 100%; width: 3rem;
-  position: absolute;
-  top: 0; left: .5rem;
+  height: 2rem; width: 2rem;
 }
 
 /* Page 3 */
@@ -854,11 +920,11 @@ button.createStudyCard:hover {
 }
 
 .study-page .similarirty-matrix table td:not(:last-child):hover {
-  background-color: var(--color-purple);
+  background-color: var(--color-primary);
 }
 
 .study-page .similarirty-matrix table td.hovered {
-  background-color: var(--color-purple);
+  background-color: var(--color-primary);
 }
 
 .study-page .similarirty-matrix table td:last-child {
