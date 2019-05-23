@@ -7,7 +7,6 @@ import L from '../../../localization/LocalizedText';
 import Card from './Card.jsx';
 
 const Page2 = ({values, errors, dispatch}) => {
-  const cardContainerRef = useRef(null);
   const addCardsRef = useRef(10);
 
   return (
@@ -17,7 +16,7 @@ const Page2 = ({values, errors, dispatch}) => {
 
       <form className="cards">
         <div className="error-holder">
-          <div className="card-container" ref={cardContainerRef}>
+          <div className="card-container">
             {
               values.cards.map((card) => (
                 <Card key={'card'+card.id} name={card.name}
@@ -46,8 +45,8 @@ const Page2 = ({values, errors, dispatch}) => {
               </svg>
             </button>
           </div>
-          <button type="button" className="btn-primary" onClick={() =>
-            dispatch.onCreateCard(cardContainerRef)}>
+          <button type="button" className="btn-primary"
+            onClick={dispatch.onCreateCard}>
             <span id="plus-icon"></span>
             <p>{L.text.addCard}</p>
           </button>

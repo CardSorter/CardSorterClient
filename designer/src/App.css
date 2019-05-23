@@ -438,11 +438,11 @@ button.createStudyCard:hover {
 .study-creation-card {
   align-items: center;
   background-color: white;
-  /* box-shadow: var(--shadow); */
   display: flex;
   flex-direction: column;
-  height: 80vh;
-  margin: 1rem 10% 0 10%;
+  height: auto;
+  margin: 1rem 10% 1rem 10%;
+  padding-bottom: 10rem;
   position: relative;
 }
 
@@ -575,7 +575,7 @@ button.createStudyCard:hover {
   align-items: stretch;
   display: flex;
   flex-direction: column;
-  max-height: 55%; width: 80%;
+  width: 80%;
   position: relative;
 }
 
@@ -585,7 +585,7 @@ button.createStudyCard:hover {
 
 .study-creation-card .card-container {
   height: 100%;
-  overflow-y: auto;
+  height: auto;
 }
 
 .study-creation-card .card-container .card {
