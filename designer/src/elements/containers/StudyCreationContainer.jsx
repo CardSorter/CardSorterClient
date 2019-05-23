@@ -105,11 +105,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     page2Dispatch: {
       onCreateCard: (cardContainerRef) => {
-        console.log(cardContainerRef.current.scrollHeight);
         dispatch(studyCreationAction.addCard(Date.now()));
         cardContainerRef.current.scrollTop +=
           cardContainerRef.current.scrollHeight +
           cardContainerRef.current.clientHeight;
+      },
+      onCreateXCards: (cardNoRef) => {
+        dispatch(studyCreationAction.addXCards(
+            parseInt(cardNoRef.current.value)));
       },
       onCardNameChange: (id, event) => {
         dispatch(studyCreationAction.toggleCardError(false));

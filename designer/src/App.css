@@ -53,6 +53,8 @@ table {
   --color-primary-light: #B3ACD9;
   --color-primary-dark: #7B71A3;
   --color-washed-primary: #C4c6E7;
+  --color-secondary: #B0561A;
+  --color-secondary-light: rgb(218, 135, 79);
   --color-error: #D24D57;
 
   --shadow: 0 2px 6px rgb(0, 0, 0, .16);
@@ -163,8 +165,7 @@ button {
   background: 0;
   border: solid 2px var(--color-secondary);
   box-sizing: border-box;
-  right: calc(4rem + 10rem + 2rem); /* right_finish_button + width_finish_button + whitespace */
-  width: 15rem;
+  width: 10rem;
 }
 
 .btn-secondary:hover {
@@ -604,6 +605,48 @@ button.createStudyCard:hover {
   border-right: 0;
 }
 
+.study-creation-card form.cards .add-buttons-container {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.study-creation-card form.cards .add-buttons-container .multi-add-container {
+  align-items: center;
+  background-color: var(--color-secondary-light);
+  border-radius: .2rem;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 7rem;
+  padding-left: 1rem;
+}
+
+.study-creation-card form.cards .add-buttons-container .multi-add-container p:first-child::first-letter {
+  text-transform: capitalize;
+}
+
+.study-creation-card form.cards .add-buttons-container .multi-add-container input {
+  margin: 0 .4rem;
+  width: 3rem;
+}
+
+.study-creation-card form.cards .add-buttons-container .multi-add-container button {
+  height: 4rem; width: 4rem;
+  margin-left: 1rem;
+}
+
+.study-creation-card form.cards .add-buttons-container .multi-add-container button > svg {
+  fill: var(--color-secondary);
+  height: 100%; width: 100%;
+}
+
+.study-creation-card form.cards .add-buttons-container .multi-add-container button:hover > svg {
+  fill: white;
+  transition: .3s;
+}
+
 .study-creation-card form.cards button {
   align-self: center;
   align-items: center;
@@ -611,7 +654,6 @@ button.createStudyCard:hover {
   flex-direction: row;
   justify-content: center;
   min-height: 4rem; width: 11rem;
-  margin-top: 1.5rem;
   position: relative;
 }
 

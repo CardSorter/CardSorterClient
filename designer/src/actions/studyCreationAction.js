@@ -6,6 +6,7 @@ import api from './api';
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
 export const ADD_CARD = 'ADD_CARD';
+export const ADD_X_CARDS = 'ADD_X_CARDS';
 export const CHANGE_CARD_NAME = 'CHANGE_CARD_NAME';
 export const CHANGE_CARD_DESCRIPTION = 'CHANGE_CARD_DESCRIPTION';
 export const CHANGE_THANKS_MESSAGE = 'CHANGE_THANKS_MESSAGE';
@@ -61,6 +62,21 @@ export function addCard(id) {
     type: ADD_CARD,
     payload: {
       id: id,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Adds x number of cards to the study that is going to be created.
+ * @param {Number} no
+ * @return {JSON} the action
+ */
+export function addXCards(no) {
+  return {
+    type: ADD_X_CARDS,
+    payload: {
+      no: no,
     },
     error: false,
   };

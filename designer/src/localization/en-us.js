@@ -1,6 +1,7 @@
 export default {
   abandonded: 'Abandoned',
   active: 'Active',
+  add: 'add',
   addCard: 'Add Card',
   averageSort: 'average sort',
   basicInformation: 'Basic Information',
@@ -23,8 +24,8 @@ export default {
   description: 'Description',
   editedOn: 'Last edited on',
   endedOn: 'Ended on',
-  filter: 'FILTER',
   fillMeOut: 'fill me out',
+  filter: 'FILTER',
   frequency: 'frequency',
   inactive: 'Inactive',
   launchedOn: 'Launched on',

@@ -28,6 +28,19 @@ export default function studyCreationReducer(state={}, action) {
       };
       return newState;
     }
+    case studyCreationActions.ADD_X_CARDS: {
+      const newState = Object.assign({}, state);
+
+      const id = Date.now();
+      for (let i = 0; i < action.payload.no; i++) {
+        newState['cards'][id+i] = {
+          id: id+i,
+          title: undefined,
+          description: undefined,
+        };
+      }
+      return newState;
+    }
     case studyCreationActions.CHANGE_CARD_NAME: {
       const newState = Object.assign({}, state);
       newState['cards'][action.payload.id].name =
