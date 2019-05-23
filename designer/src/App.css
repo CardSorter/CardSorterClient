@@ -605,6 +605,15 @@ button.createStudyCard:hover {
   border-right: 0;
 }
 
+.study-creation-card .card-container .card button {
+  background-color: transparent;
+  background-image: url('./icons/garbage.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 2rem; width: 4rem;
+  min-height: 0;
+}
+
 .study-creation-card form.cards .add-buttons-container {
   display: flex;
   margin-top: 1.5rem;

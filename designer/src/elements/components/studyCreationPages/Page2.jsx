@@ -24,7 +24,8 @@ const Page2 = ({values, errors, dispatch}) => {
                   description={card.description} onNameChange={(e) =>
                     dispatch.onCardNameChange(card.id, e)}
                   onDescriptionChange={(e) =>
-                    dispatch.onCardDescriptionChange(card.id, e)}/>
+                    dispatch.onCardDescriptionChange(card.id, e)}
+                  onDelete = {() => dispatch.onDeleteCard(card.id)}/>
               ))
             }
           </div>

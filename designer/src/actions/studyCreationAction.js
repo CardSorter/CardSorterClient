@@ -7,6 +7,7 @@ export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
 export const ADD_CARD = 'ADD_CARD';
 export const ADD_X_CARDS = 'ADD_X_CARDS';
+export const DELETE_CARD = 'DELETE_CARD';
 export const CHANGE_CARD_NAME = 'CHANGE_CARD_NAME';
 export const CHANGE_CARD_DESCRIPTION = 'CHANGE_CARD_DESCRIPTION';
 export const CHANGE_THANKS_MESSAGE = 'CHANGE_THANKS_MESSAGE';
@@ -77,6 +78,21 @@ export function addXCards(no) {
     type: ADD_X_CARDS,
     payload: {
       no: no,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Deletes a card from the created cards.
+ * @param {Number} id
+ * @return {JSON} the action
+ */
+export function deleteCard(id) {
+  return {
+    type: DELETE_CARD,
+    payload: {
+      id: id,
     },
     error: false,
   };

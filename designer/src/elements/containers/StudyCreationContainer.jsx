@@ -123,6 +123,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         const description = event.target.value;
         dispatch(studyCreationAction.changeCardDescription(id, description));
       },
+      onDeleteCard: (id) => {
+        dispatch(studyCreationAction.deleteCard(id));
+      },
       onNext: (cards) => {
         // Check for errors
         if (!cards || !cards[0].name || cards[0].name.length === 0) {

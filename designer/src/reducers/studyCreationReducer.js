@@ -41,6 +41,11 @@ export default function studyCreationReducer(state={}, action) {
       }
       return newState;
     }
+    case studyCreationActions.DELETE_CARD: {
+      const newState = Object.assign({}, state);
+      delete newState['cards'][action.payload.id];
+      return newState;
+    }
     case studyCreationActions.CHANGE_CARD_NAME: {
       const newState = Object.assign({}, state);
       newState['cards'][action.payload.id].name =
