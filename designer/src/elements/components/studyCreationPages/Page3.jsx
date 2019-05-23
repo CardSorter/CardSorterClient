@@ -13,7 +13,8 @@ const Page3 = ({values, errors, dispatch}) => (
       <div className="error-holder">
         <textarea className="thanks message" cols="30" rows="10"
           onChange={(e) => dispatch.onMessageChange(e)}
-          placeholder={values.message || L.text.thanksMessage}>
+          placeholder={L.text.thanksMessage}
+          defaultValue={values.message}>
         </textarea>
         {
           errors.message &&

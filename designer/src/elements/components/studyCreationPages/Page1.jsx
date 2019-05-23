@@ -11,18 +11,19 @@ const Page1 = ({values, errors, dispatch}) => (
 
     <form>
       <div className="error-holder">
-        <input type='text' placeholder={values.title ||
-          L.text.title} onChange={(e)=>
-          dispatch.onChange('title', e)}></input>
+        <input type='text' placeholder={L.text.title}
+          defaultValue={values.title} onChange={(e)=>
+            dispatch.onChange('title', e)}></input>
         {
           errors.title &&
           <div className="error-message"><p>{L.text.fillMeOut}</p></div>
         }
       </div>
       <div className="error-holder">
-        <textarea placeholder={values.description ||
-          L.text.description} rows='10' cols='30' onChange={(e)=>
-          dispatch.onChange('description', e)}></textarea>
+        <textarea placeholder = {L.text.description}
+          defaultValue={values.description} rows='10' cols='30' onChange={(e)=>
+            dispatch.onChange('description', e)}>
+        </textarea>
         {
           errors.description &&
           <div className="error-message"><p>{L.text.fillMeOut}</p></div>

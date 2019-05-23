@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 
 import localizedText from '../../../localization/LocalizedText';
 
-const Card = ({name, description, onNameChange, onDescriptionChange, onDelete}) => (
+const Card = ({name, description,
+  onNameChange, onDescriptionChange, onDelete}) => (
   <div className="card">
-    <input type="text" placeholder={name ||
-      localizedText.text.cardName} onChange={(e) => onNameChange(e)}></input>
-    <input type="text" placeholder={description ||
-      localizedText.text.description} onChange={(e) =>
-      onDescriptionChange(e)}></input>
+    <input type="text" placeholder={localizedText.text.cardName}
+      defaultValue={name} onChange={(e) => onNameChange(e)}></input>
+    <input type="text" placeholder={localizedText.text.description}
+      defaultValue={description} onChange={(e) =>
+        onDescriptionChange(e)}></input>
     <button type="button" onClick={onDelete}></button>
   </div>
 );
