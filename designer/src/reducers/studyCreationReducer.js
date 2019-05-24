@@ -23,7 +23,7 @@ export default function studyCreationReducer(state={}, action) {
       const newState = Object.assign({}, state);
       newState['cards'][action.payload.id] = {
         id: action.payload.id,
-        title: undefined,
+        name: undefined,
         description: undefined,
       };
       return newState;
@@ -35,7 +35,7 @@ export default function studyCreationReducer(state={}, action) {
       for (let i = 0; i < action.payload.no; i++) {
         newState['cards'][id+i] = {
           id: id+i,
-          title: undefined,
+          name: 'A very large title title tile',
           description: undefined,
         };
       }

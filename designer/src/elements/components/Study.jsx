@@ -43,12 +43,40 @@ class Study extends Component {
       return <p>Loading...</p>;
     }
 
+    let content;
     if (noParticipants) {
-      return <NoParticipants shareUrl={shareUrl} copyUrl={copyUrl}/>;
+      content = <NoParticipants shareUrl={shareUrl} copyUrl={copyUrl}/>;
+    } else {
+      content = (
+        <>
+        <StudyMenu selectedNo={menuValues.selectedNo} onClicks=
+          {menuDispatch.onClicks}/>
+        {
+          clustersPage &&
+          <Dendrogram data={clusters} fetcing={clustersFetching}/>
+        }
+        {
+          similarityPage &&
+          <SimilarityMatrix data={similarityMatrix} onHover={similarityHover}
+            selected={selectedCards}/>
+        }
+        {
+          !(similarityPage || clustersPage) &&
+            <div className="content">
+              <BarGraph percentage={graphValues.percentage}
+                sub={graphValues.sub}
+                total={graphValues.total} entity={graphValues.entity}
+                title={graphValues.title} action={graphValues.action}/>
+              <DataTable headers={tableValues.headers} data={tableValues.data}/>
+            </div>
+        }
+        </>
+      );
     }
 
     return (
       <div className="study-page">
+        {/* Header */}
         <span className="header">
           <h1>{title}</h1>
           <button className="edit unfunctional"></button>
@@ -71,27 +99,8 @@ class Study extends Component {
           <h2 className="date">{L.text.launchedOn} {launched.getDate()} {
             launched.getMonth()} {launched.getFullYear()}</h2>
         </span>
-        <StudyMenu selectedNo={menuValues.selectedNo} onClicks=
-          {menuDispatch.onClicks}/>
-        {
-          clustersPage &&
-          <Dendrogram data={clusters} fetcing={clustersFetching}/>
-        }
-        {
-          similarityPage &&
-          <SimilarityMatrix data={similarityMatrix} onHover={similarityHover}
-            selected={selectedCards}/>
-        }
-        {
-          !(similarityPage || clustersPage) &&
-            <div className="content">
-              <BarGraph percentage={graphValues.percentage}
-                sub={graphValues.sub}
-                total={graphValues.total} entity={graphValues.entity}
-                title={graphValues.title} action={graphValues.action}/>
-              <DataTable headers={tableValues.headers} data={tableValues.data}/>
-            </div>
-        }
+        {/* Content */}
+        {content}
       </div>
     );
   };

@@ -951,8 +951,8 @@ button.createStudyCard:hover {
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  height: minmax(calc(100% - var(--height-header) - 5rem), max-content); width: 90%;
-  margin: 2rem 0;
+  height: minmax(calc(100% - var(--height-header) - 5rem), max-content); width: auto;
+  margin: 2rem;
   padding-top: 2rem;
   position: relative;
 }
