@@ -44,7 +44,9 @@ const Login = ({onUsernameChange, onPasswordChange, onForgot,
         </button>
       </form>
 
-      <button className="register unavailable">{L.text.register}</button>
+      <button className="register" onClick={onRegister}>
+        {L.text.register}
+      </button>
     </div>
   );
 };

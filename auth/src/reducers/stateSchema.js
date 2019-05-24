@@ -12,6 +12,7 @@ export default {
     email: undefined,
     isSending: undefined,
     usernameError: undefined,
+    passwordError: undefined,
     emailError: undefined,
   },
 };

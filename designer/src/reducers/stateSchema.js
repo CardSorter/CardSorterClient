@@ -27,7 +27,7 @@ const initialState = {
     },
     thanksMessage: undefined,
     ui: {
-      currentPage: 2,
+      currentPage: 1,
       titleFetching: undefined,
       validTitle: true,
       studySending: undefined,

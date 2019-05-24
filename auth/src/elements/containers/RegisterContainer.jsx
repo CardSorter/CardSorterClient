@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
     password: state.register.password,
     email: state.register.email,
     usernameError: state.register.usernameError,
+    passwordError: state.register.passwordError,
     emailError: state.register.emailError,
   };
 };
@@ -17,18 +18,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onUsernameChange: (e) => {
       const username = e.target.value;
+      dispatch(registerActions.clearUsernameError());
       dispatch(registerActions.changeUsername(username));
     },
     onPasswordChange: (e) => {
       const password = e.target.value;
+      dispatch(registerActions.clearPasswordError());
       dispatch(registerActions.changePassword(password));
     },
     onEmailChange: (e) => {
       const email = e.target.value;
+      dispatch(registerActions.clearEmailError());
       dispatch(registerActions.changeEmail(email));
     },
     onSignUp: (username, password, email) => {
       dispatch(registerActions.clearUsernameError());
+      dispatch(registerActions.clearPasswordError());
       dispatch(registerActions.clearEmailError());
       dispatch(registerActions.sendCredentials(username, password, email));
     },
@@ -42,6 +47,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setTimeout(() => dispatch(registerActions.clearUsernameError()),
             5000);
       },
+      passwordErrorShowing: () => {
+        setTimeout(() => dispatch(registerActions.clearPasswordError()),
+            5000);
+      },
       emailErrorShowing: () => {
         setTimeout(() => dispatch(registerActions.clearEmailError()),
             5000);
@@ -50,6 +59,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onFormKeyPress: (e, username, password, email) => {
       if (e.key === 'Enter') {
         dispatch(registerActions.clearUsernameError());
+        dispatch(registerActions.clearPasswordError());
         dispatch(registerActions.clearEmailError());
         dispatch(registerActions.sendCredentials(username, password, email));
       }

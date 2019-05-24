@@ -1,6 +1,8 @@
 import * as loginActions from '../actions/loginAction';
 import * as StatusEnum from '../static/StatusEnum';
 
+import L from '../localization/LocalizedText';
+
 /**
  *
  * @param {loginState} state
@@ -46,10 +48,16 @@ export default function loginReducer(state={}, action) {
           return newState;
         }
         if (action.error.message === 'USERNAME NOT FOUND') {
-          newState.usernameError = 'NOT FOUND';
+          newState.usernameError = L.text.usernameNotFound;
         } else
         if (action.error.message === 'INVALID PASSWORD') {
-          newState.passwordError = 'INVALID';
+          newState.passwordError = L.text.wrongPassword;
+        } else
+        if (action.error.message === 'EMPTY USERNAME') {
+          newState.usernameError = L.text.addAnUsername;
+        } else
+        if (action.error.message === 'EMPTY PASSWORD') {
+          newState.passwordError = L.text.addAPassword;
         }
       }
       return newState;

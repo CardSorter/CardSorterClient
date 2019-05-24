@@ -1,6 +1,8 @@
 import * as registerActions from '../actions/registerAction';
 import * as StatusEnum from '../static/StatusEnum';
 
+import L from '../localization/LocalizedText';
+
 /**
  *
  * @param {registerState} state
@@ -36,6 +38,11 @@ export default function registerReducer(state={}, action) {
         'usernameError': undefined,
       });
     }
+    case registerActions.CLEAR_PASSWORD_ERROR: {
+      return Object.assign({}, state, {
+        'passwordError': undefined,
+      });
+    }
     case registerActions.CLEAR_EMAIL_ERROR: {
       return Object.assign({}, state, {
         'emailError': undefined,
@@ -52,10 +59,19 @@ export default function registerReducer(state={}, action) {
           return newState;
         }
         if (action.error.message === 'DUPLICATE USERNAME') {
-          newState.usernameError = 'DUPLICATE';
+          newState.usernameError = L.text.usernameAlreadyInUse;
         } else
         if (action.error.message === 'DUPLICATE EMAIL') {
-          newState.emailError = 'DUPLICATE';
+          newState.emailError = L.text.emailAlreadyInUse;
+        } else
+        if (action.error.message === 'EMPTY USERNAME') {
+          newState.usernameError = L.text.addAnUsername;
+        } else
+        if (action.error.message === 'EMPTY PASSWORD') {
+          newState.passwordError = L.text.addAPassword;
+        } else
+        if (action.error.message === 'EMPTY EMAIL') {
+          newState.emailError = L.text.addAnEmail;
         }
       }
       return newState;

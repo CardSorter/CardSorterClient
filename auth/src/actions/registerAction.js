@@ -6,6 +6,7 @@ export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 export const CHANGE_EMAIL = 'CHANGE_EMAIL';
 export const CLEAR_CREDENTIALS = 'CLEAR_CREDENTIALS';
 export const CLEAR_USERNAME_ERROR = 'CLEAR_USERNAME_ERROR';
+export const CLEAR_PASSWORD_ERROR = 'CLEAR_PASSWORD_ERROR';
 export const CLEAR_EMAIL_ERROR = 'CLEAR_EMAIL_ERROR';
 
 export const SENDING_CREDENTIALS = 'SENDING_CREDENTIALS';
@@ -74,6 +75,19 @@ export function clearCredentials() {
 export function clearUsernameError() {
   return {
     type: CLEAR_USERNAME_ERROR,
+    payload: {
+    },
+    error: false,
+  };
+}
+
+/**
+ * Clears the username error field.
+ * @return {JSON} the action.
+ */
+export function clearPasswordError() {
+  return {
+    type: CLEAR_PASSWORD_ERROR,
     payload: {
     },
     error: false,

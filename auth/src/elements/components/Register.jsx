@@ -5,10 +5,13 @@ import PropTypes from 'prop-types';
 import L from '../../localization/LocalizedText';
 
 const Register = ({onUsernameChange, onPasswordChange, onEmailChange,
-  onSignUp, onBack, username, password, email, usernameError, emailError,
-  onErrorShow, onFormKeyPress}) => {
+  onSignUp, onBack, username, password, email, usernameError,
+  passwordError, emailError, onErrorShow, onFormKeyPress}) => {
   if (usernameError) {
     onErrorShow.usernameErrorShowing();
+  }
+  if (passwordError) {
+    onErrorShow.passwordErrorShowing();
   }
   if (emailError) {
     onErrorShow.emailErrorShowing();
@@ -26,8 +29,15 @@ const Register = ({onUsernameChange, onPasswordChange, onEmailChange,
             <div className="error-message"><p>{usernameError}</p></div>
           }
         </div>
-        <input type="password" className="password" onChange={onPasswordChange}
-          placeholder={L.text.password}/>
+        <div className="error-holder">
+          <input type="password" className="password"
+            onChange={onPasswordChange} placeholder={L.text.password}/>
+          {
+            passwordError &&
+            <div className="error-message"><p>{passwordError}</p></div>
+          }
+        </div>
+        
         <div className="error-holder">
           <input type="email" className="email last" onChange={onEmailChange}
             placeholder={L.text.email}/>
