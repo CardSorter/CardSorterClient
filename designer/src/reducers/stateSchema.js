@@ -43,6 +43,7 @@ const initialState = {
     selectedItem: 0,
     noParticipants: true,
     shareUrl: undefined,
+    popupShowing: false,
     participants: {
       completion: undefined,
       total: undefined,

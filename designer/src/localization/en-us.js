@@ -49,5 +49,7 @@ export default {
   users: 'users',
   wasGroupedTogetherBy: 'was grouped together by ',
   wereSorterInAverage: 'were sorter in average',
+  shareThisUrlWithTheParticipants: 'Share this url with the participants',
+  sharingGraph: "Sharing graph",
 };
 

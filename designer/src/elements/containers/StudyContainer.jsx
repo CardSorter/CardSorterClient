@@ -130,6 +130,7 @@ const mapStateToProps = (state) => {
     selectedCards: state.study.selectedCards,
     clusters: state.study.clusters,
     clustersFetching: state.study.clustersFetching,
+    showPopup: state.study.popupShowing,
   };
 };
 
@@ -165,6 +166,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     copyUrl: (urlRef) => {
       urlRef.current.select();
       document.execCommand('copy');
+    },
+    openPopup: () => {
+      dispatch(studyAction.togglePopup(true));
+    },
+    closePopup: () => {
+      dispatch(studyAction.togglePopup(false));
     },
   };
 };

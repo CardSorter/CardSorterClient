@@ -58,6 +58,7 @@ table {
   --color-error: #D24D57;
 
   --shadow: 0 2px 6px rgb(0, 0, 0, .16);
+  --shadow-leveled: 0 4px 12px rgb(0, 0, 0, .16);
 
   --height-header: 8rem;
 }
@@ -794,7 +795,6 @@ button.createStudyCard:hover {
 
 .study-page span.header button {
   background: 0;
-  background-image: url('./icons/cog-solid.svg');
   background-position: bottom;
   background-repeat: no-repeat;
   border: 0;
@@ -802,6 +802,14 @@ button.createStudyCard:hover {
   height: 2rem; width: 2rem;
   margin-left: .7rem;
   opacity: .8;
+}
+
+.study-page span.header button.edit {
+  background-image: url('./icons/cog-solid.svg');
+}
+
+.study-page span.header button.share {
+  background-image: url('./icons/share-arrow.svg');
 }
 
 .study-page span.active {
@@ -1072,4 +1080,66 @@ td.color-100 {
   stroke: #555;
   stroke-opacity: 1;
   stroke-linejoin: round;
+}
+
+/* Popup */
+
+.popup-container {
+  align-items: center;
+  background: rgba(0, 0, 0, .2);
+  display: flex;
+  height: 100vh; width: 100vw;
+  justify-content: center;
+  left: 0; top: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.popup-container .popup {
+  background: white;
+  border-radius: .2rem;
+  box-shadow: var(--shadow-leveled);
+  box-sizing: border-box;
+  display: block;
+  padding: 2rem;
+  padding-top: 8rem;
+  position: relative;
+  height: minmax(auto, 30vh); width: 50vw;
+}
+
+.popup-container .popup .header {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .05);
+  display: flex;
+  flex-direction: row;
+  height: 2rem; width: calc(100% - 4rem);
+  left: 0; top:0;
+  justify-items: flex-start;
+  padding: 2rem 2rem 2rem 2rem; 
+  position: absolute;
+}
+
+.popup-container .popup .header img {
+  height: 100%; width: auto;
+  margin-right: 1rem;
+}
+
+.popup-container .popup .header h2 {
+  font-size: 2rem;
+}
+
+.popup-container .popup .header button.close-btn {
+  background: transparent;
+  color: var(--color-black);
+  font-size: 2rem;
+  height: 2rem; width: 2rem;
+  padding: 0;
+  top: 2rem; right: 2rem;
+  position: absolute;
+}
+
+.popup-container .popup .content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

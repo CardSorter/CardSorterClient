@@ -72,6 +72,11 @@ export default function studyPageReducer(state={}, action) {
         'selectedCards': selectedCards,
       });
     }
+    case studyActions.TOGGLE_POPUP: {
+      return Object.assign({}, state, {
+        'popupShowing': action.payload.toggle,
+      });
+    }
     default: {
       return state;
     }

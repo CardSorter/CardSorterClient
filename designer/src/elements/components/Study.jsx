@@ -14,6 +14,9 @@ import NoParticipants from './studyPageElements/NoParticipants.jsx';
 import SimilarityMatrix from './studyPageElements/SimilarityMatrix.jsx';
 // eslint-disable-next-line no-unused-vars
 import Dendrogram from './studyPageElements/Dendrogram.jsx';
+// eslint-disable-next-line no-unused-vars
+import Popup from './Popup.jsx';
+import PopupIcon from '../../icons/share.svg';
 import L from '../../localization/LocalizedText';
 
 /**
@@ -37,7 +40,8 @@ class Study extends Component {
       menuDispatch, graphValues, tableValues, shareUrl,
       clustersPage, noParticipants, similarityPage, copyUrl,
       similarityMatrix, similarityHover, selectedCards,
-      clusters, clustersFetching} = this.props;
+      clusters, clustersFetching,
+      showPopup, openPopup, closePopup} = this.props;
 
     if (isFetching || isFetching === undefined) {
       return <p>Loading...</p>;
@@ -49,6 +53,12 @@ class Study extends Component {
     } else {
       content = (
         <>
+        {
+          showPopup &&
+          <Popup title={L.text.shareThisUrlWithTheParticipants} url={shareUrl}
+            icon={PopupIcon} iconAlt={L.text.sharingGraph}
+            close= {closePopup}/>
+        }
         <StudyMenu selectedNo={menuValues.selectedNo} onClicks=
           {menuDispatch.onClicks}/>
         {
@@ -80,6 +90,7 @@ class Study extends Component {
         <span className="header">
           <h1>{title}</h1>
           <button className="edit unfunctional"></button>
+          <button className="share" onClick={openPopup}></button>
         </span>
         <span className="active">
           {
@@ -119,6 +130,9 @@ Study.propTypes = {
   clustersPage: PropTypes.bool,
   clusters: PropTypes.object,
   clustersFetching: PropTypes.bool,
+  showPopup: PropTypes.bool,
+  openPopup: PropTypes.func,
+  closePopup: PropTypes.func,
 };
 
 export default Study;

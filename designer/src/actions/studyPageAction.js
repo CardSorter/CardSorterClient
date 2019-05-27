@@ -7,6 +7,7 @@ export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const LOAD_STUDY = 'LOAD_STUDY';
 export const CHANGE_HOVERED_CARDS = 'CHANGE_HOVERED_CARDS';
 export const LOAD_CLUSTERS = 'LOAD_CLUSTERS';
+export const TOGGLE_POPUP = 'TOGGLE_POPUP';
 
 /**
  * Changes the view that the study page is showing.
@@ -35,6 +36,21 @@ export function changeHoveredCards(card1Index, card2Index) {
     payload: {
       index1: card1Index,
       index2: card2Index,
+    },
+    error: false,
+  };
+}
+
+/**
+ * Toogles the popup.
+ * @param {Boolean} toggle
+ * @return {JSON} the action.
+ */
+export function togglePopup(toggle) {
+  return {
+    type: TOGGLE_POPUP,
+    payload: {
+      toggle: toggle,
     },
     error: false,
   };
