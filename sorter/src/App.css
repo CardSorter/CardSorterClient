@@ -359,34 +359,69 @@ li.card.minimized button.desc-btn::before {
   box-shadow: 0 2px 4px rgb(0, 0, 0, 16%);
   display: flex;
   flex-direction: column;
-  max-height: 25rem;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: .5rem;
   position: relative;
   width: 240px;
 }
 
 .category.max-height {
-  height: 25rem;
+  height: min(25rem, auto);
 }
 
-.category h3 {
+.category.minimized {
+  max-height: 25rem;
+}
+
+.category.minimized ul {
+  /* Hide some content */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.category.minimized button.minimize {
+  transform: rotate(180deg);
+}
+
+.category .header {
+  align-items: center;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.category .header button.minimize {
+  background: none;
+  background-image: url('./icons/down-arrow.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  height: 2rem; width: 2rem;
+  position: absolute;
+  right: 2rem;
+}
+
+.category .header h3 {
   cursor: pointer;
   font-size: 1.5rem;
   margin: 1rem 0;
   text-decoration: underline;
 }
 
-.category h3::first-letter {
+.category .header h3::first-letter {
   text-transform: uppercase;
 }
 
 .category ul {
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 1rem;
+  width: 100%;
 }
 
 .category li {

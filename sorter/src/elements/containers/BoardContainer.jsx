@@ -5,8 +5,6 @@ import * as uiAction from '../../actions/uiAction';
 import * as cardAction from '../../actions/cardAction';
 import * as categoryAction from '../../actions/categoryAction';
 
-import L from '../../localization/LocalizedText';
-
 /**
  * Removes the card with the given id from it's current parent
  * @param {function} dispatch
@@ -57,8 +55,7 @@ const mapDispatchToProps = (dispatch) => {
       // This is *only* executed only if the OnCardDrop didn't
       // Create the new category, containing the dropped card
       removeCardFromParent(dispatch, cardPosition, cardID);
-      dispatch(categoryAction.createCategory(undefined,
-          L.text.clickToRename, cardID));
+      dispatch(categoryAction.createCategory(undefined, cardID));
     },
     removeEmptyCategories: (categories) => {
       // This is triggered on every drop on the Board

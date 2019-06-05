@@ -30,6 +30,7 @@ const mapStateToProps = (state, ownProps) => {
     id: ownProps.id,
     title: ownProps.title,
     cards: ownProps.cards,
+    isMinimized: state.categories[ownProps.id].isMinimized,
     descriptionIDs: state.cards['showingDescription'],
     showTitleBox: ownProps.id === state.ui['changeTitle'],
   };
@@ -62,6 +63,10 @@ const mapDispatchToProps = (dispatch) => {
       if (description && description.length > 0) {
         dispatch(cardAction.toggleDescription(cardID));
       }
+    },
+    onMinimized: (event, isMinimized, categoryID) => {
+      event.stopPropagation();
+      dispatch(categoryAction.minimizeCategory(categoryID, !isMinimized));
     },
     onCardDrop: (cardID, cardPosition, categoryID) => {
       removeCardFromParent(dispatch, cardPosition, cardID);

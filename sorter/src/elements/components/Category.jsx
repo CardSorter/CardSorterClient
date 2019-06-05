@@ -47,26 +47,44 @@ function collect(connect, monitor) {
   };
 }
 
-const Category = ({id, title, cards, onCardClick, showTitleBox,
+const Category = ({id, title, cards, isMinimized,
+  onMinimized, onCardClick, showTitleBox,
   onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
   descriptionIDs, connectDropTarget, isOver}) => {
   cards = parseCards(cards).cards;
+  let classString = 'category';
+  if (isOver) {
+    classString += ' max-height';
+  }
+  if (isMinimized) {
+    classString += ' minimized';
+  }
   return connectDropTarget(
-      <li className={(isOver) ? 'category max-height' : 'category'}>
-        {
-          showTitleBox &&
-          <div className="title-input">
-            <input type='text' defaultValue={title}
-              onChange={(e)=>onTitleChange(e, id)}
-              onKeyPress={(e)=>onTitleFinish(e)}
-              onClick={(e)=>e.stopPropagation()}></input>
-            <button type="button" onClick={()=>onTitleFinish()}></button>
-          </div>
-        }
-        {
-          !showTitleBox &&
-          <h3 onClick={(e)=>onTitleClick(e, id)}>{title}</h3>
-        }
+      <li className={classString}>
+        <div className="header">
+          {
+            showTitleBox &&
+            <div className="title-input">
+              <input autoFocus type='text'
+                placeholder={title || L.text.clickToRename}
+                defaultValue={title}
+                onChange={(e)=>onTitleChange(e, id)}
+                onKeyPress={(e)=>onTitleFinish(e)}
+                onClick={(e)=>e.stopPropagation()}></input>
+              <button type="button" onClick={()=>onTitleFinish()}></button>
+            </div>
+          }
+          {
+            !showTitleBox &&
+            <>
+            <h3 onClick={(e)=>onTitleClick(e, id)}>
+              {title || L.text.clickToRename}</h3>
+            <button className="minimize" onClick={ (e) =>
+              onMinimized(e, isMinimized, id)
+            }></button>
+            </>
+          }
+        </div>
         {
           /* Show the 'drop to add to category' */
           isOver &&
@@ -89,7 +107,18 @@ const Category = ({id, title, cards, onCardClick, showTitleBox,
 };
 
 Category.propTypes = {
-  title: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  cards: PropTypes.array,
+  isMinimized: PropTypes.bool.isRequired,
+  onMinimized: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func,
+  showTitleBox: PropTypes.bool,
+  onCardDrop: PropTypes.func,
+  onTitleClick: PropTypes.func.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
+  onTitleFinish: PropTypes.func.isRequired,
+  descriptionIDs: PropTypes.array,
 };
 
 // eslint-disable-next-line new-cap

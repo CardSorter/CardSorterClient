@@ -11,6 +11,7 @@ export default class Category {
     this.id = id;
     this.title = title;
     this.cards = [];
+    this.isMinimized = false;
   }
 
   /**
