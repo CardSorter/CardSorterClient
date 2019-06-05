@@ -43,18 +43,14 @@ function deleteEmptyCategories(dispatch, categories) {
 const mapStateToProps = (state) => {
   // Convert to array
   const categories = Object.values(state.categories);
-  const showingDescription = state.ui['showingDescription'];
-  const changeTitle = state.ui['changeTitle'];
 
-  return {categories: categories, descriptionID: showingDescription,
-    changeTitleID: changeTitle};
+  return {categories: categories};
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: () => {
-      // Hide the descriptions and category renaming on user click
-      dispatch(uiAction.hideAllDescriptions());
+      // Hide the category renaming on user click
       dispatch(uiAction.hideAllTitleBoxes());
     },
     onDrop: (cardID, cardPosition) => {
@@ -67,36 +63,6 @@ const mapDispatchToProps = (dispatch) => {
     removeEmptyCategories: (categories) => {
       // This is triggered on every drop on the Board
       deleteEmptyCategories(dispatch, categories);
-    },
-    onCategTitleClick: (event, categoryID) => {
-      event.stopPropagation();
-      dispatch(uiAction.showTitleBoxOnCategory(categoryID));
-    },
-    onCategTitleChange: (event, categoryID) => {
-      let title = event.target.value;
-      title = title.replace(/\s\s+/g, ' ').trim();
-      title = (title.length > 0) ? title : L.text.clickToRename;
-      dispatch(categoryAction.renameCategory(categoryID, title));
-    },
-    onCategTitleFinish: (event) => {
-      if (!event) {
-        dispatch(uiAction.hideAllTitleBoxes());
-        return;
-      }
-      event.stopPropagation();
-      if (event.charCode === 13) {
-        dispatch(uiAction.hideAllTitleBoxes());
-      }
-    },
-    onCardClick: (event, cardID, description) => {
-      event.stopPropagation();
-      if (description && description.length > 0) {
-        dispatch(uiAction.showDescription(cardID));
-      }
-    },
-    onCardDrop: (cardID, cardPosition, categoryID) => {
-      removeCardFromParent(dispatch, cardPosition, cardID);
-      dispatch(cardAction.addCardToCategory(cardID, categoryID));
     },
   };
 };

@@ -2,6 +2,7 @@ const initialState = {
   cards: {
     notFound: undefined,
     status: undefined,
+    showingDescription: [],
   },
   container: [],
   categories: {

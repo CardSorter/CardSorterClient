@@ -166,6 +166,25 @@ header {
   z-index: 1;
 }
 
+header .left-buttons {
+  left: 4rem;
+  position: absolute;
+}
+
+header .left-buttons button {
+  background-color: transparent;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-black);
+  border: none;
+  height: 2rem; width: 2rem;
+}
+
+header .left-buttons button.undo {
+  background-image: url('./icons/undo.svg');
+}
+
 #logo {
   color: var(--color-black);
   font-family: 'Dancing Script', cursive;
@@ -262,7 +281,8 @@ ul#list {
 }
 
 /* Card */
-.card {
+
+li.card {
   background-color: white;
   border: solid 1px #8b8b8b;
   border-radius: 1rem;
@@ -277,11 +297,11 @@ ul#list {
   text-align: center;
 }
 
-.card h4 {
+li.card h4 {
   font-size: 1.5rem;
 }
 
-.card.minimized {
+li.card.minimized {
   border-radius: 0;
   box-shadow: none;
   display: flex;
@@ -291,20 +311,24 @@ ul#list {
   padding-left: 5px;
   position: relative;
   text-align: start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-.card.minimized h4 {
+li.card.minimized h4 {
+  font-family: 'LatoWeb';
+  font-size: 1.2rem;
+}
+
+li.card.minimized p {
   font-family: 'LatoWebLight';
   font-size: 1.2rem;
 }
 
-.card.minimized .desc-container {
-  margin-left: auto;
-  flex-direction: row;
+li.card.minimized .titles p {
+  margin-top: .5rem;
 }
 
-.card.minimized .desc-btn {
+li.card.minimized button.desc-btn {
   background-color: #BAA5FF;
   border: 0;
   border-radius: 50%;
@@ -312,18 +336,19 @@ ul#list {
   cursor: pointer;
   font-size: 1.2rem;
   height: 1.5rem; width: 1.5rem;
+  margin-left: auto;
   position: relative;
   text-align: center;
 }
 
-.card.minimized .desc-pop::after {
+li.card.minimized button.desc-btn::before {
+  border-left: .5rem solid transparent;
+  border-right: .5rem solid transparent;
+  border-top: .5rem solid white;
   content: '';
   height: 0; width: 0;
-  border-top: 15px solid transparent;
-  border-right: 15px solid #BAA5FF;
-  border-bottom: 15px solid transparent;
+  left: .29rem; top: .5rem;
   position: absolute;
-  left: -17px; top: 0;
 }
 
 /* Category */

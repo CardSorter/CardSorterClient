@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 const Header = ({studyID, container, categories,
   timeStarted, onFinishClick, onCommentClick, comment}) => (
   <header>
+    <div className="left-buttons">
+      <button className="undo"></button>
+      <button className="help"></button>
+    </div>
     <h1 id="logo">Card Sorter</h1>
     <button className="btn--secondary" onClick={onCommentClick}>
       <p>Add a comment</p>

@@ -11,6 +11,22 @@ import L from '../../localization/LocalizedText';
 
 import plusImage from '../../icons/plus.svg';
 
+/**
+ * Takes the card id and the list of all the id's that are showing
+ * and returns whether the description of the specified id is showing.
+ * @param {Number} cardID
+ * @param {Number[]} showIDs
+ * @return {Boolean}
+ */
+function isDescriptionShowing(cardID, showIDs) {
+  for (const id of showIDs) {
+    if (cardID === id) {
+      return true;
+    }
+  }
+  return false;
+}
+
 const categoryTarget = {
   drop(props, monitor) {
     const card = monitor.getItem();
@@ -31,9 +47,9 @@ function collect(connect, monitor) {
   };
 }
 
-const CategoryItem = ({id, title, cards, onClick, showTitleBox,
+const Category = ({id, title, cards, onCardClick, showTitleBox,
   onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
-  descriptionID, connectDropTarget, isOver}) => {
+  descriptionIDs, connectDropTarget, isOver}) => {
   cards = parseCards(cards).cards;
   return connectDropTarget(
       <li className={(isOver) ? 'category max-height' : 'category'}>
@@ -64,18 +80,18 @@ const CategoryItem = ({id, title, cards, onClick, showTitleBox,
             <CardItem key={card.id} id={card.id} title={card.title}
               description={card.description} minimized={true}
               position={id}
-              onClick={(event) => onClick(event, card.id, card.description)}
-              showDescription={card.id===descriptionID}/>
+              onClick={(event) => onCardClick(event, card.id, card.description)}
+              showDescription={isDescriptionShowing(card.id, descriptionIDs)}/>
           ))
         }</ul>
       </li>
   );
 };
 
-CategoryItem.propTypes = {
+Category.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
 // eslint-disable-next-line new-cap
 export default DropTarget(itemTypes.CARD,
-    categoryTarget, collect)(CategoryItem);
+    categoryTarget, collect)(Category);

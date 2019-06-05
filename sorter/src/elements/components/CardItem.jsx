@@ -28,23 +28,33 @@ function collect(connect, monitor) {
 
 const CardItem = ({id, title, description, minimized, position,
   onClick, showDescription, connectDragSource, isDragging}) => {
-  const classString = (!minimized || showDescription) ?
+  const classString = (!minimized) ?
     'card' : 'card minimized';
   return connectDragSource(
       <li className={classString}>
-        <h4>{title}</h4>
         {
           /* Show the description */
-          (!minimized || showDescription) && <p>{description}</p>
+          (!minimized) &&
+          <>
+            <h4>{title}</h4>
+            <p>{description}</p>
+          </>
+        }
+        {
+          minimized &&
+          <div className="titles">
+            <h4>{title}</h4>
+            {
+              showDescription &&
+              <p>{description}</p>
+            }
+          </div>
         }
         {
           /* Show the description button */
-          (minimized && description && !showDescription) &&
-            <div className="desc-container">
-              <button onClick={onClick} className="desc-btn">
-                <p>?</p>
-              </button>
-            </div>
+          (minimized && description) &&
+            <button onClick={onClick} className="desc-btn">
+            </button>
         }
         {
           /* The "drag to add" action */

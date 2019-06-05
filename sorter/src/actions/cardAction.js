@@ -4,6 +4,7 @@ import {saveStudyID, toogleOnBoarding} from './uiAction';
 import debugConsole from '../debug/Debugconsole';
 import api from './api';
 
+export const TOGGLE_DESCRIPTION = 'TOGGLE_DESCRIPTION';
 export const IMPORT_CARD = 'IMPORT_CARD';
 export const ADD_CARD_CATEGORY = 'ADD_CARD_CATEGORY';
 export const REMOVE_CARD_CATEGORY = 'REMOVE_CARD_CATEGORY';
@@ -12,7 +13,20 @@ export const REMOVE_CARD_CONTAINER = 'REMOVE_CARD_CONTAINER';
 
 export const REQUEST_CARDS = 'REQUEST_CARDS';
 
-// Action creators //
+/**
+ * Toggles the description of a specified card
+ * @param {int} cardID the id of the card that the description will be toggled
+ * @return {JSON} the action
+ */
+export function toggleDescription(cardID) {
+  return {
+    type: TOGGLE_DESCRIPTION,
+    payload: {
+      cardID: cardID,
+    },
+    error: false,
+  };
+}
 
 /**
  *

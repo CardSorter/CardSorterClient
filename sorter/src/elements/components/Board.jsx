@@ -5,7 +5,7 @@ import {DropTarget} from 'react-dnd';
 
 import {itemTypes} from '../../staticContent/dragConstants';
 // eslint-disable-next-line no-unused-vars
-import CategoryItem from './CategoryItem';
+import Category from '../containers/CategoryContainer';
 import L from '../../localization/LocalizedText';
 import plusImage from '../../icons/plus.svg';
 
@@ -33,17 +33,11 @@ function collect(connect, monitor) {
   };
 }
 
-const Board = ({categories, onClick, onCardClick, onCategTitleClick,
-  changeTitleID, onCardDrop, onDrop, descriptionID, onCategTitleChange,
-  onCategTitleFinish, removeEmptyCategories, connectDropTarget, isOver}) => {
+const Board = ({categories, onClick, onDrop,
+  connectDropTarget, isOver, removeEmptyCategories}) => {
   categories = categories.map((category) => (
-    <CategoryItem key={'k' + category.id} id={category.id}
-      title={category.title} cards={category.cards} onClick={onCardClick}
-      onTitleChange={onCategTitleChange}
-      onTitleClick={onCategTitleClick} onCardDrop={onCardDrop}
-      onTitleFinish={onCategTitleFinish}
-      showTitleBox={category.id === changeTitleID}
-      descriptionID={descriptionID}/>
+    <Category key={'k' + category.id} id={category.id}
+      title={category.title} cards={category.cards}/>
   ));
 
   return connectDropTarget(<ul id='board' onClick={onClick}>
