@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import localizedText from '../../localization/LocalizedText';
+import monthToString from '../../helpers/monthToString';
 
 const StudyItem = ({title, isLive, completedNo, abandonedNo,
   launchedDate, editDate, endDate, onClick}) => (
@@ -25,21 +27,35 @@ const StudyItem = ({title, isLive, completedNo, abandonedNo,
     <div className='dates'>
       <p className='launched'>
         {localizedText.text.launchedOn} <time
-          dateTime={launchedDate}>{launchedDate.getDate()} {launchedDate.getMonth()} {launchedDate.getFullYear()}</time>
+          dateTime={launchedDate}>{launchedDate.getDate()}
+          <span className="capitalize">
+            <> </>{monthToString(launchedDate.getMonth())}
+          </span>
+          <> </>{launchedDate.getFullYear()}</time>
       </p>
       {/* If the endDate is defined show only the end and the launched date */}
       {
         !endDate &&
         <p className='edited'>
           {localizedText.text.editedOn} <time
-            dateTime={editDate}>{editDate.getDate()} {editDate.getMonth()} {editDate.getFullYear()}</time>
+          // eslint-disable-next-line max-len
+            dateTime={editDate}>{editDate.getDate()}
+            <span className="capitalize">
+              <> </>{monthToString(editDate.getMonth())}
+            </span>
+            <> </>{editDate.getFullYear()}</time>
         </p>
       }
       {
         endDate &&
         <p className='ended'>
           {localizedText.text.endedOn} <time
-            dateTime={endDate}>{endDate.getDate()} {endDate.getMonth()} {endDate.getFullYear()}</time>
+          // eslint-disable-next-line max-len
+            dateTime={endDate}>{endDate.getDate()}
+            <span className="capitalize">
+              <> </>{monthToString(endDate.getMonth())}
+            </span>
+            <> </>{endDate.getFullYear()}</time>
         </p>
       }
     </div>

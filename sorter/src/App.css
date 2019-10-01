@@ -377,8 +377,8 @@ li.card.minimized button.desc-btn::before {
   overflow-y: auto;
 }
 
-.category.minimized button.minimize {
-  transform: rotate(180deg);
+.category.minimized .header button.minimize {
+  transform: rotate(0);
 }
 
 .category .header {
@@ -401,6 +401,7 @@ li.card.minimized button.desc-btn::before {
   cursor: pointer;
   height: 2rem; width: 2rem;
   position: absolute;
+  transform: rotate(180deg);
   right: 2rem;
 }
 

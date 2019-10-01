@@ -18,6 +18,7 @@ import Dendrogram from './studyPageElements/Dendrogram.jsx';
 import Popup from './Popup.jsx';
 import PopupIcon from '../../icons/share.svg';
 import L from '../../localization/LocalizedText';
+import monthToString from '../../helpers/monthToString';
 
 /**
  *
@@ -107,8 +108,11 @@ class Study extends Component {
               <p>{L.text.inactive}</p>
             </div>
           }
-          <h2 className="date">{L.text.launchedOn} {launched.getDate()} {
-            launched.getMonth()} {launched.getFullYear()}</h2>
+          <h2 className="date">{L.text.launchedOn} {launched.getDate()}
+            <span className="capitalize">
+              <> </>{monthToString(launched.getMonth())}
+            </span>
+            <> </>{launched.getFullYear()}</h2>
         </span>
         {/* Content */}
         {content}

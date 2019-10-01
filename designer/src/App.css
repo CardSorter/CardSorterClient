@@ -88,6 +88,10 @@ html, body {
   display: none;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 @media (min-width: 1921px) {
   html, body {
     font-size: 13px;
