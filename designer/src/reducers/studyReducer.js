@@ -29,6 +29,10 @@ export default function studyReducer(state={}, action) {
         };
       }
       newState.isFetching = action.payload.status !== StatusEnum.SUCCESS;
+      // Sort the studies based on their edit date
+      newState.studies.sort((study1, study2) => {
+        return study2.editDate - study1.editDate;
+      });
       return newState;
     }
     case studyActions.ADD_STUDY: {
