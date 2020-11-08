@@ -2,13 +2,6 @@
 
 FROM node:13 as builder
 
-# Pass the environment variables
-ARG APP_ENV
-ARG ENDPOINT_IP
-
-ENV APP_ENV=$APP_ENV
-ENV ENDPONT_IP=$ENDPONT_IP
-
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
