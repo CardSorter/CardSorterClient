@@ -1,2 +1,2 @@
-// export default 'PRODUCTION';
-export default 'DEV';
+export default 'PRODUCTION';
+// export default 'DEV';
