@@ -32,5 +32,8 @@
     "eslint-config-google": "^0.12.0",
     "eslint-plugin-react": "^7.12.4"
   },
+  "resolutions": {
+    "fsevents": "2.2.1"
+  },
   "homepage": "localhost:5000/auth"
 }
