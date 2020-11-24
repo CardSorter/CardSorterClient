@@ -1,2 +1,16 @@
+# IDEs
+
 /.idea
-.DS_Store
+
+# Mac related
+
+*/**/.DS_Store
+
+# Local node/yarn files
+
+*/**/package-lock.json
+*/**/node_modules
+*/**/build
+*/**/yarn.lock
+
+
