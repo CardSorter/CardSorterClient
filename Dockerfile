@@ -51,8 +51,8 @@ RUN npm run build
 FROM nginx:1.19
 
 # Install nano, this is for debuging
-RUN apt-get update
-RUN apt-get install nano
+#RUN apt-get update
+#RUN apt-get install nano
 
 WORKDIR /usr/share/nginx/html
 

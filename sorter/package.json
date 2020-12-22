@@ -10,7 +10,7 @@
     "react-dnd-html5-backend": "^7.2.0",
     "react-dom": "^16.8.2",
     "react-redux": "^6.0.1",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^4.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
@@ -34,5 +34,5 @@
   "resolutions": {
     "fsevents": "2.2.1"
   },
-  "homepage": "http://83.212.97.237/sort/"
+  "homepage": "http://serve.com/sort"
 }
