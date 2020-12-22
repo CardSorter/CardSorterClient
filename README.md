@@ -8,7 +8,7 @@ The full paper that was based on this tool can be found on the ACM's directory
 ### Prerequisites
 1. Node 12+ with npm and yarn
 2. Docker and docker-compose
-3. (Optionally) a unix-based or bashed enabled system 
+3. (Optionally) a unix-based or bashed enabled system
 
 ### Running the development 
 
@@ -19,6 +19,5 @@ The full paper that was based on this tool can be found on the ACM's directory
 5. From the root folder get up the development environment `$ docker-compose up`
 
 Alternatively:
-
 5. Cd into the module you'd like to run (e.g. `$ cd auth`)
 6. Run the development server with watch capabilities (e.g. `$ yarn start`)
