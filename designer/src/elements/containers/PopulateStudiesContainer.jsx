@@ -8,9 +8,6 @@ const mapStateToProps = (state, ownProps) => {
     onStudyClick: (id) => {
       ownProps.history.push('./study/'+id);
     },
-    onCreateClick: () => {
-      ownProps.history.push('./create');
-    },
   };
 };
 

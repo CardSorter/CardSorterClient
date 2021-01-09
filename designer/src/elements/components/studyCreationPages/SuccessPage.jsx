@@ -12,17 +12,17 @@ const SuccessPage = ({values, dispatch}) => {
   return (
     <div className="success-page">
       <h1>{L.text.studyCreated}</h1>
-      <img src={successImage} alt="Welcome to your new study!"></img>
+      <img src={successImage} alt="Welcome to your new study!"/>
       <div className="actions-container">
         <div className="button-container">
-          <button onClick={dispatch.onButtonClick}>Go to study</button>
+          <button onClick={dispatch.onButtonClick} className='btn-contained'>Go to study</button>
         </div>
         <div className="share-container">
           <div className="url-container">
             <textarea className="url" ref={urlRef}
-              defaultValue={values.share_url}></textarea>
+              defaultValue={values.share_url}/>
             <button className="copy" type="button" onClick={() =>
-              dispatch.onCopy(urlRef)}></button>
+              dispatch.onCopy(urlRef)}/>
           </div>
           <p>Share this url with the participants</p>
         </div>

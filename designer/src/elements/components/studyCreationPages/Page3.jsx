@@ -27,7 +27,7 @@ const Page3 = ({values, errors, dispatch}) => (
       <div className="btn-container">
         <button className="btn-text"
           onClick={dispatch.onPrev}>Back</button>
-        <button className="btn-contained" onClick={() =>
+        <button className="btn-contained ml-sm" onClick={() =>
           dispatch.onNext(values.study)}>
           {L.text.create}</button>
       </div>

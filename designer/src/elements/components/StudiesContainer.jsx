@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StudyItem from './StudyItem.jsx';
-import CreateStudyItem from './CreateStudyItem.jsx';
 
-const StudiesContainer = ({studies, onStudyClick, onCreateClick}) => (
+const StudiesContainer = ({studies, onStudyClick}) => (
   <ul className="studies-container">
     {
       studies.map((Study, index) =>
@@ -13,13 +12,11 @@ const StudiesContainer = ({studies, onStudyClick, onCreateClick}) => (
           launchedDate={Study.launchedDate} editDate={Study.editDate}
           endDate={Study.endDate} onClick={() => onStudyClick(Study.id)}/>)
     }
-    <CreateStudyItem onClick={onCreateClick}/>
   </ul>
 );
 
 StudiesContainer.propTypes = {
   studies: PropTypes.array.isRequired,
-  onCreateClick: PropTypes.func.isRequired,
 };
 
 export default StudiesContainer;

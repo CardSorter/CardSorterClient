@@ -33,7 +33,7 @@ const Page1 = ({values, errors, dispatch}) => (
     <div className="bottom-container">
       <div className="btn-container">
         <button className="prev disabled" onClick={dispatch.onPrev}/>
-        <button className="btn-contained" onClick={() => dispatch.onNext(values.title, values.description)}>
+        <button className="btn-contained ml-sm" onClick={() => dispatch.onNext(values.title, values.description)}>
             next
         </button>
       </div>

@@ -1,12 +1,22 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import demoImage from '../../assets/icons/sample-user.svg';
+
 import L from '../../localization/LocalizedText';
+import CreateStudyItem from "./CreateStudyItem";
 
-const Header = ({username, profilePic, showBackButton, profileUnfold,
-  onProfileClick, onLogoutClick}) => {
+export interface HeaderState {
+  username: string,
+  showBackButton: boolean,
+  profileUnfold: boolean,
+}
+
+export interface HeaderDispatch {
+  onProfileClick: (b: boolean) => {},
+  onLogoutClick: () => {},
+}
+
+const Header: React.FC<HeaderState & HeaderDispatch> = ({username, showBackButton,
+                                                          profileUnfold, onProfileClick, onLogoutClick}) => {
   const style = (!profileUnfold) ? 'profile' : 'profile unfold';
 
   return (<header>
@@ -16,16 +26,17 @@ const Header = ({username, profilePic, showBackButton, profileUnfold,
         showBackButton &&
         <button id="back">
           <span className="arrow">
-            <span className="shaft"></span>
+            <span className="shaft"/>
           </span>
-          <span className="content">{L.text.toFront}</span>
+          <span className="content">{L.text && L.text.toFront}</span>
         </button>
       }
     </a>
+    <CreateStudyItem />
+
     <div className={style} onClick={() => onProfileClick(profileUnfold)}>
       <div className="header">
         <p>{username}</p>
-        <img src={demoImage} alt='Profile' />
       </div>
       {
         profileUnfold &&
@@ -36,12 +47,6 @@ const Header = ({username, profilePic, showBackButton, profileUnfold,
       }
     </div>
   </header>);
-};
-
-Header.propTypes = {
-  username: PropTypes.string.isRequired,
-  profilePic: PropTypes.string.isRequired,
-  showBackButton: PropTypes.bool.isRequired,
 };
 
 export default Header;

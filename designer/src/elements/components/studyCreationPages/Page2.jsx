@@ -56,7 +56,7 @@ const Page2 = ({values, errors, dispatch}) => {
         <div className="btn-container">
           <button className="btn-text"
             onClick={dispatch.onPrev}>back</button>
-          <button className="btn-contained" onClick={() =>
+          <button className="btn-contained ml-sm" onClick={() =>
             dispatch.onNext(values.cards)}>next</button>
         </div>
         <div className="page-no-container">

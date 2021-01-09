@@ -189,11 +189,30 @@ button {
 /* Header */
 
 header {
+  align-items: flex-end;
   background-color: white;
   display: flex;
   flex-direction: row;
   height: minmax(var(--height-header), max-content); width: 100%;
   justify-content: center;
+
+  // Push the main action button to the right
+  .btn-contained {
+    margin-left: auto;
+    margin-right: 1.6rem;
+  }
+
+  .profile {
+    align-content: center;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-right: 3rem;
+    padding: .4rem;
+    position: relative;
+    width: auto;
+  }
 }
 
 header h1 {
@@ -260,20 +279,6 @@ header .logo-container button#back .arrow .shaft::before {
 header .logo-container button#back .arrow .shaft::after {
   transform-origin: 0;
   transform: rotate(-40deg);
-}
-
-header .profile {
-  align-content: center;
-  border: solid 5px var(--color-washed-primary);
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  margin-top: 2rem;
-  margin-right: 3rem;
-  padding: .4rem;
-  position: relative;
-  width: minmax(12rem, auto);
 }
 
 header .profile.unfold {
@@ -401,21 +406,6 @@ li.studyItem .dates .launched {
   margin-right: .5rem;
 }
 
-/* Create study card */
-
-button.createStudyCard {
-  background-color: white;
-  border: solid 2px white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .16);
-  color: var(--color-black);
-  cursor: pointer;
-  height: 14rem; width: 14rem;
-}
-
-button.createStudyCard:hover {
-  border: solid 2px var(--color-primary);
-}
-
 /* Filter element */
 
 .filter-container {
@@ -513,47 +503,6 @@ button.createStudyCard:hover {
   display: flex;
   margin-bottom: .5rem;
 }
-
-//.study-creation-card .btn-container button {
-//  background-color: var(--color-primary);
-//  border: 0;
-//  border-radius: 50%;
-//  cursor: pointer;
-//  height: 4rem; width: 4rem;
-//  position: relative;
-//}
-
-//.study-creation-card button.next::after {
-//  background-image: url('./icons/arrow.svg');
-//  background-position: center;
-//  background-repeat: no-repeat;
-//  content: '';
-//  height: 100%; width: 100%;
-//  margin-right: 1rem;
-//  position: absolute;
-//  top: 0; left: .3rem;
-//}
-//
-//.study-creation-card button.prev {
-//  background-color: rgba(0, 0, 0, .6);
-//  border: 0;
-//  border-radius: 50%;
-//  cursor: pointer;
-//  height: 3rem; width: 3rem;
-//  margin-right: 1rem;
-//  position: relative;
-//}
-//
-//.study-creation-card button.prev::after {
-//  background-image: url('./icons/back-arrow.svg');
-//  background-position: center;
-//  background-repeat: no-repeat;
-//  background-size: 40%;
-//  content: '';
-//  height: 100%; width: 100%;
-//  position: absolute;
-//  top: 0; left: -.2rem;
-//}
 
 .study-creation-card .bottom-container {
   align-items: center;
