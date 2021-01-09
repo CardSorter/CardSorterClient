@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import demoImage from '../../icons/sample-user.svg';
+import demoImage from '../../assets/icons/sample-user.svg';
 import L from '../../localization/LocalizedText';
 
 const Header = ({username, profilePic, showBackButton, profileUnfold,

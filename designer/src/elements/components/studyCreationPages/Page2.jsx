@@ -54,10 +54,10 @@ const Page2 = ({values, errors, dispatch}) => {
       </form>
       <div className="bottom-container">
         <div className="btn-container">
-          <button className="prev"
-            onClick={dispatch.onPrev}></button>
-          <button className="next" onClick={() =>
-            dispatch.onNext(values.cards)}></button>
+          <button className="btn-text"
+            onClick={dispatch.onPrev}>back</button>
+          <button className="btn-contained" onClick={() =>
+            dispatch.onNext(values.cards)}>next</button>
         </div>
         <div className="page-no-container">
           <p>2</p>

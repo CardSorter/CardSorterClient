@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import plusSign from '../../icons/plus.svg';
+import plusSign from '../../assets/icons/plus.svg';
 
 const CreateStudyItem = ({onClick}) => (
   <button className="createStudyCard" onClick={onClick}>

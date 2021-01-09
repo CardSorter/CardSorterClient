@@ -16,7 +16,7 @@ import SimilarityMatrix from './studyPageElements/SimilarityMatrix.jsx';
 import Dendrogram from './studyPageElements/Dendrogram.jsx';
 // eslint-disable-next-line no-unused-vars
 import Popup from './Popup.jsx';
-import PopupIcon from '../../icons/share.svg';
+import PopupIcon from '../../assets/icons/share.svg';
 import L from '../../localization/LocalizedText';
 import monthToString from '../../helpers/monthToString';
 

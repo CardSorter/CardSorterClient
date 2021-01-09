@@ -1,7 +1,7 @@
 version: '3'
 services:
   auth:
-    image: node:14.15
+    image: node:12.20
     container_name: card_sorter_auth
     restart: "no"
     working_dir: /home/node/app
@@ -17,13 +17,15 @@ services:
       retries: 3
       start_period: 1m30s
   designer:
-    image: node:14.15
+    build: designer
     container_name: card_sorter_designer
     restart: "no"
-    working_dir: /home/node/app
     volumes:
-      - ./designer:/home/node/app
-    command: "npm start"
+      - ./designer/public:/app/public
+      - ./designer/src:/app/src
+      - ./shared:/app/src/assets/shared
+    stdin_open: true
+    tty: true
     ports:
       - 3002:3002
     healthcheck:
@@ -33,7 +35,7 @@ services:
       retries: 3
       start_period: 1m30s
   sorter:
-    image: node:14.15
+    image: node:12.20
     container_name: card_sorter_sorter
     restart: "no"
     working_dir: /home/node/app

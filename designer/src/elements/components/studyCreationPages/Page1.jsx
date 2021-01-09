@@ -13,7 +13,7 @@ const Page1 = ({values, errors, dispatch}) => (
       <div className="error-holder">
         <input type='text' placeholder={L.text.title}
           defaultValue={values.title} onChange={(e)=>
-            dispatch.onChange('title', e)}></input>
+            dispatch.onChange('title', e)}/>
         {
           errors.title &&
           <div className="error-message"><p>{L.text.fillMeOut}</p></div>
@@ -32,10 +32,10 @@ const Page1 = ({values, errors, dispatch}) => (
     </form>
     <div className="bottom-container">
       <div className="btn-container">
-        <button className="prev disabled"
-          onClick={dispatch.onPrev}></button>
-        <button className="next" onClick={() =>
-          dispatch.onNext(values.title, values.description)}></button>
+        <button className="prev disabled" onClick={dispatch.onPrev}/>
+        <button className="btn-contained" onClick={() => dispatch.onNext(values.title, values.description)}>
+            next
+        </button>
       </div>
       <div className="page-no-container">
         <p>1</p>

@@ -3,7 +3,7 @@ import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
-import noParticipantsImage from '../../../icons/empty.svg';
+import noParticipantsImage from '../../../assets/icons/empty.svg';
 
 const NoParticipants = ({shareUrl, copyUrl}) => {
   const urlRef = useRef(null);

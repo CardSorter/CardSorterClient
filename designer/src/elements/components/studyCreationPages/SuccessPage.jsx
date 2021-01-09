@@ -4,7 +4,7 @@ import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
-import successImage from '../../../icons/success.svg';
+import successImage from '../../../assets/icons/success.svg';
 
 const SuccessPage = ({values, dispatch}) => {
   const urlRef = useRef(null);
