@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import StudiesContainer from '../components/StudiesContainer.jsx';
+import Studies from '../components/Studies.jsx';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -16,9 +16,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const PopulateStudiesContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(StudiesContainer);
-
-export default PopulateStudiesContainer;
+export default connect(mapStateToProps, mapDispatchToProps,)(Studies);

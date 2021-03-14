@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import StudyItem from './StudyItem.jsx';
 
-const StudiesContainer = ({studies, onStudyClick}) => (
+const Studies = ({studies, onStudyClick}) => (
   <ul className="studies-container">
     {
       studies.map((Study, index) =>
@@ -15,8 +15,8 @@ const StudiesContainer = ({studies, onStudyClick}) => (
   </ul>
 );
 
-StudiesContainer.propTypes = {
+Studies.propTypes = {
   studies: PropTypes.array.isRequired,
 };
 
-export default StudiesContainer;
+export default Studies;

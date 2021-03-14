@@ -17,36 +17,36 @@ export interface HeaderDispatch {
 
 const Header: React.FC<HeaderState & HeaderDispatch> = ({username, showBackButton,
                                                           profileUnfold, onProfileClick, onLogoutClick}) => {
-  const style = (!profileUnfold) ? 'profile' : 'profile unfold';
 
-  return (<header>
-    <a className="logo-container" href="/">
-      <p id="logo">Card Sorter</p>
-      {
-        showBackButton &&
-        <button id="back">
-          <span className="arrow">
-            <span className="shaft"/>
-          </span>
-          <span className="content">{L.text && L.text.toFront}</span>
-        </button>
-      }
-    </a>
-    <CreateStudyItem />
+  return (
+    <header>
+      <a className="logo-container" href="/">
+        <p id="logo">Card Sorter</p>
+        {
+          showBackButton &&
+          <button id="back">
+            <span className="arrow">
+              <span className="shaft"/>
+            </span>
+            <span className="content">{L.text && L.text.toFront}</span>
+          </button>
+        }
+      </a>
+      <CreateStudyItem />
 
-    <div className={style} onClick={() => onProfileClick(profileUnfold)}>
-      <div className="header">
-        <p>{username}</p>
+      <div className={(!profileUnfold) ? 'profile' : 'profile unfold'} onClick={() => onProfileClick(profileUnfold)}>
+        <p className="header">{username}</p>
+
+        {
+          profileUnfold &&
+            <ul className="content">
+              <li><button className="unfunctional">Settings</button></li>
+              <li><button onClick={onLogoutClick}>Log out</button></li>
+            </ul>
+        }
       </div>
-      {
-        profileUnfold &&
-      <div className="content">
-        <button className="unfunctional">Settings</button>
-        <button onClick={onLogoutClick}>Log out</button>
-      </div>
-      }
-    </div>
-  </header>);
+    </header>
+  );
 };
 
 export default Header;
