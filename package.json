@@ -1,18 +1,27 @@
 {
-  "name": "auth",
+  "name": "card-sorter-designer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@types/node": "^14.14.16",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
     "cross-fetch": "^3.0.2",
+    "d3": "^5.9.2",
+    "d3-textwrap": "^2.0.2",
     "node-sass": "^4.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-redux": "^7.0.2",
+    "react-intl": "^5.13.5",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.4.4",
     "redux": "^4.0.1",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "typescript": "^4.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,7 +40,7 @@
   ],
   "devDependencies": {
     "eslint-config-google": "^0.12.0",
-    "eslint-plugin-react": "^7.12.4"
-  },
-  "homepage": "http://serve.com/auth"
+    "eslint-plugin-react": "^7.12.4",
+    "redux-logger": "^3.0.6"
+  }
 }

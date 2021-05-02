@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, {Component} from 'react';
 
-import '../App.css';
+import '../App.scss';
 // eslint-disable-next-line no-unused-vars
 import RegisterContainer from '../elements/containers/RegisterContainer.jsx';
 

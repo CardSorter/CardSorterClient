@@ -15,7 +15,8 @@ The full paper that was based on this tool can be found on the ACM's directory
 1. Clone the repo locally (e.g. `$ git clone https://github.com/CardSorter/CardSorterClient`)
 2. Clone the server locally (https://github.com/CardSorter/CardSorterServer) and follow the instructions there for setting up the api.
 3. Cd into the root folder (e.g. `$ cd CardSorterClient`)
-4. If running for the first time, install dependencies (e.g. `$ sh ./install_dependencies.sh`)
+4. (optional) If running for the first time, install dependencies (e.g. `$ sh ./install_dependencies.sh`). This is used for linting purposes, as packages
+   are managed in the containers.
 5. From the root folder get up the development environment `$ docker-compose up`
 
 Alternatively:

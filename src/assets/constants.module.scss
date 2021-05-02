@@ -1,0 +1,53 @@
+// COLORS
+
+$color-primary: #14001C;
+$color-primary-variant: #B600FF;
+$color-secondary: #DB80FF;
+$color-secondary-variant: #78408E;
+
+$color-background: #F0F0F0;
+$color-white: #FFFFFF;
+
+$color-error: #FF001F;
+$color-green: #00FF57;
+$color-inactive: #C9C5CA;
+
+$size-xxs: 9px;
+$size-xs: 18px;
+$size-s: 27px;
+$size-m: 36px;
+$size-l: 48px;
+$size-xl: 62px;
+$size-xxl: 84px;
+
+
+$text-h1: 400 64px 'Lato';
+$text-h2: 300 48px 'Lato';
+$text-h3: 300 36px 'Lato';
+$text-h4: 300 uppercase 24px 'Lato';
+$text-h5: 18px 'Lato';
+$text-h6: uppercase 14px 'Lato';
+$text-subtitle1: 14px 'Bodoni Moda';
+$text-subtitle2: 700 12px 'Lato';
+$text-body1: 14px 'Bodoni Moda';
+$text-body2: 12px 'Lato';
+$text-button: 700 12px uppercase 'Lato';
+$text-caption: 10px 'Lato';
+$text-overline: 700 8px uppercase 'Lato';
+
+$transition-timing: .2s ease-out;
+
+
+
+:export {
+  colorPrimary: #14001C;
+
+  textH1: $text-h1;
+  textH2: $text-h2;
+  textH3: $text-h3;
+  textSubtitle1: $text-subtitle1;
+  textSubtitle2: $text-subtitle2;
+  textBody1: $text-body1;
+  textButton: $text-button;
+}
+

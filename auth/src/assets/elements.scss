@@ -1,0 +1,153 @@
+html, body {
+  color: var(--color-black);
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  height: 100%;
+  margin: 0;
+}
+
+// BUTTONS
+
+.btn-contained {
+  align-items: center;
+  background-color: $color-primary;
+  color: white;
+  display: flex;
+  font-weight: 500;
+  height: 3.6rem;
+  text-transform: uppercase;
+  transition: all .3s ease-out;
+  padding: 0 1.8rem;
+  min-width: 6.4rem;
+  width: auto;
+
+  &.disabled {
+    color: rgba(0, 0, 0, .5);
+  }
+
+  &:hover, &:focus {
+    box-shadow: 0 1px 5px rgba(20, 0, 28, 0.25), 0 3px 4px rgba(228, 161, 255, 0.25), 0 2px 4px rgba(134, 0, 188, 0.25);
+  }
+
+  &:active {
+    border-bottom: $color-primary-variant 3px solid;
+  }
+}
+
+.btn-text {
+  background-color: transparent;
+  color: #000000;
+  font-weight: 500;
+  height: 3.6rem;
+  text-transform: uppercase;
+  transition: all .3s ease-out;
+  padding: 0 1.8rem;
+  min-width: 6.4rem;
+  width: auto;
+
+  &.disabled {
+    color: rgba(0, 0, 0, .5);
+  }
+
+  &:hover, &:focus {
+    background-color: $color-secondary;
+  }
+
+  &:active {
+    border-bottom: $color-secondary-variant 3px solid;
+  }
+}
+
+// DROPDOWN
+
+ul.dropdown {
+  background-color: $color-white;
+  height: 47px;
+  padding: 8px 18px;
+}
+
+// ALIGNMENTS
+.ml-sm {
+  margin-left: .8rem;
+}
+
+// Icons
+
+.material-icons {
+  font-size: 1.8rem;
+}
+
+// THE HEADER
+/* Header */
+
+header {
+  align-items: center;
+  background-color: $color-white;
+  flex-direction: row;
+  height: $size-xxl; width: 100%;
+  display: flex;
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  .logo-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    text-decoration: none;
+
+    #logo {
+      color: var(--color-black);
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    button#back {
+      align-items: center;
+      background: 0;
+      display: flex;
+      color: var(--color-black);
+      position: relative;
+
+      .arrow {
+        margin-right: .5rem;
+        position: relative;
+        width: 2.5rem;
+
+        .shaft {
+          background: var(--color-black);
+          display: block;
+          height: 1px; width: 2.5rem;
+          position: relative;
+
+          &::before, &::after {
+            background: var(--color-black);
+            content: '';
+            display: block;
+            height: 1px;
+            left: 0; top: 0;
+            position: absolute;
+            width: .8rem;
+          }
+
+          &::before {
+            transform-origin: 0;
+            transform: rotate(40deg);
+          }
+
+          &::after {
+            transform-origin: 0;
+            transform: rotate(-40deg);
+          }
+        }
+      }
+    }
+  }
+}

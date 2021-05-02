@@ -1,0 +1,321 @@
+html, body {
+  color: var(--color-black);
+  font-family: $text-body1;
+  font-size: 10px;
+  height: 100%;
+  margin: 0;
+}
+
+main {
+  padding: $size-xs $size-xl $size-l;
+  max-width: 1440px;
+}
+
+// BUTTONS
+
+// Material overrides for buttons
+.btn-overrides {
+  height: $size-m;
+}
+
+.btn-contained {
+  align-items: center;
+  background-color: $color-primary;
+  color: white;
+  display: flex;
+  font-weight: 500;
+  height: 3.6rem;
+  text-transform: uppercase;
+  transition: all .3s ease-out;
+  padding: 0 1.8rem;
+  min-width: 6.4rem;
+  width: auto;
+
+  &.disabled {
+    color: rgba(0, 0, 0, .5);
+  }
+
+  &:hover, &:focus {
+    box-shadow: 0 1px 5px rgba(20, 0, 28, 0.25), 0 3px 4px rgba(228, 161, 255, 0.25), 0 2px 4px rgba(134, 0, 188, 0.25);
+  }
+
+  &:active {
+    border-bottom: $color-primary-variant 3px solid;
+  }
+}
+
+.btn-text {
+  background-color: transparent;
+  color: #000000;
+  font-weight: 500;
+  height: 3.6rem;
+  text-transform: uppercase;
+  transition: all .3s ease-out;
+  padding: 0 1.8rem;
+  min-width: 6.4rem;
+  width: auto;
+
+  &.disabled {
+    color: rgba(0, 0, 0, .5);
+  }
+
+  &:hover, &:focus {
+    background-color: $color-secondary;
+  }
+
+  &:active {
+    border-bottom: $color-secondary-variant 3px solid;
+  }
+}
+
+// ALIGNMENTS
+.ml-xxs {
+  margin-left: $size-xxs !important;
+}
+
+.ml-xs {
+  margin-left: $size-xs !important;
+}
+
+.ml-s {
+  margin-left: $size-s !important;
+}
+
+.mb-xs {
+  margin-bottom: $size-xs !important;
+}
+
+.mb-s {
+  margin-bottom: $size-s !important;
+}
+
+.mb-l {
+  margin-bottom: $size-l !important;
+}
+
+.mt-xl {
+  margin-top: $size-xl;
+}
+
+// Icons
+
+.material-icons {
+  font-size: 1.8rem;
+}
+
+// THE HEADER
+
+header {
+  align-items: center;
+  background-color: $color-white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  height: $size-xxl; width: 100%;
+  padding: 0 $size-xl;
+
+  .logo-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    text-decoration: none;
+
+    #logo {
+      color: var(--color-black);
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    button#back {
+      align-items: center;
+      background: 0;
+      display: flex;
+      color: var(--color-black);
+      position: relative;
+
+      .arrow {
+        margin-right: .5rem;
+        position: relative;
+        width: 2.5rem;
+
+        .shaft {
+          background: var(--color-black);
+          display: block;
+          height: 1px; width: 2.5rem;
+          position: relative;
+
+          &::before, &::after {
+            background: var(--color-black);
+            content: '';
+            display: block;
+            height: 1px;
+            left: 0; top: 0;
+            position: absolute;
+            width: .8rem;
+          }
+
+          &::before {
+            transform-origin: 0;
+            transform: rotate(40deg);
+          }
+
+          &::after {
+            transform-origin: 0;
+            transform: rotate(-40deg);
+          }
+        }
+      }
+    }
+  }
+} // HEADER END
+
+// The Filter element
+
+.filter-container {
+  align-items: center;
+  display: flex;
+}
+
+// STUDIES CONTAINER
+
+ul.studies-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+// STUDY ITEM (the study card that is shown in the studies page)
+
+li.studyItem {
+  background-color: $color-white;
+  cursor: pointer;
+  height: 17.5rem; width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  .content {
+    display: grid;
+    height: 100%; width: 100%;
+    grid-template-areas:
+      ". title ."
+      ". participants ."
+      "status . dates";
+    grid-template-columns: 1fr minmax(max-content, 4fr) 1fr;
+    grid-template-rows: 4fr 1fr 2fr;
+
+    h2 {
+      align-self: center;
+      grid-area: title;
+      justify-self: center;
+    }
+
+    .participants {
+      align-items: center;
+      display: flex;
+      grid-area: participants;
+      justify-self: center;
+    }
+
+
+    .status {
+      align-items: center;
+      align-self: flex-end;
+      border-left: $size-xxs solid $color-green;
+      display: flex;
+      height: $size-m;
+      grid-area: status;
+      padding: $size-xxs;
+    }
+
+    .dates {
+      align-items: flex-end;
+      grid-area: dates;
+      padding: 16px;
+      text-align: right;
+    }
+  }
+
+  a {
+    border: solid 2px transparent;
+    bottom: 0; left: 0; top: 0; right: 0;
+    display: block;
+    position: absolute;
+    transition: border $transition-timing;
+
+    &:hover {
+      border: solid 2px $color-primary;
+    }
+  }
+}
+
+
+// STUDY PAGE
+
+main#study-page {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin-top: $size-l;
+
+  // The (sub)menu of the study
+  nav#study-menu {
+
+    .menu-item {
+      color: black;
+      display: inline-block;
+      text-decoration: none;
+      text-transform: capitalize;
+      padding: 0 $size-xs;
+      margin: $size-xs 0;
+
+      &.selected {
+        background-color: $color-primary;
+        color: white;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  //  The content of the study
+  .content {
+
+    .header {
+      display: grid;
+      grid-gap: $size-xxs;
+      grid-template-columns: min-content auto;
+      grid-template-rows: 1fr auto;
+
+      h1 {
+        grid-column: 1 / 3;
+      }
+
+      // The status indicator
+      .active-container {
+        align-items: center;
+        box-sizing: border-box;
+        display: inline-flex;
+        height: $size-l; width: min-content;
+        justify-content: center;
+        padding: $size-xs;
+
+        &.active {
+          background-color: $color-green;
+        }
+
+        &.inactive {
+          background-color: $color-inactive;
+        }
+      }
+
+      // The number of participants indicator
+      .participants {
+        align-items: center;
+        display: flex;
+      }
+    }
+  }
+}

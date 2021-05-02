@@ -1,0 +1,222 @@
+@import "./reset";
+@import "./constants";
+@import "./elements";
+
+:root {
+  --color-black: #181818;
+  --color-green: #94F4CD;
+  --color-light-green: #B3EED8;
+  --color-red: #F4A394;
+  --color-light-red: #F5BCB2;
+  --color-purple: #BAA5FF;
+  --color-purple-light: #CABCFA;
+  --color-washed-purple: #C4c6E7;
+  --color-error: #D24D57;
+
+  --shadow: 0 2px 6px rgb(0, 0, 0, .16);
+
+  --height-header: 8rem;
+}
+
+#root, main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+#logo {
+  color: white;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 1rem;
+  left: 1rem; top: 1rem;
+  position: absolute;
+  text-decoration: none;
+}
+
+#logo::before {
+  background-color: var(--color-black);
+  content: '';
+  height: 100%; width: 100%;
+  left: 0; top: 0;
+  opacity: .5;
+  position: absolute;
+  z-index: 0;
+}
+
+#logo p {
+  position: relative;
+  z-index: 1;
+}
+
+.unavailable {
+  cursor: default !important;
+  opacity: .6 !important;
+}
+
+/* Login Page */
+
+.container {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 40rem; width: 40rem;
+  padding: 3rem;
+}
+
+.container::after {
+  background-color: #181818;
+  background-image: url('https://picsum.photos/g/2560/1080/?random');
+  background-position: center;
+  background-size: cover;
+  content: '';
+  height: 100%; width: 100%;
+  position: absolute;
+  top:0; left: 0;
+  z-index: -1;
+}
+
+.container > p {
+  align-self: flex-end;
+  font-size: 3rem;
+}
+
+.container > p::first-letter {
+  text-transform: capitalize;
+}
+
+.container button {
+  background: 0;
+  border: 0;
+  color: var(--color-light-red);
+  cursor: pointer;
+  font-size: 1.4rem;
+  text-decoration: underline;
+}
+
+.container form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.container form .error-holder {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.container form .error-holder .error-message {
+  align-items: center;
+  background: var(--color-error);
+  border-radius: 0 0 .5rem .5rem;
+  color: white;
+  display: flex;
+  font-size: 1.5rem;
+  height: 3rem; width: 100%;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  top: 4.5rem;
+  z-index: -1;
+}
+
+.container form input {
+  background: white;
+  border: solid 1px rgba(0, 0, 0, .5);
+  border-radius: .2rem;
+  font-size: 1.4rem;
+  height: 4.5rem;
+  text-indent: 2rem;
+  width: 100%;
+  z-index: 2;
+}
+
+.container form input {
+  margin-bottom: 4rem;
+}
+
+.container form input.last {
+  margin-bottom: 1rem;
+}
+
+.container form button.action {
+  background: transparent;
+  border-radius: .2rem;
+  box-sizing: border-box;
+  color: var(--color-black);
+  cursor: pointer;
+  height: 4rem; width: 20rem;
+  font-weight: bold;
+  position: relative;
+  padding: 10px;
+  margin-top: 6rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.container form button.action > p {
+  position: relative;
+  z-index: 2;
+}
+
+.container form button.action:hover {
+  color: white;
+  transition: .3s;
+}
+
+.container form button.action::before {
+  box-sizing: border-box;
+  border-radius: .2rem;
+  content: '';
+  height: 4rem; width: 0;
+  position: absolute;
+  right: -3px; top: -3px;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  z-index: 0;
+}
+
+.container form button.action:hover::before {
+  left: -3px; right: auto;
+  width: 20rem;
+}
+
+.container form button.action.login {
+  border: solid 3px #BAA5FF;
+}
+
+.container form button.action.login::before {
+  background: radial-gradient(circle at 10%, #D1C3FF, #BAA5FF);
+}
+
+.container button.register {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* Register Page */
+
+.container form button.action.signup {
+  border: solid 3px var(--color-red);
+}
+
+.container form button.action.signup::before {
+  background: radial-gradient(circle at 0% 90%, var(--color-light-red), var(--color-red));
+}
+
+.container button.back {
+  background-image: url('./icons/back-btn.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  height: 2.5rem; width: 2.5rem;
+  opacity: .8;
+  position: absolute;
+}
