@@ -1,8 +1,8 @@
 cd ./auth/
-yarn install
+yarn install --ignore-platform
 
 cd ../designer/
-yarn install
+yarn install --ignore-platform
 
 cd ../sorter/
-yarn install
+yarn install --ignore-platform

@@ -13,4 +13,7 @@
 */**/build
 */**/yarn.lock
 
+# Other files
+
+.eslintcache
 

@@ -37,7 +37,7 @@ const Register = ({onUsernameChange, onPasswordChange, onEmailChange,
             <div className="error-message"><p>{passwordError}</p></div>
           }
         </div>
-        
+
         <div className="error-holder">
           <input type="email" className="email last" onChange={onEmailChange}
             placeholder={L.text.email}/>

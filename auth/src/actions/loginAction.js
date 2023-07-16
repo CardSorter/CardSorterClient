@@ -127,7 +127,7 @@ export function sendCredentials(username, password) {
               document.cookie = 'auth_token='+json.auth_token+'; path=/';
               dispatch(sendingCredentials(
                   StatusEnum.SUCCESS, json.location, json.error));
-            })
+            }),
         );
   };
 }

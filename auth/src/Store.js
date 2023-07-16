@@ -18,7 +18,7 @@ export default function initializeStore() {
   }
 
   const store = createStore(app, initialState, applyMiddleware(
-      ...middleware
+      ...middleware,
   ));
 
   localizedText.initialize('en-us');

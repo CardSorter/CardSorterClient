@@ -157,7 +157,7 @@ export function sendCredentials(username, password, email) {
               document.cookie = 'auth_token='+json.auth_token+'; path=/';
               dispatch(sendingCredentials(
                   StatusEnum.SUCCESS, json.location, json.error));
-            })
+            }),
         );
   };
 }
