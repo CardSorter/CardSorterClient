@@ -92,7 +92,7 @@ const Page2 = ({ values, errors, dispatch }) => {
             if (duplicateNames.length > 0) {
               // Display an error message or handle the scenario as needed
               let message = 'Duplicate card names: ' + duplicateNames.toString();
-              alert(errors.cards);
+              alert(message);
 
             } else {
               dispatch.onNext(values.cards)
