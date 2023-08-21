@@ -168,7 +168,7 @@ button {
 
 .btn-secondary {
   background: 0;
-  border: solid 2px var(--color-secondary);
+  border: solid 1.7px black;
   box-sizing: border-box;
   width: 10rem;
 }
@@ -178,7 +178,7 @@ button {
 }
 
 .btn-secondary::before {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary-dark);
   right: -2px; top: -2px;
 }
 
@@ -632,7 +632,7 @@ button.createStudyCard:hover {
 
 .study-creation-card form.cards .add-buttons-container .multi-add-container {
   align-items: center;
-  background-color: var(--color-secondary-light);
+  background-color: var(--color-primary);
   border-radius: .2rem;
   display: flex;
   flex-direction: row;
@@ -657,12 +657,12 @@ button.createStudyCard:hover {
 }
 
 .study-creation-card form.cards .add-buttons-container .multi-add-container button > svg {
-  fill: var(--color-secondary);
+  fill: white;
   height: 100%; width: 100%;
 }
 
 .study-creation-card form.cards .add-buttons-container .multi-add-container button:hover > svg {
-  fill: white;
+  fill: black;
   transition: .3s;
 }
 

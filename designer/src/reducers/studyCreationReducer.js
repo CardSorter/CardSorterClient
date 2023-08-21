@@ -19,15 +19,15 @@ export default function studyCreationReducer(state={}, action) {
         'description': action.payload.description,
       });
     }
-    case studyCreationActions.ADD_CARD: {
-      const newState = Object.assign({}, state);
-      newState['cards'][action.payload.id] = {
-        id: action.payload.id,
-        name: undefined,
-        description: undefined,
-      };
-      return newState;
-    }
+    // case studyCreationActions.ADD_CARD: {
+    //   const newState = Object.assign({}, state);
+    //   newState['cards'][action.payload.id] = {
+    //     id: action.payload.id,
+    //     name: undefined,
+    //     description: undefined,
+    //   };
+    //   return newState;
+    // }
     case studyCreationActions.ADD_X_CARDS: {
       const newState = Object.assign({}, state);
 
@@ -35,7 +35,7 @@ export default function studyCreationReducer(state={}, action) {
       for (let i = 0; i < action.payload.no; i++) {
         newState['cards'][id+i] = {
           id: id+i,
-          name: 'A very large title title tile',
+          name: undefined,
           description: undefined,
         };
       }
