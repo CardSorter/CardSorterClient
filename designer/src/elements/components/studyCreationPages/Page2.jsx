@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
@@ -8,23 +8,47 @@ import Card from './Card.jsx';
 
 const Page2 = ({ values, errors, dispatch }) => {
   const addCardsRef = useRef(1);
+  const [cardCount, setCardCount] = useState(values.cards.length);
+
+  const findDuplicateCardNames = () => {
+    const cardNames = values.cards.map((card) => card.name);
+    const duplicateCardNames = new Set();
+    const seenCardNames = new Set();
+
+    for (const cardName of cardNames) {
+      if (seenCardNames.has(cardName)) {
+        duplicateCardNames.add(cardName);
+      } else {
+        seenCardNames.add(cardName);
+      }
+    }
+
+    return [...duplicateCardNames];
+  };
 
   return (
     <div className="study-creation-card">
       <h1>{L.text.createStudy}</h1>
-      <h2> {L.text.cards}</h2>
+      <h2>{L.text.totalCards}{cardCount} </h2>
 
       <form className="cards">
         <div className="error-holder">
           <div className="card-container">
             {
               values.cards.map((card) => (
-                <Card key={'card' + card.id} name={card.name}
-                  description={card.description} onNameChange={(e) =>
-                    dispatch.onCardNameChange(card.id, e)}
+                <Card
+                  key={'card' + card.id}
+                  name={card.name}
+                  description={card.description} onNameChange={(e) => {
+                    dispatch.onCardNameChange(card.id, e)
+                  }}
                   onDescriptionChange={(e) =>
                     dispatch.onCardDescriptionChange(card.id, e)}
-                  onDelete={() => dispatch.onDeleteCard(card.id)} />
+                  onDelete={() => {
+                    setCardCount(cardCount - 1);
+                    dispatch.onDeleteCard(card.id)
+                  }
+                  } />
               ))
             }
           </div>
@@ -39,7 +63,11 @@ const Page2 = ({ values, errors, dispatch }) => {
             <input defaultValue="1" ref={addCardsRef}></input>
             <p>{L.text.cards}</p>
             <button className="btn-secondary" type="button"
-              onClick={() => dispatch.onCreateXCards(addCardsRef)}>
+              onClick={() => {
+                setCardCount(cardCount + parseInt(addCardsRef.current.value, 10));
+                dispatch.onCreateXCards(addCardsRef)
+              }
+              }>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32">
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
               </svg>
@@ -53,13 +81,23 @@ const Page2 = ({ values, errors, dispatch }) => {
           </button>
         */}
         </div>
-      </form>
+      </form >
       <div className="bottom-container">
         <div className="btn-container">
           <button className="prev"
             onClick={dispatch.onPrev}></button>
-          <button className="next" onClick={() =>
-            dispatch.onNext(values.cards)}></button>
+          <button className="next" onClick={() => {
+            const duplicateNames = findDuplicateCardNames();
+
+            if (duplicateNames.length > 0) {
+              // Display an error message or handle the scenario as needed
+              let message = 'Duplicate card names: ' + duplicateNames.toString();
+              alert(errors.cards);
+
+            } else {
+              dispatch.onNext(values.cards)
+            }
+          }}></button>
         </div>
         <div className="page-no-container">
           <p>2</p>
@@ -67,7 +105,7 @@ const Page2 = ({ values, errors, dispatch }) => {
           <p>3</p>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

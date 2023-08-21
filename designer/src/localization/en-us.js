@@ -63,5 +63,6 @@ export default {
   users: 'users',
   wasGroupedTogetherBy: 'was grouped together by ',
   wereSorterInAverage: 'were sorter in average',
+  totalCards: 'Total cards: ',
 };
 
