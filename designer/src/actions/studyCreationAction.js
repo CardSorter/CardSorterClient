@@ -18,6 +18,7 @@ export const TOGGLE_TITLE_ERROR = 'TOGGLE_TITLE_ERROR';
 export const TOGGLE_DESCRIPTION_ERROR = 'TOGGLE_DESCRIPTION_ERROR';
 export const TOGGLE_CARD_ERROR = 'TOGGLE_CARD_ERROR';
 export const TOGGLE_THANKS_ERROR = 'TOGGLE_THANKS_ERROR';
+export const TOGGLE_CARD_DUPLICATE = 'TOGGLE_CARD_DUPLICATE';
 
 export const SEND_STUDY = 'SEND_STUDY';
 
@@ -206,7 +207,15 @@ export function toggleCardError(status) {
     error: false,
   };
 }
-
+export function toggleCardDuplicate(status) {
+  return {
+    type: TOGGLE_CARD_DUPLICATE,
+    payload: {
+      status: status,
+    },
+    error: false,
+  };
+}
 /**
  * Toogle the error flag on the thanks input.
  * @param {Boolean} status

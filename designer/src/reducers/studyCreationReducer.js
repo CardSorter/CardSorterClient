@@ -78,6 +78,11 @@ export default function studyCreationReducer(state={}, action) {
         'errorCards': action.payload.status,
       });
     }
+    case studyCreationActions.TOGGLE_CARD_DUPLICATE: {
+      return Object.assign({}, state, {
+        'errorDuplicate': action.payload.status,
+      });
+    }
     case studyCreationActions.TOGGLE_THANKS_ERROR: {
       return Object.assign({}, state, {
         'errorMessage': action.payload.status,

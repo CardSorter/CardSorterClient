@@ -4,6 +4,7 @@ export default {
   add: 'add',
   addCard: 'Add Card',
   april: 'april',
+  areDuplicates :'There are duplicates',
   august: 'august',
   averageSort: 'average sort',
   basicInformation: 'Basic Information',
@@ -28,7 +29,7 @@ export default {
   editedOn: 'Last edited on',
   endedOn: 'Ended on',
   february: 'february',
-  fillMeOut: 'fill me out',
+  fillNameFields: 'fill name fields',
   filter: 'FILTER',
   frequency: 'frequency',
   inactive: 'Inactive',
@@ -59,10 +60,11 @@ export default {
   thanksMessage: 'Thanks message',
   timeTaken: 'time taken',
   title: 'Title',
-  toFront: 'to Front',
+  toFront: 'to Front', 
+  totalCards: 'Total cards: ',
   users: 'users',
   wasGroupedTogetherBy: 'was grouped together by ',
   wereSorterInAverage: 'were sorter in average',
-  totalCards: 'Total cards: ',
+ 
 };
 

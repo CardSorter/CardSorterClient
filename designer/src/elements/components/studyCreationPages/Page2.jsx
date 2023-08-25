@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useSelector } from 'react';
 import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
@@ -11,7 +11,7 @@ const Page2 = ({ values, errors, dispatch }) => {
   const [cardCount, setCardCount] = useState(values.cards.length);
 
   const findDuplicateCardNames = () => {
-    const cardNames = values.cards.map((card) => card.name);
+    const cardNames = values.cards.map((card) => card.name.trim().toLowerCase());
     const duplicateCardNames = new Set();
     const seenCardNames = new Set();
 
@@ -49,13 +49,22 @@ const Page2 = ({ values, errors, dispatch }) => {
                     dispatch.onDeleteCard(card.id)
                   }
                   } />
+
               ))
             }
           </div>
           {
+
             errors.cards &&
-            <div className="error-message"><p>{L.text.fillMeOut}</p></div>
+            <div className="error-message"><p>{L.text.fillNameFields}</p></div>
           }
+          {
+
+            errors.duplicate && (
+              <div className="error-message">
+                <p>{L.text.areDuplicates}</p>
+              </div>
+            )}
         </div>
         <div className="add-buttons-container">
           <div className="multi-add-container">
@@ -87,17 +96,17 @@ const Page2 = ({ values, errors, dispatch }) => {
           <button className="prev"
             onClick={dispatch.onPrev}></button>
           <button className="next" onClick={() => {
-            const duplicateNames = findDuplicateCardNames();
+            // const duplicateNames = findDuplicateCardNames();
 
-            if (duplicateNames.length > 0) {
-              // Display an error message or handle the scenario as needed
-              let message = 'Duplicate card names: ' + duplicateNames.toString();
-              alert(message);
-
-            } else {
-              dispatch.onNext(values.cards)
-            }
-          }}></button>
+            // if (duplicateNames.length > 0) {
+            //   const message = 'Duplicate card names: ' + duplicateNames.toString();
+            //   setErrorMessage(message); // Update error message state
+            // } else {
+            // setErrorMessage(''); // Clear error message state
+            dispatch.onNext(values.cards);
+          }
+          }>
+          </button>
         </div>
         <div className="page-no-container">
           <p>2</p>

@@ -929,7 +929,7 @@ button.createStudyCard:hover {
 .study-page .content .data-container {
   box-shadow: var(--shadow);
   font-size: 1.5rem;
-  overflow: auto;
+  overflow: scroll;
   padding: 2rem;
   position: relative;
 }
