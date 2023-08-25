@@ -6,7 +6,8 @@ small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+table, caption, tbody, tfoot, thead
+, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
@@ -929,13 +930,17 @@ button.createStudyCard:hover {
 .study-page .content .data-container {
   box-shadow: var(--shadow);
   font-size: 1.5rem;
-  overflow: scroll;
-  padding: 2rem;
+  overflow: auto;
+  padding: 2rem ;
   position: relative;
 }
+.data-container {
+padding-top: 0 !important;
+}
+
 
 .study-page .content .data-container table {
-  width: 100%
+  width: 100%;
 }
 
 .study-page .content table th {
@@ -1147,3 +1152,17 @@ td.color-100 {
   display: flex;
   justify-content: center;
 }
+
+#table_header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+
+th {
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  
+}
+

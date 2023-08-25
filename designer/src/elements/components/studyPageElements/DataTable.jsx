@@ -20,7 +20,7 @@ const DataTable = ({ headers, data }) => {
   return (
     <div className="data-container" ref={dataContainerRef}>
       <table>
-        <thead>
+        <thead id='table_header'>
           <tr>
             {
               headers.map((header) =>
