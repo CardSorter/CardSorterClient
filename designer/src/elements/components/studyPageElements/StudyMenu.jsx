@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
 
-const StudyMenu = ({selectedNo, onClicks}) => {
+const StudyMenu = ({ selectedNo, onClicks }) => {
   const styles = [];
   for (let i = 0; i < 5; i++) {
     styles[i] = '';

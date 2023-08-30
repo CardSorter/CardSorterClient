@@ -9,11 +9,11 @@ import StudyContainer from '../elements/containers/StudyContainer.jsx';
 /**
  * @return {ReactDOM} The study page.
  */
-const StudyPage = ({history, match}) => {
+const StudyPage = ({ history, match }) => {
   return (
     <main>
-      <Header showBackButton={true}/>
-      <StudyContainer id={match.params.id}/>
+      <Header showBackButton={true} />
+      <StudyContainer id={match.params.id} />
     </main>);
 };
 

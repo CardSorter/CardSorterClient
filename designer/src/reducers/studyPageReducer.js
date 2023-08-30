@@ -15,6 +15,7 @@ export default function studyPageReducer(state={}, action) {
       if (action.payload.status === StatusEnum.SUCCESS) {
         newState.id = study.id;
         newState.title = study.title;
+        newState.description = study.description;
         newState.isLive = study.isLive;
         newState.launchedDate = new Date(study.launchedDate);
         newState.ended = study.ended ? new Date(study.ended): undefined;
@@ -77,6 +78,12 @@ export default function studyPageReducer(state={}, action) {
         'popupShowing': action.payload.toggle,
       });
     }
+    case studyActions.TOGGLE_EDIT_POPUP: {
+      return Object.assign({}, state, {
+      'editPopupOpen': action.payload.toggle,
+  });
+}
+
     default: {
       return state;
     }

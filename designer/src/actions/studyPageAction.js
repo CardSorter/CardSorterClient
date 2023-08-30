@@ -8,6 +8,8 @@ export const LOAD_STUDY = 'LOAD_STUDY';
 export const CHANGE_HOVERED_CARDS = 'CHANGE_HOVERED_CARDS';
 export const LOAD_CLUSTERS = 'LOAD_CLUSTERS';
 export const TOGGLE_POPUP = 'TOGGLE_POPUP';
+export const UPDATE_STUDY = 'UPDATE_STUDY';
+export const TOGGLE_EDIT_POPUP = 'TOGGLE_EDIT_POPUP';
 
 /**
  * Changes the view that the study page is showing.
@@ -113,11 +115,11 @@ export function fetchStudy(id) {
     })
         .then(
             (response) => response.json().then((json) => {
-              if (response.status === 401) {
+              if (response.status === 401) {                
                 // Redirect
                 setTimeout(window.location.reload(true), 1000);
                 window.location.replace(json.location);
-              } else {
+              } else { 
                 dispatch(loadStudy(StatusEnum.SUCCESS, json.study));
               }
             }
@@ -156,4 +158,70 @@ export function fetchClusters(id) {
             )
         );
   }
+}
+
+export const updateStudy = (studyId, updatedProperties) => {
+  return (dispatch) => {
+     fetch(api+'/studies_endpoint?id='+studyId, {
+      method: 'PUT',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': auth.getToken(),
+        'Access-Control-Allow-Credentials': true,
+      },
+      body: JSON.stringify(updatedProperties),
+    })
+    .then(response => {
+            if (response.ok) {
+              dispatch(fetchStudy(studyId));
+            } else {
+              alert('Failed to update study'); 
+            }
+          })
+          .catch(error => {
+            alert('An error occurred: ' + error);
+          });
+      };
+    };
+  
+
+export const deleteStudy = (studyId)=>
+{
+  return (dispatch) => {
+     fetch(api+'/studies_endpoint?id='+studyId, {
+      method: 'DELETE',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': auth.getToken(),
+        'Access-Control-Allow-Credentials': true,
+      },
+    })
+    .then(response => {
+            if (response.ok) {
+              window.location.replace('/');
+            } else {
+              alert('Failed to delete study'); 
+            }
+          })
+          .catch(error => {
+            alert('An error occurred: ' + error);
+          });
+      };
+};
+
+
+
+
+export function toggleEditPopup(toggle) {
+  return {
+    type: TOGGLE_EDIT_POPUP,
+    payload: {
+      toggle: toggle,
+    },
+    error: false,
+  };
 }

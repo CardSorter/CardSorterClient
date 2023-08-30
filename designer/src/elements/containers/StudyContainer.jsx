@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Study from '../components/Study.jsx';
 import L from '../../localization/LocalizedText';
@@ -113,6 +113,7 @@ const mapStateToProps = (state) => {
     isFetching: state.study.isFetching,
     title: state.study.title,
     isLive: state.study.isLive,
+    description: state.study.description,
     launched: state.study.launchedDate,
     noParticipants: state.study.noParticipants,
     similarityPage: state.study.selectedItem === 3,
@@ -131,6 +132,10 @@ const mapStateToProps = (state) => {
     clusters: state.study.clusters,
     clustersFetching: state.study.clustersFetching,
     showPopup: state.study.popupShowing,
+    editPopupOpen: state.study.editPopupOpen,
+    editPopupTitle: state.study.title,
+    editPopupDescription: state.study.description,
+    editPopupIsLive: state.study.isLive,
   };
 };
 
@@ -173,12 +178,29 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     closePopup: () => {
       dispatch(studyAction.togglePopup(false));
     },
+    openEditPopup: () => {
+      dispatch(studyAction.toggleEditPopup(true));
+    },
+    closeEditPopup: () => {
+      dispatch(studyAction.toggleEditPopup(false));
+    },
+    saveEditPopup: (newTitle, newIsLive, newDescription) => {
+
+      const studyId = ownProps.id;
+      dispatch(studyAction.updateStudy(studyId, { title: newTitle, isLive: newIsLive, description: newDescription }));
+      dispatch(studyAction.toggleEditPopup(false));
+    },
+    deleteEditPopup: () => {
+      const studyId = ownProps.id;
+      dispatch(studyAction.deleteStudy(studyId));
+      dispatch(studyAction.toggleEditPopup(false));
+    },
   };
 };
 
 const StudyContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Study);
 
 export default StudyContainer;
