@@ -15,11 +15,11 @@ import Filters from '../elements/components/Filters.jsx';
  * The main page.
  * @return {ReactDOM}
  */
-const Main = ({history}) =>
-  (<main>
-    <Header showBackButton={false}/>
-    <Filters ongoing={true} completed={true} />
-    <PopulateStudiesContainer history={history}/>
-  </main>);
+const Main = ({ history }) =>
+(<main>
+  <Header showBackButton={false} />
+  <Filters ongoing={true} completed={true} />
+  <PopulateStudiesContainer history={history} />
+</main>);
 
 export default Main;

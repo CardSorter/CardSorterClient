@@ -4,39 +4,47 @@ import PropTypes from 'prop-types';
 
 import localizedText from '../../localization/LocalizedText';
 
-const Filters = ({ongoing: ongoingAttr, completed: completedAttr}) => {
+const Filters = ({ ongoing: ongoingAttr, completed: completedAttr }) => {
   let ongoingRef = './?filter=all';
   let completedRef = './?filter=all';
   let ongoingStyle = '';
   let completedStyle = '';
+  let allStyle='';
 
   if (ongoingAttr) {
-    ongoingRef = './?filter=completed';
-    ongoingStyle = 'active';
+    ongoingRef = './?filter=ongoing';
   }
   if (completedAttr) {
-    completedRef = './?filter=ongoing';
-    completedStyle = 'active';
+    completedRef = './?filter=completed';
   }
+  if (window.location.search === '?filter=ongoing')
+    ongoingStyle = 'active';
+  else if (window.location.search === '?filter=completed')
+    completedStyle = 'active';
+  else 
+    allStyle = 'active';
+  
 
-  return (
-    <div className="filter-container">
-      <p>{localizedText.text.filter}</p>
-      {/* <a href={ongoingRef} className={ongoingStyle}>
-        {localizedText.text.ongoing}</a>
-      <a href={completedRef} className={completedStyle}>
-        {localizedText.text.completed}</a> */}
-      <a className={ongoingStyle}>
+    return (
+      <div className="filter-container">
+        {/* <p>{localizedText.text.filter}</p> */}
+        <a href={'/'} className={allStyle}> {"all"}</a>
+        <a href={ongoingRef} className={ongoingStyle}>
+          {localizedText.text.ongoing}</a>
+        <a href={completedRef} className={completedStyle}>
+          {localizedText.text.completed}</a>
+
+        {/* {<a className={ongoingStyle}>
         {localizedText.text.ongoing}</a>
       <a className={completedStyle}>
-        {localizedText.text.completed}</a>
-    </div>
-  );
-};
+        {localizedText.text.completed}</a>} */}
+      </div>
+    );
+  };
 
-Filters.propTypes = {
-  ongoing: PropTypes.bool.isRequired,
-  completed: PropTypes.bool.isRequired,
-};
+  Filters.propTypes = {
+    ongoing: PropTypes.bool.isRequired,
+    completed: PropTypes.bool.isRequired,
+  };
 
-export default Filters;
+  export default Filters;

@@ -56,12 +56,12 @@ const Page2 = ({ values, errors, dispatch }) => {
           {
 
             errors.cards &&
-            <div className="error-message"><p>{L.text.fillNameFields}</p></div>
+            <div className="error-message-cards"><p>{L.text.fillNameFields}</p></div>
           }
           {
 
             errors.duplicate && (
-              <div className="error-message">
+              <div className="error-message-cards">
                 <p>{L.text.areDuplicates}</p>
               </div>
             )}

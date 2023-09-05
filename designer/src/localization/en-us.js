@@ -30,6 +30,7 @@ export default {
   endedOn: 'Ended on',
   february: 'february',
   fillNameFields: 'fill name fields',
+  fillMeOut: 'Fill me out',
   filter: 'FILTER',
   frequency: 'frequency',
   inactive: 'Inactive',

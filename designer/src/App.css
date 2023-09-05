@@ -435,9 +435,7 @@ button.createStudyCard:hover {
   margin-left: 1rem;
 }
 
-.filter-container a.active {
-  font-weight: bold;
-}
+
 
 /* Study creation container */
 
@@ -589,7 +587,18 @@ button.createStudyCard:hover {
   height: 100%;
 }
 
-.study-creation-card .error-holder .error-message {
+.study-creation-card .error-holder .error-message-cards {
+  align-items: center;
+ background: var(--color-error);
+  border-radius: 0 0 .5rem .5rem;
+  color: white;
+  display: flex;
+  font-size: 1.5rem;
+  height: 3rem; width: 100%;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  z-index: -1; 
   margin-top: -2rem;
 }
 
@@ -1238,4 +1247,12 @@ th {
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical; /* Allow vertical resizing */
+}
+
+.filter-container .active
+{
+font-weight: bold;
+}
+.filter-container a:hover {
+  text-decoration: underline;
 }
