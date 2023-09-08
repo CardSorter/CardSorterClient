@@ -10,6 +10,7 @@ import * as studyAction from '../../actions/studyPageAction';
  * @return {String[]} the array containing the headers for the selected item.
  */
 function getHeaders(state) {
+  //hardcode
   switch (state.study.selectedItem) {
     case 0: {
       return [
@@ -17,6 +18,14 @@ function getHeaders(state) {
         L.text.timeTaken,
         L.text.cardsSorted,
         L.text.categoriesCreated,
+      ];
+    }
+    case 5: {
+      return [
+        L.text.participantNo,
+        L.text.categories,
+        L.text.cards,
+        "Comment",
       ];
     }
     case 1: {
@@ -102,6 +111,9 @@ function getData(state) {
     case 2: {
       return state.study.categories.data;
     }
+    case 5: {
+      return state.study.sorting.data;
+    }
     default: {
       return {};
     }
@@ -147,6 +159,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       onClicks: {
         participant: () => {
           dispatch(studyAction.changeView(0));
+        },
+        sorting: () => {
+          dispatch(studyAction.changeView(5));
         },
         cards: () => {
           dispatch(studyAction.changeView(1));

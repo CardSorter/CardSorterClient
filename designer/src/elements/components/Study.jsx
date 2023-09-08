@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import StudyMenu from '../components/studyPageElements/StudyMenu.jsx';
 // eslint-disable-next-line no-unused-vars
 import DataTable from '../components/studyPageElements/DataTable.jsx';
+import DataTableSorting from '../components/studyPageElements/DataTableSorting.jsx';
 // eslint-disable-next-line no-unused-vars
 import BarGraph from '../components/studyPageElements/BarGraph.jsx';
 // eslint-disable-next-line no-unused-vars
@@ -47,7 +48,6 @@ class Study extends Component {
       showPopup, openPopup, closePopup,
       editPopupOpen, editPopupTitle, editPopupIsLive, editPopupDescription, openEditPopup, closeEditPopup, saveEditPopup, deleteEditPopup
     } = this.props;
-
     if (isFetching || isFetching === undefined) {
       return <p>Loading...</p>;
     }
@@ -102,17 +102,28 @@ class Study extends Component {
             <SimilarityMatrix data={similarityMatrix} onHover={similarityHover}
               selected={selectedCards} />
           }
-          {
-            !(similarityPage || clustersPage) &&
 
-            <div className="content">
-              <BarGraph percentage={graphValues.percentage}
-                sub={graphValues.sub}
-                total={graphValues.total} entity={graphValues.entity}
-                title={graphValues.title} action={graphValues.action} />
-              <DataTable headers={tableValues.headers} data={tableValues.data} />
-            </div>
-          }
+
+          {
+            menuValues.selectedNo == 5 ? (
+              <div className='sorting'>
+                <DataTableSorting headers={tableValues.headers} data={tableValues.data} />
+              </div>
+            ) : (
+              !(similarityPage || clustersPage) &&
+              <div className="content">
+                {
+                  <BarGraph percentage={graphValues.percentage}
+                    sub={graphValues.sub}
+                    total={graphValues.total} entity={graphValues.entity}
+                    title={graphValues.title} action={graphValues.action} />
+                }
+                <DataTable headers={tableValues.headers} data={tableValues.data} />
+              </div>
+            )}
+
+
+
         </>
       );
     }

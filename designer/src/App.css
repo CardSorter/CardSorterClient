@@ -1256,3 +1256,48 @@ font-weight: bold;
 .filter-container a:hover {
   text-decoration: underline;
 }
+
+.sorting{
+  margin: 0 ;
+  width: 100%;
+}
+.sorting table {
+  text-align: left  ;
+  width: 100%;
+}
+.study-page .sorting table td {
+  font-family:'LatoWebLight';
+  padding-top: 2rem;
+  text-align: left;
+  padding-top: 10px !important; 
+  padding-bottom: 10px !important;
+}
+
+.study-page .sorting table td ul li:not(:first-child){
+  margin-top: 1rem;
+}
+
+
+.sorting .data-container{
+
+  align-Items: center;
+  box-shadow: var(--shadow);
+  font-size: 1.5rem;
+  overflow: auto;
+  max-height: 100vh;
+  padding: 2rem ;
+  position: relative;
+  border: 2rem ;
+  margin: 2rem;
+}
+
+.sorting table th::first-letter {
+  text-transform: capitalize;
+}
+.study-page .sorting {
+  box-sizing: border-box;
+  display: grid;
+  height: calc(100% - var(--height-header) - 1rem);
+  max-height: calc(100% - var(--height-header) - 1rem);
+  width: 100%;
+}

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const DataTable = ({ headers, data }) => {
   const dataContainerRef = useRef(null);
-
   // Function to scroll to the top of the data container
   const scrollToTop = () => {
     if (dataContainerRef.current) {
@@ -24,6 +23,7 @@ const DataTable = ({ headers, data }) => {
   const handleHeaderClick = (column) => {
     // Calculate the new sort direction based on the current state
     const newDirection = (column === sortedColumn && sortDirection === 'asc') ? 'desc' : 'asc';
+
     setSortedColumn(column);
     setSortDirection(newDirection);
   };

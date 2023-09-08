@@ -27,6 +27,10 @@ export default function studyPageReducer(state={}, action) {
           completed: study.participants ? study.participants.completed: 0,
           data: study.participants ? study.participants.data: [],
         };
+        newState.sorting = {
+          data: study.sorting && study.sorting.data ? study.sorting.data : [],
+        };
+
         newState.cards = {
           average: study.cards ? study.cards.average: '0%',
           total: study.cards ? study.cards.total: 0,

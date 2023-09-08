@@ -9,7 +9,7 @@ const Filters = ({ ongoing: ongoingAttr, completed: completedAttr }) => {
   let completedRef = './?filter=all';
   let ongoingStyle = '';
   let completedStyle = '';
-  let allStyle='';
+  let allStyle = '';
 
   if (ongoingAttr) {
     ongoingRef = './?filter=ongoing';
@@ -21,30 +21,30 @@ const Filters = ({ ongoing: ongoingAttr, completed: completedAttr }) => {
     ongoingStyle = 'active';
   else if (window.location.search === '?filter=completed')
     completedStyle = 'active';
-  else 
+  else
     allStyle = 'active';
-  
 
-    return (
-      <div className="filter-container">
-        {/* <p>{localizedText.text.filter}</p> */}
-        <a href={'/'} className={allStyle}> {"all"}</a>
-        <a href={ongoingRef} className={ongoingStyle}>
-          {localizedText.text.ongoing}</a>
-        <a href={completedRef} className={completedStyle}>
-          {localizedText.text.completed}</a>
 
-        {/* {<a className={ongoingStyle}>
+  return (
+    <div className="filter-container">
+      {/* <p>{localizedText.text.filter}</p> */}
+      <a href={'/'} className={allStyle}> {"all" /*hardcode*/}</a>
+      <a href={ongoingRef} className={ongoingStyle}>
+        {localizedText.text.ongoing}</a>
+      <a href={completedRef} className={completedStyle}>
+        {localizedText.text.completed}</a>
+
+      {/* {<a className={ongoingStyle}>
         {localizedText.text.ongoing}</a>
       <a className={completedStyle}>
         {localizedText.text.completed}</a>} */}
-      </div>
-    );
-  };
+    </div>
+  );
+};
 
-  Filters.propTypes = {
-    ongoing: PropTypes.bool.isRequired,
-    completed: PropTypes.bool.isRequired,
-  };
+Filters.propTypes = {
+  ongoing: PropTypes.bool.isRequired,
+  completed: PropTypes.bool.isRequired,
+};
 
-  export default Filters;
+export default Filters;
