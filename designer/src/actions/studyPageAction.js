@@ -10,6 +10,7 @@ export const LOAD_CLUSTERS = 'LOAD_CLUSTERS';
 export const TOGGLE_POPUP = 'TOGGLE_POPUP';
 export const UPDATE_STUDY = 'UPDATE_STUDY';
 export const TOGGLE_EDIT_POPUP = 'TOGGLE_EDIT_POPUP';
+export const DOWNLOAD_XLSX = 'DOWNLOAD_XLSX';
 
 /**
  * Changes the view that the study page is showing.
@@ -214,7 +215,14 @@ export const deleteStudy = (studyId)=>
 };
 
 
-
+export function downloadXLSX(studyId){
+return{
+  type:  DOWNLOAD_XLSX,
+  payload: {
+  studyId: studyId,
+},
+};
+}
 
 export function toggleEditPopup(toggle) {
   return {

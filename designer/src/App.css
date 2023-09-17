@@ -821,7 +821,9 @@ button.createStudyCard:hover {
 .study-page span.header button.edit {
   background-image: url('./icons/cog-solid.svg');
 }
-
+.study-page span.header button.download {
+  background-image: url('./icons/download.svg');
+}
 .study-page span.header button.share {
   background-image: url('./icons/share-arrow.svg');
 }

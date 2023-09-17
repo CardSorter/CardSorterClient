@@ -1,6 +1,7 @@
 import * as studyActions from '../actions/studyPageAction';
 import * as StatusEnum from '../static/StatusEnum';
-
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 /**
  *
  * @param {stateSchema} state
@@ -87,7 +88,39 @@ export default function studyPageReducer(state={}, action) {
       'editPopupOpen': action.payload.toggle,
   });
 }
+  case studyActions.DOWNLOAD_XLSX: {
+    const wb = XLSX.utils.book_new();
+    const participants = [...state.participants.data]
+    // Create Paricipants Sheet 
+     participants.unshift(["Participant no", 'Time taken',	'Cards sorted',	'Categories created']);
+    const ws1 = XLSX.utils.aoa_to_sheet(participants);
+    XLSX.utils.book_append_sheet(wb, ws1, 'Participants');
 
+    const customHeaders = ["no", "category", "cards", "comment"];
+    const sortedData = state.sorting.data.map(item => customHeaders.map(header => item[header]));
+    sortedData.unshift(customHeaders);
+    const flattenedSorting = sortedData.map(row => row.map(cell => Array.isArray(cell) ? cell.join(", ") : cell));
+
+    const ws2 = XLSX.utils.aoa_to_sheet(flattenedSorting);
+    //const ws2 = XLSX.utils.json_to_sheet(state.sorting.data);
+    XLSX.utils.book_append_sheet(wb, ws2, 'Sorting');
+
+    const cards = [...state.cards.data];
+    cards.unshift(["Card",	'CategoriesNo',	'	Categories',	'Frequency']);
+    const flattenedCards = cards.map(row => row.map(cell => Array.isArray(cell) ? cell.join(", ") : cell));
+
+    const ws3 = XLSX.utils.aoa_to_sheet(flattenedCards);
+    XLSX.utils.book_append_sheet(wb, ws3, 'Cards');
+
+    const categories = [...state.categories.data];
+    categories.unshift(["Category",	'Cards no',	'Cards',	'Frequency','Participants']);
+    const flattenedCategories = categories.map(row => row.map(cell => Array.isArray(cell) ? cell.join(", ") : cell));
+    const ws4 = XLSX.utils.aoa_to_sheet(flattenedCategories);
+    XLSX.utils.book_append_sheet(wb, ws4, 'Categories');
+    XLSX.writeFile(wb, 'data.xlsx',{compression:true});
+//      const blob = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+// saveAs(blob, 'data.xlsx');
+  }
     default: {
       return state;
     }

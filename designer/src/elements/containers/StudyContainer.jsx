@@ -196,6 +196,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     openEditPopup: () => {
       dispatch(studyAction.toggleEditPopup(true));
     },
+    downloadXLSX: () => {
+      dispatch(studyAction.downloadXLSX(ownProps.id));
+    },
     closeEditPopup: () => {
       dispatch(studyAction.toggleEditPopup(false));
     },
