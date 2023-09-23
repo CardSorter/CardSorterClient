@@ -69,7 +69,7 @@ class App extends Component {
                   split="vertical"
                   minSize={200}
                   maxSize={-300}
-                  defaultSize={"20%"}
+                  defaultSize={'22rem'}
 
                 >
                   <ListContainer />

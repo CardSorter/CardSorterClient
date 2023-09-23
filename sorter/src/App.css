@@ -594,7 +594,7 @@ li.card.minimized button.desc-btn::before {
   background: var(--color-purple-white);
   border-radius: 1rem;
   display: flex;
-  left: calc(var(--width-list) + 10rem); top: calc(var(--height-header) + 1rem);
+  left: calc(var(--width-list) + 1rem); top: calc(var(--height-header) + 1rem);
   padding: 2rem;
   position: absolute;
 }
