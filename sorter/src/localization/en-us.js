@@ -9,4 +9,8 @@ export default {
   youCanCloseThisTab: 'you can close this tab',
   fillTitle: 'Fill all the titles',
   sameCategoryTitleNotAllowed: 'Same category title not allowed',
+  confirmFinishUnSorted: 'You have unsorted cards, are you sure to finish? The sorting will not be continued.',
+  confirmFinish: 'Are you sure to finish? The sorting will not be continued.',
+  confirm: 'Confirm',
+  cancel: 'Cancel',
 };

@@ -20,6 +20,7 @@ import OnBoardingContainer from './elements/containers/OnBoardingContainer.jsx';
 // eslint-disable-next-line no-unused-vars
 import Popup from './elements/containers/PopupContainer.jsx';
 
+
 import thanksImage from './icons/thanks-icon.svg';
 import notFoundImage from './icons/not-found.svg';
 
@@ -37,7 +38,7 @@ class App extends Component {
    */
   render() {
     const { studyNotFound, renderThanks, thanksMessage,
-      showPopup } = this.props;
+      showPopup, } = this.props;
 
     let render;
     if (renderThanks) {
@@ -54,11 +55,15 @@ class App extends Component {
           </main>);
       } else {
         render = (
+
+
           <DragDropContextProvider backend={HTML5Backend}>
             {
               showPopup &&
               <Popup />
             }
+
+
             <OnBoardingContainer />
             <div className="App">
 
@@ -80,7 +85,9 @@ class App extends Component {
 
             </div>
 
-          </DragDropContextProvider >);
+          </DragDropContextProvider >
+        );
+
       }
 
     return render;
@@ -94,6 +101,7 @@ export default connect(
       renderThanks: state.ui.renderThanks,
       thanksMessage: state.ui.thanksMessage,
       showPopup: state.ui.popup.show,
+
     };
   }
 )(App);

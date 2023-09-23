@@ -6,6 +6,8 @@ import { DropTarget } from 'react-dnd';
 import { itemTypes } from '../../staticContent/dragConstants';
 // eslint-disable-next-line no-unused-vars
 import CardItem from './CardItem.jsx';
+// eslint-disable-next-line no-unused-vars
+import ConfirmPopUp from '../containers/ConfirmPopUp.jsx';
 import parseCards from '../../helpers/cardParser';
 import L from '../../localization/LocalizedText';
 import Toast from './Toast';
@@ -51,7 +53,8 @@ function collect(connect, monitor) {
 const Category = ({ id, title, cards, isMinimized,
   onMinimized, onCardClick, showTitleBox,
   onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
-  descriptionIDs, connectDropTarget, isOver, errorsTitle, errorsSameCategory, hidingErrorTitle }) => {
+  descriptionIDs, connectDropTarget, isOver, errorsTitle, errorsSameCategory, hidingErrorTitle,
+  showConfirmPopUp, unSortedConfirmPopUp }) => {
   cards = parseCards(cards).cards;
   let classString = 'category';
   if (isOver) {
@@ -114,6 +117,10 @@ const Category = ({ id, title, cards, isMinimized,
         <Toast message={L.text.sameCategoryTitleNotAllowed} showToast={true} hidingErrorTitle={hidingErrorTitle} />
 
       }
+      {
+        showConfirmPopUp &&
+        <ConfirmPopUp unSorted={unSortedConfirmPopUp} />
+      }
     </li>
 
   );
@@ -135,6 +142,8 @@ Category.propTypes = {
   errorsTitle: PropTypes.bool,
   errorsSameCategory: PropTypes.bool,
   hidingErrorTitle: PropTypes.func.isRequired,
+  showConfirmPopUp: PropTypes.bool,
+  unSortedConfirmPopUp: PropTypes.bool,
 };
 
 // eslint-disable-next-line new-cap

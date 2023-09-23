@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Header from '../components/Header.jsx';
-import { sendSort, endSort, togglePopup, showingError } from '../../actions/uiAction';
+import { sendSort, endSort, togglePopup, showingError, toggleConfirmPopUp } from '../../actions/uiAction';
 import L from '../../localization/LocalizedText';
 
 
@@ -21,18 +21,18 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFinishClick: (studyID, container, categories,
       timeStarted, comment) => {
-
       let hasCategoryWithoutTitle = false;
 
       let hasSameCategory = false;
       const seenTitles = [];
       for (const key in categories) {
         if (categories.hasOwnProperty(key)) {
-          const title = categories[key].title.toLowerCase();
 
-          if (!title) {
+
+          if (!categories[key].title) {
             hasCategoryWithoutTitle = true;
           } else {
+            const title = categories[key].title.toLowerCase();
             if (seenTitles[title]) {
               hasSameCategory = true;
               break;
@@ -46,11 +46,8 @@ const mapDispatchToProps = (dispatch) => {
       if (hasCategoryWithoutTitle || hasSameCategory) {
         dispatch(showingError(hasCategoryWithoutTitle, hasSameCategory))
       }
-      else {
-        dispatch(endSort());
-        dispatch(sendSort(studyID, container, categories,
-          timeStarted, Date.now(), comment));
-      }
+      else
+        dispatch(toggleConfirmPopUp(true, !!container.length));
     },
     onCommentClick: () => {
       dispatch(togglePopup(true, L.text.addComment));

@@ -15,6 +15,8 @@ export const START_SORT = 'START_SORT';
 export const END_SORT = 'END_SORT';
 export const SHOW_ERROR = 'SHOW_ERROR';
 export const HIDE_ERROR = 'HIDE_ERROR';
+export const TOGGLE_CONFIRM_POPUP = 'TOGGLE_CONFIRM_POPUP';
+export const CLOSE_CONFIRM_POPUP = 'CLOSE_CONFIRM_POPUP';
 
 /**
  * Toogle the onboarding screen, that helps the user understand what to do.
@@ -115,6 +117,24 @@ export function togglePopup(flag, title) {
     error: false,
   };
 }
+
+export function toggleConfirmPopUp(flag,unSorted) {
+  return {
+    type: TOGGLE_CONFIRM_POPUP,
+    payload: {
+      flag: flag,
+      unSorted: unSorted,
+    },
+}
+}
+
+export function closeConfirmPopUp() {
+  return {
+    type: CLOSE_CONFIRM_POPUP,
+    payload: {},
+  }
+}
+
 
 /**
  * Changes the content of the text area.

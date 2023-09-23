@@ -66,6 +66,9 @@ export default {
   users: 'users',
   wasGroupedTogetherBy: 'was grouped together by ',
   wereSorterInAverage: 'were sorter in average',
+  confirmDelete: 'Are you sure you want to delete this study?',
+  Confirm: 'Confirm',
+  Cancel: 'Cancel',
  
 };
 

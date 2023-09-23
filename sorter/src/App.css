@@ -683,3 +683,67 @@ li.card.minimized button.desc-btn::before {
   opacity: 1;
   transform: translateX(-50%) translateY(-10px); /* Add a slight upward animation */
 }
+
+.popup-container {
+  align-items: center;
+  background: rgba(0, 0, 0, .2);
+  display: flex;
+  height: 100vh; width: 100vw;
+  justify-content: center;
+  left: 0; top: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.popup-container .popup {
+  background: white;
+  border-radius: .2rem;
+  box-shadow: var(--shadow-leveled);
+  box-sizing: border-box;
+  display: block;
+  padding: 2rem;
+  padding-top: 5rem;
+  position: relative;
+  height: 10vw; width: 40vw;
+}
+
+.popup-container .popup .header {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .05);
+  display: flex;
+  flex-direction: row;
+  height: 2rem; width: calc(100% - 4rem);
+  left: 0; top:0;
+  justify-items: flex-start;
+  padding: 2rem 2rem 2rem 2rem; 
+  position: absolute;
+}
+
+.popup-container .popup .content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+   font-size: 18px;
+}
+
+
+
+.confirm-btn, .cancel-btn {
+    background-color: red; 
+    border: none;
+    border-radius: 4px;
+    padding: 7px 12px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.cancel-btn{
+  background-color: green !important;
+}
+.button-container {
+
+   align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

@@ -50,10 +50,24 @@ export default function ui(state={}, action) {
 
       return newState;
     }
+
+    case uiAction.TOGGLE_CONFIRM_POPUP: {
+      const newState = Object.assign({}, state);
+      newState.confirmPopup.show = action.payload.flag;
+      newState.confirmPopup.unSorted = action.payload.unSorted;
+      return newState;
+    }
+
+    case uiAction.CLOSE_CONFIRM_POPUP: {
+      const newState = Object.assign({}, state);
+      newState.confirmPopup.show = false;
+      newState.confirmPopup.unSorted = false;
+      return newState;
+    }
+
     case uiAction.POPUP_CHANGE_CONTENT: {
       const newState = Object.assign({}, state);
       newState.popup.content = action.payload.content;
-
       return newState;
     }
     case uiAction.START_SORT: {
@@ -70,9 +84,7 @@ export default function ui(state={}, action) {
       const newState = Object.assign({}, state);
       newState.errors.title = action.payload.hasCategoryWithoutTitle;
       newState.errors.sameCategory = action.payload.hasSameCategory;
-
       return newState;
-  
   }
     case uiAction.HIDE_ERROR: {
       const newState = Object.assign({}, state);

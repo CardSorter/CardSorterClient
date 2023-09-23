@@ -29,6 +29,10 @@ const initialState = {
       title: false,
       sameCategory: false,
     },
+    confirmPopup: {
+      show: undefined,
+      unSorted: true,
+    },
   },
 };
 

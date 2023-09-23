@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+//HARDCODE
 class EditPopup extends Component {
     constructor(props) {
         super(props);
@@ -34,20 +34,20 @@ class EditPopup extends Component {
     handleDelete = (event) => {
         event.preventDefault();
         this.setState({
-            isConfirmingDelete: true, // Show the confirmation message
+            isConfirmingDelete: true,
         });
     }
 
     handleConfirmDelete = () => {
         this.props.onDelete();
         this.setState({
-            isConfirmingDelete: false, // Hide the confirmation message
+            isConfirmingDelete: false,
         });
     }
 
     handleCancelDelete = () => {
         this.setState({
-            isConfirmingDelete: false, // Hide the confirmation message
+            isConfirmingDelete: false,
         });
     }
 
@@ -95,9 +95,9 @@ class EditPopup extends Component {
                             <button className="delete-btn" onClick={this.handleDelete}>Delete</button>
                             {this.state.isConfirmingDelete ? (
                                 <div className="confirm-delete">
-                                    <p>Are you sure you want to delete this study? This action cannot be undone.</p>
-                                    <button className="confirm-btn" onClick={this.handleConfirmDelete}>Confirm</button>
-                                    <button className="cancel-btn" onClick={this.handleCancelDelete}>Cancel</button>
+                                    <p>L.text.confirmDelete</p>
+                                    <button className="confirm-btn" onClick={this.handleConfirmDelete}>L.text.Confirm</button>
+                                    <button className="cancel-btn" onClick={this.handleCancelDelete}>L.text.Cancel</button>
                                 </div>
                             ) : null}
                         </form>
