@@ -1,7 +1,7 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Header from '../components/Header.jsx';
-import {sendSort, endSort, togglePopup} from '../../actions/uiAction';
+import { sendSort, endSort, togglePopup, showingError } from '../../actions/uiAction';
 import L from '../../localization/LocalizedText';
 
 
@@ -20,10 +20,23 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFinishClick: (studyID, container, categories,
-        timeStarted, comment) => {
-      dispatch(endSort());
-      dispatch(sendSort(studyID, container, categories,
+      timeStarted, comment) => {
+
+      let hasCategoryWithoutTitle = false;
+      for (const key in categories) {
+        if (categories.hasOwnProperty(key) && !categories[key].title) {
+          hasCategoryWithoutTitle = true;
+          break;
+        }
+      }
+      if (hasCategoryWithoutTitle) {
+        dispatch(showingError())
+      }
+      else {
+        dispatch(endSort());
+        dispatch(sendSort(studyID, container, categories,
           timeStarted, Date.now(), comment));
+      }
     },
     onCommentClick: () => {
       dispatch(togglePopup(true, L.text.addComment));
@@ -32,8 +45,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const PopulateHeader = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Header);
 
 export default PopulateHeader;

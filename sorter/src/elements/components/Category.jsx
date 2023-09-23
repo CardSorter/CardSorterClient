@@ -1,13 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
-import {DropTarget} from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 
-import {itemTypes} from '../../staticContent/dragConstants';
+import { itemTypes } from '../../staticContent/dragConstants';
 // eslint-disable-next-line no-unused-vars
 import CardItem from './CardItem.jsx';
 import parseCards from '../../helpers/cardParser';
 import L from '../../localization/LocalizedText';
+import Toast from './Toast';
 
 import plusImage from '../../icons/plus.svg';
 
@@ -47,10 +48,10 @@ function collect(connect, monitor) {
   };
 }
 
-const Category = ({id, title, cards, isMinimized,
+const Category = ({ id, title, cards, isMinimized,
   onMinimized, onCardClick, showTitleBox,
   onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
-  descriptionIDs, connectDropTarget, isOver}) => {
+  descriptionIDs, connectDropTarget, isOver, errorTitle, hidingErrorTitle }) => {
   cards = parseCards(cards).cards;
   let classString = 'category';
   if (isOver) {
@@ -60,49 +61,56 @@ const Category = ({id, title, cards, isMinimized,
     classString += ' minimized';
   }
   return connectDropTarget(
-      <li className={classString}>
-        <div className="header">
-          {
-            showTitleBox &&
-            <div className="title-input">
-              <input autoFocus type='text'
-                placeholder={title || L.text.clickToRename}
-                defaultValue={title}
-                onChange={(e)=>onTitleChange(e, id)}
-                onKeyPress={(e)=>onTitleFinish(e)}
-                onClick={(e)=>e.stopPropagation()}></input>
-              <button type="button" onClick={()=>onTitleFinish()}></button>
-            </div>
-          }
-          {
-            !showTitleBox &&
-            <>
-            <h3 onClick={(e)=>onTitleClick(e, id)}>
-              {title || L.text.clickToRename}</h3>
-            <button className="minimize" onClick={ (e) =>
-              onMinimized(e, isMinimized, id)
-            }></button>
-            </>
-          }
-        </div>
+    <li className={classString}>
+      <div className="header">
         {
-          /* Show the 'drop to add to category' */
-          isOver &&
-          <div className="drop-to-add">
-            <img src={plusImage}></img>
-            <p>{L.text.dropToAdd}</p>
+          showTitleBox &&
+          <div className="title-input">
+            <input autoFocus type='text'
+              placeholder={title || L.text.clickToRename}
+              defaultValue={title}
+              onChange={(e) => onTitleChange(e, id)}
+              onKeyPress={(e) => onTitleFinish(e)}
+              onClick={(e) => e.stopPropagation()}></input>
+            <button type="button" onClick={() => onTitleFinish()}></button>
           </div>
         }
-        <ul>{
-          cards.map((card) => (
-            <CardItem key={card.id} id={card.id} title={card.title}
-              description={card.description} minimized={true}
-              position={id}
-              onClick={(event) => onCardClick(event, card.id, card.description)}
-              showDescription={isDescriptionShowing(card.id, descriptionIDs)}/>
-          ))
-        }</ul>
-      </li>
+        {
+          !showTitleBox &&
+          <>
+            <h3 onClick={(e) => onTitleClick(e, id)}>
+              {title || L.text.clickToRename}</h3>
+            <button className="minimize" onClick={(e) =>
+              onMinimized(e, isMinimized, id)
+            }></button>
+          </>
+        }
+
+      </div>
+      {
+        /* Show the 'drop to add to category' */
+        isOver &&
+        <div className="drop-to-add">
+          <img src={plusImage}></img>
+          <p>{L.text.dropToAdd}</p>
+        </div>
+      }
+      <ul>{
+        cards.map((card) => (
+          <CardItem key={card.id} id={card.id} title={card.title}
+            description={card.description} minimized={true}
+            position={id}
+            onClick={(event) => onCardClick(event, card.id, card.description)}
+            showDescription={isDescriptionShowing(card.id, descriptionIDs)} />
+        ))
+      }</ul>
+      {
+        errorTitle &&
+        <Toast message={"FILL ALL TITLES"} showToast={true} hidingErrorTitle={hidingErrorTitle} />
+
+      }
+    </li>
+
   );
 };
 
@@ -119,8 +127,10 @@ Category.propTypes = {
   onTitleChange: PropTypes.func.isRequired,
   onTitleFinish: PropTypes.func.isRequired,
   descriptionIDs: PropTypes.array,
+  errorTitle: PropTypes.bool,
+  hidingErrorTitle: PropTypes.func.isRequired,
 };
 
 // eslint-disable-next-line new-cap
 export default DropTarget(itemTypes.CARD,
-    categoryTarget, collect)(Category);
+  categoryTarget, collect)(Category);

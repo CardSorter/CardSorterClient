@@ -66,6 +66,16 @@ export default function ui(state={}, action) {
         'timeEnded': Date.now(),
       });
     }
+    case uiAction.SHOW_ERROR: {
+      return Object.assign({}, state, {
+        'errorTitle': true,
+    });
+  }
+    case uiAction.HIDE_ERROR: {
+      return Object.assign({}, state, {
+        'errorTitle': undefined,
+    });
+  }
     default: {
       return state;
     }

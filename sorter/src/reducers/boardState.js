@@ -25,6 +25,7 @@ const initialState = {
       title: 'Add a comment',
       content: undefined,
     },
+    errorTitle: undefined,
   },
 };
 

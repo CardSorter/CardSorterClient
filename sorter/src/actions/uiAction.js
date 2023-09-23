@@ -13,7 +13,8 @@ export const TOGGLE_POPUP = 'TOGGLE_POPUP';
 export const POPUP_CHANGE_CONTENT = 'POPUP_CHANGE_CONTENT';
 export const START_SORT = 'START_SORT';
 export const END_SORT = 'END_SORT';
-
+export const SHOW_ERROR = 'SHOW_ERROR';
+export const HIDE_ERROR = 'HIDE_ERROR';
 
 /**
  * Toogle the onboarding screen, that helps the user understand what to do.
@@ -209,4 +210,19 @@ export function sendSort(studyID, container, categories,
         })
     );
   };
+}
+
+export function showingError()
+{
+  return {
+    type: SHOW_ERROR,
+    payload: {},
+};
+}
+export function hidingError()
+{
+  return {
+    type: HIDE_ERROR,
+    payload: {},
+};
 }
