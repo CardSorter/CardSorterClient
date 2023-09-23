@@ -23,14 +23,28 @@ const mapDispatchToProps = (dispatch) => {
       timeStarted, comment) => {
 
       let hasCategoryWithoutTitle = false;
+
+      let hasSameCategory = false;
+      const seenTitles = [];
       for (const key in categories) {
-        if (categories.hasOwnProperty(key) && !categories[key].title) {
-          hasCategoryWithoutTitle = true;
-          break;
+        if (categories.hasOwnProperty(key)) {
+          const title = categories[key].title.toLowerCase();
+
+          if (!title) {
+            hasCategoryWithoutTitle = true;
+          } else {
+            if (seenTitles[title]) {
+              hasSameCategory = true;
+              break;
+            } else {
+              seenTitles[title] = true;
+            }
+          }
         }
       }
-      if (hasCategoryWithoutTitle) {
-        dispatch(showingError())
+
+      if (hasCategoryWithoutTitle || hasSameCategory) {
+        dispatch(showingError(hasCategoryWithoutTitle, hasSameCategory))
       }
       else {
         dispatch(endSort());

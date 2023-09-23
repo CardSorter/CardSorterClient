@@ -25,7 +25,10 @@ const initialState = {
       title: 'Add a comment',
       content: undefined,
     },
-    errorTitle: undefined,
+    errors:{
+      title: false,
+      sameCategory: false,
+    },
   },
 };
 

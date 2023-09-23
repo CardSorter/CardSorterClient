@@ -188,7 +188,7 @@ export function sendSort(studyID, container, categories,
     timeStarted, timeEnded, comment) {
   return function(dispatch) {
     const seconds = timeEnded - timeStarted;
-    dispatch(normalizeCategories());
+    //dispatch(normalizeCategories());
     dispatch(sendingSort(responseStatus.IS_SENDING));
     fetch(api+'/sort_endpoint', {
       method: 'POST',
@@ -212,11 +212,14 @@ export function sendSort(studyID, container, categories,
   };
 }
 
-export function showingError()
-{
+export function showingError(hasCategoryWithoutTitle, hasSameCategory)
+{ 
   return {
     type: SHOW_ERROR,
-    payload: {},
+    payload: {
+      hasCategoryWithoutTitle: hasCategoryWithoutTitle, 
+      hasSameCategory: hasSameCategory,
+    },
 };
 }
 export function hidingError()

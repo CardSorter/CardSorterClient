@@ -67,14 +67,19 @@ export default function ui(state={}, action) {
       });
     }
     case uiAction.SHOW_ERROR: {
-      return Object.assign({}, state, {
-        'errorTitle': true,
-    });
+      const newState = Object.assign({}, state);
+      newState.errors.title = action.payload.hasCategoryWithoutTitle;
+      newState.errors.sameCategory = action.payload.hasSameCategory;
+
+      return newState;
+  
   }
     case uiAction.HIDE_ERROR: {
-      return Object.assign({}, state, {
-        'errorTitle': undefined,
-    });
+      const newState = Object.assign({}, state);
+      newState.errors.title = false;
+      newState.errors.sameCategory = false;
+
+      return newState;
   }
     default: {
       return state;

@@ -33,7 +33,8 @@ const mapStateToProps = (state, ownProps) => {
     isMinimized: state.categories[ownProps.id].isMinimized,
     descriptionIDs: state.cards['showingDescription'],
     showTitleBox: ownProps.id === state.ui['changeTitle'],
-    errorTitle: state.ui['errorTitle'],
+    errorsTitle: state.ui.errors.title,
+    errorsSameCategory: state.ui.errors.sameCategory,
   };
 };
 

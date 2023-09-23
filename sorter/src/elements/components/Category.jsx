@@ -51,7 +51,7 @@ function collect(connect, monitor) {
 const Category = ({ id, title, cards, isMinimized,
   onMinimized, onCardClick, showTitleBox,
   onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
-  descriptionIDs, connectDropTarget, isOver, errorTitle, hidingErrorTitle }) => {
+  descriptionIDs, connectDropTarget, isOver, errorsTitle, errorsSameCategory, hidingErrorTitle }) => {
   cards = parseCards(cards).cards;
   let classString = 'category';
   if (isOver) {
@@ -105,8 +105,13 @@ const Category = ({ id, title, cards, isMinimized,
         ))
       }</ul>
       {
-        errorTitle &&
-        <Toast message={"FILL ALL TITLES"} showToast={true} hidingErrorTitle={hidingErrorTitle} />
+        errorsTitle &&
+        <Toast message={L.text.fillTitle} showToast={true} hidingErrorTitle={hidingErrorTitle} />
+
+      }
+
+      {errorsSameCategory &&
+        <Toast message={L.text.sameCategoryTitleNotAllowed} showToast={true} hidingErrorTitle={hidingErrorTitle} />
 
       }
     </li>
@@ -127,7 +132,8 @@ Category.propTypes = {
   onTitleChange: PropTypes.func.isRequired,
   onTitleFinish: PropTypes.func.isRequired,
   descriptionIDs: PropTypes.array,
-  errorTitle: PropTypes.bool,
+  errorsTitle: PropTypes.bool,
+  errorsSameCategory: PropTypes.bool,
   hidingErrorTitle: PropTypes.func.isRequired,
 };
 
