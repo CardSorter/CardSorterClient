@@ -37,6 +37,7 @@ const mapStateToProps = (state, ownProps) => {
     errorsSameCategory: state.ui.errors.sameCategory,
     showConfirmPopUp: state.ui.confirmPopup.show,
     unSortedConfirmPopUp: state.ui.confirmPopup.unSorted,
+    state: state,
   };
 };
 

@@ -69,16 +69,16 @@ export function minimizeCategory(categoryID, value) {
   };
 }
 
-// /**
-//  * Normalizes the categories in a way that is recognizable by the server.
-//  * This includes actions like changing the non-set by the user values to none.
-//  * This function should be called before the sending to the server.
-//  * @return {JSON} the action
-//  */
+/**
+ * Normalizes the categories in a way that is recognizable by the server.
+ * This includes actions like changing the non-set by the user values to none.
+ * This function should be called before the sending to the server.
+ * @return {JSON} the action
+ */
 // export function normalizeCategories() {
 //   return {
 //     type: NORMALIZE_CATEGORIES,
 //     payload: {},
 //     error: false,
 //   };
-//}
+// }

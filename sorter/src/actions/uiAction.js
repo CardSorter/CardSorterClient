@@ -208,7 +208,7 @@ export function sendSort(studyID, container, categories,
     timeStarted, timeEnded, comment) {
   return function(dispatch) {
     const seconds = timeEnded - timeStarted;
-    //dispatch(normalizeCategories());
+    // dispatch(normalizeCategories());
     dispatch(sendingSort(responseStatus.IS_SENDING));
     fetch(api+'/sort_endpoint', {
       method: 'POST',

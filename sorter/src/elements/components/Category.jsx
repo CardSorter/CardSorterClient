@@ -54,7 +54,7 @@ const Category = ({ id, title, cards, isMinimized,
   onMinimized, onCardClick, showTitleBox,
   onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
   descriptionIDs, connectDropTarget, isOver, errorsTitle, errorsSameCategory, hidingErrorTitle,
-  showConfirmPopUp, unSortedConfirmPopUp }) => {
+  showConfirmPopUp, unSortedConfirmPopUp, state }) => {
   cards = parseCards(cards).cards;
   let classString = 'category';
   if (isOver) {
@@ -119,7 +119,7 @@ const Category = ({ id, title, cards, isMinimized,
       }
       {
         showConfirmPopUp &&
-        <ConfirmPopUp unSorted={unSortedConfirmPopUp} />
+        <ConfirmPopUp unSorted={unSortedConfirmPopUp} studyID={state.ui.studyID} container={state.container} categories={state.categories} timeStarted={state.ui.timeStarted} comment={state.ui.popup.content} />
       }
     </li>
 

@@ -9,17 +9,12 @@ import L from '../../localization/LocalizedText';
 class ConfirmPopUp extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isConfirmingDelete: false,
-        };
     }
 
     handleConfirmFinish = () => {
         this.props.dispatch(endSort());
         this.props.dispatch(sendSort(this.props.studyID, this.props.container, this.props.categories, this.props.timeStarted, Date.now(), this.props.comment));
-        this.setState({
-            isConfirmingDelete: false,
-        });
+
     }
 
     onClose = () => {
@@ -27,6 +22,7 @@ class ConfirmPopUp extends Component {
     }
 
     render() {
+
         const { unSorted } = this.props;
 
         return (
@@ -41,18 +37,19 @@ class ConfirmPopUp extends Component {
                         <button className="confirm-btn" onClick={this.handleConfirmFinish}>{L.text.confirm}</button>
                         <button className="cancel-btn" onClick={this.onClose}>{L.text.cancel}</button>
                     </div>
-                    
+
                 </div>
             </div>
         );
     }
 }
 ConfirmPopUp.propTypes = {
-    studyID: PropTypes.string,
-    container: PropTypes.array,
-    categories: PropTypes.object,
-    timeStarted: PropTypes.number,
-    comment: PropTypes.string,
+    studyID: PropTypes.string.isRequired,
+    container: PropTypes.object.isRequired,
+    categories: PropTypes.array.isRequired,
+    timeStarted: PropTypes.number.isRequired,
+    comment: PropTypes.string.isRequired,
+    unSorted: PropTypes.bool.isRequired,
 };
 
 export default connect()(ConfirmPopUp);

@@ -57,7 +57,7 @@ class App extends Component {
         render = (
 
 
-          <DragDropContextProvider backend={HTML5Backend}>
+          <DragDropContextProvider DragDropContextProvider backend={HTML5Backend} >
             {
               showPopup &&
               <Popup />
