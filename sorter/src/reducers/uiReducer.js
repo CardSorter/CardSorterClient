@@ -38,9 +38,19 @@ export default function ui(state={}, action) {
         'thanksMessage': action.payload.message,
       });
     }
+    case uiAction.SAVE_LINK: {
+      return Object.assign({}, state, {
+        'link': action.payload.link,
+      });
+    }
     case uiAction.RENDER_THANKS_MESSAGE: {
       return Object.assign({}, state, {
         'renderThanks': true,
+      });
+    }
+    case uiAction.RENDER_LINK: {
+       return Object.assign({}, state, {
+        'renderLink': true,
       });
     }
     case uiAction.TOGGLE_POPUP: {

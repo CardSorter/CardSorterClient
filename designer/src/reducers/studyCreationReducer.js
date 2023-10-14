@@ -63,6 +63,11 @@ export default function studyCreationReducer(state={}, action) {
         'thanksMessage': action.payload.message,
       });
     }
+    case studyCreationActions.CHANGE_LINK: {
+      return Object.assign({}, state, {
+        'link': action.payload.link,
+      });
+    }
     case studyCreationActions.TOGGLE_TITLE_ERROR: {
       return Object.assign({}, state, {
         'errorTitle': action.payload.status,

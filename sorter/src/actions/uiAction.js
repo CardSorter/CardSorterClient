@@ -1,6 +1,8 @@
 import * as responseStatus from '../staticContent/responseStatus';
 import {normalizeCategories} from './categoryAction';
 import api from './api';
+import exportString from './api';
+import { useDispatch } from 'react';
 
 export const SHOW_TITLE_BOX = 'SHOW_TITLE_BOX';
 export const HIDE_ALL_BOXES = 'HIDE_ALL_BOXES';
@@ -17,6 +19,8 @@ export const SHOW_ERROR = 'SHOW_ERROR';
 export const HIDE_ERROR = 'HIDE_ERROR';
 export const TOGGLE_CONFIRM_POPUP = 'TOGGLE_CONFIRM_POPUP';
 export const CLOSE_CONFIRM_POPUP = 'CLOSE_CONFIRM_POPUP';
+export const SAVE_LINK = 'SAVE_LINK';
+export const RENDER_LINK = 'RENDER_LINK';
 
 /**
  * Toogle the onboarding screen, that helps the user understand what to do.
@@ -89,6 +93,15 @@ export function saveThanksMessage(message) {
   };
 }
 
+export function saveLink(link) {
+  return {
+    type: SAVE_LINK,
+    payload: {
+      link: link,
+    },
+  };
+}
+
 /**
  * Flags that the thanks message screen must be shown
  * @return {JSON} the action
@@ -96,6 +109,14 @@ export function saveThanksMessage(message) {
 export function renderThanksMessage() {
   return {
     type: RENDER_THANKS_MESSAGE,
+    payload: {},
+    error: false,
+  };
+}
+
+export function renderLink() {
+  return {
+    type: RENDER_LINK,
     payload: {},
     error: false,
   };
@@ -225,7 +246,11 @@ export function sendSort(studyID, container, categories,
     }).then(
         (response) => response.json().then((json) => {
           dispatch(sendingSort(responseStatus.SUCCESS));
-          dispatch(saveThanksMessage(json.message));
+          dispatch(saveThanksMessage(json[0]['message']));
+          dispatch(saveLink(json[1]['link']));
+          if(json[1]['link']!=='undefined')
+            dispatch(renderLink());
+          
           dispatch(renderThanksMessage());
         })
     );

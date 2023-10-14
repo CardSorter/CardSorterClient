@@ -19,6 +19,7 @@ export const TOGGLE_DESCRIPTION_ERROR = 'TOGGLE_DESCRIPTION_ERROR';
 export const TOGGLE_CARD_ERROR = 'TOGGLE_CARD_ERROR';
 export const TOGGLE_THANKS_ERROR = 'TOGGLE_THANKS_ERROR';
 export const TOGGLE_CARD_DUPLICATE = 'TOGGLE_CARD_DUPLICATE';
+export const CHANGE_LINK = 'CHANGE_LINK';
 
 export const SEND_STUDY = 'SEND_STUDY';
 
@@ -143,6 +144,16 @@ export function changeThanksMessage(message) {
     type: CHANGE_THANKS_MESSAGE,
     payload: {
       message: message,
+    },
+    error: false,
+  };
+};
+
+export function changeLink(link) {
+  return {
+    type: CHANGE_LINK,
+    payload: {
+      link: link,
     },
     error: false,
   };

@@ -45,6 +45,7 @@ function constructState(state) {
     description: state.description,
     cards: state.cards,
     message: state.thanksMessage,
+    link: state.link,
   };
 }
 
@@ -69,7 +70,9 @@ const mapStateToProps = (state) => {
     page3Values: {
       message: state.studyCreation.thanksMessage,
       study: constructState(state.studyCreation),
+      link: state.studyCreation.link,
     },
+
     page3Errors: {
       message: state.studyCreation.errorMessage,
     },
@@ -170,6 +173,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(studyCreationAction.toggleThanksError(false));
         const message = e.target.value;
         dispatch(studyCreationAction.changeThanksMessage(message));
+      },
+      onLink: (e) => {
+        const link = e.target.value;
+        dispatch(studyCreationAction.changeLink(link));
       },
       onNext: (study) => {
         // Check for errors

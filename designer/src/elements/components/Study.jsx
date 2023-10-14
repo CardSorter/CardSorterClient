@@ -69,7 +69,7 @@ class Study extends Component {
               />
             )
           }
-          <NoParticipants shareUrl={shareUrl} copyUrl={copyUrl} />;
+          <NoParticipants shareUrl={shareUrl} copyUrl={copyUrl} />
         </>);
     } else {
       content = (

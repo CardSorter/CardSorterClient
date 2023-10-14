@@ -1163,7 +1163,9 @@ td.color-100 {
   display: flex;
   justify-content: center;
 }
-
+.popup-container .popup .content .share-container .url-container .url{
+ height: 10rem;
+}
 #table_header {
   position: sticky;
   top: 0;

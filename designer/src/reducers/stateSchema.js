@@ -26,6 +26,7 @@ const initialState = {
       },
     },
     thanksMessage: undefined,
+    link: undefined,
     ui: {
       currentPage: 1,
       titleFetching: undefined,

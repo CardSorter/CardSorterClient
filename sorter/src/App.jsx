@@ -37,14 +37,15 @@ class App extends Component {
    * @return {Component}
    */
   render() {
-    const { studyNotFound, renderThanks, thanksMessage,
+    const { studyNotFound, renderThanks, thanksMessage, link, renderLink,
       showPopup, } = this.props;
 
     let render;
     if (renderThanks) {
+
       render = (
         <main>
-          <MessageScreen message={thanksMessage} image={thanksImage}
+          <MessageScreen message={thanksMessage} link={link} renderLink={renderLink} image={thanksImage}
             submessage={'(' + L.text.youCanCloseThisTab + ')'} />
         </main>);
     } else
@@ -57,13 +58,12 @@ class App extends Component {
         render = (
 
 
+
           <DragDropContextProvider DragDropContextProvider backend={HTML5Backend} >
-            {
-              showPopup &&
+
+            {showPopup &&
               <Popup />
             }
-
-
             <OnBoardingContainer />
             <div className="App">
 
@@ -86,9 +86,11 @@ class App extends Component {
             </div>
 
           </DragDropContextProvider >
-        );
 
-      }
+        )
+      };
+
+  }
 
     return render;
   }
@@ -100,6 +102,8 @@ export default connect(
       studyNotFound: state.cards.notFound,
       renderThanks: state.ui.renderThanks,
       thanksMessage: state.ui.thanksMessage,
+      link: state.ui.link,
+      renderLink: state.ui.renderLink,
       showPopup: state.ui.popup.show,
 
     };

@@ -3,14 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
-
-const Page3 = ({values, errors, dispatch}) => (
+//hardcode
+const Page3 = ({ values, errors, dispatch }) => (
   <div className="study-creation-card">
     <h1>{L.text.createStudy}</h1>
     <h2>{L.text.message}</h2>
 
     <form>
       <div className="error-holder">
+        <textarea className='userForm' cols='30' rows='5' onChange={(e) => dispatch.onLink(e)}
+          placeholder={'provide link for google form'}>
+        </textarea>
         <textarea className="thanks message" cols="30" rows="10"
           onChange={(e) => dispatch.onMessageChange(e)}
           placeholder={L.text.thanksMessage}
@@ -22,7 +25,6 @@ const Page3 = ({values, errors, dispatch}) => (
         }
       </div>
     </form>
-
     <div className="bottom-container">
       <div className="btn-container">
         <button className="prev"

@@ -13,4 +13,5 @@ export default {
   confirmFinish: 'Are you sure to finish? The sorting will not be continued.',
   confirm: 'Confirm',
   cancel: 'Cancel',
+  Demographic_Questions:'Demographic Questions',
 };

@@ -747,3 +747,68 @@ li.card.minimized button.desc-btn::before {
   justify-content: center;
   margin-top: 10px;
 }
+
+.copy {
+  background: 0;
+  background-image: url('./icons/copy.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  cursor: pointer;
+  height: 3rem; width: 3rem;
+}
+.share-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-container p {
+  font-size: 3rem;
+  margin-top: 1rem;
+}
+
+.share-container > button {
+  border-radius: 1.2rem;
+  height: 4rem;
+  margin-right: 2rem;
+}
+
+.url-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 5rem;
+}
+
+.url-container input {
+  margin: 0;
+  margin-right: 1rem;
+}
+
+.url-container .url-small {
+  font-size: 3rem;
+}
+
+.url-container textarea {
+  border: none;
+  font-family: 'LatoWeb', sans-serif;
+  font-size: 3rem;
+  height: auto; width: 30rem;
+  margin-top: 1.5rem;
+  margin-right: 2rem;
+  outline: none;
+  overflow: auto;
+  resize: none;
+  text-align: center;
+}
+
+.url-container button.copy {
+  background: 0;
+  background-image: url('./icons/copy.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  cursor: pointer;
+  height: 3rem; width: 3rem;
+}
