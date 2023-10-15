@@ -1,10 +1,10 @@
 import 'babel-polyfill'; // Ensure all polyfills are present
 
 // eslint-disable-next-line no-unused-vars
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // eslint-disable-next-line no-unused-vars
-import {DragDropContextProvider} from 'react-dnd';
+import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 // eslint-disable-next-line no-unused-vars
@@ -35,51 +35,55 @@ class App extends Component {
    * @return {Component}
    */
   render() {
-    const {studyNotFound, renderThanks, thanksMessage,
-      showPopup} = this.props;
+    const { studyNotFound, renderThanks, thanksMessage,
+      showPopup
+    } = this.props;
 
     let render;
     if (renderThanks) {
       render = (
         <main>
           <MessageScreen message={thanksMessage} image={thanksImage}
-            submessage={'('+L.text.youCanCloseThisTab+')'}/>
+            submessage={'(' + L.text.youCanCloseThisTab + ')'} />
         </main>);
     } else
-    if (studyNotFound) {
-      render = (
-        <main>
-          <MessageScreen message={L.text.studyNotFound} image={notFoundImage}/>
-        </main>);
-    } else {
-      render = (
-        <DragDropContextProvider backend={HTML5Backend}>
-          {
-            showPopup &&
-            <Popup/>
-          }
-          <OnBoardingContainer/>
-          <div className="App">
-            <HeaderContainer />
-            <div id="main-panel">
-              <ListContainer/>
-              <BoardContainer/>
+      if (studyNotFound) {
+        render = (
+          <main>
+            <MessageScreen message={L.text.studyNotFound} image={notFoundImage} />
+          </main>);
+      } else {
+        render = (
+          <>
+
+            {
+              showPopup &&
+              <Popup />
+            }
+            <OnBoardingContainer />
+            <div className="App">
+              <HeaderContainer />
+              <div id="main-panel">
+                <ListContainer />
+                <BoardContainer />
+              </div>
             </div>
-          </div>
-        </DragDropContextProvider>);
-    }
+          </>
+
+        );
+      }
 
     return render;
   }
 }
 
 export default connect(
-    (state) => {
-      return {
-        studyNotFound: state.cards.notFound,
-        renderThanks: state.ui.renderThanks,
-        thanksMessage: state.ui.thanksMessage,
-        showPopup: state.ui.popup.show,
-      };
-    }
+  (state) => {
+    return {
+      studyNotFound: state.cards.notFound,
+      renderThanks: state.ui.renderThanks,
+      thanksMessage: state.ui.thanksMessage,
+      showPopup: state.ui.popup.show,
+    };
+  }
 )(App);
