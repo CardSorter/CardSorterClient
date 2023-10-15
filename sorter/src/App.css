@@ -684,7 +684,7 @@ li.card.minimized button.desc-btn::before {
   transform: translateX(-50%) translateY(-10px); /* Add a slight upward animation */
 }
 
-.popup-container {
+.category .popup-container {
   align-items: center;
   background: rgba(0, 0, 0, .2);
   display: flex;
@@ -695,7 +695,7 @@ li.card.minimized button.desc-btn::before {
   z-index: 1000;
 }
 
-.popup-container .popup {
+.category .popup-container .popup {
   background: white;
   border-radius: .2rem;
   box-shadow: var(--shadow-leveled);
@@ -707,7 +707,7 @@ li.card.minimized button.desc-btn::before {
   height: 10vw; width: 40vw;
 }
 
-.popup-container .popup .header {
+.category .popup-container .popup .header {
   align-items: center;
   background-color: rgba(0, 0, 0, .05);
   display: flex;
@@ -719,7 +719,7 @@ li.card.minimized button.desc-btn::before {
   position: absolute;
 }
 
-.popup-container .popup .content {
+.category .popup-container .popup .content {
   align-items: center;
   display: flex;
   justify-content: center;

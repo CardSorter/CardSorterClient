@@ -7,7 +7,7 @@ import { itemTypes } from '../../staticContent/dragConstants';
 // eslint-disable-next-line no-unused-vars
 import CardItem from './CardItem.jsx';
 // eslint-disable-next-line no-unused-vars
-import ConfirmPopUp from '../containers/ConfirmPopUp.jsx';
+import ConfirmPopUp from './ConfirmPopUp.jsx';
 import parseCards from '../../helpers/cardParser';
 import L from '../../localization/LocalizedText';
 import Toast from './Toast';

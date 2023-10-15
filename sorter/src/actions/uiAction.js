@@ -248,7 +248,7 @@ export function sendSort(studyID, container, categories,
           dispatch(sendingSort(responseStatus.SUCCESS));
           dispatch(saveThanksMessage(json[0]['message']));
           dispatch(saveLink(json[1]['link']));
-          if(json[1]['link']!=='undefined')
+          if(json[1]['link']!=='undefined' && json[1]['link']!==undefined)
             dispatch(renderLink());
           
           dispatch(renderThanksMessage());
