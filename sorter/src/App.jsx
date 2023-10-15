@@ -56,11 +56,7 @@ class App extends Component {
           </main>);
       } else {
         render = (
-
-
-
-          <DragDropContextProvider DragDropContextProvider backend={HTML5Backend} >
-
+          <>
             {showPopup &&
               <Popup />
             }
@@ -84,13 +80,10 @@ class App extends Component {
               </div>
 
             </div>
-
-          </DragDropContextProvider >
-
-        )
+          </>)
       };
 
-  }
+
 
     return render;
   }
