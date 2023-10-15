@@ -7,7 +7,7 @@ const MessageScreen = ({ message, link, renderLink, image, submessage }) => {
   const linkRef = useRef(null);
   return (
 
-    <div div className="message-screen" >
+    <div className="message-screen" >
       <h1 id="logo"><a href="/">Card Sorter</a></h1>
       <img src={image} alt='Sending love!'></img>
       <h2>{message}</h2>
