@@ -5,8 +5,27 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line no-unused-vars
 import CardItem from './CardItem.jsx';
 import { fetchCards } from '../../actions/cardAction.js';
-const List = ({ cards }) => {
 
+import { DropTarget } from 'react-dnd';
+import { itemTypes } from '../../staticContent/dragConstants';
+
+const listTarget = {
+  drop(props, monitor) {
+    const card = monitor.getItem();
+    props.onDrop(card.id, card.position, props.categories);
+
+    //props.removeEmptyCategories(props.categories);
+  }
+}
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+  };
+}
+
+const List = ({ cards, categories, onDrop, connectDropTarget }) => {
   // const [cardsList, setCardsList] = useState();
 
   //alert(JSON.stringify(cardsList));
@@ -35,8 +54,6 @@ const List = ({ cards }) => {
   //   alert(cardsList + data)
   // }, []);
 
-
-
   useEffect(() => {
     window.addEventListener("beforeunload", handleUnload);
     return () => {
@@ -53,20 +70,25 @@ const List = ({ cards }) => {
     return (event.returnValue = "");
 
   };
-
-  return (
+  //cards = JSON.stringify(cards);
+  cards = cards.cards;
+  return connectDropTarget(
     <ul id='list'>
       {
         cards.map((card) => (
           <CardItem key={card.id} id={card.id} title={card.title}
-            description={card.description} position={-1} />
+            description={card.description} position={-1}
+          />
         ))
       }
     </ul>
   );
 };
 List.propTypes = {
-  cards: PropTypes.array.isRequired,
+  cards: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired,
+  onDrop: PropTypes.func,
 };
 
-export default List;
+export default DropTarget(itemTypes.CARD, listTarget, collect)(List);
+//export default List;
