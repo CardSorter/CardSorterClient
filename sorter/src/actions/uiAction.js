@@ -21,7 +21,8 @@ export const TOGGLE_CONFIRM_POPUP = 'TOGGLE_CONFIRM_POPUP';
 export const CLOSE_CONFIRM_POPUP = 'CLOSE_CONFIRM_POPUP';
 export const SAVE_LINK = 'SAVE_LINK';
 export const RENDER_LINK = 'RENDER_LINK';
-
+export const TOGGLE_TOAST = 'TOGGLE_TOAST';
+export const CLOSE_TOAST = 'CLOSE_TOAST';
 /**
  * Toogle the onboarding screen, that helps the user understand what to do.
  * @param {Boolean} show
@@ -134,6 +135,16 @@ export function togglePopup(flag, title) {
     payload: {
       flag: flag,
       title: title,
+    },
+    error: false,
+  };
+}
+
+export function toggleToast(flag) {
+  return {
+    type: TOGGLE_TOAST,
+    payload: {
+      flag: flag,
     },
     error: false,
   };
@@ -274,3 +285,10 @@ export function hidingError()
     payload: {},
 };
 }
+
+export function closeToast(){
+  return {
+    type: CLOSE_TOAST,
+    payload: {},
+  }
+};

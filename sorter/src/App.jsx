@@ -2,7 +2,7 @@ import 'babel-polyfill'; // Ensure all polyfills are present
 
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 // eslint-disable-next-line no-unused-vars
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -27,18 +27,23 @@ import notFoundImage from './icons/not-found.svg';
 import L from './localization/LocalizedText';
 import './App.css';
 import SplitPane from "react-split-pane";
-
+import Toast from './elements/components/Toast.jsx';
+import { closeToast } from './actions/uiAction.js';
 /**
  * App route
  */
 class App extends Component {
+
+  closeToastFunction = () => {
+    this.props.closeToast();
+  }
   /**
    * React render
    * @return {Component}
    */
   render() {
     const { studyNotFound, renderThanks, thanksMessage, link, renderLink,
-      showPopup, } = this.props;
+      showPopup, showToast } = this.props;
 
     let render;
     if (renderThanks) {
@@ -57,6 +62,9 @@ class App extends Component {
       } else {
         render = (
           <>
+            {showToast &&
+              <Toast message={L.text.no_category_created} showToast={true} hidingErrorTitle={this.closeToastFunction} />
+            }
             {showPopup &&
               <Popup />
             }
@@ -88,17 +96,24 @@ class App extends Component {
     return render;
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    closeToast: () => dispatch(closeToast()),
+  };
+};
 
 export default connect(
-  (state) => {
-    return {
-      studyNotFound: state.cards.notFound,
-      renderThanks: state.ui.renderThanks,
-      thanksMessage: state.ui.thanksMessage,
-      link: state.ui.link,
-      renderLink: state.ui.renderLink,
-      showPopup: state.ui.popup.show,
+  (state) => ({
 
-    };
-  }
+    studyNotFound: state.cards.notFound,
+    renderThanks: state.ui.renderThanks,
+    thanksMessage: state.ui.thanksMessage,
+    link: state.ui.link,
+    renderLink: state.ui.renderLink,
+    showPopup: state.ui.popup.show,
+    showToast: state.ui.showToast,
+
+
+  }),
+  mapDispatchToProps,
 )(App);

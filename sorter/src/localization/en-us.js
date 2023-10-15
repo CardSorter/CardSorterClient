@@ -14,4 +14,5 @@ export default {
   confirm: 'Confirm',
   cancel: 'Cancel',
   Demographic_Questions:'Demographic Questions',
+  no_category_created: 'No category created',
 };

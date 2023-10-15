@@ -45,10 +45,10 @@ class ConfirmPopUp extends Component {
 }
 ConfirmPopUp.propTypes = {
     studyID: PropTypes.string.isRequired,
-    container: PropTypes.object.isRequired,
-    categories: PropTypes.array.isRequired,
+    container: PropTypes.array.isRequired,
+    categories: PropTypes.object.isRequired,
     timeStarted: PropTypes.number.isRequired,
-    comment: PropTypes.string.isRequired,
+    comment: PropTypes.string,
     unSorted: PropTypes.bool.isRequired,
 };
 

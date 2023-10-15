@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Header from '../components/Header.jsx';
-import { sendSort, endSort, togglePopup, showingError, toggleConfirmPopUp } from '../../actions/uiAction';
+import { sendSort, endSort, togglePopup, showingError, toggleConfirmPopUp, toggleToast } from '../../actions/uiAction';
 import L from '../../localization/LocalizedText';
 
 
@@ -22,9 +22,13 @@ const mapDispatchToProps = (dispatch) => {
     onFinishClick: (studyID, container, categories,
       timeStarted, comment) => {
       let hasCategoryWithoutTitle = false;
-
+      let noCategoryCreated = false;
       let hasSameCategory = false;
       const seenTitles = [];
+
+      if (Object.keys(categories).length === 0)
+        noCategoryCreated = true;
+
       for (const key in categories) {
         if (categories.hasOwnProperty(key)) {
 
@@ -46,8 +50,12 @@ const mapDispatchToProps = (dispatch) => {
       if (hasCategoryWithoutTitle || hasSameCategory) {
         dispatch(showingError(hasCategoryWithoutTitle, hasSameCategory))
       }
-      else
-        dispatch(toggleConfirmPopUp(true, !!container.length));
+      else {
+        if (noCategoryCreated)
+          dispatch(toggleToast(true));
+        else
+          dispatch(toggleConfirmPopUp(true, !!container.length));
+      }
     },
     onCommentClick: () => {
       dispatch(togglePopup(true, L.text.addComment));

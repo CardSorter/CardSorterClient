@@ -61,6 +61,19 @@ export default function ui(state={}, action) {
       return newState;
     }
 
+    case uiAction.TOGGLE_TOAST: {
+      const newState = Object.assign({}, state);
+      newState.showToast = action.payload.flag;
+
+      return newState;
+    }
+    case uiAction.CLOSE_TOAST:{
+      const newState = Object.assign({}, state);
+      newState.showToast = false;
+
+      return newState;
+    }
+
     case uiAction.TOGGLE_CONFIRM_POPUP: {
       const newState = Object.assign({}, state);
       newState.confirmPopup.show = action.payload.flag;

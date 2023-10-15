@@ -22,6 +22,7 @@ const initialState = {
     categoriesCreated: undefined,
     timeStarted: undefined,
     timeEnded: undefined,
+    showToast: false,
     popup: {
       show: false,
       title: 'Add a comment',
