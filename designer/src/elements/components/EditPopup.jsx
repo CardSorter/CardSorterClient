@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import L from '../../localization/LocalizedText';
 //HARDCODE
 class EditPopup extends Component {
     constructor(props) {
@@ -95,9 +96,9 @@ class EditPopup extends Component {
                             <button className="delete-btn" onClick={this.handleDelete}>Delete</button>
                             {this.state.isConfirmingDelete ? (
                                 <div className="confirm-delete">
-                                    <p>L.text.confirmDelete</p>
-                                    <button className="confirm-btn" onClick={this.handleConfirmDelete}>L.text.Confirm</button>
-                                    <button className="cancel-btn" onClick={this.handleCancelDelete}>L.text.Cancel</button>
+                                    <p>{L.text.confirmDelete}</p>
+                                    <button className="confirm-btn" onClick={this.handleConfirmDelete}>{L.text.Confirm}</button>
+                                    <button className="cancel-btn" onClick={this.handleCancelDelete}>{L.text.Cancel}</button>
                                 </div>
                             ) : null}
                         </form>

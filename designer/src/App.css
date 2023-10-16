@@ -733,6 +733,10 @@ button.createStudyCard:hover {
   display: flex;
   flex-direction: column;
 }
+.success-page .actions-container .button-container button {
+  background-color: var(--color-primary-dark);
+   border: 1px solid #000;
+}
 
 .success-page .actions-container .share-container {
   align-items: center;
