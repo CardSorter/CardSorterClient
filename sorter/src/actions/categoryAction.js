@@ -75,10 +75,12 @@ export function minimizeCategory(categoryID, value) {
  * This function should be called before the sending to the server.
  * @return {JSON} the action
  */
-// export function normalizeCategories() {
-//   return {
-//     type: NORMALIZE_CATEGORIES,
-//     payload: {},
-//     error: false,
-//   };
-// }
+/*
+export function normalizeCategories() {
+  return {
+    type: NORMALIZE_CATEGORIES,
+    payload: {},
+    error: false,
+  };
+}
+*/

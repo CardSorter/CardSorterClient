@@ -76,7 +76,7 @@ ul {
 }
 
 /* General styles */
-.btn--main, .btn--secondary {
+.btn--main, .btn--secondary, .btn--third{
   border: 0;
   border-radius: .2rem;
   box-sizing: border-box;
@@ -89,18 +89,21 @@ ul {
 }
 
 .btn--main > p,
-.btn--secondary > p {
+.btn--secondary > p,
+.btn--third > p{
   position: relative;
   z-index: 2;
 }
 
 .btn--main:hover,
-.btn--secondary:hover {
+.btn--secondary:hover,
+.btn--third:hover {
   transition: .3s;
 }
 
 .btn--main::before,
-.btn--secondary::before {
+.btn--secondary::before,
+.btn--third::before {
   box-sizing: border-box;
   border-radius: .2rem;
   content: '';
@@ -111,7 +114,8 @@ ul {
 }
 
 .btn--main:hover::before,
-.btn--secondary:hover::before {
+.btn--secondary:hover::before,
+.btn--third:hover::before {
   right: auto;
   width: 100%;
 }
@@ -135,24 +139,37 @@ ul {
 
 .btn--secondary {
   background: 0;
-  border: solid 2px var(--color-secondary);
+  border: solid 2px var(--color-secondary) !important;
   box-sizing: border-box;
   right: calc(4rem + 10rem + 2rem); /* right_finish_button + width_finish_button + whitespace */
   width: 15rem;
 }
 
-.btn--secondary:hover {
+.btn--secondary:hover,
+.btn--third:hover {
   color: white;
 }
 
-.btn--secondary::before {
+.btn--secondary::before,
+.btn--third::before {
   background-color: var(--color-secondary);
   right: -2px; top: -2px;
 }
 
-.btn--secondary:hover::before {
+.btn--secondary:hover::before,
+.btn--third:hover::before {
   left: 0;
 }
+
+.btn--third {
+  background: 0;
+  border: solid 2px var(--color-secondary);
+  box-sizing: border-box;
+  right: calc(4rem + 10rem + 2rem + 15rem + 2rem); /* right_finish_button + width_finish_button + whitespace + secondary + whitespace */
+  width: 15rem;
+}
+
+
 
 /* Header */
 header {
@@ -227,17 +244,43 @@ ul#list {
   margin-top: 2rem;
   padding: 2rem;
   position: relative;
+ 
 }
 
 .popup-container > .popup > h1 {
   color: var(--color-black);
   font-size: 2rem;
+  margin: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.popup-container > .popup > h3 {
+  color: var(--color-black);
+  font-size: 1.5rem;
+  margin-top: 2rem;
+    margin-bottom: 2rem; /* Change this line */
+
 }
 
 .popup-container > .popup > h1::first-letter {
   text-transform: capitalize;
 }
+.popup-container > .popup  > .btn-container {
+  bottom: 2rem; right: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: absolute;
+  width: 100%;
+}
 
+.popup-container > .popup > .btn-container > button {
+  left: 0;right: 0;top: 0;
+  position: relative;
+  width: 10rem;
+}
 .popup-container > .popup > form > textarea {
   box-sizing: border-box;
   height: 30vh; width: 100%;

@@ -36,6 +36,11 @@ const initialState = {
       show: undefined,
       unSorted: true,
     },
+    showDescriptionPopup:{
+      show: undefined,
+      title: undefined,
+      description: undefined,
+    },
   },
 };
 

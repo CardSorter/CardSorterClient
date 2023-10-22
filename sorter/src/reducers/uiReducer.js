@@ -61,6 +61,13 @@ export default function ui(state={}, action) {
       return newState;
     }
 
+    case uiAction.TOOGLE_DESCRIPTION_POPUP: {
+      const newState = Object.assign({}, state);
+      newState.showDescriptionPopup.show = action.payload.flag;
+
+      return newState;
+    }
+
     case uiAction.TOGGLE_TOAST: {
       const newState = Object.assign({}, state);
       newState.showToast = action.payload.flag;
@@ -115,6 +122,12 @@ export default function ui(state={}, action) {
       newState.errors.sameCategory = false;
 
       return newState;
+  }
+  case uiAction.ADD_TITLE_DESCRIPTION:{
+    const newState = Object.assign({}, state);
+    newState.showDescriptionPopup.title = action.payload.title;
+    newState.showDescriptionPopup.description = action.payload.description;
+    return newState;
   }
     default: {
       return state;

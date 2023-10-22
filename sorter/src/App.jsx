@@ -29,6 +29,8 @@ import './App.css';
 import SplitPane from "react-split-pane";
 import Toast from './elements/components/Toast.jsx';
 import { closeToast } from './actions/uiAction.js';
+import DescriptionPopup from './elements/components/DescriptionPopup.jsx';
+
 /**
  * App route
  */
@@ -43,7 +45,7 @@ class App extends Component {
    */
   render() {
     const { studyNotFound, renderThanks, thanksMessage, link, renderLink,
-      showPopup, showToast } = this.props;
+      showPopup, showToast, showDescriptionPopup, title, description } = this.props;
 
     let render;
     if (renderThanks) {
@@ -64,6 +66,10 @@ class App extends Component {
           <>
             {showToast &&
               <Toast message={L.text.no_category_created} showToast={true} hidingErrorTitle={this.closeToastFunction} />
+            }
+            {showDescriptionPopup &&
+              <DescriptionPopup title={title} description={description} />
+
             }
             {showPopup &&
               <Popup />
@@ -112,7 +118,9 @@ export default connect(
     renderLink: state.ui.renderLink,
     showPopup: state.ui.popup.show,
     showToast: state.ui.showToast,
-
+    showDescriptionPopup: state.ui.showDescriptionPopup.show,
+    title: state.ui.showDescriptionPopup.title,
+    description: state.ui.showDescriptionPopup.description,
 
   }),
   mapDispatchToProps,

@@ -23,6 +23,8 @@ export const SAVE_LINK = 'SAVE_LINK';
 export const RENDER_LINK = 'RENDER_LINK';
 export const TOGGLE_TOAST = 'TOGGLE_TOAST';
 export const CLOSE_TOAST = 'CLOSE_TOAST';
+export const TOOGLE_DESCRIPTION_POPUP = 'TOOGLE_DESCRIPTION_POPUP';
+export const ADD_TITLE_DESCRIPTION = 'ADD_TITLE_DESCRIPTION';
 /**
  * Toogle the onboarding screen, that helps the user understand what to do.
  * @param {Boolean} show
@@ -140,6 +142,15 @@ export function togglePopup(flag, title) {
   };
 }
 
+export function toggleDescriptionPopup(flag) {
+  return {
+    type: TOOGLE_DESCRIPTION_POPUP,
+    payload: {
+      flag: flag,
+    },
+};
+}
+
 export function toggleToast(flag) {
   return {
     type: TOGGLE_TOAST,
@@ -224,6 +235,16 @@ export function sendingSort(status, response, error) {
   };
 }
 
+export function addTitleDescription(title,description){
+  return {
+    type: ADD_TITLE_DESCRIPTION,
+    payload: {
+      title: title,
+      description: description,
+    },
+    error: false,
+  };
+}
 /* Thunk actions */
 
 /**

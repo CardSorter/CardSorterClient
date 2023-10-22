@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Header from '../components/Header.jsx';
-import { sendSort, endSort, togglePopup, showingError, toggleConfirmPopUp, toggleToast } from '../../actions/uiAction';
+import { sendSort, endSort, togglePopup, showingError, toggleConfirmPopUp, toggleToast, toggleDescriptionPopup } from '../../actions/uiAction';
 import L from '../../localization/LocalizedText';
 
 
@@ -60,6 +60,9 @@ const mapDispatchToProps = (dispatch) => {
     onCommentClick: () => {
       dispatch(togglePopup(true, L.text.addComment));
     },
+    onDescriptionClick: () => {
+      dispatch(toggleDescriptionPopup(true));
+    }
   };
 };
 
