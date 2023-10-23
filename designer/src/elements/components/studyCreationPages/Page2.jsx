@@ -25,7 +25,7 @@ const Page2 = ({ values, errors, dispatch }) => {
 
     return [...duplicateCardNames];
   };
-
+  alert(JSON.stringify(values.cards))
   return (
     <div className="study-creation-card">
       <h1>{L.text.createStudy}</h1>
