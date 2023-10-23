@@ -19,7 +19,7 @@ export default function studyCreationReducer(state={}, action) {
         'description': action.payload.description,
       });
     }
-    /*case studyCreationActions.ADD_CARD: {
+    case studyCreationActions.ADD_CARD: {
       const newState = Object.assign({}, state);
       newState['cards'][action.payload.id] = {
         id: action.payload.id,
@@ -27,7 +27,8 @@ export default function studyCreationReducer(state={}, action) {
         description: undefined,
       };
        return newState;
-  */ }
+    }
+  
     case studyCreationActions.ADD_X_CARDS: {
       const newState = Object.assign({}, state);
 

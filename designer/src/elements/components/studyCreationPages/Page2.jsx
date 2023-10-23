@@ -25,7 +25,27 @@ const Page2 = ({ values, errors, dispatch }) => {
 
     return [...duplicateCardNames];
   };
-  alert(JSON.stringify(values.cards))
+
+  if (localStorage.getItem('cardsDesc') !== null && localStorage.getItem('cardsName') !== null) {
+    let cardsName = localStorage.getItem('cardsName').split(',');
+    let cardsDesc = localStorage.getItem('cardsDesc').split(',');
+    let previousTime;
+    for (let i = 0; i < cardsName.length; i++) {
+      let time = Date.now();
+      while (previousTime === time) {
+        time = Date.now();
+      }
+
+      dispatch.onCreateCard(time);
+      dispatch.onLocalStorage(time, cardsName[i], cardsDesc[i]);
+      values.cards.push({ id: time, name: cardsName[i], description: cardsDesc[i] });
+
+      previousTime = time;
+    }
+  }
+  localStorage.removeItem('cardsName');
+  localStorage.removeItem('cardsDesc');
+
   return (
     <div className="study-creation-card">
       <h1>{L.text.createStudy}</h1>

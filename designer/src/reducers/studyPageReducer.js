@@ -2,6 +2,8 @@ import * as studyActions from '../actions/studyPageAction';
 import * as StatusEnum from '../static/StatusEnum';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { useDispatch } from 'react';
+import {changeTitle, changeDescription,addCard,changeCardName,changeCardDescription} from '../actions/studyCreationAction';
 /**
  *
  * @param {stateSchema} state
@@ -120,6 +122,19 @@ export default function studyPageReducer(state={}, action) {
     XLSX.writeFile(wb, 'data.xlsx',{compression:true});
 //      const blob = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
 // saveAs(blob, 'data.xlsx');
+  }
+
+  case studyActions.COPY_STUDY: {
+    localStorage.setItem('newTitle', state.title);
+    localStorage.setItem('newDescription', state.description);
+    const cardsName = state.cards.data.map(data => data[0]);
+    const cardsDesc = state.cards.data.map(data => data[data.length - 1]);
+
+    localStorage.setItem('cardsName', cardsName);
+    localStorage.setItem('cardsDesc', cardsDesc);
+
+    window.location.href = 'http://localhost:3000/create'
+  
   }
     default: {
       return state;

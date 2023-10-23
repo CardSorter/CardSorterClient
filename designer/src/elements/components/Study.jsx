@@ -47,11 +47,10 @@ class Study extends Component {
       clusters, clustersFetching,
       showPopup, openPopup, closePopup,
       editPopupOpen, editPopupTitle, editPopupIsLive, editPopupDescription, openEditPopup, closeEditPopup, saveEditPopup, deleteEditPopup,
-      downloadXLSX } = this.props;
+      downloadXLSX, copyStudy } = this.props;
     if (isFetching || isFetching === undefined) {
       return <p>Loading...</p>;
     }
-
     let content;
     if (noParticipants) {
       content = (
@@ -136,6 +135,7 @@ class Study extends Component {
           <button className="edit" onClick={openEditPopup}></button>
           <button className="share" onClick={openPopup}></button>
           <button className='download' onClick={downloadXLSX}></button>
+          <button className='copy' onClick={copyStudy}></button>
         </span>
         <span className="active">
           {
@@ -183,6 +183,7 @@ Study.propTypes = {
   closePopup: PropTypes.func,
   openEditPopup: PropTypes.func,
   downloadXLSX: PropTypes.func,
+  copyStudy: PropTypes.func,
 };
 
 export default Study;

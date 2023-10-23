@@ -88,6 +88,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       onChange: (name, event) => {
         onElementChange(dispatch, name, event);
       },
+      onLocalStorage: (title, description) => {
+        dispatch(studyCreationAction.changeTitle(title));
+        dispatch(studyCreationAction.changeDescription(description));
+      },
       onNext: (title, description) => {
         // Check for errors
         if (!title || title.length === 0) {
@@ -108,12 +112,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
     },
     page2Dispatch: {
-      onCreateCard: () => {
-        dispatch(studyCreationAction.addCard(Date.now()));
+      onCreateCard: (id) => {
+        dispatch(studyCreationAction.addCard(id));
       },
       onCreateXCards: (cardNoRef) => {
         dispatch(studyCreationAction.addXCards(
           parseInt(cardNoRef.current.value)));
+      },
+      onLocalStorage: (id, name, description) => {
+        dispatch(studyCreationAction.changeCardName(id, name));
+        dispatch(studyCreationAction.changeCardDescription(id, description));
       },
       onCardNameChange: (id, event) => {
         dispatch(studyCreationAction.toggleCardError(false));

@@ -16,7 +16,14 @@ const Page1 = ({ values, errors, dispatch }) => {
       }
     }
   };
+  if (localStorage.getItem('newTitle') !== null && localStorage.getItem('newDescription') !== null) {
+    values.title = localStorage.getItem('newTitle');
+    values.description = localStorage.getItem('newDescription');
+    dispatch.onLocalStorage(values.title, values.description);
+  }
 
+  localStorage.removeItem('newTitle');
+  localStorage.removeItem('newDescription');
   return (
     <div className='study-creation-card'>
       <h1>{L.text.createStudy}</h1>

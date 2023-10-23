@@ -139,6 +139,7 @@ const mapStateToProps = (state) => {
       headers: getHeaders(state),
       data: getData(state),
     },
+    cards: state.study.cards,
     similarityMatrix: state.study.similarityMatrix,
     selectedCards: state.study.selectedCards,
     clusters: state.study.clusters,
@@ -198,6 +199,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     downloadXLSX: () => {
       dispatch(studyAction.downloadXLSX(ownProps.id));
+    },
+    copyStudy: () => {
+      dispatch(studyAction.copyStudy(ownProps.id));
     },
     closeEditPopup: () => {
       dispatch(studyAction.toggleEditPopup(false));
