@@ -64,7 +64,7 @@ class EditPopup extends Component {
                     <div className="content">
                         <form>
                             <div>
-                                <label>Title:</label>
+                                <label>{L.text.title}:</label>
                                 <input
                                     type="text"
                                     value={this.state.editTitle}
@@ -73,7 +73,7 @@ class EditPopup extends Component {
                             </div>
                             {this.state.editDescription !== undefined && (
                                 <div>
-                                    <label>Description:</label>
+                                    <label>{L.text.description}:</label>
                                     <textarea
                                         value={this.state.editDescription}
                                         onChange={this.handleDescriptionChange}
