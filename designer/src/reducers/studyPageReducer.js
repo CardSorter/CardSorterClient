@@ -1,9 +1,6 @@
 import * as studyActions from '../actions/studyPageAction';
 import * as StatusEnum from '../static/StatusEnum';
 import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
-import { useDispatch } from 'react';
-import {changeTitle, changeDescription,addCard,changeCardName,changeCardDescription} from '../actions/studyCreationAction';
 /**
  *
  * @param {stateSchema} state
@@ -13,6 +10,7 @@ import {changeTitle, changeDescription,addCard,changeCardName,changeCardDescript
 export default function studyPageReducer(state={}, action) {
   switch (action.type) {
     case studyActions.LOAD_STUDY: {
+      
       const newState = Object.assign({}, state);
       const study = action.payload.study;
       if (action.payload.status === StatusEnum.SUCCESS) {
@@ -33,7 +31,6 @@ export default function studyPageReducer(state={}, action) {
         newState.sorting = {
           data: study.sorting && study.sorting.data ? study.sorting.data : [],
         };
-
         newState.cards = {
           average: study.cards ? study.cards.average: '0%',
           total: study.cards ? study.cards.total: 0,
@@ -120,16 +117,16 @@ export default function studyPageReducer(state={}, action) {
     const ws4 = XLSX.utils.aoa_to_sheet(flattenedCategories);
     XLSX.utils.book_append_sheet(wb, ws4, 'Categories');
     XLSX.writeFile(wb, 'data.xlsx',{compression:true});
-//      const blob = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-// saveAs(blob, 'data.xlsx');
+
   }
 
   case studyActions.COPY_STUDY: {
+    
     localStorage.setItem('newTitle', state.title);
     localStorage.setItem('newDescription', state.description);
     const cardsName = state.cards.data.map(data => data[0]);
     const cardsDesc = state.cards.data.map(data => data[data.length - 1]);
-
+    alert( state.cards.data);
     localStorage.setItem('cardsName', cardsName);
     localStorage.setItem('cardsDesc', cardsDesc);
 

@@ -831,6 +831,9 @@ button.createStudyCard:hover {
 .study-page span.header button.share {
   background-image: url('./icons/share-arrow.svg');
 }
+.study-page span.header button.copy {
+  background-image: url('./icons/copy.svg');
+}
 
 .study-page span.active {
   align-items: center;

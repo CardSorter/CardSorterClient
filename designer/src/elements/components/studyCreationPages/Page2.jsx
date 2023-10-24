@@ -10,22 +10,6 @@ const Page2 = ({ values, errors, dispatch }) => {
   const addCardsRef = useRef(1);
   const [cardCount, setCardCount] = useState(values.cards.length);
 
-  const findDuplicateCardNames = () => {
-    const cardNames = values.cards.map((card) => card.name.trim().toLowerCase());
-    const duplicateCardNames = new Set();
-    const seenCardNames = new Set();
-
-    for (const cardName of cardNames) {
-      if (seenCardNames.has(cardName)) {
-        duplicateCardNames.add(cardName);
-      } else {
-        seenCardNames.add(cardName);
-      }
-    }
-
-    return [...duplicateCardNames];
-  };
-
   if (localStorage.getItem('cardsDesc') !== null && localStorage.getItem('cardsName') !== null) {
     let cardsName = localStorage.getItem('cardsName').split(',');
     let cardsDesc = localStorage.getItem('cardsDesc').split(',');
@@ -116,13 +100,6 @@ const Page2 = ({ values, errors, dispatch }) => {
           <button className="prev"
             onClick={dispatch.onPrev}></button>
           <button className="next" onClick={() => {
-            // const duplicateNames = findDuplicateCardNames();
-
-            // if (duplicateNames.length > 0) {
-            //   const message = 'Duplicate card names: ' + duplicateNames.toString();
-            //   setErrorMessage(message); // Update error message state
-            // } else {
-            // setErrorMessage(''); // Clear error message state
             dispatch.onNext(values.cards);
           }
           }>

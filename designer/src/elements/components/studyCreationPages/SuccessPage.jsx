@@ -8,7 +8,6 @@ import successImage from '../../../icons/success.svg';
 
 const SuccessPage = ({ values, dispatch }) => {
   const urlRef = useRef(null);
-  //hardcode
   return (
     <div className="success-page">
       <h1>{L.text.studyCreated}</h1>
@@ -24,7 +23,7 @@ const SuccessPage = ({ values, dispatch }) => {
             <button className="copy" type="button" onClick={() =>
               dispatch.onCopy(urlRef)}></button>
           </div>
-          <p>Share this url with the participants</p>
+          <p>{L.text.shareThisUrlWithTheParticipants}</p>
         </div>
       </div>
     </div>

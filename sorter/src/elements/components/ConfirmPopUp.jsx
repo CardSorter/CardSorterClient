@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { sendSort, endSort, closeConfirmPopUp } from '../../actions/uiAction';
 import L from '../../localization/LocalizedText';
 
-//HARDCODE
 class ConfirmPopUp extends Component {
     constructor(props) {
         super(props);

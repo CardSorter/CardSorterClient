@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import L from '../../localization/LocalizedText';
-//HARDCODE
 class EditPopup extends Component {
     constructor(props) {
         super(props);
@@ -89,11 +88,11 @@ class EditPopup extends Component {
                                     className={`toggle-button ${editIsLive ? 'active' : 'inactive'}`}
                                     onClick={() => this.setState({ editIsLive: !editIsLive })}
                                 >
-                                    {editIsLive ? 'On' : 'Off'}{/*hardcode*/}
+                                    {editIsLive ? L.text.on : L.text.off}
                                 </button>
                             </div>
-                            <button type="submit" onClick={this.handleEditSubmit}>Save</button>
-                            <button className="delete-btn" onClick={this.handleDelete}>Delete</button>
+                            <button type="submit" onClick={this.handleEditSubmit}>{L.text.save}</button>
+                            <button className="delete-btn" onClick={this.handleDelete}>{L.text.delete}</button>
                             {this.state.isConfirmingDelete ? (
                                 <div className="confirm-delete">
                                     <p>{L.text.confirmDelete}</p>

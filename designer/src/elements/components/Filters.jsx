@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import localizedText from '../../localization/LocalizedText';
+import L from '../../localization/LocalizedText';
 
 const Filters = ({ ongoing: ongoingAttr, completed: completedAttr }) => {
   let ongoingRef = './?filter=all';
@@ -27,17 +27,12 @@ const Filters = ({ ongoing: ongoingAttr, completed: completedAttr }) => {
 
   return (
     <div className="filter-container">
-      {/* <p>{localizedText.text.filter}</p> */}
-      <a href={'/'} className={allStyle}> {"all" /*hardcode*/}</a>
+      <a href={'/'} className={allStyle}> {L.text.all}</a>
       <a href={ongoingRef} className={ongoingStyle}>
-        {localizedText.text.ongoing}</a>
+        {L.text.ongoing}</a>
       <a href={completedRef} className={completedStyle}>
-        {localizedText.text.completed}</a>
+        {L.text.completed}</a>
 
-      {/* {<a className={ongoingStyle}>
-        {localizedText.text.ongoing}</a>
-      <a className={completedStyle}>
-        {localizedText.text.completed}</a>} */}
     </div>
   );
 };

@@ -16,7 +16,7 @@ const StudyMenu = ({ selectedNo, onClicks }) => {
       <button onClick={onClicks.participant} className={styles[0]}>
         {L.text.participant}</button>
       <button onClick={onClicks.sorting} className={styles[5]}>
-        {"Sorting"/*hardcode*/}</button>
+        {L.text.sorting}</button>
       <button onClick={onClicks.cards} className={styles[1]}>
         {L.text.cards}</button>
       <button onClick={onClicks.categories} className={styles[2]}>

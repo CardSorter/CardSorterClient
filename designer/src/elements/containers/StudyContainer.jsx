@@ -10,7 +10,6 @@ import * as studyAction from '../../actions/studyPageAction';
  * @return {String[]} the array containing the headers for the selected item.
  */
 function getHeaders(state) {
-  //hardcode
   switch (state.study.selectedItem) {
     case 0: {
       return [
@@ -25,7 +24,7 @@ function getHeaders(state) {
         L.text.participantNo,
         L.text.categories,
         L.text.cards,
-        "Comment",
+        L.text.comments,
       ];
     }
     case 1: {
