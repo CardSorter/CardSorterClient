@@ -19,6 +19,7 @@ const Page2 = ({ values, errors, dispatch }) => {
       while (previousTime === time) {
         time = Date.now();
       }
+      setCardCount(cardCount + cardsName.length);
 
       dispatch.onCreateCard(time);
       dispatch.onLocalStorage(time, cardsName[i], cardsDesc[i]);
@@ -26,9 +27,10 @@ const Page2 = ({ values, errors, dispatch }) => {
 
       previousTime = time;
     }
+    localStorage.removeItem('cardsName');
+    localStorage.removeItem('cardsDesc');
   }
-  localStorage.removeItem('cardsName');
-  localStorage.removeItem('cardsDesc');
+
 
   return (
     <div className="study-creation-card">
@@ -77,8 +79,10 @@ const Page2 = ({ values, errors, dispatch }) => {
             <p>{L.text.cards}</p>
             <button className="btn-secondary" type="button"
               onClick={() => {
-                setCardCount(cardCount + parseInt(addCardsRef.current.value, 10));
-                dispatch.onCreateXCards(addCardsRef)
+                if (addCardsRef.current.value >= 1) {
+                  setCardCount(cardCount + parseInt(addCardsRef.current.value, 10));
+                  dispatch.onCreateXCards(addCardsRef)
+                }
               }
               }>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32">

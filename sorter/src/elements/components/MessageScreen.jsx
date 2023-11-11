@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import L from '../../localization/LocalizedText';
 const MessageScreen = ({ message, link, renderLink, image, submessage }) => {
 
-  const linkRef = useRef(null);
+  if (renderLink)
+    link = link.startsWith("http://") || link.startsWith("https://") ? link : `http://${link}`;
+
   return (
 
     <div className="message-screen" >
@@ -14,13 +16,17 @@ const MessageScreen = ({ message, link, renderLink, image, submessage }) => {
       <br></br>
       {renderLink &&
         <div className="share-container">
-          <p>{L.text.Demographic_Questions}</p>
+          <p>{L.text.Questionnaire}</p>
           <div className="url-container">
-            <textarea className="url" ref={linkRef}
-              defaultValue={link}></textarea>
+            <a className="url" href={link} target="_blank">{link}</a>
+
             <button className="copy" type="button" onClick={() => {
-              linkRef.current.select()
-              document.execCommand('copy')
+              const input = document.createElement('input');
+              input.value = link;
+              document.body.appendChild(input);
+              input.select();
+              document.execCommand('copy');
+              document.body.removeChild(input);
             }}
             ></button>
           </div>

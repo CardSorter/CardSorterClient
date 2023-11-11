@@ -53,8 +53,8 @@ function collect(connect, monitor) {
 const Category = ({ id, title, cards, isMinimized,
   onMinimized, onCardClick, showTitleBox,
   onCardDrop, onTitleClick, onTitleChange, onTitleFinish,
-  descriptionIDs, connectDropTarget, isOver, errorsTitle, errorsSameCategory, hidingErrorTitle,
-  showConfirmPopUp, unSortedConfirmPopUp, state }) => {
+  descriptionIDs, connectDropTarget, isOver, errorsTitle, errorsSameCategory, sameCategory,
+  hidingErrorTitle, showConfirmPopUp, unSortedConfirmPopUp, state }) => {
   cards = parseCards(cards).cards;
   let classString = 'category';
   if (isOver) {
@@ -114,7 +114,7 @@ const Category = ({ id, title, cards, isMinimized,
       }
 
       {errorsSameCategory &&
-        <Toast message={L.text.sameCategoryTitleNotAllowed} showToast={true} hidingErrorTitle={hidingErrorTitle} />
+        <Toast message={L.text.sameCategoryTitleNotAllowed + sameCategory.join(', ')} showToast={true} hidingErrorTitle={hidingErrorTitle} />
 
       }
       {

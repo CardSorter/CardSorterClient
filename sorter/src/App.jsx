@@ -65,7 +65,7 @@ class App extends Component {
         render = (
           <>
             {showToast &&
-              <Toast message={L.text.no_category_created} showToast={true} hidingErrorTitle={this.closeToastFunction} />
+              <Toast message={L.text.noCategoryCreated} showToast={true} hidingErrorTitle={this.closeToastFunction} />
             }
             {showDescriptionPopup &&
               <DescriptionPopup title={title} description={description} />

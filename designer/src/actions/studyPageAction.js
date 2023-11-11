@@ -13,6 +13,15 @@ export const TOGGLE_EDIT_POPUP = 'TOGGLE_EDIT_POPUP';
 export const DOWNLOAD_XLSX = 'DOWNLOAD_XLSX';
 export const COPY_STUDY = 'COPY_STUDY';
 
+export function copyStudy(studyId){
+  return{
+    type: COPY_STUDY,
+    payload: {
+      studyId: studyId,
+    },
+  };
+}
+
 /**
  * Changes the view that the study page is showing.
  * @param {Number} viewNo
@@ -225,14 +234,6 @@ return{
   };
 }
 
-export function copyStudy(studyId){
-  return{
-    type: COPY_STUDY,
-    payload: {
-      studyId: studyId,
-    },
-  };
-}
 
 export function toggleEditPopup(toggle) {
   return {

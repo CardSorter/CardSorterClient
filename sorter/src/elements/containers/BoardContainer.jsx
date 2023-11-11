@@ -41,7 +41,6 @@ function deleteEmptyCategories(dispatch, categories) {
 const mapStateToProps = (state) => {
   // Convert to array
   const categories = Object.values(state.categories);
-  // alert(JSON.stringify(categories))
   return { categories: categories };
 };
 

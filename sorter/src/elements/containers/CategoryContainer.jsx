@@ -35,6 +35,7 @@ const mapStateToProps = (state, ownProps) => {
     showTitleBox: ownProps.id === state.ui['changeTitle'],
     errorsTitle: state.ui.errors.title,
     errorsSameCategory: state.ui.errors.sameCategory,
+    sameCategory: state.ui.errors.sameCategoryList,
     showConfirmPopUp: state.ui.confirmPopup.show,
     unSortedConfirmPopUp: state.ui.confirmPopup.unSorted,
     state: state,

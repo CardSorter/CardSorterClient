@@ -771,7 +771,7 @@ button.createStudyCard:hover {
   font-size: 1.5rem;
 }
 
-.url-container textarea {
+.url-container a {
   border: none;
   font-family: 'LatoWeb', sans-serif;
   font-size: 2rem;
@@ -832,7 +832,7 @@ button.createStudyCard:hover {
   background-image: url('./icons/share-arrow.svg');
 }
 .study-page span.header button.copy {
-  background-image: url('./icons/copy.svg');
+  background-image: url('./icons/copy-study.svg');
 }
 
 .study-page span.active {

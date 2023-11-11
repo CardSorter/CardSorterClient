@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import L from '../../localization/LocalizedText';
 
-const Popup = ({title, content, onSumbit, onCancel}) => {
+const Popup = ({ title, content, onsubmit, onCancel }) => {
   const textareaRef = useRef(null);
   return (
     <div className="popup-container">
@@ -18,9 +18,9 @@ const Popup = ({title, content, onSumbit, onCancel}) => {
               onClick={() => onCancel(content)}>
               <p>{L.text.cancel}</p>
             </button>
-            <button type="button" className="btn--main sumbit"
-              onClick={() => onSumbit(textareaRef)}>
-              <p>{L.text.sumbit}</p>
+            <button type="button" className="btn--main submit"
+              onClick={() => onsubmit(textareaRef)}>
+              <p>{L.text.submit}</p>
             </button>
           </div>
         </form>
@@ -31,7 +31,7 @@ const Popup = ({title, content, onSumbit, onCancel}) => {
 Popup.propTypes = {
   title: PropTypes.string.isRequired,
   defaultValue: PropTypes.string,
-  onSumbit: PropTypes.func.isRequired,
+  onsubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
 

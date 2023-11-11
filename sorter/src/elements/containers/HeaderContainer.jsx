@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
       let hasCategoryWithoutTitle = false;
       let noCategoryCreated = false;
       let hasSameCategory = false;
+      let sameCategory = [];
       const seenTitles = [];
 
       if (Object.keys(categories).length === 0)
@@ -39,7 +40,8 @@ const mapDispatchToProps = (dispatch) => {
             const title = categories[key].title.toLowerCase();
             if (seenTitles[title]) {
               hasSameCategory = true;
-              break;
+              if (!sameCategory.includes(title))
+                sameCategory.push(title);
             } else {
               seenTitles[title] = true;
             }
@@ -48,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
       }
 
       if (hasCategoryWithoutTitle || hasSameCategory) {
-        dispatch(showingError(hasCategoryWithoutTitle, hasSameCategory))
+        dispatch(showingError(hasCategoryWithoutTitle, hasSameCategory, sameCategory))
       }
       else {
         if (noCategoryCreated)

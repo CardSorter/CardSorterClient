@@ -5,6 +5,10 @@ import StudyItem from './StudyItem.jsx';
 import CreateStudyItem from './CreateStudyItem.jsx';
 
 const StudiesContainer = ({ studies, onStudyClick, onCreateClick }) => {
+  // prevent cards be saved, when user going back to the studies page after copying a study
+  localStorage.removeItem('cardsName');
+  localStorage.removeItem('cardsDesc');
+
   let filteredStudies;
   if (window.location.search === '?filter=ongoing')
     filteredStudies = studies.filter(study => study.isLive)

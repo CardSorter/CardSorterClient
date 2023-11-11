@@ -18,8 +18,7 @@ const SuccessPage = ({ values, dispatch }) => {
         </div>
         <div className="share-container">
           <div className="url-container">
-            <textarea className="url" ref={urlRef}
-              defaultValue={values.share_url}></textarea>
+            <a className="url" ref={urlRef} href={values.share_url} target="_blank">{values.share_url}</a>
             <button className="copy" type="button" onClick={() =>
               dispatch.onCopy(urlRef)}></button>
           </div>

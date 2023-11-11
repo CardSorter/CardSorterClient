@@ -114,6 +114,7 @@ export default function ui(state={}, action) {
       const newState = Object.assign({}, state);
       newState.errors.title = action.payload.hasCategoryWithoutTitle;
       newState.errors.sameCategory = action.payload.hasSameCategory;
+      newState.errors.sameCategoryList = action.payload.sameCategoryList;
       return newState;
   }
     case uiAction.HIDE_ERROR: {

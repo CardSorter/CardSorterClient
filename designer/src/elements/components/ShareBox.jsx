@@ -1,15 +1,15 @@
 // eslint-disable-next-line no-unused-vars
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const ShareBox = ({url, text, onCopy}) => {
+const ShareBox = ({ url, text, onCopy }) => {
   const urlRef = useRef(null);
 
   return (
     <div className="share-container">
       <div className="url-container">
-        <textarea className="url" ref={urlRef}
-          defaultValue={url}></textarea>
+        <a className="url" ref={urlRef}
+          href={url} target="_blank" > {url}</a>
         <button className="copy" type="button" onClick={() =>
           onCopy(urlRef)}></button>
       </div>

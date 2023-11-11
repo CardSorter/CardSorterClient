@@ -31,6 +31,7 @@ const initialState = {
     errors:{
       title: false,
       sameCategory: false,
+      sameCategoryList: [],
     },
     confirmPopup: {
       show: undefined,

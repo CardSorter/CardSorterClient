@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Popup from '../components/Popup.jsx';
 import * as uiAction from '../../actions/uiAction';
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    onSumbit: (ref) => {
+    onsubmit: (ref) => {
       const content = ref.current.value;
       dispatch(uiAction.popupChangeContent(content));
       dispatch(uiAction.togglePopup(false));
@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const PopupContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Popup);
 
 export default PopupContainer;

@@ -9,6 +9,18 @@ import * as XLSX from 'xlsx';
  */
 export default function studyPageReducer(state={}, action) {
   switch (action.type) {
+    case studyActions.COPY_STUDY: {
+    
+    localStorage.setItem('newTitle', state.title);
+    localStorage.setItem('newDescription', state.description);
+    const cardsName = state.cards.data.map(data => data[0]);
+    const cardsDesc = state.cards.data.map(data => data[data.length - 1]);
+    localStorage.setItem('cardsName', cardsName);
+    localStorage.setItem('cardsDesc', cardsDesc);
+
+    window.location.href = 'http://localhost:3000/create'
+  
+  }
     case studyActions.LOAD_STUDY: {
       
       const newState = Object.assign({}, state);
@@ -28,6 +40,7 @@ export default function studyPageReducer(state={}, action) {
           completed: study.participants ? study.participants.completed: 0,
           data: study.participants ? study.participants.data: [],
         };
+        
         newState.sorting = {
           data: study.sorting && study.sorting.data ? study.sorting.data : [],
         };
@@ -87,6 +100,7 @@ export default function studyPageReducer(state={}, action) {
       'editPopupOpen': action.payload.toggle,
   });
 }
+  
   case studyActions.DOWNLOAD_XLSX: {
     const wb = XLSX.utils.book_new();
     const participants = [...state.participants.data]
@@ -97,6 +111,7 @@ export default function studyPageReducer(state={}, action) {
 
     const customHeaders = ["no", "category", "cards", "comment"];
     const sortedData = state.sorting.data.map(item => customHeaders.map(header => item[header]));
+    customHeaders[0] = "Participant no";
     sortedData.unshift(customHeaders);
     const flattenedSorting = sortedData.map(row => row.map(cell => Array.isArray(cell) ? cell.join(", ") : cell));
 
@@ -105,7 +120,7 @@ export default function studyPageReducer(state={}, action) {
     XLSX.utils.book_append_sheet(wb, ws2, 'Sorting');
 
     const cards = [...state.cards.data];
-    cards.unshift(["Card",	'CategoriesNo',	'	Categories',	'Frequency']);
+    cards.unshift(["Card",	'Categories No',	'	Categories',	'Frequency']);
     const flattenedCards = cards.map(row => row.map(cell => Array.isArray(cell) ? cell.join(", ") : cell));
 
     const ws3 = XLSX.utils.aoa_to_sheet(flattenedCards);
@@ -120,19 +135,7 @@ export default function studyPageReducer(state={}, action) {
 
   }
 
-  case studyActions.COPY_STUDY: {
-    
-    localStorage.setItem('newTitle', state.title);
-    localStorage.setItem('newDescription', state.description);
-    const cardsName = state.cards.data.map(data => data[0]);
-    const cardsDesc = state.cards.data.map(data => data[data.length - 1]);
-    alert( state.cards.data);
-    localStorage.setItem('cardsName', cardsName);
-    localStorage.setItem('cardsDesc', cardsDesc);
 
-    window.location.href = 'http://localhost:3000/create'
-  
-  }
     default: {
       return state;
     }

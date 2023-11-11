@@ -289,13 +289,14 @@ export function sendSort(studyID, container, categories,
   };
 }
 
-export function showingError(hasCategoryWithoutTitle, hasSameCategory)
+export function showingError(hasCategoryWithoutTitle, hasSameCategory,sameCategory)
 { 
   return {
     type: SHOW_ERROR,
     payload: {
       hasCategoryWithoutTitle: hasCategoryWithoutTitle, 
       hasSameCategory: hasSameCategory,
+      sameCategoryList: sameCategory,
     },
 };
 }

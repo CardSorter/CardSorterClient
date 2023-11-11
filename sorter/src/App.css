@@ -307,7 +307,7 @@ ul#list {
   text-transform: capitalize;
 }
 
-.popup-container > .popup > form > .btn-container > button.sumbit {
+.popup-container > .popup > form > .btn-container > button.submit {
   margin-left: 2rem;
 }
 
@@ -833,7 +833,7 @@ li.card.minimized button.desc-btn::before {
   font-size: 3rem;
 }
 
-.url-container textarea {
+.url-container a {
   border: none;
   font-family: 'LatoWeb', sans-serif;
   font-size: 3rem;

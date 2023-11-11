@@ -41,7 +41,7 @@ export default {
   july: 'july',
   june: 'june',
   launchedOn: 'Launched on',
-  linkProvide: 'Provide form\'s link',
+  linkProvide: 'Optionally, provide a link to a questionnaire that the user will be able to access.',
   march: 'march',
   may: 'may',
   message: 'Message',

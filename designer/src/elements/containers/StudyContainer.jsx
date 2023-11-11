@@ -183,9 +183,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     similarityHover: (index1, index2) => {
       dispatch(studyAction.changeHoveredCards(index1, index2));
     },
+    copyStudy: () => {
+      dispatch(studyAction.copyStudy(ownProps.id));
+    },
     copyUrl: (urlRef) => {
-      urlRef.current.select();
+      const input = document.createElement('input');
+      input.value = urlRef.current.href;
+      document.body.appendChild(input);
+      input.select();
       document.execCommand('copy');
+      document.body.removeChild(input);
     },
     openPopup: () => {
       dispatch(studyAction.togglePopup(true));
@@ -196,12 +203,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     openEditPopup: () => {
       dispatch(studyAction.toggleEditPopup(true));
     },
+
     downloadXLSX: () => {
       dispatch(studyAction.downloadXLSX(ownProps.id));
     },
-    copyStudy: () => {
-      dispatch(studyAction.copyStudy(ownProps.id));
-    },
+
     closeEditPopup: () => {
       dispatch(studyAction.toggleEditPopup(false));
     },

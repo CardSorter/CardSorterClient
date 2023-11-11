@@ -134,9 +134,13 @@ class Study extends Component {
           <h1>{title}</h1>
           <button className="edit" onClick={openEditPopup}></button>
           <button className="share" onClick={openPopup}></button>
-          <button className='download' onClick={downloadXLSX}></button>
           {
-            !noParticipants && <button className='copy' onClick={copyStudy}></button>
+            !noParticipants &&
+            <button className='download' onClick={downloadXLSX}></button>
+          }
+          {
+            !noParticipants &&
+            <button className='copy' onClick={copyStudy}></button>
           }
         </span>
         <span className="active">

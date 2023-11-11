@@ -14,7 +14,6 @@ const listTarget = {
     const card = monitor.getItem();
     props.onDrop(card.id, card.position, props.categories);
 
-    //props.removeEmptyCategories(props.categories);
   }
 }
 
@@ -26,33 +25,7 @@ function collect(connect, monitor) {
 }
 
 const List = ({ cards, categories, onDrop, connectDropTarget }) => {
-  // const [cardsList, setCardsList] = useState();
 
-  //alert(JSON.stringify(cardsList));
-  //alert('cards: ' + JSON.stringify(cards));
-  // alert('localStorage: ' + JSON.stringify(window.localStorage.getItem('LIST_STATE')));
-
-  // useEffect(() => {
-  //   const data = window.localStorage.getItem('LIST_STATE');
-  //   if (data !== null) {
-  //     setCardsList([...JSON.parse(data)]);
-  //   }
-
-  // }, [cards]);
-
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('LIST_STATE', JSON.stringify(cards));
-  //   // setCardsList([...cards]);
-
-  // }, [cards]);
-
-  // useEffect(() => {
-
-  //   const data = window.localStorage.getItem('LIST_STATE');
-  //   setCardsList(JSON.parse(data));
-  //   alert(cardsList + data)
-  // }, []);
 
   useEffect(() => {
     window.addEventListener("beforeunload", handleUnload);
@@ -61,16 +34,12 @@ const List = ({ cards, categories, onDrop, connectDropTarget }) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem('LIST_STATE', JSON.stringify(cards));
-  // }, [cards]);
 
   const handleUnload = (event) => {
     console.log("UNLOADING");
     return (event.returnValue = "");
 
   };
-  //cards = JSON.stringify(cards);
   cards = cards.cards;
   return connectDropTarget(
     <ul id='list'>
@@ -91,4 +60,3 @@ List.propTypes = {
 };
 
 export default DropTarget(itemTypes.CARD, listTarget, collect)(List);
-//export default List;
