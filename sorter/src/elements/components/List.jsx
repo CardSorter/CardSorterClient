@@ -25,21 +25,16 @@ function collect(connect, monitor) {
 }
 
 const List = ({ cards, categories, onDrop, connectDropTarget }) => {
-
-
   useEffect(() => {
-    window.addEventListener("beforeunload", handleUnload);
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
-      window.removeEventListener("beforeunload", handleUnload);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
 
-
-  const handleUnload = (event) => {
-    console.log("UNLOADING");
-    return (event.returnValue = "");
-
-  };
   cards = cards.cards;
   return connectDropTarget(
     <ul id='list'>

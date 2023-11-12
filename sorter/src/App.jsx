@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { connect, useDispatch } from 'react-redux';
 // eslint-disable-next-line no-unused-vars
 import { DragDropContextProvider } from 'react-dnd';
-import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 // eslint-disable-next-line no-unused-vars
@@ -36,6 +35,8 @@ import DescriptionPopup from './elements/components/DescriptionPopup.jsx';
  * App route
  */
 class App extends Component {
+
+
 
   closeToastFunction = () => {
     this.props.closeToast();
