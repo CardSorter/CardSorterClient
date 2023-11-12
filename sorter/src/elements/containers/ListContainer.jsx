@@ -41,6 +41,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onDrop: (cardID, cardPosition, categories) => {
+      //if the card is already in container
+      if (cardPosition === -1) return;
       dispatch(cardAction.addCardToContainer(cardID));
       removeCardFromParent(dispatch, cardPosition, cardID);
       deleteEmptyCategories(dispatch, categories);
