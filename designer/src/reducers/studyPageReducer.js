@@ -120,7 +120,7 @@ export default function studyPageReducer(state={}, action) {
     XLSX.utils.book_append_sheet(wb, ws2, 'Sorting');
 
     const cards = [...state.cards.data];
-    cards.unshift(["Card",	'Categories No',	'	Categories',	'Frequency']);
+    cards.unshift(["Card",	'Categories No',	'	Categories',	'Frequency','Description']);
     const flattenedCards = cards.map(row => row.map(cell => Array.isArray(cell) ? cell.join(", ") : cell));
 
     const ws3 = XLSX.utils.aoa_to_sheet(flattenedCards);

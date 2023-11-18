@@ -33,6 +33,7 @@ function getHeaders(state) {
         L.text.categoriesNo,
         L.text.categories,
         L.text.frequency,
+        L.text.description
       ];
     }
     case 2: {
