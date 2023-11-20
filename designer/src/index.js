@@ -16,10 +16,10 @@ import * as serviceWorker from './serviceWorker';
 const store = initializeStore();
 ReactDOM.render(
     <Provider store={store}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Route exact path='/' component={Main}/>
         <Route path='/create' component={CreateStudy}/>
-        <Route path={`${process.env.PUBLIC_URL}/study/:id`}
+        <Route path={'/study/:id'}
           component={StudyPage}/>
       </Router>
     </Provider>, document.getElementById('root'));
