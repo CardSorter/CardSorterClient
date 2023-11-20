@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import L from '../../../localization/LocalizedText';
 
-const StudyMenu = ({selectedNo, onClicks}) => {
+const StudyMenu = ({ selectedNo, onClicks }) => {
   const styles = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     styles[i] = '';
   }
   styles[selectedNo] = 'selected';
@@ -15,6 +15,8 @@ const StudyMenu = ({selectedNo, onClicks}) => {
     <div className="study-menu">
       <button onClick={onClicks.participant} className={styles[0]}>
         {L.text.participant}</button>
+      <button onClick={onClicks.sorting} className={styles[5]}>
+        {L.text.sorting}</button>
       <button onClick={onClicks.cards} className={styles[1]}>
         {L.text.cards}</button>
       <button onClick={onClicks.categories} className={styles[2]}>

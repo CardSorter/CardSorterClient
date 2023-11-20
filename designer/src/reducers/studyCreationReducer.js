@@ -26,8 +26,9 @@ export default function studyCreationReducer(state={}, action) {
         name: undefined,
         description: undefined,
       };
-      return newState;
+       return newState;
     }
+  
     case studyCreationActions.ADD_X_CARDS: {
       const newState = Object.assign({}, state);
 
@@ -35,7 +36,7 @@ export default function studyCreationReducer(state={}, action) {
       for (let i = 0; i < action.payload.no; i++) {
         newState['cards'][id+i] = {
           id: id+i,
-          name: 'A very large title title tile',
+          name: undefined,
           description: undefined,
         };
       }
@@ -63,6 +64,11 @@ export default function studyCreationReducer(state={}, action) {
         'thanksMessage': action.payload.message,
       });
     }
+    case studyCreationActions.CHANGE_LINK: {
+      return Object.assign({}, state, {
+        'link': action.payload.link,
+      });
+    }
     case studyCreationActions.TOGGLE_TITLE_ERROR: {
       return Object.assign({}, state, {
         'errorTitle': action.payload.status,
@@ -76,6 +82,11 @@ export default function studyCreationReducer(state={}, action) {
     case studyCreationActions.TOGGLE_CARD_ERROR: {
       return Object.assign({}, state, {
         'errorCards': action.payload.status,
+      });
+    }
+    case studyCreationActions.TOGGLE_CARD_DUPLICATE: {
+      return Object.assign({}, state, {
+        'errorDuplicate': action.payload.status,
       });
     }
     case studyCreationActions.TOGGLE_THANKS_ERROR: {

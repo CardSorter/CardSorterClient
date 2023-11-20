@@ -1,6 +1,8 @@
 import * as responseStatus from '../staticContent/responseStatus';
 import {normalizeCategories} from './categoryAction';
 import api from './api';
+import exportString from './api';
+import { useDispatch } from 'react';
 
 export const SHOW_TITLE_BOX = 'SHOW_TITLE_BOX';
 export const HIDE_ALL_BOXES = 'HIDE_ALL_BOXES';
@@ -13,8 +15,16 @@ export const TOGGLE_POPUP = 'TOGGLE_POPUP';
 export const POPUP_CHANGE_CONTENT = 'POPUP_CHANGE_CONTENT';
 export const START_SORT = 'START_SORT';
 export const END_SORT = 'END_SORT';
-
-
+export const SHOW_ERROR = 'SHOW_ERROR';
+export const HIDE_ERROR = 'HIDE_ERROR';
+export const TOGGLE_CONFIRM_POPUP = 'TOGGLE_CONFIRM_POPUP';
+export const CLOSE_CONFIRM_POPUP = 'CLOSE_CONFIRM_POPUP';
+export const SAVE_LINK = 'SAVE_LINK';
+export const RENDER_LINK = 'RENDER_LINK';
+export const TOGGLE_TOAST = 'TOGGLE_TOAST';
+export const CLOSE_TOAST = 'CLOSE_TOAST';
+export const TOOGLE_DESCRIPTION_POPUP = 'TOOGLE_DESCRIPTION_POPUP';
+export const ADD_TITLE_DESCRIPTION = 'ADD_TITLE_DESCRIPTION';
 /**
  * Toogle the onboarding screen, that helps the user understand what to do.
  * @param {Boolean} show
@@ -86,6 +96,15 @@ export function saveThanksMessage(message) {
   };
 }
 
+export function saveLink(link) {
+  return {
+    type: SAVE_LINK,
+    payload: {
+      link: link,
+    },
+  };
+}
+
 /**
  * Flags that the thanks message screen must be shown
  * @return {JSON} the action
@@ -93,6 +112,14 @@ export function saveThanksMessage(message) {
 export function renderThanksMessage() {
   return {
     type: RENDER_THANKS_MESSAGE,
+    payload: {},
+    error: false,
+  };
+}
+
+export function renderLink() {
+  return {
+    type: RENDER_LINK,
     payload: {},
     error: false,
   };
@@ -114,6 +141,43 @@ export function togglePopup(flag, title) {
     error: false,
   };
 }
+
+export function toggleDescriptionPopup(flag) {
+  return {
+    type: TOOGLE_DESCRIPTION_POPUP,
+    payload: {
+      flag: flag,
+    },
+};
+}
+
+export function toggleToast(flag) {
+  return {
+    type: TOGGLE_TOAST,
+    payload: {
+      flag: flag,
+    },
+    error: false,
+  };
+}
+
+export function toggleConfirmPopUp(flag,unSorted) {
+  return {
+    type: TOGGLE_CONFIRM_POPUP,
+    payload: {
+      flag: flag,
+      unSorted: unSorted,
+    },
+}
+}
+
+export function closeConfirmPopUp() {
+  return {
+    type: CLOSE_CONFIRM_POPUP,
+    payload: {},
+  }
+}
+
 
 /**
  * Changes the content of the text area.
@@ -171,6 +235,16 @@ export function sendingSort(status, response, error) {
   };
 }
 
+export function addTitleDescription(title,description){
+  return {
+    type: ADD_TITLE_DESCRIPTION,
+    payload: {
+      title: title,
+      description: description,
+    },
+    error: false,
+  };
+}
 /* Thunk actions */
 
 /**
@@ -187,7 +261,7 @@ export function sendSort(studyID, container, categories,
     timeStarted, timeEnded, comment) {
   return function(dispatch) {
     const seconds = timeEnded - timeStarted;
-    dispatch(normalizeCategories());
+    // dispatch(normalizeCategories());
     dispatch(sendingSort(responseStatus.IS_SENDING));
     fetch(api+'/sort_endpoint', {
       method: 'POST',
@@ -204,9 +278,39 @@ export function sendSort(studyID, container, categories,
     }).then(
         (response) => response.json().then((json) => {
           dispatch(sendingSort(responseStatus.SUCCESS));
-          dispatch(saveThanksMessage(json.message));
+          dispatch(saveThanksMessage(json[0]['message']));
+          dispatch(saveLink(json[1]['link']));
+          if(json[1]['link']!=='undefined' && json[1]['link']!==undefined)
+            dispatch(renderLink());
+          
           dispatch(renderThanksMessage());
         })
     );
   };
 }
+
+export function showingError(hasCategoryWithoutTitle, hasSameCategory,sameCategory)
+{ 
+  return {
+    type: SHOW_ERROR,
+    payload: {
+      hasCategoryWithoutTitle: hasCategoryWithoutTitle, 
+      hasSameCategory: hasSameCategory,
+      sameCategoryList: sameCategory,
+    },
+};
+}
+export function hidingError()
+{
+  return {
+    type: HIDE_ERROR,
+    payload: {},
+};
+}
+
+export function closeToast(){
+  return {
+    type: CLOSE_TOAST,
+    payload: {},
+  }
+};

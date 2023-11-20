@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Board from '../components/Board.jsx';
 import * as uiAction from '../../actions/uiAction';
@@ -16,11 +16,11 @@ function removeCardFromParent(dispatch, cardPosition, cardID) {
     // The card is in the main container
     dispatch(cardAction.removeCardFromContainer(cardID));
   } else
-  if (cardPosition > -1) {
-    // The card belongs to a category and it is being moved to a
-    // new one
-    dispatch(cardAction.removeCardFromCategory(cardID, cardPosition));
-  }
+    if (cardPosition > -1) {
+      // The card belongs to a category and it is being moved to a
+      // new one
+      dispatch(cardAction.removeCardFromCategory(cardID, cardPosition));
+    }
 }
 
 /**
@@ -41,8 +41,7 @@ function deleteEmptyCategories(dispatch, categories) {
 const mapStateToProps = (state) => {
   // Convert to array
   const categories = Object.values(state.categories);
-
-  return {categories: categories};
+  return { categories: categories };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -65,8 +64,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const BoardContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Board);
 
 export default BoardContainer;

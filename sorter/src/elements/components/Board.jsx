@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
-import {DropTarget} from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 
-import {itemTypes} from '../../staticContent/dragConstants';
+import { itemTypes } from '../../staticContent/dragConstants';
 // eslint-disable-next-line no-unused-vars
 import Category from '../containers/CategoryContainer';
 import L from '../../localization/LocalizedText';
@@ -29,15 +29,15 @@ const boardTarget = {
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver({shallow: true}),
+    isOver: monitor.isOver({ shallow: true }),
   };
 }
 
-const Board = ({categories, onClick, onDrop,
-  connectDropTarget, isOver, removeEmptyCategories}) => {
+const Board = ({ categories, onClick, onDrop,
+  connectDropTarget, isOver, removeEmptyCategories }) => {
   categories = categories.map((category) => (
     <Category key={'k' + category.id} id={category.id}
-      title={category.title} cards={category.cards}/>
+      title={category.title} cards={category.cards} />
   ));
 
   return connectDropTarget(<ul id='board' onClick={onClick}>
@@ -63,4 +63,4 @@ Board.propTypes = {
 
 // eslint-disable-next-line new-cap
 export default DropTarget(itemTypes.CARD,
-    boardTarget, collect)(Board);
+  boardTarget, collect)(Board);

@@ -58,18 +58,18 @@ export default function categories(state={}, action) {
       newState[categoryID].isMinimized = action.payload.value;
       return newState;
     }
-    case categoryAction.NORMALIZE_CATEGORIES: {
-      const newState = Object.assign({}, state);
-      for (const categoryID in newState) {
-        if ({}.hasOwnProperty.call(newState, categoryID)) {
-          const category = newState[categoryID];
-          if (category.title === L.text.clickToRename) {
-            category.title = 'not set';
-          }
-        }
-      }
-      return newState;
-    }
+    // case categoryAction.NORMALIZE_CATEGORIES: {
+    //   const newState = Object.assign({}, state);
+    //   for (const categoryID in newState) {
+    //     if ({}.hasOwnProperty.call(newState, categoryID)) {
+    //       const category = newState[categoryID];
+    //       if (category.title === L.text.clickToRename) {
+    //         category.title = 'not set';
+    //       }
+    //     }
+    //   }
+    //   return newState;
+    // }
     default:
       return state;
   }

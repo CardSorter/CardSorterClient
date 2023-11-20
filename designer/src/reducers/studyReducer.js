@@ -18,7 +18,7 @@ export default function studyReducer(state={}, action) {
           newState.studies = [];
         } else {
           newState.studies = action.payload.studies.map(
-              ({id, title, isLive, completedNo, abandonedNo,
+              ({id, title, isLive,description, completedNo, abandonedNo,
                 launchedDate, editDate, endDate}) => new StudyCard(
                   id, title, isLive, completedNo, abandonedNo,
                   new Date(launchedDate),

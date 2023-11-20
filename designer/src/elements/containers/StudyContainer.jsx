@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Study from '../components/Study.jsx';
 import L from '../../localization/LocalizedText';
@@ -19,12 +19,21 @@ function getHeaders(state) {
         L.text.categoriesCreated,
       ];
     }
+    case 5: {
+      return [
+        L.text.participantNo,
+        L.text.categories,
+        L.text.cards,
+        L.text.comments,
+      ];
+    }
     case 1: {
       return [
         L.text.card,
         L.text.categoriesNo,
         L.text.categories,
         L.text.frequency,
+        L.text.description
       ];
     }
     case 2: {
@@ -102,6 +111,9 @@ function getData(state) {
     case 2: {
       return state.study.categories.data;
     }
+    case 5: {
+      return state.study.sorting.data;
+    }
     default: {
       return {};
     }
@@ -113,6 +125,7 @@ const mapStateToProps = (state) => {
     isFetching: state.study.isFetching,
     title: state.study.title,
     isLive: state.study.isLive,
+    description: state.study.description,
     launched: state.study.launchedDate,
     noParticipants: state.study.noParticipants,
     similarityPage: state.study.selectedItem === 3,
@@ -126,11 +139,16 @@ const mapStateToProps = (state) => {
       headers: getHeaders(state),
       data: getData(state),
     },
+    cards: state.study.cards,
     similarityMatrix: state.study.similarityMatrix,
     selectedCards: state.study.selectedCards,
     clusters: state.study.clusters,
     clustersFetching: state.study.clustersFetching,
     showPopup: state.study.popupShowing,
+    editPopupOpen: state.study.editPopupOpen,
+    editPopupTitle: state.study.title,
+    editPopupDescription: state.study.description,
+    editPopupIsLive: state.study.isLive,
   };
 };
 
@@ -142,6 +160,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       onClicks: {
         participant: () => {
           dispatch(studyAction.changeView(0));
+        },
+        sorting: () => {
+          dispatch(studyAction.changeView(5));
         },
         cards: () => {
           dispatch(studyAction.changeView(1));
@@ -163,9 +184,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     similarityHover: (index1, index2) => {
       dispatch(studyAction.changeHoveredCards(index1, index2));
     },
+    copyStudy: () => {
+      dispatch(studyAction.copyStudy(ownProps.id));
+    },
     copyUrl: (urlRef) => {
-      urlRef.current.select();
+      const input = document.createElement('input');
+      input.value = urlRef.current.href;
+      document.body.appendChild(input);
+      input.select();
       document.execCommand('copy');
+      document.body.removeChild(input);
     },
     openPopup: () => {
       dispatch(studyAction.togglePopup(true));
@@ -173,12 +201,34 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     closePopup: () => {
       dispatch(studyAction.togglePopup(false));
     },
+    openEditPopup: () => {
+      dispatch(studyAction.toggleEditPopup(true));
+    },
+
+    downloadXLSX: () => {
+      dispatch(studyAction.downloadXLSX(ownProps.id));
+    },
+
+    closeEditPopup: () => {
+      dispatch(studyAction.toggleEditPopup(false));
+    },
+    saveEditPopup: (newTitle, newIsLive, newDescription) => {
+
+      const studyId = ownProps.id;
+      dispatch(studyAction.updateStudy(studyId, { title: newTitle, isLive: newIsLive, description: newDescription }));
+      dispatch(studyAction.toggleEditPopup(false));
+    },
+    deleteEditPopup: () => {
+      const studyId = ownProps.id;
+      dispatch(studyAction.deleteStudy(studyId));
+      dispatch(studyAction.toggleEditPopup(false));
+    },
   };
 };
 
 const StudyContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Study);
 
 export default StudyContainer;

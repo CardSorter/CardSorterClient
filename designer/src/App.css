@@ -6,7 +6,8 @@ small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+table, caption, tbody, tfoot, thead
+, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
@@ -168,7 +169,7 @@ button {
 
 .btn-secondary {
   background: 0;
-  border: solid 2px var(--color-secondary);
+  border: solid 1.7px black;
   box-sizing: border-box;
   width: 10rem;
 }
@@ -178,7 +179,7 @@ button {
 }
 
 .btn-secondary::before {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary-dark);
   right: -2px; top: -2px;
 }
 
@@ -434,9 +435,7 @@ button.createStudyCard:hover {
   margin-left: 1rem;
 }
 
-.filter-container a.active {
-  font-weight: bold;
-}
+
 
 /* Study creation container */
 
@@ -588,7 +587,18 @@ button.createStudyCard:hover {
   height: 100%;
 }
 
-.study-creation-card .error-holder .error-message {
+.study-creation-card .error-holder .error-message-cards {
+  align-items: center;
+ background: var(--color-error);
+  border-radius: 0 0 .5rem .5rem;
+  color: white;
+  display: flex;
+  font-size: 1.5rem;
+  height: 3rem; width: 100%;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  z-index: -1; 
   margin-top: -2rem;
 }
 
@@ -632,7 +642,7 @@ button.createStudyCard:hover {
 
 .study-creation-card form.cards .add-buttons-container .multi-add-container {
   align-items: center;
-  background-color: var(--color-secondary-light);
+  background-color: var(--color-primary);
   border-radius: .2rem;
   display: flex;
   flex-direction: row;
@@ -657,12 +667,12 @@ button.createStudyCard:hover {
 }
 
 .study-creation-card form.cards .add-buttons-container .multi-add-container button > svg {
-  fill: var(--color-secondary);
+  fill: white;
   height: 100%; width: 100%;
 }
 
 .study-creation-card form.cards .add-buttons-container .multi-add-container button:hover > svg {
-  fill: white;
+  fill: black;
   transition: .3s;
 }
 
@@ -723,6 +733,10 @@ button.createStudyCard:hover {
   display: flex;
   flex-direction: column;
 }
+.success-page .actions-container .button-container button {
+  background-color: var(--color-primary-dark);
+   border: 1px solid #000;
+}
 
 .success-page .actions-container .share-container {
   align-items: center;
@@ -757,7 +771,7 @@ button.createStudyCard:hover {
   font-size: 1.5rem;
 }
 
-.url-container textarea {
+.url-container a {
   border: none;
   font-family: 'LatoWeb', sans-serif;
   font-size: 2rem;
@@ -811,9 +825,14 @@ button.createStudyCard:hover {
 .study-page span.header button.edit {
   background-image: url('./icons/cog-solid.svg');
 }
-
+.study-page span.header button.download {
+  background-image: url('./icons/download.svg');
+}
 .study-page span.header button.share {
   background-image: url('./icons/share-arrow.svg');
+}
+.study-page span.header button.copy {
+  background-image: url('./icons/copy-study.svg');
 }
 
 .study-page span.active {
@@ -930,12 +949,16 @@ button.createStudyCard:hover {
   box-shadow: var(--shadow);
   font-size: 1.5rem;
   overflow: auto;
-  padding: 2rem;
+  padding: 2rem ;
   position: relative;
 }
+.data-container {
+padding-top: 0 !important;
+}
+
 
 .study-page .content .data-container table {
-  width: 100%
+  width: 100%;
 }
 
 .study-page .content table th {
@@ -1146,4 +1169,146 @@ td.color-100 {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+.popup-container .popup .content .share-container .url-container .url{
+ height: 10rem;
+}
+#table_header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+
+th {
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  
+}
+
+.toggle-button {
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.toggle-button.active {
+  background-color: #4caf50; /* Green when on */
+}
+
+.toggle-button.inactive {
+  background-color: #ff0000; /* Red when off */
+}
+
+.content button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 15px; 
+}
+
+.delete-btn {
+    background-color: #ff0000; /* Red color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 20px; 
+}
+.confirm-delete {
+    background-color: #f8d7da; /* Light red background */
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.confirm-btn, .cancel-btn {
+    background-color:#ff0000; /* Red color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.cancel-btn{
+  background-color: var(--color-green);
+}
+
+.content input[type="text"],
+.content input[type="description"] {
+  width: 100%; /* Adjust the width as needed */
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.content textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.filter-container .active
+{
+font-weight: bold;
+}
+.filter-container a:hover {
+  text-decoration: underline;
+}
+
+.sorting{
+  margin: 0 ;
+  width: 100%;
+}
+.sorting table {
+  text-align: left  ;
+  width: 100%;
+}
+.study-page .sorting table td {
+  font-family:'LatoWebLight';
+  padding-top: 2rem;
+  text-align: left;
+  padding-top: 10px !important; 
+  padding-bottom: 10px !important;
+}
+
+.study-page .sorting table td ul li:not(:first-child){
+  margin-top: 1rem;
+}
+
+
+.sorting .data-container{
+
+  align-Items: center;
+  box-shadow: var(--shadow);
+  font-size: 1.5rem;
+  overflow: auto;
+  max-height: 100vh;
+  padding: 2rem ;
+  position: relative;
+  border: 2rem ;
+  margin: 2rem;
+}
+
+.sorting table th::first-letter {
+  text-transform: capitalize;
+}
+.study-page .sorting {
+  box-sizing: border-box;
+  display: grid;
+  height: calc(100% - var(--height-header) - 1rem);
+  max-height: calc(100% - var(--height-header) - 1rem);
+  width: 100%;
 }

@@ -38,9 +38,19 @@ export default function ui(state={}, action) {
         'thanksMessage': action.payload.message,
       });
     }
+    case uiAction.SAVE_LINK: {
+      return Object.assign({}, state, {
+        'link': action.payload.link,
+      });
+    }
     case uiAction.RENDER_THANKS_MESSAGE: {
       return Object.assign({}, state, {
         'renderThanks': true,
+      });
+    }
+    case uiAction.RENDER_LINK: {
+       return Object.assign({}, state, {
+        'renderLink': true,
       });
     }
     case uiAction.TOGGLE_POPUP: {
@@ -50,10 +60,44 @@ export default function ui(state={}, action) {
 
       return newState;
     }
+
+    case uiAction.TOOGLE_DESCRIPTION_POPUP: {
+      const newState = Object.assign({}, state);
+      newState.showDescriptionPopup.show = action.payload.flag;
+
+      return newState;
+    }
+
+    case uiAction.TOGGLE_TOAST: {
+      const newState = Object.assign({}, state);
+      newState.showToast = action.payload.flag;
+
+      return newState;
+    }
+    case uiAction.CLOSE_TOAST:{
+      const newState = Object.assign({}, state);
+      newState.showToast = false;
+
+      return newState;
+    }
+
+    case uiAction.TOGGLE_CONFIRM_POPUP: {
+      const newState = Object.assign({}, state);
+      newState.confirmPopup.show = action.payload.flag;
+      newState.confirmPopup.unSorted = action.payload.unSorted;
+      return newState;
+    }
+
+    case uiAction.CLOSE_CONFIRM_POPUP: {
+      const newState = Object.assign({}, state);
+      newState.confirmPopup.show = false;
+      newState.confirmPopup.unSorted = false;
+      return newState;
+    }
+
     case uiAction.POPUP_CHANGE_CONTENT: {
       const newState = Object.assign({}, state);
       newState.popup.content = action.payload.content;
-
       return newState;
     }
     case uiAction.START_SORT: {
@@ -66,6 +110,26 @@ export default function ui(state={}, action) {
         'timeEnded': Date.now(),
       });
     }
+    case uiAction.SHOW_ERROR: {
+      const newState = Object.assign({}, state);
+      newState.errors.title = action.payload.hasCategoryWithoutTitle;
+      newState.errors.sameCategory = action.payload.hasSameCategory;
+      newState.errors.sameCategoryList = action.payload.sameCategoryList;
+      return newState;
+  }
+    case uiAction.HIDE_ERROR: {
+      const newState = Object.assign({}, state);
+      newState.errors.title = false;
+      newState.errors.sameCategory = false;
+
+      return newState;
+  }
+  case uiAction.ADD_TITLE_DESCRIPTION:{
+    const newState = Object.assign({}, state);
+    newState.showDescriptionPopup.title = action.payload.title;
+    newState.showDescriptionPopup.description = action.payload.description;
+    return newState;
+  }
     default: {
       return state;
     }

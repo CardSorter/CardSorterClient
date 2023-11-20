@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import ShareBox from '../components/ShareBox.jsx';
@@ -8,8 +8,12 @@ const mapStateToProps = (state, ownProps) => {
     url: ownProps.url,
     text: ownProps.text,
     onCopy: (urlRef) => {
-      urlRef.current.select();
+      const input = document.createElement('input');
+      input.value = urlRef.current.href;
+      document.body.appendChild(input);
+      input.select();
       document.execCommand('copy');
+      document.body.removeChild(input);
     },
   };
 };
@@ -20,8 +24,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const ShareBoxcontainer = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(ShareBox);
 
 ShareBoxcontainer.propTypes = {

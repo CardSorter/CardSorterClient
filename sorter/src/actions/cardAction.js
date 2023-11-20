@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 import * as responseStatus from '../staticContent/responseStatus';
-import {saveStudyID, toogleOnBoarding} from './uiAction';
+import {saveStudyID, toogleOnBoarding, addTitleDescription} from './uiAction';
 import debugConsole from '../debug/Debugconsole';
 import api from './api';
 
@@ -132,6 +132,8 @@ export function fetchCards(studyID) {
               }
               // Load the cards
               dispatch(requestCards(responseStatus.SUCCESS, json));
+              dispatch(addTitleDescription(json.title,json.description))
+
               // Show the cards
               for (const card of json.cards) {
                 dispatch(addCardToContainer(card.id));
