@@ -15,7 +15,7 @@ ReactDOM.render(
     <Provider store={store}>
       {/*stores the current location in the browser's address bar using clean URLs*/}
       {/*adding the auth after url*/}
-      <Router basename={'/auth'}>
+      <Router basename={process.env.PUBLIC_URL}>
         {/*when path is / render loginPage else render registerPage so Route looks the path to now what components 
         to render*/ }
         <Route exact path='/' component={LoginPage}/>
