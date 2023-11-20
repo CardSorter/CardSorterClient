@@ -19,7 +19,7 @@ export default function headerReducer(state={}, action) {
       document.cookie
                 = 'auth_token= ;expires = Thu, 01 Jan 1970 00:00:00 GMT';
       // Redirect to the main page
-      document.location.replace('auth/');
+      document.location.replace('/card-sorter/auth/');
       return state;
     }
     case headerActions.REQUEST_USERNAME: {
