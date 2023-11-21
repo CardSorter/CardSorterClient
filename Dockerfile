@@ -14,7 +14,7 @@ COPY ./auth/package.json ./
 RUN npm install
 
 COPY ./auth ./
-
+ENV PUBLIC_URL /card-sorter/auth
 RUN npm run build
 
 # Build designer
@@ -26,7 +26,7 @@ WORKDIR /app/designer
 
 COPY ./designer/package.json ./
 RUN npm install
-
+ENV PUBLIC_URL /card-sorter
 COPY ./designer ./
 
 RUN npm run build
@@ -42,9 +42,8 @@ COPY ./sorter/package.json ./
 RUN npm install
 
 COPY ./sorter ./
-
+ENV PUBLIC_URL /card-sorter/sort
 RUN npm run build
-
 
 
 # Stage 2 serve the files
