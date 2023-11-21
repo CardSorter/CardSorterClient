@@ -18,7 +18,13 @@ export default function studyPageReducer(state={}, action) {
     localStorage.setItem('cardsName', cardsName);
     localStorage.setItem('cardsDesc', cardsDesc);
 
-    window.location.href = 'http://localhost:3000/create'
+    //get the URL, discard the study/id and navigate to create
+    let currentUrl = window.location.href;
+    currentUrl = currentUrl.split('/study/')[0];
+    const updatedUrl = currentUrl+"/create";
+    alert(updatedUrl)
+
+    window.location.href = updatedUrl;
   
   }
     case studyActions.LOAD_STUDY: {
