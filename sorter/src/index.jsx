@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // eslint-disable-next-line no-unused-vars
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import './index.css';
 import initializeStore from './Store';
