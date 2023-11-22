@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
 import * as responseStatus from '../staticContent/responseStatus';
 import {normalizeCategories} from './categoryAction';
 import api from './api';
 import exportString from './api';
-import { useDispatch } from 'react';
+import {useDispatch} from 'react';
 
 export const SHOW_TITLE_BOX = 'SHOW_TITLE_BOX';
 export const HIDE_ALL_BOXES = 'HIDE_ALL_BOXES';
@@ -148,7 +151,7 @@ export function toggleDescriptionPopup(flag) {
     payload: {
       flag: flag,
     },
-};
+  };
 }
 
 export function toggleToast(flag) {
@@ -161,21 +164,21 @@ export function toggleToast(flag) {
   };
 }
 
-export function toggleConfirmPopUp(flag,unSorted) {
+export function toggleConfirmPopUp(flag, unSorted) {
   return {
     type: TOGGLE_CONFIRM_POPUP,
     payload: {
       flag: flag,
       unSorted: unSorted,
     },
-}
+  };
 }
 
 export function closeConfirmPopUp() {
   return {
     type: CLOSE_CONFIRM_POPUP,
     payload: {},
-  }
+  };
 }
 
 
@@ -235,7 +238,8 @@ export function sendingSort(status, response, error) {
   };
 }
 
-export function addTitleDescription(title,description){
+
+export function addTitleDescription(title, description) {
   return {
     type: ADD_TITLE_DESCRIPTION,
     payload: {
@@ -280,37 +284,36 @@ export function sendSort(studyID, container, categories,
           dispatch(sendingSort(responseStatus.SUCCESS));
           dispatch(saveThanksMessage(json[0]['message']));
           dispatch(saveLink(json[1]['link']));
-          if(json[1]['link']!=='undefined' && json[1]['link']!==undefined)
+          if (json[1]['link']!=='undefined' && json[1]['link']!==undefined) {
             dispatch(renderLink());
-          
+          }
+
           dispatch(renderThanksMessage());
-        })
+        }),
     );
   };
 }
 
-export function showingError(hasCategoryWithoutTitle, hasSameCategory,sameCategory)
-{ 
+export function showingError(hasCategoryWithoutTitle, hasSameCategory, sameCategory) {
   return {
     type: SHOW_ERROR,
     payload: {
-      hasCategoryWithoutTitle: hasCategoryWithoutTitle, 
+      hasCategoryWithoutTitle: hasCategoryWithoutTitle,
       hasSameCategory: hasSameCategory,
       sameCategoryList: sameCategory,
     },
-};
+  };
 }
-export function hidingError()
-{
+export function hidingError() {
   return {
     type: HIDE_ERROR,
     payload: {},
-};
+  };
 }
 
-export function closeToast(){
+export function closeToast() {
   return {
     type: CLOSE_TOAST,
     payload: {},
-  }
+  };
 };
