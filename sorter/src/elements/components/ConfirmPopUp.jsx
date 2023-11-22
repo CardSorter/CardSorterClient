@@ -1,4 +1,9 @@
-import { connect } from 'react-redux';
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable indent */
+import {connect} from 'react-redux';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
