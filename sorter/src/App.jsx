@@ -3,6 +3,7 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable object-curly-spacing */
 /* eslint-disable indent */
+/* eslint-disable no-invalid-this */
 import 'babel-polyfill'; // Ensure all polyfills are present
 
 // eslint-disable-next-line no-unused-vars
@@ -41,7 +42,7 @@ import DescriptionPopup from './elements/components/DescriptionPopup.jsx';
  */
 class App extends Component {
   closeToastFunction = () => {
-    props.closeToast();
+    this.props.closeToast();
   }
   /**
    * React render
@@ -53,7 +54,6 @@ class App extends Component {
 
     let render;
     if (renderThanks) {
-
       render = (
         <main>
           <MessageScreen message={thanksMessage} link={link} renderLink={renderLink} image={thanksImage}
@@ -69,8 +69,10 @@ class App extends Component {
         render = (
           <>
             {showToast &&
-              <Toast message={L.text.noCategoryCreated} showToast={true} 
-              hidingErrorTitle={this.closeToastFunction} />
+              <Toast
+                message={L.text.noCategoryCreated}
+                showToast={true}
+                hidingErrorTitle={this.closeToastFunction} />
             }
             {showDescriptionPopup &&
               <DescriptionPopup title={title} description={description} />
