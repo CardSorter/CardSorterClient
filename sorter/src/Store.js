@@ -19,7 +19,7 @@ export default function initializeStore() {
   }
 
   const store = createStore(app, initialState, applyMiddleware(
-      ...middleware
+      ...middleware,
   ));
 
   const unsuscribe = store.subscribe(() => {});
