@@ -3,10 +3,11 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable object-curly-spacing */
 /* eslint-disable indent */
+/* eslint-disable no-invalid-this */
 import React, {Component} from 'react';
-import {toggleDescriptionPopup} from "../../actions/uiAction";
+import {toggleDescriptionPopup} from '../../actions/uiAction';
 import PropTypes from 'prop-types';
-import {connect}  from 'react-redux';
+import {connect} from 'react-redux';
 
 class DescriptionPopup extends Component {
     constructor(props) {
