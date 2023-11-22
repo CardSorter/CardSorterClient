@@ -1,7 +1,4 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {Provider} from 'react-redux';
 
 import './index.css';
 import LoginPage from './pages/LoginPage';
@@ -11,13 +8,8 @@ import * as serviceWorker from './serviceWorker';
 
 const store = initializeStore();
 ReactDOM.render(
-  //provider make store available to all components(child)
     <Provider store={store}>
-      {/*stores the current location in the browser's address bar using clean URLs*/}
-      {/*adding the auth after url*/}
       <Router basename={process.env.PUBLIC_URL}>
-        {/*when path is / render loginPage else render registerPage so Route looks the path to now what components 
-        to render*/ }
         <Route exact path='/' component={LoginPage}/>
         <Route path='/register' component={RegisterPage}/>
       </Router>
