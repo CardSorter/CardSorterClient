@@ -17,20 +17,17 @@ const Login = ({onUsernameChange, onPasswordChange, onForgot,
     <div className="container">
       <p>{L.text.hiAgain}</p>
       <form onKeyPress={(e) => onFormKeyPress(e, username, password)}>
-         {/* Username Input */}
         <div className="error-holder">
           <input type="text" className="username" onChange={onUsernameChange}
-            placeholder={L.text.username}/>
+            placeholder={L.text.username} />
           {
-             // Display username error message if it exists
             usernameError &&
             <div className="error-message"><p>{usernameError}</p></div>
           }
         </div>
-          {/* Password Input */}
         <div className="error-holder">
           <input type="password" className="password last"
-            onChange={onPasswordChange} placeholder={L.text.password}/>
+            onChange={onPasswordChange} placeholder={L.text.password} />
           {
             passwordError &&
             <div className="error-message"><p>{passwordError}</p></div>
