@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable indent */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -17,8 +22,7 @@ const Header = ({ studyID, container, categories,
       <p>Add a comment</p>
     </button>
     <button className="btn--main" onClick={() =>
-      onFinishClick(studyID, container, categories,
-        timeStarted, comment)}><p>Finish</p></button>
+      onFinishClick(studyID, container, categories, timeStarted, comment)}><p>Finish</p></button>
   </header>
 );
 
