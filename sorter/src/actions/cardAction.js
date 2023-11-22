@@ -132,7 +132,7 @@ export function fetchCards(studyID) {
               }
               // Load the cards
               dispatch(requestCards(responseStatus.SUCCESS, json));
-              dispatch(addTitleDescription(json.title,json.description))
+              dispatch(addTitleDescription(json.title, json.description));
 
               // Show the cards
               for (const card of json.cards) {
@@ -141,7 +141,7 @@ export function fetchCards(studyID) {
               // Show the onboarding screen
               dispatch(toogleOnBoarding(true));
             }),
-            (error) => debugConsole(error)
+            (error) => debugConsole(error),
         );
   };
 }
