@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import OnBoarding from '../components/OnBoarding';
-import { toogleOnBoarding, startSort } from '../../actions/uiAction';
+import {toogleOnBoarding, startSort} from '../../actions/uiAction';
 
 const mapStateToProps = (state) => {
   return {
@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const OnBoardingContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+    mapStateToProps,
+    mapDispatchToProps,
 )(OnBoarding);
 
 export default OnBoardingContainer;
