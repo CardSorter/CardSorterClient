@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import Category from '../components/Category';
 import L from '../../localization/LocalizedText';
@@ -18,11 +18,11 @@ function removeCardFromParent(dispatch, cardPosition, cardID) {
     // The card is in the main container
     dispatch(cardAction.removeCardFromContainer(cardID));
   } else
-    if (cardPosition > -1) {
-      // The card belongs to a category and it is being moved to a
-      // new one
-      dispatch(cardAction.removeCardFromCategory(cardID, cardPosition));
-    }
+  if (cardPosition > -1) {
+    // The card belongs to a category and it is being moved to a
+    // new one
+    dispatch(cardAction.removeCardFromCategory(cardID, cardPosition));
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -80,14 +80,14 @@ const mapDispatchToProps = (dispatch) => {
     },
     hidingErrorTitle: () => {
       dispatch(uiAction.hidingError());
-    }
+    },
 
   };
 };
 
 const CategoryContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps,
 )(Category);
 
 export default CategoryContainer;
