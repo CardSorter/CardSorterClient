@@ -28,7 +28,7 @@ const initialState = {
       title: 'Add a comment',
       content: undefined,
     },
-    errors:{
+    errors: {
       title: false,
       sameCategory: false,
       sameCategoryList: [],
@@ -37,7 +37,7 @@ const initialState = {
       show: undefined,
       unSorted: true,
     },
-    showDescriptionPopup:{
+    showDescriptionPopup: {
       show: undefined,
       title: undefined,
       description: undefined,
