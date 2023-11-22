@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable object-curly-spacing */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
