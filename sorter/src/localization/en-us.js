@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export default {
   addComment: 'add a comment',
   cancel: 'cancel',
@@ -13,6 +14,6 @@ export default {
   confirmFinish: 'Are you sure you want to finish? Sorting will not be continued.',
   confirm: 'Confirm',
   cancel: 'Cancel',
-  Questionnaire:'You can optionally complete the questionnaire by clicking on the following link:',
+  Questionnaire: 'You can optionally complete the questionnaire by clicking on the following link:',
   noCategoryCreated: 'No categories created',
 };

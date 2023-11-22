@@ -49,7 +49,7 @@ export default function ui(state={}, action) {
       });
     }
     case uiAction.RENDER_LINK: {
-       return Object.assign({}, state, {
+      return Object.assign({}, state, {
         'renderLink': true,
       });
     }
@@ -74,7 +74,7 @@ export default function ui(state={}, action) {
 
       return newState;
     }
-    case uiAction.CLOSE_TOAST:{
+    case uiAction.CLOSE_TOAST: {
       const newState = Object.assign({}, state);
       newState.showToast = false;
 
@@ -116,20 +116,20 @@ export default function ui(state={}, action) {
       newState.errors.sameCategory = action.payload.hasSameCategory;
       newState.errors.sameCategoryList = action.payload.sameCategoryList;
       return newState;
-  }
+    }
     case uiAction.HIDE_ERROR: {
       const newState = Object.assign({}, state);
       newState.errors.title = false;
       newState.errors.sameCategory = false;
 
       return newState;
-  }
-  case uiAction.ADD_TITLE_DESCRIPTION:{
-    const newState = Object.assign({}, state);
-    newState.showDescriptionPopup.title = action.payload.title;
-    newState.showDescriptionPopup.description = action.payload.description;
-    return newState;
-  }
+    }
+    case uiAction.ADD_TITLE_DESCRIPTION: {
+      const newState = Object.assign({}, state);
+      newState.showDescriptionPopup.title = action.payload.title;
+      newState.showDescriptionPopup.description = action.payload.description;
+      return newState;
+    }
     default: {
       return state;
     }

@@ -1,11 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import L from '../../localization/LocalizedText';
-const MessageScreen = ({ message, link, renderLink, image, submessage }) => {
-
-  if (renderLink)
-    link = link.startsWith("http://") || link.startsWith("https://") ? link : `http://${link}`;
+const MessageScreen = ({message, link, renderLink, image, submessage}) => {
+  if (renderLink) {
+    link = link.startsWith('http://') || link.startsWith('https://') ? link : `http://${link}`;
+  }
 
   return (
 

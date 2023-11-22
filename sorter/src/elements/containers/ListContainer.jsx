@@ -1,4 +1,6 @@
-import { connect } from 'react-redux';
+/* eslint-disable require-jsdoc */
+/* eslint-disable spaced-comment */
+import {connect} from 'react-redux';
 import List from '../components/List.jsx';
 import parseCards from '../../helpers/cardParser';
 import * as cardAction from '../../actions/cardAction';
@@ -8,10 +10,10 @@ function removeCardFromParent(dispatch, cardPosition, cardID) {
   if (cardPosition === -1) {
     // The card is still in the main container
   } else
-    if (cardPosition > -1) {
-      // The card belongs to a category and it is come back to the main container
-      dispatch(cardAction.removeCardFromCategory(cardID, cardPosition));
-    }
+  if (cardPosition > -1) {
+    // The card belongs to a category and it is come back to the main container
+    dispatch(cardAction.removeCardFromCategory(cardID, cardPosition));
+  }
 }
 
 function deleteEmptyCategories(dispatch, categories) {
@@ -53,8 +55,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const ListContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+    mapStateToProps,
+    mapDispatchToProps,
 )(List);
 
 export default ListContainer;

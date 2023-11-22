@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import Popup from '../components/Popup.jsx';
 import * as uiAction from '../../actions/uiAction';
@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const PopupContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+    mapStateToProps,
+    mapDispatchToProps,
 )(Popup);
 
 export default PopupContainer;

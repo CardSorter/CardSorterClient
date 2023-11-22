@@ -2,8 +2,6 @@ import * as cardAction from '../actions/cardAction';
 import * as categoryAction from '../actions/categoryAction';
 import Category from '../elements/Category';
 
-import L from '../localization/LocalizedText';
-
 /**
  *
  * @param {boardState} state

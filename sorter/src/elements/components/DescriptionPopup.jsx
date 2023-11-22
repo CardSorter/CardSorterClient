@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
-import { toggleDescriptionPopup } from "../../actions/uiAction";
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable indent */
+import React, {Component} from 'react';
+import {toggleDescriptionPopup} from "../../actions/uiAction";
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect}  from 'react-redux';
 
 class DescriptionPopup extends Component {
     constructor(props) {
@@ -9,7 +14,7 @@ class DescriptionPopup extends Component {
     }
     onClose = () => {
         this.props.dispatch(toggleDescriptionPopup(false));
-    } //closeConfirmPopUp
+    }
     render() {
         const { title, description } = this.props;
         return (
@@ -23,12 +28,10 @@ class DescriptionPopup extends Component {
                             <p>close</p>
                         </button>
                     </div>
-
                 </div>
             </div >
         );
     };
-
 }
 
 DescriptionPopup.propTypes = {
