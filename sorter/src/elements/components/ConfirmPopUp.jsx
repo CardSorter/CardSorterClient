@@ -3,6 +3,7 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable object-curly-spacing */
 /* eslint-disable indent */
+/* eslint-disable no-invalid-this */
 import {connect} from 'react-redux';
 
 import React, { Component } from 'react';
@@ -18,7 +19,6 @@ class ConfirmPopUp extends Component {
     handleConfirmFinish = () => {
         this.props.dispatch(endSort());
         this.props.dispatch(sendSort(this.props.studyID, this.props.container, this.props.categories, this.props.timeStarted, Date.now(), this.props.comment));
-
     }
 
     onClose = () => {
@@ -26,9 +26,7 @@ class ConfirmPopUp extends Component {
     }
 
     render() {
-
         const { unSorted } = this.props;
-
         return (
             <div className="popup-container" onClick={this.onClose}>
                 <div className="popup" onClick={(e) => e.stopPropagation()}>
