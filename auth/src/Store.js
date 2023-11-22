@@ -9,10 +9,11 @@ import initialState from './reducers/stateSchema';
 import localizedText from './localization/LocalizedText';
 
 /**
- * initialize the store 
+ * initialize the store
  * @return {Store}
  */
 
+// eslint-disable-next-line require-jsdoc
 export default function initializeStore() {
   const middleware = [thunkMiddleware];
   if (env !== 'PRODUCTION') {
@@ -24,8 +25,11 @@ export default function initializeStore() {
   ));
 
   localizedText.initialize('en-us');
-  /* function unsubscribe is defined to unsubscribe the store's listener. This is done to ensure that the initial state is not modified by the listener immediately after creation.*/
-  //  The unsubscribe function is immediately invoked, preventing the listener from being called again.
+  /* function unsubscribe is defined to unsubscribe the store's listener.
+  This is done to ensure that the initial state
+  is not modified by the listener immediately after creation.
+  The unsubscribe function is immediately invoked,
+  preventing the listener from being called again.*/
   const unsuscribe = store.subscribe(() => {});
 
   unsuscribe();
