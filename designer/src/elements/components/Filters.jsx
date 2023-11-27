@@ -17,17 +17,21 @@ const Filters = ({ ongoing: ongoingAttr, completed: completedAttr }) => {
   if (completedAttr) {
     completedRef = './?filter=completed';
   }
-  if (window.location.search === '?filter=ongoing')
+  if (window.location.search === '?filter=ongoing') {
     ongoingStyle = 'active';
-  else if (window.location.search === '?filter=completed')
+  } else if (window.location.search === '?filter=completed') {
     completedStyle = 'active';
-  else
+  } else {
     allStyle = 'active';
+  }
 
-
+  let redirectUrl = '/';
+  if (process.env.NODE_ENV === 'production') {
+    redirectUrl = '/card-sorter/';
+  }
   return (
     <div className="filter-container">
-      <a href={'/'} className={allStyle}> {L.text.all}</a>
+      <a href={redirectUrl} className={allStyle}> {L.text.all}</a>
       <a href={ongoingRef} className={ongoingStyle}>
         {L.text.ongoing}</a>
       <a href={completedRef} className={completedStyle}>

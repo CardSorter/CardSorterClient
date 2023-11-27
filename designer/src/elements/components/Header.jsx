@@ -5,12 +5,16 @@ import PropTypes from 'prop-types';
 import demoImage from '../../icons/sample-user.svg';
 import L from '../../localization/LocalizedText';
 
-const Header = ({username, profilePic, showBackButton, profileUnfold,
-  onProfileClick, onLogoutClick}) => {
+const Header = ({ username, profilePic, showBackButton, profileUnfold,
+  onProfileClick, onLogoutClick }) => {
   const style = (!profileUnfold) ? 'profile' : 'profile unfold';
 
+  let redirectUrl = '/';
+  if (process.env.NODE_ENV === 'production') {
+    redirectUrl = '/card-sorter/';
+  }
   return (<header>
-    <a className="logo-container" href="/">
+    <a className="logo-container" href={redirectUrl}>
       <p id="logo">Card Sorter</p>
       {
         showBackButton &&
@@ -29,10 +33,10 @@ const Header = ({username, profilePic, showBackButton, profileUnfold,
       </div>
       {
         profileUnfold &&
-      <div className="content">
-        <button className="unfunctional">Settings</button>
-        <button onClick={onLogoutClick}>Log out</button>
-      </div>
+        <div className="content">
+          <button className="unfunctional">Settings</button>
+          <button onClick={onLogoutClick}>Log out</button>
+        </div>
       }
     </div>
   </header>);
