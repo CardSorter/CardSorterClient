@@ -13,8 +13,8 @@ export const TOGGLE_EDIT_POPUP = 'TOGGLE_EDIT_POPUP';
 export const DOWNLOAD_XLSX = 'DOWNLOAD_XLSX';
 export const COPY_STUDY = 'COPY_STUDY';
 
-export function copyStudy(studyId){
-  return{
+export function copyStudy(studyId) {
+  return {
     type: COPY_STUDY,
     payload: {
       studyId: studyId,
@@ -126,11 +126,11 @@ export function fetchStudy(id) {
     })
         .then(
             (response) => response.json().then((json) => {
-              if (response.status === 401) {                
+              if (response.status === 401) {
                 // Redirect
                 setTimeout(window.location.reload(true), 1000);
                 window.location.replace(json.location);
-              } else { 
+              } else {
                 dispatch(loadStudy(StatusEnum.SUCCESS, json.study));
               }
             }
@@ -168,12 +168,12 @@ export function fetchClusters(id) {
             }
             )
         );
-  }
+  };
 }
 
 export const updateStudy = (studyId, updatedProperties) => {
   return (dispatch) => {
-     fetch(api+'/studies_endpoint?id='+studyId, {
+    fetch(api+'/studies_endpoint?id='+studyId, {
       method: 'PUT',
       withCredentials: true,
       credentials: 'include',
@@ -184,24 +184,27 @@ export const updateStudy = (studyId, updatedProperties) => {
       },
       body: JSON.stringify(updatedProperties),
     })
-    .then(response => {
-            if (response.ok) {
-              dispatch(fetchStudy(studyId));
-            } else {
-              alert('Failed to update study'); 
-            }
-          })
-          .catch(error => {
-            alert('An error occurred: ' + error);
-          });
-      };
-    };
-  
+        .then((response) => {
+          if (response.ok) {
+            dispatch(fetchStudy(studyId));
+          } else {
+            alert('Failed to update study');
+          }
+        })
+        .catch((error) => {
+          alert('An error occurred: ' + error);
+        });
+  };
+};
 
-export const deleteStudy = (studyId)=>
-{
+
+export const deleteStudy = (studyId)=> {
+  let redirectUrl = '/';
+  if (process.env.NODE_ENV === 'production') {
+    redirectUrl = '/card-sorter/';
+  }
   return (dispatch) => {
-     fetch(api+'/studies_endpoint?id='+studyId, {
+    fetch(api+'/studies_endpoint?id='+studyId, {
       method: 'DELETE',
       withCredentials: true,
       credentials: 'include',
@@ -211,25 +214,25 @@ export const deleteStudy = (studyId)=>
         'Access-Control-Allow-Credentials': true,
       },
     })
-    .then(response => {
-            if (response.ok) {
-              window.location.replace('/');
-            } else {
-              alert('Failed to delete study'); 
-            }
-          })
-          .catch(error => {
-            alert('An error occurred: ' + error);
-          });
-      };
+        .then((response) => {
+          if (response.ok) {
+            window.location.replace(redirectUrl);
+          } else {
+            alert('Failed to delete study');
+          }
+        })
+        .catch((error) => {
+          alert('An error occurred: ' + error);
+        });
+  };
 };
 
 
-export function downloadXLSX(studyId){
-return{
-  type:  DOWNLOAD_XLSX,
-  payload: {
-  studyId: studyId,
+export function downloadXLSX(studyId) {
+  return {
+    type: DOWNLOAD_XLSX,
+    payload: {
+      studyId: studyId,
     },
   };
 }

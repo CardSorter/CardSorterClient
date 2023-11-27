@@ -15,11 +15,15 @@ export default function headerReducer(state={}, action) {
       });
     }
     case headerActions.LOGOUT: {
+      let redirectUrl = '/auth/';
+      if (process.env.NODE_ENV === 'production') {
+        redirectUrl = '/card-sorter/auth/';
+      }
       // Delete the auth token
       document.cookie
                 = 'auth_token= ;expires = Thu, 01 Jan 1970 00:00:00 GMT';
       // Redirect to the main page
-      document.location.replace('/card-sorter/auth/');
+      document.location.replace(redirectUrl);
       return state;
     }
     case headerActions.REQUEST_USERNAME: {
