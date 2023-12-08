@@ -22,7 +22,6 @@ export default function studyPageReducer(state={}, action) {
     let currentUrl = window.location.href;
     currentUrl = currentUrl.split('/study/')[0];
     const updatedUrl = currentUrl+"/create";
-    alert(updatedUrl)
 
     window.location.href = updatedUrl;
   
