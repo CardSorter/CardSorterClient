@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import CreateStudy from './CreateStudy.jsx';
+import CreateStudy from './CreateStudy';
 
 const mapStateToProps = (state, ownProps) => {
   return {

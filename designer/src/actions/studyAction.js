@@ -1,8 +1,6 @@
 import fetch from 'cross-fetch';
 
-import auth from '../auth/authenticator';
 import * as StatusEnum from '../static/StatusEnum';
-import debugConsole from '../debug/debugConsole';
 import api from './api';
 
 export const LOAD_STUDIES = 'LOAD_STUDIES';
@@ -48,15 +46,14 @@ export function addStudy(study) {
  * @return {func}
  */
 export function fetchStudies() {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch(loadStudies(StatusEnum.IS_FETCHING));
-
     fetch(api+'/studies_endpoint', {
       method: 'GET',
       withCredentials: true,
       credentials: 'include',
       headers: {
-        'Authorization': auth.getToken(),
+        'Authorization': getState().auth.token,
         'Access-Control-Allow-Credentials': true,
       },
     })
@@ -71,9 +68,9 @@ export function fetchStudies() {
                   dispatch(loadStudies(StatusEnum.SUCCESS, json.studies));
                 }
               },
-              (error) => debugConsole('Error on decoding json: ', error));
+              (error) => console.log('Error on decoding json: ', error));
             },
-            (error) => debugConsole(error)
+            (error) => console.log(error)
         );
   };
 }

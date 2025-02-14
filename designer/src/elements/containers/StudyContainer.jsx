@@ -1,3 +1,5 @@
+"use client"
+
 import { connect } from 'react-redux';
 
 import Study from '../components/Study.jsx';

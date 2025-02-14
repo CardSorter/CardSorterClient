@@ -12,7 +12,7 @@
     "react-grid-layout": "^1.4.1",
     "react-redux": "^6.0.1",
     "react-resizable": "^3.0.5",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^5.0.1",
     "react-split-pane": "^0.1.92",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
@@ -33,8 +33,5 @@
     "eslint-config-google": "^0.12.0",
     "eslint-plugin-react": "^7.12.4",
     "redux-logger": "^3.0.6"
-  },
-  "resolutions": {
-    "fsevents": "2.2.1"
   }
 }

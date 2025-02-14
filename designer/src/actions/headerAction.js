@@ -1,6 +1,5 @@
 import fetch from 'cross-fetch';
 import api from './api';
-import auth from '../auth/authenticator';
 import * as StatusEnum from '../static/StatusEnum';
 
 export const TOGGLE_PROFILE_SETTINGS = 'SHOW_PROFILE_SETTINGS';
@@ -60,14 +59,14 @@ export function requestingUsername(status, username, error) {
  * @return {func}
  */
 export function fetchUsername() {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch(requestingUsername(StatusEnum.IS_FETCHING));
     fetch(api+'/studies_endpoint?username=true', {
       method: 'GET',
       withCredentials: true,
       credentials: 'include',
       headers: {
-        'Authorization': auth.getToken(),
+        'Authorization': getState().auth.token,
         'Access-Control-Allow-Credentials': true,
       },
     })

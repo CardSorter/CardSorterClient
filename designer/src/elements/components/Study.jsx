@@ -1,25 +1,18 @@
-// eslint-disable-next-line no-unused-vars
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line no-unused-vars
 import StudyMenu from '../components/studyPageElements/StudyMenu.jsx';
-// eslint-disable-next-line no-unused-vars
 import DataTable from '../components/studyPageElements/DataTable.jsx';
 import DataTableSorting from '../components/studyPageElements/DataTableSorting.jsx';
-// eslint-disable-next-line no-unused-vars
 import BarGraph from '../components/studyPageElements/BarGraph.jsx';
-// eslint-disable-next-line no-unused-vars
 import NoParticipants from './studyPageElements/NoParticipants.jsx';
-// eslint-disable-next-line no-unused-vars
 import SimilarityMatrix from './studyPageElements/SimilarityMatrix.jsx';
-// eslint-disable-next-line no-unused-vars
 import Dendrogram from './studyPageElements/Dendrogram.jsx';
-// eslint-disable-next-line no-unused-vars
 import Popup from './Popup.jsx';
 import PopupIcon from '../../icons/share.svg';
 import L from '../../localization/LocalizedText';
-import monthToString from '../../helpers/monthToString';
+import monthToString from '../../utils/monthToString';
 
 import EditPopup from './EditPopup.jsx';
 
@@ -49,6 +42,7 @@ class Study extends Component {
       editPopupOpen, editPopupTitle, editPopupIsLive, editPopupDescription, openEditPopup, closeEditPopup, saveEditPopup, deleteEditPopup,
       downloadXLSX, copyStudy } = this.props;
     if (isFetching || isFetching === undefined) {
+      // TODO: Better loading screen :)
       return <p>Loading...</p>;
     }
     let content;

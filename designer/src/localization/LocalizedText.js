@@ -16,6 +16,6 @@ class LocalizedText {
       }
     }
   }
-};
+}
 
 export default new LocalizedText();

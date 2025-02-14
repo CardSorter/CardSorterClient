@@ -1,4 +1,7 @@
 const initialState = {
+  auth: {
+    token: undefined,
+  },
   header: {
     username: undefined,
     profilePic: '../icons/sample-user.svg',

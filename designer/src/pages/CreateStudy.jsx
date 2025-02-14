@@ -1,11 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-// eslint-disable-next-line no-unused-vars
-import Header from '../elements/containers/HeaderContainer.jsx';
-// eslint-disable-next-line no-unused-vars
+import Header from '../elements/containers/HeaderContainer';
 import StudyCreationContainer
-  from '../elements/containers/StudyCreationContainer.jsx';
+  from '../elements/containers/StudyCreationContainer';
 
 /**
  * @return {ReactDOM} The study creation page.

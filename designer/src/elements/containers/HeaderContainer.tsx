@@ -1,9 +1,12 @@
+"use client"
+
 import {connect} from 'react-redux';
 
 import * as headerActions from '../../actions/headerAction';
-import Header from '../components/Header.jsx';
+import Header from '../components/Header';
 
-const mapStateToProps = (state, ownProps) => {
+// TODO: Better typing
+const mapStateToProps = (state: any, ownProps: any) => {
   return {
     username: state.header.username,
     profilePic: state.header.profilePic,
@@ -12,9 +15,10 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+// TODO: Better typing
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    onProfileClick: (isUnfold) => {
+    onProfileClick: (isUnfold: boolean) => {
       dispatch(headerActions.toggleProfileSettings(!isUnfold));
     },
     onLogoutClick: () => {

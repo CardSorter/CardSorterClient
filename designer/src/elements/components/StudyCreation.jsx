@@ -1,16 +1,9 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
-import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line no-unused-vars
 import Page1 from './studyCreationPages/Page1.jsx';
-// eslint-disable-next-line no-unused-vars
 import Page2 from './studyCreationPages/Page2.jsx';
-// eslint-disable-next-line no-unused-vars
 import Page3 from './studyCreationPages/Page3.jsx';
-// eslint-disable-next-line no-unused-vars
 import SuccessPage from './studyCreationPages/SuccessPage.jsx';
 
 const StudyCreationContainer = ({currentPage,
@@ -35,7 +28,7 @@ const StudyCreationContainer = ({currentPage,
     render = <SuccessPage values={page4Values} dispatch={page4Dispatch}/>;
   } else
   if (currentPage === -1) {
-    render = <Redirect to='/'/>;
+    render = "Redirect";
   }
   return render;
 };

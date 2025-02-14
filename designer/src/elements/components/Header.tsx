@@ -1,12 +1,20 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
-import PropTypes from 'prop-types';
 
-import demoImage from '../../icons/sample-user.svg';
+import React from 'react';
+import Image from 'next/image';
+
 import L from '../../localization/LocalizedText';
 
+interface HeaderProps {
+  username: string,
+  profilePic: string,
+  showBackButton: boolean,
+  profileUnfold: boolean,
+  onProfileClick: (state: boolean) => void,
+  onLogoutClick: () => void,
+}
+
 const Header = ({ username, profilePic, showBackButton, profileUnfold,
-  onProfileClick, onLogoutClick }) => {
+  onProfileClick, onLogoutClick }: HeaderProps) => {
   const style = (!profileUnfold) ? 'profile' : 'profile unfold';
 
   let redirectUrl = '/';
@@ -22,14 +30,14 @@ const Header = ({ username, profilePic, showBackButton, profileUnfold,
           <span className="arrow">
             <span className="shaft"></span>
           </span>
-          <span className="content">{L.text.toFront}</span>
+          <span className="content">{L?.text?.toFront}</span>
         </button>
       }
     </a>
     <div className={style} onClick={() => onProfileClick(profileUnfold)}>
       <div className="header">
         <p>{username}</p>
-        <img src={demoImage} alt='Profile' />
+        <Image src={"/images/sample-user.svg"} alt="Profile Avatar" height={40} width={40}/>
       </div>
       {
         profileUnfold &&
@@ -42,10 +50,5 @@ const Header = ({ username, profilePic, showBackButton, profileUnfold,
   </header>);
 };
 
-Header.propTypes = {
-  username: PropTypes.string.isRequired,
-  profilePic: PropTypes.string.isRequired,
-  showBackButton: PropTypes.bool.isRequired,
-};
 
 export default Header;

@@ -1,6 +1,5 @@
 import * as StatusEnum from '../static/StatusEnum';
 import * as studyActions from './studyAction';
-import auth from '../auth/authenticator';
 import api from './api';
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
@@ -280,7 +279,7 @@ export function openStudyPage() {
  * @return {func}
  */
 export function sendStudy(study) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch(createStudy(StatusEnum.IS_FETCHING));
     fetch(api+'/studies_endpoint', {
       method: 'POST',
@@ -288,7 +287,7 @@ export function sendStudy(study) {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': auth.getToken(),
+        'Authorization': getState().auth.token,
         'Access-Control-Allow-Credentials': true,
       },
       body: JSON.stringify(study),

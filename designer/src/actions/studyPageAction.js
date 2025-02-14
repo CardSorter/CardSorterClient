@@ -1,6 +1,5 @@
 import fetch from 'cross-fetch';
 import * as StatusEnum from '../static/StatusEnum';
-import auth from '../auth/authenticator';
 import api from './api';
 
 export const CHANGE_VIEW = 'CHANGE_VIEW';
@@ -113,14 +112,14 @@ export function loadClusters(status, response, error) {
  * @return {func}
  */
 export function fetchStudy(id) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch(loadStudy(StatusEnum.IS_FETCHING));
     fetch(api+'/studies_endpoint?id='+id, {
       method: 'GET',
       withCredentials: true,
       credentials: 'include',
       headers: {
-        'Authorization': auth.getToken(),
+        'Authorization': getState().auth.token,
         'Access-Control-Allow-Credentials': true,
       },
     })
@@ -145,14 +144,14 @@ export function fetchStudy(id) {
  * @return {func}
  */
 export function fetchClusters(id) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch(loadClusters(StatusEnum.IS_FETCHING));
     fetch(api+'/studies_endpoint?id='+id+'&clusters='+true, {
       method: 'GET',
       withCredentials: true,
       credentials: 'include',
       headers: {
-        'Authorization': auth.getToken(),
+        'Authorization': getState().auth.token,
         'Access-Control-Allow-Credentials': true,
       },
     })
@@ -172,14 +171,14 @@ export function fetchClusters(id) {
 }
 
 export const updateStudy = (studyId, updatedProperties) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     fetch(api+'/studies_endpoint?id='+studyId, {
       method: 'PUT',
       withCredentials: true,
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': auth.getToken(),
+        'Authorization': getState().auth.token,
         'Access-Control-Allow-Credentials': true,
       },
       body: JSON.stringify(updatedProperties),
@@ -210,7 +209,7 @@ export const deleteStudy = (studyId)=> {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': auth.getToken(),
+        'Authorization': getState().auth.token,
         'Access-Control-Allow-Credentials': true,
       },
     })

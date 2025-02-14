@@ -1,18 +1,16 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import {useRouter} from "next/navigation";
 import plusSign from '../../icons/plus.svg';
 
-const CreateStudyItem = ({onClick}) => (
-  <button className="createStudyCard" onClick={onClick}>
-    <img src={plusSign} alt='Plus sign'/>
-    <p>Create a study</p>
-  </button>
-);
 
-CreateStudyItem.propTypes = {
-  onClick: PropTypes.func,
-};
+// TODO: Convert to Link
+export default function CreateStudyItem() {
+    const router = useRouter();
 
-export default CreateStudyItem;
+    return (
+        <button className="create-study-card" onClick={() => router.push("/create")}>
+            <span className="material-symbols-outlined">add</span>
+            <p>Create a study</p>
+        </button>
+    );
+}
