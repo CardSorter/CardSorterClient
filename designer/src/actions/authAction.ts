@@ -1,11 +1,3 @@
-export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
+import { createAction } from '@reduxjs/toolkit'
 
-export function setAuthToken(token: string | undefined) {
-    return {
-        type: SET_AUTH_TOKEN,
-        payload: {
-            token,
-        },
-        error: false,
-    }
-}
+export const setAuthToken = createAction<string | undefined>("auth/setAuthToken");

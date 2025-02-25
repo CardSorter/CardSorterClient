@@ -1,6 +1,4 @@
-// import env from '../enviroment';
-
-let exportString;
+let exportString: string;
 if (process.env.NODE_ENV === 'production') {
   exportString = 'https://usability.csd.auth.gr/card-sorter/api';
 } else {

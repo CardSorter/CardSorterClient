@@ -1,12 +1,19 @@
+import {createReducer} from "@reduxjs/toolkit";
 import * as authAction from "../actions/authAction";
 
-export default function authReducer(state: any = {}, action: any) {
-    switch (action.type) {
-        case authAction.SET_AUTH_TOKEN: {
-            return Object.assign({}, state, {token: action.payload.token});
-        }
-        default: {
-          return state;
-        }
-    }
+export interface AuthState {
+    token: any,
 }
+
+const initialState: AuthState = {
+    token: null
+}
+
+const authReducer = createReducer(initialState, (builder) => {
+    builder
+      .addCase(authAction.setAuthToken, (state, action) => {
+          state.token = action.payload;
+      })
+})
+
+export default authReducer;

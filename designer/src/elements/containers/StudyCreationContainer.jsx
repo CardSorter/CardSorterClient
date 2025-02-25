@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 
-import StudyCreation from '../components/StudyCreation.jsx';
+import StudyCreation from '../components/StudyCreation.tsx';
 import * as studyCreationAction from '../../actions/studyCreationAction';
 
 /**
@@ -32,7 +32,6 @@ function onElementChange(dispatch, name, event) {
       }
     }
   } catch (err) {
-    return;
   }
 }
 
