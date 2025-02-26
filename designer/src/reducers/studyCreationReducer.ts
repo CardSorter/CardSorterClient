@@ -1,43 +1,40 @@
 import {createReducer} from '@reduxjs/toolkit';
 import * as ActionStatus from 'actions/ActionStatus';
 import * as studyCreationActions from 'actions/studyCreationAction';
+import {StudyCreationResponse} from "actions/studyCreationAction";
 
-interface Card {
+export type StudyCreationPage = "INIT" | "Add_CARDS" | "FINAL" | "SUCCESS";
+
+export interface Card {
   id: number;
   name?: string;
   description?: string;
 }
 
 interface UIState {
-  currentPage: number;
-  studySending?: string;
-  titleFetching: any,
-  validTitle: boolean,
+  studySendingStatus?: ActionStatus.ActionStatus;
+  page?: StudyCreationPage;
 }
 
 export interface StudyCreationState {
   title?: string;
   description?: string;
   thanksMessage?: string;
-  link?: string;
+  externalSurveyLink?: string;
   errorTitle?: boolean;
   errorDescription?: boolean;
   errorCards?: boolean;
   errorDuplicate?: boolean;
   errorMessage?: boolean;
   url_to_study?: string;
-  share_url?: string;
   cards: Record<number, Card>;
   ui: UIState;
+  createdStudy?: StudyCreationResponse;
 }
 
 const initialState: StudyCreationState = {
   cards: {},
-  ui: {
-    currentPage: 0,
-    titleFetching: null,
-    validTitle: false
-  }
+  ui: {},
 };
 
 const studyCreationReducer = createReducer(initialState, (builder) => {
@@ -83,8 +80,8 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
     .addCase(studyCreationActions.changeThanksMessage, (state, action) => {
       state.thanksMessage = action.payload.message;
     })
-    .addCase(studyCreationActions.changeLink, (state, action) => {
-      state.link = action.payload.link;
+    .addCase(studyCreationActions.changeExternalSurveyLink, (state, action) => {
+      state.externalSurveyLink = action.payload.link;
     })
     .addCase(studyCreationActions.toggleTitleError, (state, action) => {
       state.errorTitle = action.payload.status;
@@ -101,19 +98,12 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
     .addCase(studyCreationActions.toggleThanksError, (state, action) => {
       state.errorMessage = action.payload.status;
     })
-    .addCase(studyCreationActions.showPage, (state, action) => {
-      state.ui.currentPage = action.payload.pageNo;
-    })
-    .addCase(studyCreationActions.openStudyPage, (state) => {
-      window.location.assign(state.url_to_study ?? '');
-    })
     .addCase(studyCreationActions.createStudy, (state, action) => {
       if (action.payload.status === ActionStatus.SUCCESS) {
-        state.url_to_study = action.payload.study.url_to_study;
-        state.share_url = action.payload.study.share_url;
-        state.ui.currentPage = 4;
+        state.createdStudy = action.payload.study;
+        state.ui.studySendingStatus = ActionStatus.SUCCESS
       }
-      state.ui.studySending = action.payload.status;
+      state.ui.studySendingStatus = action.payload.status;
     });
 });
 

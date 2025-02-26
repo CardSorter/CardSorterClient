@@ -26,6 +26,7 @@ export default {
   couldBeMergedInto: 'could be merged into',
   create: 'Create',
   createStudy: 'Create a new study',
+  creatingStudy: 'Creating study...',
   delete: 'Delete',
   december: 'december',
   description: 'Description',

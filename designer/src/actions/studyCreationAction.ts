@@ -1,7 +1,8 @@
-import {createAction} from '@reduxjs/toolkit';
+import {createAction, Dispatch, ThunkAction, UnknownAction} from '@reduxjs/toolkit';
 import * as ActionStatus from 'actions/ActionStatus';
 import * as studyActions from './studyAction';
 import api from './api';
+import StateSchema from "../reducers/StateSchema";
 
 export const changeTitle = createAction<{ title: string }>('studyCreation/changeTitle');
 export const changeDescription = createAction<{ description: string }>('studyCreation/changeDescription');
@@ -14,25 +15,32 @@ export const changeCardDescription = createAction<{
   description: string
 }>('studyCreation/changeCardDescription');
 export const changeThanksMessage = createAction<{ message: string }>('studyCreation/changeThanksMessage');
-export const changeLink = createAction<{ link: string }>('studyCreation/changeLink');
-export const showPage = createAction<{ pageNo: number }>('studyCreation/showPage');
+export const changeExternalSurveyLink = createAction<{ link: string }>('studyCreation/changeExternalSurveyLink');
 export const toggleTitleError = createAction<{ status: boolean }>('studyCreation/toggleTitleError');
 export const toggleDescriptionError = createAction<{ status: boolean }>('studyCreation/toggleDescriptionError');
 export const toggleCardError = createAction<{ status: boolean }>('studyCreation/toggleCardError');
 export const toggleCardDuplicate = createAction<{ status: boolean }>('studyCreation/toggleCardDuplicate');
 export const toggleThanksError = createAction<{ status: boolean }>('studyCreation/toggleThanksError');
 
+export interface StudyCreationResponse {
+  id: string,
+  title: string,
+  abandonedNo: number,
+  completedNo: number,
+  editDate: Date,
+  isLive: boolean,
+  launchedDate: Date,
+}
+
 export const createStudy = createAction<{
-  status: string;
-  // TODO: Better typing of study
-  study: any;
+  status: ActionStatus.ActionStatus;
+  study?: StudyCreationResponse ;
   error: boolean
 }>('studyCreation/createStudy');
-export const openStudyPage = createAction('studyCreation/openStudyPage');
 
-export function sendStudy(study: object) {
-  return function (dispatch: Function, getState: Function) {
-    dispatch(createStudy({status: ActionStatus.IS_FETCHING, study: null, error: false}));
+export function sendStudy(study: object): ThunkAction<void, StateSchema, unknown, UnknownAction> {
+  return function (dispatch: Dispatch, getState: () => StateSchema) {
+    dispatch(createStudy({status: ActionStatus.IS_FETCHING, error: false}));
     fetch(api + '/studies_endpoint', {
       method: 'POST',
       credentials: 'include',
