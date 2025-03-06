@@ -3,8 +3,6 @@ import * as ActionStatus from 'actions/ActionStatus';
 import * as studyCreationActions from 'actions/studyCreationAction';
 import {StudyCreationResponse} from "actions/studyCreationAction";
 
-export type StudyCreationPage = "INIT" | "Add_CARDS" | "FINAL" | "SUCCESS";
-
 export interface Card {
   id: number;
   name?: string;
@@ -13,7 +11,6 @@ export interface Card {
 
 interface UIState {
   studySendingStatus?: ActionStatus.ActionStatus;
-  page?: StudyCreationPage;
 }
 
 export interface StudyCreationState {

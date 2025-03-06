@@ -2,6 +2,7 @@ import * as studyActions from '../actions/studyPageAction';
 import * as ActionStatus from 'actions/ActionStatus';
 import * as XLSX from 'xlsx';
 import {createReducer} from '@reduxjs/toolkit';
+import {SortingDataItem} from "../actions/studyPageAction";
 
 export interface StudyPageState {
   title: string;
@@ -18,7 +19,7 @@ export interface StudyPageState {
     completed: any,
     data: any[],
   };
-  sorting: { data: any[] };
+  sorting: { data: SortingDataItem[] };
   categories: {
     similarity: any,
     total: any,
@@ -32,11 +33,9 @@ export interface StudyPageState {
   launchedDate?: Date;
   ended?: Date;
   noParticipants?: boolean;
-  shareUrl?: string;
   isFetching?: boolean;
   clusters?: Record<string, unknown>;
   clustersFetching?: boolean;
-  selectedItem?: number;
   selectedCards?: boolean[];
   popupShowing?: boolean;
   editPopupOpen?: boolean;
@@ -58,11 +57,9 @@ const initialState: StudyPageState = {
   launchedDate: undefined,
   ended: undefined,
   noParticipants: undefined,
-  shareUrl: undefined,
   isFetching: undefined,
   clusters: undefined,
   clustersFetching: undefined,
-  selectedItem: undefined,
   selectedCards: undefined,
   popupShowing: undefined,
   editPopupOpen: undefined,
@@ -86,6 +83,10 @@ const studyPageReducer = createReducer(initialState, (builder) => {
     })
     .addCase(studyActions.loadStudy, (state, action) => {
       const study = action.payload?.study;
+      if (!study) {
+        return;
+      }
+
       if (action.payload?.status === ActionStatus.SUCCESS) {
         state.id = study.id;
         state.title = study.title;
@@ -94,13 +95,14 @@ const studyPageReducer = createReducer(initialState, (builder) => {
         state.launchedDate = new Date(study.launchedDate);
         state.ended = study.ended ? new Date(study.ended) : undefined;
         state.noParticipants = study.participants === 0;
-        state.shareUrl = study.shareUrl;
-        state.participants = {
-          completion: study.participants?.completion || '0%',
-          total: study.participants?.total || 0,
-          completed: study.participants?.completed || 0,
-          data: study.participants?.data || [],
+        if (typeof study.participants !== 'number') {
+          state.participants = {
+          completion: study.participants.completion || '0%',
+          total: study.participants.total || 0,
+          completed: study.participants.completed || 0,
+          data: study.participants.data || [],
         };
+        }
         state.sorting = {data: study.sorting?.data || []};
         state.cards = {
           average: study.cards?.average || '0%',
@@ -123,9 +125,6 @@ const studyPageReducer = createReducer(initialState, (builder) => {
       state.clusters = action.payload?.status === ActionStatus.SUCCESS ? action.payload.clusters : {};
       state.clustersFetching = action.payload?.status !== ActionStatus.SUCCESS;
     })
-    .addCase(studyActions.changeView, (state, action) => {
-      state.selectedItem = action.payload?.no;
-    })
     .addCase(studyActions.changeHoveredCards, (state, action) => {
       state.selectedCards = state.similarityMatrix.map((_, i) =>
         i === action.payload?.index1 || i === action.payload?.index2
@@ -145,7 +144,8 @@ const studyPageReducer = createReducer(initialState, (builder) => {
       const ws1 = XLSX.utils.aoa_to_sheet(participants);
       XLSX.utils.book_append_sheet(wb, ws1, 'Participants');
 
-      const customHeaders = ["no", "category", "cards", "comment"];
+      const customHeaders= ["no", "category", "cards", "comment"];
+      //@ts-ignore
       const sortedData = state.sorting.data.map(item => customHeaders.map(header => item[header]));
       customHeaders[0] = "Participant no";
       sortedData.unshift(customHeaders);

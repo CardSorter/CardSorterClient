@@ -5,7 +5,7 @@ import localizedText from './localization/LocalizedText';
 import StateSchema from 'reducers/StateSchema';
 import authReducer from "./reducers/authReducer";
 import headerReducer from "./reducers/headerReducer";
-import studyReducer from "./reducers/studyReducer";
+import studiesReducer from "./reducers/studiesReducer";
 import studyCreationReducer from "./reducers/studyCreationReducer";
 import studyPageReducer from "./reducers/studyPageReducer";
 
@@ -14,7 +14,7 @@ export default function initializeStore(): Store<StateSchema> {
   const rootReducer = {
     auth: authReducer,
     header: headerReducer,
-    studies: studyReducer,
+    studies: studiesReducer,
     studyCreation: studyCreationReducer,
     study: studyPageReducer,
   }

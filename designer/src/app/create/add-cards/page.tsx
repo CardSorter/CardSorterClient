@@ -31,7 +31,9 @@ const Card: React.FC<CardProps> = ({name, description, onNameChange, onDescripti
       defaultValue={description}
       onChange={(e) => onDescriptionChange(e)}
     />
-    <button type="button" onClick={onDelete}></button>
+    <button type="button" onClick={onDelete}>
+      <span className="material-symbols-outlined">delete</span>
+    </button>
   </div>
 );
 
@@ -176,10 +178,7 @@ export default function Page()  {
             <p>{L?.text?.add}</p>
             <input defaultValue="1" ref={addCardsRef}></input>
             <p>{L?.text?.cards}</p>
-            <button
-              className="btn-secondary"
-              type="button"
-              onClick={() => {
+            <button className="btn-secondary" type="button" onClick={() => {
                 if (addCardsRef.current && parseInt(addCardsRef.current.value, 10) >= 1) {
                   setCardCount((prevCount) => prevCount + parseInt(addCardsRef.current!.value, 10));
                   onCreateXCards();
@@ -196,13 +195,12 @@ export default function Page()  {
       </form>
       <div className="bottom-container">
         <div className="btn-container">
-          <button className="prev" onClick={onPrev}></button>
-          <button
-            className="next"
-            onClick={() => {
-              onNext();
-            }}
-          ></button>
+          <button className="prev"  onClick={onPrev}>
+            <span className="material-symbols-outlined">arrow_back</span>
+          </button>
+          <button className="next" onClick={onNext}>
+            <span className="material-symbols-outlined">arrow_forward</span>
+          </button>
         </div>
         <div className="page-no-container">
           <p>2</p>

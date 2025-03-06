@@ -5,8 +5,9 @@ import React, {useEffect, useRef} from 'react';
 import L from 'localization/LocalizedText';
 import Image from "next/image";
 import {useSelector} from "react-redux";
-import StateSchema from "../../../reducers/StateSchema";
+import StateSchema from "reducers/StateSchema";
 import {useRouter} from "next/navigation";
+import copyToClipboard from "utils/copyToClipboard";
 
 export default function Page() {
   const urlRef = useRef<HTMLAnchorElement>(null);
@@ -16,16 +17,7 @@ export default function Page() {
   const createdStudy = useSelector((state: StateSchema) => (state.studyCreation.createdStudy))
 
   const onCopy = () => {
-    const input = document.createElement('input');
-    input.value = urlRef?.current?.href || "";
-    document.body.appendChild(input);
-
-    input.select();
-    input.setSelectionRange(0, 99999); // For mobile devices
-
-    navigator.clipboard.writeText(input.value).then(() => {
-      document.body.removeChild(input);
-    });
+    copyToClipboard(urlRef?.current?.href || "");
   }
 
   const onButtonClick = () => {
@@ -42,7 +34,7 @@ export default function Page() {
   return (
     <div className="success-page">
       <h1>{L?.text?.studyCreated}</h1>
-      <Image src={"/images/success.svg"} alt={"Study Created"} height={150} width={150} />
+      <Image src={"/card-sorter/images/success.svg"} alt={"Study Created"} height={150} width={150} />
       <div className="actions-container">
         <div className="button-container">
           <button onClick={onButtonClick}>Go to study</button>
@@ -52,7 +44,9 @@ export default function Page() {
             <a className="url" ref={urlRef} href={`/sort/${createdStudy?.id}`} target="_blank">
               {urlRef?.current?.href || ""}
             </a>
-            <button className="copy" type="button" onClick={onCopy}></button>
+            <button className="copy" type="button" onClick={onCopy}>
+              <span className="material-symbols-outlined">content_copy</span>
+            </button>
           </div>
           <p>{L?.text?.shareThisUrlWithTheParticipants}</p>
         </div>

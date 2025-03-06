@@ -106,7 +106,9 @@ export default function Page() {
       <div className="bottom-container">
         <div className="btn-container">
           <button className="prev disabled"></button>
-          <button className="next" onClick={onNextPage}></button>
+          <button className="next" onClick={onNextPage}>
+            <span className="material-symbols-outlined">arrow_forward</span>
+          </button>
         </div>
         <div className="page-no-container">
           <p>1</p>

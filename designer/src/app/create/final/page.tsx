@@ -95,7 +95,9 @@ export default function Page() {
       <div className="bottom-container">
 
         <div className="btn-container">
-          <button className="prev" onClick={onPrev} disabled={studySendingStatus === ActionStatus.IS_FETCHING}></button>
+          <button className="prev" onClick={onPrev} disabled={studySendingStatus === ActionStatus.IS_FETCHING}>
+            <span className="material-symbols-outlined">arrow_back</span>
+          </button>
           <button className="create" onClick={onNext}  disabled={studySendingStatus === ActionStatus.IS_FETCHING}>
             {
               studySendingStatus === ActionStatus.IS_FETCHING &&

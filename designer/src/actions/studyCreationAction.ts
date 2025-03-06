@@ -1,6 +1,6 @@
 import {createAction, Dispatch, ThunkAction, UnknownAction} from '@reduxjs/toolkit';
 import * as ActionStatus from 'actions/ActionStatus';
-import * as studyActions from './studyAction';
+import * as studyActions from './studiesAction';
 import api from './api';
 import StateSchema from "../reducers/StateSchema";
 
