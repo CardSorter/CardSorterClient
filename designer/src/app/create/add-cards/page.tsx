@@ -44,7 +44,7 @@ export default function Page()  {
 
   // State
   const title = useSelector((state: StateSchema) => state.studyCreation.title);
-  const cards = useSelector((state: StateSchema) => (Object.values(state.studyCreation.cards)));
+  const cards = useSelector((state: StateSchema) => (state.studyCreation.cards));
   const errorCards = useSelector((state: StateSchema) => state.studyCreation.errorCards);
   const errorDuplicates = useSelector((state: StateSchema) => state.studyCreation.errorDuplicate);
 
@@ -76,7 +76,7 @@ export default function Page()  {
     let hasErrors = false; // Initialize error flag
 
     // Check for errors
-    cards.forEach((card, index) => {
+    Object.values(cards).forEach((card, index) => {
       if (!card.name || card.name.length === 0) {
         hasErrors = true; // Set the flag to true
       }
@@ -89,7 +89,7 @@ export default function Page()  {
       return;
     }
 
-    const cardNames = cards.map((card) => card.name?.trim().toLowerCase());
+    const cardNames =  Object.values(cards).map((card) => card.name?.trim().toLowerCase());
     const duplicateCardNames = new Set();
     const seenCardNames = new Set();
 
@@ -120,28 +120,6 @@ export default function Page()  {
     }
   }, [router, title]);
 
-  // TODO (important): Remove from local storage
-  // if (localStorage.getItem('cardsDesc') !== null && localStorage.getItem('cardsName') !== null) {
-  //   const cardsName = localStorage.getItem('cardsName')!.split(',');
-  //   const cardsDesc = localStorage.getItem('cardsDesc')!.split(',');
-  //   let previousTime: number | undefined;
-  //   for (let i = 0; i < cardsName.length; i++) {
-  //     let time = Date.now();
-  //     while (previousTime === time) {
-  //       time = Date.now();
-  //     }
-  //     setCardCount((prevCount) => prevCount + cardsName.length);
-  //
-  //     dispatch.onCreateCard(time);
-  //     dispatch.onLocalStorage(time, cardsName[i], cardsDesc[i]);
-  //     values.cards.push({id: time, name: cardsName[i], description: cardsDesc[i]});
-  //
-  //     previousTime = time;
-  //   }
-  //   localStorage.removeItem('cardsName');
-  //   localStorage.removeItem('cardsDesc');
-  // }
-
   return (
     <div className="study-creation-card">
       <h1>{L?.text?.createStudy}</h1>
@@ -150,7 +128,7 @@ export default function Page()  {
       <form className="cards">
         <div className="error-holder">
           <div className="card-container">
-            {cards.map((card) => (
+            { Object.values(cards).map((card) => (
               <Card
                 key={'card' + card.id}
                 name={card.name || ""}

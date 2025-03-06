@@ -9,19 +9,18 @@ import * as studyCreationAction from "actions/studyCreationAction";
 import * as ActionStatus from 'actions/ActionStatus';
 import {Dispatch} from "@reduxjs/toolkit";
 import {useRouter} from "next/navigation";
+import {createStudy} from "actions/studyCreationAction";
 
 export default function Page() {
   const router = useRouter();
 
   // State
   const message = useSelector((state: StateSchema) => (state.studyCreation.thanksMessage));
-  const study = useSelector((state: StateSchema) => ({
-    title: state.studyCreation.title,
-    description: state.studyCreation.description,
-    cards: state.studyCreation.cards,
-    message: state.studyCreation.thanksMessage,
-    link: state.studyCreation.externalSurveyLink,
-  }))
+  const studyTitle = useSelector((state: StateSchema) => state.studyCreation.title);
+  const studyDescription = useSelector((state: StateSchema) => state.studyCreation.description);
+  const studyCards = useSelector((state: StateSchema) => state.studyCreation.cards);
+  const studyMessage = useSelector((state: StateSchema) => state.studyCreation.thanksMessage);
+  const link = useSelector((state: StateSchema) => state.studyCreation.externalSurveyLink);
   const errorMessage = useSelector((state: StateSchema) =>
     (state.studyCreation.errorMessage));
   const studySendingStatus = useSelector((state: StateSchema) =>
@@ -42,13 +41,19 @@ export default function Page() {
   const onNext = () => {
 
     // Check for errors
-    if (!study.message || study.message.length === 0) {
+    if (!studyMessage || studyMessage.length === 0) {
       dispatch(studyCreationAction.toggleThanksError({status: true}));
       setTimeout(() => studyCreationAction.toggleThanksError({status: false}), 5000);
       return;
     }
 
-    dispatch(studyCreationAction.sendStudy(study));
+    dispatch(studyCreationAction.sendStudy({
+      title: studyTitle || "",
+      description: studyDescription || "",
+      cards: studyCards,
+      message: studyMessage,
+      link: link,
+    }));
   }
 
   const onPrev = () => {
@@ -57,6 +62,8 @@ export default function Page() {
 
   useEffect(() => {
     if(studySendingStatus === ActionStatus.SUCCESS) {
+      // Clear fetching status from local storage
+      dispatch(createStudy({status: undefined, error: false}));
       // Redirect to success page
       router.push("/create/success");
     }
@@ -64,10 +71,10 @@ export default function Page() {
 
   useEffect(() => {
     // Redirect to previous step if items not filled
-    if (Object.values(study.cards).length === 0) {
+    if (Object.values(studyCards).length === 0 && studySendingStatus !== ActionStatus.SUCCESS && studySendingStatus !== ActionStatus.IS_FETCHING) {
       router.push("/create/add-cards");
     }
-  }, [router, study.cards]);
+  }, [router, studyCards]);
 
 
   return (

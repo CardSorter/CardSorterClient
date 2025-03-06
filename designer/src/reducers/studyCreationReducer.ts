@@ -2,6 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import * as ActionStatus from 'actions/ActionStatus';
 import * as studyCreationActions from 'actions/studyCreationAction';
 import {StudyCreationResponse} from "actions/studyCreationAction";
+import L from "localization/LocalizedText";
 
 export interface Card {
   id: number;
@@ -23,7 +24,6 @@ export interface StudyCreationState {
   errorCards?: boolean;
   errorDuplicate?: boolean;
   errorMessage?: boolean;
-  url_to_study?: string;
   cards: Record<number, Card>;
   ui: UIState;
   createdStudy?: StudyCreationResponse;
@@ -34,8 +34,22 @@ const initialState: StudyCreationState = {
   ui: {},
 };
 
+// Keep in mind that the study creation state is saved and preloaded from local storage
 const studyCreationReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(studyCreationActions.createFromExistingStudy, (state, action) => {
+      state.title = action.payload.title + " " + L?.text?.duplicateStudyTitleSuffix;
+      state.description = action.payload.description;
+
+      const id = Date.now();
+      for (let i = 0; i < action.payload.cards.length; i++) {
+        state.cards[id + i] = {
+          id: id + i,
+          name: action.payload.cards[i].name,
+          description: action.payload.cards[i].description,
+        };
+      }
+    })
     .addCase(studyCreationActions.changeTitle, (state, action) => {
       state.title = action.payload.title;
     })
@@ -99,9 +113,16 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
       if (action.payload.status === ActionStatus.SUCCESS) {
         state.createdStudy = action.payload.study;
         state.ui.studySendingStatus = ActionStatus.SUCCESS
+
+        // Clear state
+        state.title = undefined;
+        state.description = undefined;
+        state.thanksMessage = undefined;
+        state.externalSurveyLink = undefined;
+        state.cards = {};
       }
       state.ui.studySendingStatus = action.payload.status;
-    });
+    })
 });
 
 export default studyCreationReducer;

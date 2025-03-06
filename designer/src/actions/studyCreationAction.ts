@@ -3,6 +3,7 @@ import * as ActionStatus from 'actions/ActionStatus';
 import * as studyActions from './studiesAction';
 import api from './api';
 import StateSchema from "../reducers/StateSchema";
+import {Card} from "../reducers/studyCreationReducer";
 
 export const changeTitle = createAction<{ title: string }>('studyCreation/changeTitle');
 export const changeDescription = createAction<{ description: string }>('studyCreation/changeDescription');
@@ -21,6 +22,11 @@ export const toggleDescriptionError = createAction<{ status: boolean }>('studyCr
 export const toggleCardError = createAction<{ status: boolean }>('studyCreation/toggleCardError');
 export const toggleCardDuplicate = createAction<{ status: boolean }>('studyCreation/toggleCardDuplicate');
 export const toggleThanksError = createAction<{ status: boolean }>('studyCreation/toggleThanksError');
+export const createFromExistingStudy = createAction<{
+  title: string;
+  description: string;
+  cards: {name: string, description: string}[];
+}>('studyCreation/createFromExistingStudy');
 
 export interface StudyCreationResponse {
   id: string,
@@ -33,12 +39,13 @@ export interface StudyCreationResponse {
 }
 
 export const createStudy = createAction<{
-  status: ActionStatus.ActionStatus;
+  status: ActionStatus.ActionStatus | undefined;
   study?: StudyCreationResponse ;
   error: boolean
 }>('studyCreation/createStudy');
 
-export function sendStudy(study: object): ThunkAction<void, StateSchema, unknown, UnknownAction> {
+export function sendStudy(study: {title: string, description: string, cards: Record<number, Card>, message: string,
+  link?: string}): ThunkAction<void, StateSchema, unknown, UnknownAction> {
   return function (dispatch: Dispatch, getState: () => StateSchema) {
     dispatch(createStudy({status: ActionStatus.IS_FETCHING, error: false}));
     fetch(api + '/studies_endpoint', {
@@ -53,6 +60,7 @@ export function sendStudy(study: object): ThunkAction<void, StateSchema, unknown
     }).then((response) =>
       response.json().then((json) => {
         if (response.status === 401) {
+          // Redirect to authentication
           setTimeout(() => window.location.reload(), 1000);
           window.location.replace(json.location);
         } else {

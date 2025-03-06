@@ -8,14 +8,16 @@ import Popup from "elements/Popup";
 import L from "localization/LocalizedText";
 import StudyMenu from "elements/StudyMenu";
 import StateSchema from "reducers/StateSchema";
-import {useParams} from "next/navigation";
+import {useParams, useRouter} from "next/navigation";
 import monthToString from "utils/monthToString";
 import Image from "next/image";
 import copyToClipboard from "utils/copyToClipboard";
+import {createFromExistingStudy} from "actions/studyCreationAction";
 
 
 export default function Layout({children}: {children: React.ReactNode }) {
-  const {id} = useParams<{ id: string }>()
+  const {id} = useParams<{ id: string }>();
+  const router = useRouter();
 
   // State
   const NoParticipantsInStudy = useSelector((state: StateSchema) => state.study.noParticipants);
@@ -25,6 +27,8 @@ export default function Layout({children}: {children: React.ReactNode }) {
   const editPopupDescription = useSelector((state: StateSchema) => state.study.editPopupDescription);
   const showPopup = useSelector((state: StateSchema) => state.study.popupShowing);
   const title = useSelector((state: StateSchema) => state.study.title);
+  const description = useSelector((state: StateSchema) => state.study.description);
+  const cards = useSelector((state: StateSchema) => state.study.cards);
   const isLive = useSelector((state: StateSchema) => state.study.isLive);
   const launchedDate = useSelector((state: StateSchema) => state.study.launchedDate);
 
@@ -52,7 +56,19 @@ export default function Layout({children}: {children: React.ReactNode }) {
   const openPopup = () => dispatch(studyAction.togglePopup({toggle: true}));
   const closePopup = () => dispatch(studyAction.togglePopup({toggle: false}));
   const downloadXLSX = () => dispatch(studyAction.downloadXLSX({studyId: id}));
-  const copyStudy = () => dispatch(studyAction.copyStudy({studyId: id}));
+
+  const onDuplicateStudy = () => {
+    dispatch(createFromExistingStudy({
+      title: title,
+      description: description,
+      cards: cards.data.map((i) => ({
+        name: i.name,
+        description: i.description,
+      }))
+    }))
+
+    router.push(`/create`);
+  }
 
   const onCopyUrl = () => {
     copyToClipboard(process.env.NEXT_PUBLIC_BASE_URL + `/sort/${id}`);
@@ -72,13 +88,13 @@ export default function Layout({children}: {children: React.ReactNode }) {
           <h1>{title}</h1>
           <button className="edit" onClick={openEditPopup}><span className="material-symbols-outlined">edit</span></button>
           <button className="share" onClick={openPopup}><span className="material-symbols-outlined">share</span></button>
+          <button className="copy" onClick={onDuplicateStudy}>
+            <span className="material-symbols-outlined">content_paste_go</span>
+          </button>
           {!NoParticipantsInStudy && (
             <>
               <button className="download" onClick={downloadXLSX}>
                 <span className="material-symbols-outlined">download</span>
-              </button>
-              <button className="copy" onClick={copyStudy}>
-                <span className="material-symbols-outlined">content_paste_go</span>
               </button>
             </>
           )}

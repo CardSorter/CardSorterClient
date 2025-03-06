@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
 
 import L from 'localization/LocalizedText';
 import Image from "next/image";
@@ -10,14 +10,13 @@ import {useRouter} from "next/navigation";
 import copyToClipboard from "utils/copyToClipboard";
 
 export default function Page() {
-  const urlRef = useRef<HTMLAnchorElement>(null);
   const router = useRouter();
 
   // State
   const createdStudy = useSelector((state: StateSchema) => (state.studyCreation.createdStudy))
 
   const onCopy = () => {
-    copyToClipboard(urlRef?.current?.href || "");
+    copyToClipboard(process.env.NEXT_PUBLIC_BASE_URL + `/sort/${createdStudy?.id}`);
   }
 
   const onButtonClick = () => {
@@ -41,8 +40,8 @@ export default function Page() {
         </div>
         <div className="share-container">
           <div className="url-container">
-            <a className="url" ref={urlRef} href={`/sort/${createdStudy?.id}`} target="_blank">
-              {urlRef?.current?.href || ""}
+            <a className="url" href={`/sort/${createdStudy?.id}`} target="_blank">
+              {process.env.NEXT_PUBLIC_BASE_URL + `/sort/${createdStudy?.id}`}
             </a>
             <button className="copy" type="button" onClick={onCopy}>
               <span className="material-symbols-outlined">content_copy</span>

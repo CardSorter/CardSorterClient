@@ -15,10 +15,6 @@ export default function StudiesList() {
 
   // TODO: Needs to be refactored to use the global redux state
   useEffect(() => {
-    // prevent cards be saved, when user going back to the studies page after copying a study
-    localStorage.removeItem('cardsName');
-    localStorage.removeItem('cardsDesc');
-
     if (!studies) {
       return;
     }

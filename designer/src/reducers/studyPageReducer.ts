@@ -25,7 +25,13 @@ export interface StudyPageState {
     total: any,
     similar: any,
     merged: any,
-    data: any[],
+    data: {
+      name: string,
+      categories_no: number,
+      category_names: string[],
+      frequencies: number[],
+      description: string,
+    }[],
   };
   similarityMatrix: any[];
   id?: string;
@@ -70,17 +76,6 @@ const initialState: StudyPageState = {
 
 const studyPageReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(studyActions.copyStudy, (state) => {
-      localStorage.setItem('newTitle', state.title);
-      localStorage.setItem('newDescription', state.description);
-      const cardsName = state.cards.data.map(data => data[0]);
-      const cardsDesc = state.cards.data.map(data => data[data.length - 1]);
-      localStorage.setItem('cardsName', JSON.stringify(cardsName));
-      localStorage.setItem('cardsDesc', JSON.stringify(cardsDesc));
-
-      const currentUrl = window.location.href.split('/study/')[0];
-      window.location.href = currentUrl + "/create";
-    })
     .addCase(studyActions.loadStudy, (state, action) => {
       const study = action.payload?.study;
       if (!study) {
@@ -163,7 +158,8 @@ const studyPageReducer = createReducer(initialState, (builder) => {
       const ws3 = XLSX.utils.aoa_to_sheet(flattenedCards);
       XLSX.utils.book_append_sheet(wb, ws3, 'Cards');
 
-      const categories = [...state.categories.data];
+      const categories = [...state.categories.data.map(item =>
+        [item.name, item.categories_no, item.category_names, item.frequencies, item.description])];
       categories.unshift(["Category", 'Cards no', 'Cards', 'Frequency', 'Participants']);
       const flattenedCategories = categories.map(row =>
         row.map((cell: any) => (Array.isArray(cell) ? cell.join(", ") : cell))

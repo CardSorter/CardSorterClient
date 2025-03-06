@@ -30,6 +30,7 @@ export default {
   delete: 'Delete',
   december: 'december',
   description: 'Description',
+  duplicateStudyTitleSuffix: "(copy)",
   editStudy: "Edit Study",
   editedOn: 'Last edited on',
   endedOn: 'Ended on',

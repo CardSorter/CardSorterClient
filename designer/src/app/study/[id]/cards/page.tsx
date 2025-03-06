@@ -27,7 +27,7 @@ export default function Page() {
         />
       }
       <DataTable headers={[L?.text?.card, L?.text?.categoriesNo, L?.text?.categories, L?.text?.frequency, L?.text?.description]}
-                 data={data} />
+                 data={data.map(item => [item.name, item.categories_no, item.category_names, item.frequencies, item.description])} />
     </div>
   );
 }

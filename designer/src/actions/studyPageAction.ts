@@ -31,7 +31,13 @@ interface FetchStudyResponse {
     average: string; // Average completion, e.g. "0%"
     total: number; // Total number of cards
     sorted: number; // Number of sorted cards
-    data: any[]; // Data related to cards
+    data: {
+      name: string,
+      categories_no: number,
+      category_names: string[],
+      frequencies: number[],
+      description: string,
+    }[]; // Data related to cards
   };
   categories: {
     similarity: string; // Percentage similarity, e.g. "0%"
@@ -44,7 +50,6 @@ interface FetchStudyResponse {
 
 }
 
-export const copyStudy = createAction<{ studyId: string }>("studyPage/copyStudy");
 export const changeHoveredCards = createAction<{ index1: number, index2: number }>("studyPage/changeHoveredCards");
 export const togglePopup = createAction<{ toggle: boolean }>("studyPage/togglePopup");
 export const loadStudy = createAction<{ status: string, study?: FetchStudyResponse, error: boolean }>("studyPage/loadStudy");
