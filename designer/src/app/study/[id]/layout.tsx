@@ -22,9 +22,6 @@ export default function Layout({children}: {children: React.ReactNode }) {
   // State
   const NoParticipantsInStudy = useSelector((state: StateSchema) => state.study.noParticipants);
   const editPopupOpen = useSelector((state: StateSchema) => state.study.editPopupOpen);
-  const editPopupTitle = useSelector((state: StateSchema) => state.study.editPopupTitle);
-  const editPopupIsLive = useSelector((state: StateSchema) => state.study.editPopupIsLive);
-  const editPopupDescription = useSelector((state: StateSchema) => state.study.editPopupDescription);
   const showPopup = useSelector((state: StateSchema) => state.study.popupShowing);
   const title = useSelector((state: StateSchema) => state.study.title);
   const description = useSelector((state: StateSchema) => state.study.description);
@@ -39,19 +36,7 @@ export default function Layout({children}: {children: React.ReactNode }) {
   const loadStudy =  (id: string) => dispatch(studyAction.fetchStudy(id));
   const loadClusters = (id: string) => dispatch(studyAction.fetchClusters(id));
 
-  const saveEditPopup = (title: string, isLive: boolean, description?: string) => {
-    dispatch(studyAction.updateStudy(id, { title: title, isLive: isLive, description: description }));
-    dispatch(studyAction.toggleEditPopup({toggle: false}));
-  }
-
   const openEditPopup = () => dispatch(studyAction.toggleEditPopup({toggle: true}));
-
-  const closeEditPopup = () => dispatch(studyAction.toggleEditPopup({toggle: false}));
-
-  const deleteEditPopup = () => {
-    dispatch(studyAction.deleteStudy(id));
-    dispatch(studyAction.toggleEditPopup({toggle: false}));
-  };
 
   const openPopup = () => dispatch(studyAction.togglePopup({toggle: true}));
   const closePopup = () => dispatch(studyAction.togglePopup({toggle: false}));
@@ -131,15 +116,7 @@ export default function Layout({children}: {children: React.ReactNode }) {
           />
         )}
         {editPopupOpen && (
-          <EditPopup
-            title={L?.text?.editStudy}
-            initialTitle={editPopupTitle}
-            initialIsLive={editPopupIsLive}
-            initialDescription={editPopupDescription}
-            onSave={saveEditPopup}
-            onClose={closeEditPopup}
-            onDelete={deleteEditPopup}
-          />
+          <EditPopup />
         )}
 
         {

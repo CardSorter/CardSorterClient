@@ -1,29 +1,32 @@
-import React, {useState, ChangeEvent, MouseEvent} from 'react';
+import React, {useState, ChangeEvent, MouseEvent, useEffect} from 'react';
 import L from 'localization/LocalizedText';
+import {useDispatch, useSelector} from "react-redux";
+import StateSchema from "reducers/StateSchema";
+import * as studyAction from "../actions/studyPageAction";
 
-type EditPopupProps = {
-    title: string | undefined;
-    initialTitle: string;
-    initialIsLive: boolean;
-    initialDescription?: string;
-    onSave: (title: string, isLive: boolean, description?: string) => void;
-    onClose: () => void;
-    onDelete: () => void;
-};
-
-const EditPopup: React.FC<EditPopupProps> = ({
-                                                 title,
-                                                 initialTitle,
-                                                 initialIsLive,
-                                                 initialDescription,
-                                                 onSave,
-                                                 onClose,
-                                                 onDelete
-                                             }) => {
-    const [editTitle, setEditTitle] = useState(initialTitle);
-    const [editIsLive, setEditIsLive] = useState(initialIsLive);
-    const [editDescription, setEditDescription] = useState(initialDescription);
+const EditPopup: React.FC = () => {
+    const [editTitle, setEditTitle] = useState("");
+    const [editIsLive, setEditIsLive] = useState(false);
+    const [editDescription, setEditDescription] = useState("");
     const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
+
+    // State
+    const id = useSelector((state: StateSchema) => (state.study.id));
+    const title = useSelector((state: StateSchema) => (state.study.title));
+    const isLive = useSelector((state: StateSchema) => (state.study.isLive));
+    const description = useSelector((state: StateSchema) => (state.study.description));
+
+    // Dispatch
+    const dispatch = useDispatch<any>();
+
+    const onClose = () => dispatch(studyAction.toggleEditPopup({toggle: false}));
+
+
+    useEffect(() => {
+        setEditTitle(title);
+        setEditIsLive(isLive || false);
+        setEditDescription(description || "");
+    }, [title, isLive, description]);
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEditTitle(event.target.value);
@@ -35,7 +38,13 @@ const EditPopup: React.FC<EditPopupProps> = ({
 
     const handleEditSubmit = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        onSave(editTitle, editIsLive, editDescription);
+
+        if (!id) {
+            return;
+        }
+
+        dispatch(studyAction.updateStudy(id, { title: editTitle, isLive: editIsLive, description: editDescription }));
+        dispatch(studyAction.toggleEditPopup({toggle: false}));
     };
 
     const handleDelete = (event: MouseEvent<HTMLButtonElement>) => {
@@ -44,7 +53,13 @@ const EditPopup: React.FC<EditPopupProps> = ({
     };
 
     const handleConfirmDelete = () => {
-        onDelete();
+        if (!id) {
+            return;
+        }
+
+        dispatch(studyAction.deleteStudy(id));
+        dispatch(studyAction.toggleEditPopup({toggle: false}));
+
         setIsConfirmingDelete(false);
     };
 
@@ -56,7 +71,7 @@ const EditPopup: React.FC<EditPopupProps> = ({
       <div className="popup-container" onClick={onClose}>
           <div className="popup" onClick={(e) => e.stopPropagation()}>
               <div className="header">
-                  <h2>{title}</h2>
+                  <h2>{L?.text?.editStudy}</h2>
                   <button className="close-btn" onClick={onClose}>&#10005;</button>
               </div>
               <div className="content">

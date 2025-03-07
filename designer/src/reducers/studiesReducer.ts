@@ -2,7 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import * as studyActions from '../actions/studiesAction';
 import * as ActionStatus from 'actions/ActionStatus';
 
-interface Study {
+export interface Study {
   id: string;
   title: string;
   isLive: boolean;
@@ -49,8 +49,10 @@ const studiesReducer = createReducer(initialState, (builder) => {
           );
         }
       }
+      
       state.isFetching = action.payload.status !== ActionStatus.SUCCESS;
-      state.studies?.sort((study1, study2) => study2.editDate.getDate() - study1.editDate.getDate());
+      state.studies?.sort((a, b) => b.editDate.getTime() - a.editDate.getTime());
+
     })
     .addCase(studyActions.addStudy, (state, action) => {
       const study = action.payload.study;

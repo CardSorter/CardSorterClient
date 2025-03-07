@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from 'react';
 import { useSearchParams  } from 'next/navigation'
 import Link from "next/link";
-import L from '../localization/LocalizedText';
+import L from 'localization/LocalizedText';
 
 interface FiltersProps {
   ongoing: boolean,
@@ -11,8 +11,6 @@ interface FiltersProps {
 }
 
 // TODO: Needs to be refactored to use the global redux state
-// TODO: Something needs debugging here, whenever an item is pressed a full refresh is happening.
-// Expected behaviour: Navigate without refresh
 export default function Filters({ ongoing: ongoingAttr, completed: completedAttr }: FiltersProps){
   const [ongoingRef, setOngoingRef] = useState('all');
   const [completedRef, setCompletedRef] = useState('all');

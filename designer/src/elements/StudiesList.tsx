@@ -5,9 +5,10 @@ import StudyItem from './StudyItem';
 import CreateStudyItem from './CreateStudyItem';
 import {useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
+import {Study} from "reducers/studiesReducer";
 
 export default function StudiesList() {
-  const [filteredStudies, setFilteredStudies] = useState<any[]>([]);
+  const [filteredStudies, setFilteredStudies] = useState<Study[]>([]);
 
   // State
   const studies = useSelector((state: StateSchema) => state.studies.studies);

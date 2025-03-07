@@ -41,7 +41,7 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
           </div>
           <div className='dates'>
             <p className='launched'>
-              {localizedText?.text?.launchedOn} <time
+              {localizedText?.text?.launchedOn}&nbsp;<time
                 dateTime={launchedDate.toDateString()}>{launchedDate.getDate()}
               <span className="capitalize">
               <> </>{monthToString(launchedDate.getMonth())}
@@ -52,7 +52,7 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
             {
                 (!endDate && editDate) &&
                 <p className='edited'>
-                  {localizedText?.text?.editedOn}
+                  {localizedText?.text?.editedOn}&nbsp;
                   <time dateTime={editDate.toDateString()}>{editDate.getDate()}
                   <span className="capitalize">
                     <> </>{monthToString(editDate.getMonth())}
