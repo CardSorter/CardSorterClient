@@ -1,9 +1,9 @@
 import {createAction, Dispatch, ThunkAction, UnknownAction} from '@reduxjs/toolkit';
 import * as ActionStatus from 'actions/ActionStatus';
 import * as studyActions from './studiesAction';
-import api from './api';
 import StateSchema from "../reducers/StateSchema";
 import {Card} from "../reducers/studyCreationReducer";
+import {setAuthToken} from "./authAction";
 
 export const changeTitle = createAction<{ title: string }>('studyCreation/changeTitle');
 export const changeDescription = createAction<{ description: string }>('studyCreation/changeDescription');
@@ -48,21 +48,19 @@ export function sendStudy(study: {title: string, description: string, cards: Rec
   link?: string}): ThunkAction<void, StateSchema, unknown, UnknownAction> {
   return function (dispatch: Dispatch, getState: () => StateSchema) {
     dispatch(createStudy({status: ActionStatus.IS_FETCHING, error: false}));
-    fetch(api + '/studies_endpoint', {
+    fetch(process.env.NEXT_PUBLIC_API_URL + '/studies_endpoint', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: getState().auth.token,
+        "Authorization": getState().auth.token || "",
         'Access-Control-Allow-Credentials': 'true',
       },
       body: JSON.stringify(study),
     }).then((response) =>
       response.json().then((json) => {
         if (response.status === 401) {
-          // Redirect to authentication
-          setTimeout(() => window.location.reload(), 1000);
-          window.location.replace(json.location);
+          dispatch(setAuthToken(undefined));
         } else {
           dispatch(studyActions.addStudy(json.study));
           dispatch(createStudy({status: ActionStatus.SUCCESS, study: json.study, error: false}));

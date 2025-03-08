@@ -1,7 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import fetch from 'cross-fetch';
 import * as ActionStatus from 'actions/ActionStatus';
-import api from './api';
+import {setAuthToken} from "./authAction";
 
 export interface SortingDataItem {
   cards: string[],
@@ -67,7 +67,7 @@ export const toggleEditPopup = createAction<{ toggle: boolean }>("studyPage/togg
 export function fetchStudy(id: string) {
   return function (dispatch: Function, getState: Function) {
     dispatch(loadStudy({status: ActionStatus.IS_FETCHING, error: false}));
-    fetch(`${api}/studies_endpoint?id=${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/studies_endpoint?id=${id}`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -78,8 +78,7 @@ export function fetchStudy(id: string) {
       .then((response) =>
         response.json().then((json) => {
           if (response.status === 401) {
-            setTimeout(() => window.location.reload(), 1000);
-            window.location.replace(json.location);
+            dispatch(setAuthToken(undefined));
           } else {
             dispatch(loadStudy({status: ActionStatus.SUCCESS, study: json.study, error: false}));
           }
@@ -96,7 +95,7 @@ export function fetchStudy(id: string) {
 export function fetchClusters(id: string) {
   return function (dispatch: Function, getState: Function) {
     dispatch(loadClusters({status: ActionStatus.IS_FETCHING, error: false}));
-    fetch(`${api}/studies_endpoint?id=${id}&clusters=true`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/studies_endpoint?id=${id}&clusters=true`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -107,8 +106,7 @@ export function fetchClusters(id: string) {
       .then((response) =>
         response.json().then((json) => {
           if (response.status === 401) {
-            setTimeout(() => window.location.reload(), 1000);
-            window.location.replace(json.location);
+            dispatch(setAuthToken(undefined));
           } else {
             dispatch(loadClusters({status: ActionStatus.SUCCESS, clusters: json.clusters, error: false}));
           }
@@ -119,7 +117,7 @@ export function fetchClusters(id: string) {
 
 export const updateStudy = (studyId: string, updatedProperties: Record<string, any>) => {
   return (dispatch: Function, getState: Function) => {
-    fetch(`${api}/studies_endpoint?id=${studyId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/studies_endpoint?id=${studyId}`, {
       method: 'PUT',
       credentials: 'include',
       headers: {
@@ -130,6 +128,7 @@ export const updateStudy = (studyId: string, updatedProperties: Record<string, a
       body: JSON.stringify(updatedProperties),
     })
       .then((response) => {
+        // TODO: Router here
         if (response.ok) {
           dispatch(fetchStudy(studyId));
         } else {
@@ -148,7 +147,7 @@ export const deleteStudy = (studyId: string) => {
     redirectUrl = '/card-sorter/';
   }
   return (dispatch: Function, getState: Function) => {
-    fetch(`${api}/studies_endpoint?id=${studyId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/studies_endpoint?id=${studyId}`, {
       method: 'DELETE',
       credentials: 'include',
       headers: {
@@ -158,6 +157,7 @@ export const deleteStudy = (studyId: string) => {
       },
     })
       .then((response) => {
+        // TODO nextJS router here
         if (response.ok) {
           window.location.replace(redirectUrl);
         } else {

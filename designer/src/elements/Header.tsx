@@ -1,5 +1,6 @@
+"use client"
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Image from 'next/image';
 
 import L from 'localization/LocalizedText';
@@ -7,12 +8,14 @@ import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
 import * as headerActions from "actions/headerAction";
+import * as authActions from "actions/authAction";
+import {usePathname} from "next/navigation";
 
-interface HeaderProps {
-  showBackButton?: boolean,
-}
+const Header = () => {
+  const [showBackButton, setShowBackButton] = useState(false);
+  const [showProfileSettings, setShowProfileSettings] = useState(false);
 
-const Header = ({showBackButton}: HeaderProps) => {
+  const pathname = usePathname();
 
   // State
   const username = useSelector((state: StateSchema) => state.header.username);
@@ -22,40 +25,53 @@ const Header = ({showBackButton}: HeaderProps) => {
   // Dispatch
   const dispatch = useDispatch();
 
-  const onProfileClick =  (isUnfold: boolean) => {
-      dispatch(headerActions.toggleProfileSettings({toggle: !isUnfold}));
-    }
+  const onProfileClick = (isUnfold: boolean) => {
+    dispatch(headerActions.toggleProfileSettings({toggle: !isUnfold}));
+  }
 
   const onLogoutClick = () => {
-    dispatch(headerActions.logout());
+    dispatch(authActions.logout());
   }
+
+  // Figure out which items to render
+  useEffect(() => {
+    if (pathname.includes('login') || pathname.includes("register")) {
+      setShowProfileSettings(false);
+    } else {
+      setShowProfileSettings(true);
+    }
+  }, [pathname])
 
   return (<header>
     <Link className="logo-container" href='/'>
       <p id="logo">Card Sorter</p>
       {
         showBackButton &&
-        <button id="back">
+          <button id="back">
           <span className="arrow">
             <span className="shaft"></span>
           </span>
-          <span className="content">{L?.text?.toFront}</span>
-        </button>
+              <span className="content">{L?.text?.toFront}</span>
+          </button>
       }
     </Link>
-    <div className={(!profileUnfold) ? 'profile' : 'profile unfold'} onClick={() => onProfileClick(profileUnfold)}>
-      <div className="header">
-        <p>{username}</p>
-        <Image src={"/card-sorter/images/sample-user.svg"} alt="Profile Avatar" height={40} width={40}/>
-      </div>
-      {
-        profileUnfold &&
-        <div className="content">
-          <button className="unfunctional">Settings</button>
-          <button onClick={onLogoutClick}>Log out</button>
+    {
+      showProfileSettings &&
+        <div className={(!profileUnfold) ? 'profile' : 'profile unfold'} onClick={() => onProfileClick(profileUnfold)}>
+          <div className="header">
+            <p>{username}</p>
+            <Image src={"/card-sorter/images/sample-user.svg"} alt="Profile Avatar" height={40} width={40}/>
+          </div>
+          {
+            profileUnfold &&
+              <div className="content">
+                  <button className="unfunctional">Settings</button>
+                  <button onClick={onLogoutClick}>Log out</button>
+              </div>
+          }
         </div>
-      }
-    </div>
+    }
+
   </header>);
 };
 

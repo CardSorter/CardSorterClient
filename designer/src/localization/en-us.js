@@ -80,6 +80,21 @@ export default {
   confirmDelete: 'Are you sure you want to delete this study?',
   Confirm: 'Confirm',
   Cancel: 'Cancel',
- 
+  addAPassword: 'add a password',
+  addAnEmail: 'add an email',
+  addAnUsername: 'add an username',
+  email: 'email',
+  emailAlreadyInUse: 'this email is already in use',
+  forgotYourPassword: 'forgot your password?',
+  hiAgain: 'hi again!',
+  hiThere: 'hi there!',
+  login: 'log in',
+  password: 'password',
+  register: 'register',
+  signUp: 'sign up',
+  username: 'username',
+  usernameAlreadyInUse: 'this username is already in use',
+  usernameNotFound: 'username not found',
+  wrongPassword: 'wrong password',
 };
 

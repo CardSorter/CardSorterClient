@@ -2,11 +2,11 @@ import {createAction} from '@reduxjs/toolkit';
 import fetch from 'cross-fetch';
 
 import * as ActionStatus from 'actions/ActionStatus';
-import api from './api';
+import {setAuthToken} from "./authAction";
 
 
-export const loadStudies = createAction<{ status: string, studies: any }>("study/loadStudies");
-export const addStudy = createAction<{ study: any }>("study/addStudy");
+export const loadStudies = createAction<{ status: string, studies: any }>("studies/loadStudies");
+export const addStudy = createAction<{ study: any }>("studies/addStudy");
 
 /* Thunk actions */
 
@@ -16,7 +16,7 @@ export const addStudy = createAction<{ study: any }>("study/addStudy");
 export function fetchStudies() {
   return function (dispatch: Function, getState: Function) {
     dispatch(loadStudies({status: ActionStatus.IS_FETCHING, studies: null}));
-    fetch(api + '/studies_endpoint', {
+    fetch(process.env.NEXT_PUBLIC_API_URL + '/studies_endpoint', {
       method: 'GET',
       // withCredentials: true,
       credentials: 'include',
@@ -29,9 +29,7 @@ export function fetchStudies() {
         (response) => {
           response.json().then((json) => {
               if (response.status === 401) {
-                // Redirect
-                setTimeout(() => window.location.reload(), 1000);
-                window.location.replace(json.location);
+                dispatch(setAuthToken(undefined));
               } else {
                 dispatch(loadStudies({status: ActionStatus.SUCCESS, studies: json.studies}));
               }

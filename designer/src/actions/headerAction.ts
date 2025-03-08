@@ -1,12 +1,9 @@
 import fetch from 'cross-fetch';
-import api from './api';
 import * as ActionStatus from 'actions/ActionStatus';
 import {createAction} from '@reduxjs/toolkit';
+import {setAuthToken} from "./authAction";
 
 export const toggleProfileSettings = createAction<{ toggle: boolean }>("header/toggleProfileSettings");
-
-export const logout = createAction("header/logout");
-
 export const requestingUsername = createAction<{ status: string; username: string }>("header/requestingUsername");
 
 /* Thunk actions */
@@ -18,9 +15,8 @@ export const requestingUsername = createAction<{ status: string; username: strin
 export function fetchUsername(): (dispatch: Function, getState: Function) => void {
   return function (dispatch, getState) {
     dispatch(requestingUsername({status: ActionStatus.IS_FETCHING, username: ''}));
-    fetch(api + '/studies_endpoint?username=true', {
+    fetch(process.env.NEXT_PUBLIC_API_URL + '/studies_endpoint?username=true', {
       method: 'GET',
-      // withCredentials: true,
       credentials: 'include',
       headers: {
         Authorization: getState().auth.token,
@@ -30,6 +26,8 @@ export function fetchUsername(): (dispatch: Function, getState: Function) => voi
       response.json().then((json) => {
         if (response.status !== 401) {
           dispatch(requestingUsername({status: ActionStatus.SUCCESS, username: json.username}));
+        } else {
+          dispatch(setAuthToken(undefined));
         }
       })
     );

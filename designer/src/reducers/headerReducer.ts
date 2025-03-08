@@ -17,16 +17,6 @@ const headerReducer = createReducer(initialState, (builder) => {
     .addCase(headerActions.toggleProfileSettings, (state, action) => {
       state.profileUnfold = action.payload?.toggle || false;
     })
-    .addCase(headerActions.logout, (state) => {
-      let redirectUrl = '/auth/';
-      if (process.env.NODE_ENV === 'production') {
-        redirectUrl = '/card-sorter/auth/';
-      }
-      // Delete the auth token
-      document.cookie = 'auth_token= ;expires = Thu, 01 Jan 1970 00:00:00 GMT';
-      // Redirect to the main page
-      document.location.replace(redirectUrl);
-    })
     .addCase(headerActions.requestingUsername, (state, action) => {
       state.username = action.payload?.status === ActionStatus.SUCCESS ? action.payload.username : '';
     });
