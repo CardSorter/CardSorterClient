@@ -1,53 +1,26 @@
 # Stage 1 build production
 
-FROM node:13 as builder
+FROM node:20 as builder
 
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
-# Build auth
-
-# RUN mkdir auth
-WORKDIR /app/auth
-
-COPY ./auth/package.json ./
-RUN npm install
-
-COPY ./auth ./
-ENV PUBLIC_URL /card-sorter/auth
-RUN npm run build
-
-# Build designer
+# Build app
 
 WORKDIR /app
 
-# RUN mkdir designer
-WORKDIR /app/designer
+# RUN mkdir
+WORKDIR /app/application
 
-COPY ./designer/package.json ./
+COPY app/package.json ./
 RUN npm install
 ENV PUBLIC_URL /card-sorter
-COPY ./designer ./
+COPY app ./
 
 RUN npm run build
-
-# Build sorter
-
-WORKDIR /app
-
-# RUN mkdir sorter
-WORKDIR /app/sorter
-
-COPY ./sorter/package.json ./
-RUN npm install
-
-COPY ./sorter ./
-ENV PUBLIC_URL /card-sorter/sort
-RUN npm run build
-
 
 # Stage 2 serve the files
-FROM nginx:1.19
+FROM nginx:1.27
 
 # Install nano, this is for debuging
 #RUN apt-get update
@@ -55,9 +28,7 @@ FROM nginx:1.19
 
 WORKDIR /usr/share/nginx/html
 
-COPY --from=builder /app/auth/build ./auth
-COPY --from=builder /app/designer/build ./designer
-COPY --from=builder /app/sorter/build ./sort
+COPY --from=builder /app/application/build ./application
 
 WORKDIR /
 
