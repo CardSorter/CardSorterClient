@@ -6,7 +6,7 @@ import 'material-symbols';
 import {NextIntlClientProvider} from 'next-intl';
 import MainContent from "elements/MainContent";
 
-const lato = Lato({weight: ["100", "300", "400", "700", "900"]});
+const lato = Lato({weight: ["100", "300", "400", "700", "900"], subsets:['latin-ext']});
 
 export default async function RootLayout(
   {

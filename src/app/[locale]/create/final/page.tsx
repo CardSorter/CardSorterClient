@@ -12,7 +12,7 @@ import {createStudy} from "actions/studyCreationAction";
 import {useTranslations} from "next-intl";
 
 export default function Page() {
-  const t = useTranslations();
+  const t = useTranslations("CreateStudyPage");
   const router = useRouter();
 
   // State

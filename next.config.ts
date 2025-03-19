@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  // output: 'standalone', // https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
 }
 
 export default withNextIntl(nextConfig)

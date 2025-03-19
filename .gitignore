@@ -1,19 +1,26 @@
-# IDEs
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/.idea
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Mac related
+# testing
+/coverage
 
-*/**/.DS_Store
+# production
+/build
 
-# Local node/yarn files
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-*/**/package-lock.json
-*/**/node_modules
-*/**/build
-*/**/yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Other files
-
-.eslintcache
-
+.next
+next-env.d.ts

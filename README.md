@@ -1,26 +1,28 @@
 # CardSorter
 Client version for the open card sorting tool. 
 
-The full paper that was based on this tool can be found on the ACM's directory
+The full paper this tool was based on can be found on the [ACM's directory](https://dl.acm.org/doi/abs/10.1145/3437120.3437279)
+Original authors: [Georgios Melissourgos](https://scholar.google.com/citations?user=ZcEnV9oAAAAJ&hl=en&oi=ao), [Christos Katsanos](https://scholar.google.com/citations?hl=en&user=_6k57BEAAAAJ)
 
 ## How to get started
 
 ### Prerequisites
-1. Node 12+ with npm and yarn
-2. Docker and docker-compose
-3. (Optionally) a unix-based or bashed enabled system
+1. Node 18+ with npm and yarn
 
-### Running the development 
+### Running the development
 
-#### The easy way
+#### Running the backend
+To run the backend, clone the server locally (https://github.com/CardSorter/CardSorterServer) and follow the instructions there for setting up the api.
+
+#### Running the client
 1. Clone the repo locally (e.g. `$ git clone https://github.com/CardSorter/CardSorterClient`)
 2. Cd into the root folder (e.g. `$ cd CardSorterClient`)
-3. If running for the first time, install dependencies (e.g. `$ sh ./install_dependencies.sh`)
-4. From the root folder get up the development environment `$ docker-compose up`
+3. Install dependencies `yarn install`
+4. Run NextJs `yarn dev`
 
-#### Alternatively you can skip step 4 for:
-4. Cd into the module you'd like to run (e.g. `$ cd auth`)
-5. Run the development server with watch capabilities (e.g. `$ yarn start`)
+Because the pages are dynamically created by NextJS, the first time that a page load it may take up to 2 seconds for it to appear in the browser.
 
-### The backend
-To run the backend, clone the server locally (https://github.com/CardSorter/CardSorterServer) and follow the instructions there for setting up the api.
+
+## Publications
+- [Original paper](https://dl.acm.org/profile/99659688318) —[Georgios Melissourgos](https://scholar.google.com/citations?user=ZcEnV9oAAAAJ&hl=en&oi=ao), [Christos Katsanos](https://scholar.google.com/citations?hl=en&user=_6k57BEAAAAJ)
+- [Functionality improvements](https://ikee.lib.auth.gr/record/354705/files/KYRIACOU.pdf) —Panagiotis Kyriacou
