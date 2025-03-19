@@ -12,7 +12,6 @@
     "material-symbols": "^0.28.2",
     "next": "^15.1.7",
     "next-intl": "^4.0.2",
-    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
@@ -25,10 +24,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "npx serve@latest ./build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "start": "next start"
   },
   "browserslist": [
     ">0.2%",
