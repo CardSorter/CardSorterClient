@@ -18,7 +18,7 @@ export default function MainContent({locale,children}: {locale: string, children
     <Provider store={store}>
 
         {
-          (!pathname.includes("sort")) &&
+          (!pathname.includes("sort") || pathname.includes("sorting")) &&
             <>
               <GetInitialStateFromServer />
               <AuthRedirect />
