@@ -72,7 +72,7 @@ export default function initializeStore(): Store<StateSchema> {
       studyCreation: persistedStudyCreation(),
     },
     middleware: (getDefaultMiddleware) => {
-      if (process.env.NODE_ENV !== 'PRODUCTION') {
+      if (process.env.NODE_ENV !== 'production') {
         return getDefaultMiddleware({
           serializableCheck: false,
         }).concat(logger);
