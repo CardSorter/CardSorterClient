@@ -41,8 +41,8 @@ export default function Page() {
         </div>
         <div className="share-container">
           <div className="url-container">
-            <a className="url" href={`/sort/${createdStudy?.id}`} target="_blank">
-              {process.env.NEXT_PUBLIC_BASE_URL + `/sort/${createdStudy?.id}`}
+            <a className="url" href={`${process.env.NEXT_PUBLIC_BASE_URL}/sort/${createdStudy?.id}`} target="_blank" rel="noopener noreferrer">
+              {`${process.env.NEXT_PUBLIC_BASE_URL}/sort/${createdStudy?.id}`}
             </a>
             <button className="copy" type="button" onClick={onCopy}>
               <span className="material-symbols-outlined">content_copy</span>

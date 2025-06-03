@@ -25,7 +25,7 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
       <div>
         <li className='studyItem' onClick={() => router.push('/study/' + id)} >
           <div className='header'>
-            <h3>{title}</h3>
+            <h3>{title}{" "}</h3>
             {
                 isLive &&
                 <span className='activeSquare isLive'></span>

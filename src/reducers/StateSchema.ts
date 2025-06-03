@@ -7,6 +7,7 @@ import {LoginState} from "./loginReducer";
 import {RegisterState} from "./registerReducer";
 import {SortingUIState} from "./sorting/sortingUiReducer";
 import {SortingBoardState} from "./sorting/sortingBoardReducer";
+import { SettingsState } from "./settingsReducer";
 
 interface SortingState {
   board: SortingBoardState;
@@ -14,6 +15,7 @@ interface SortingState {
 }
 
 export default interface StateSchema {
+  ui: any;
   login: LoginState,
   register: RegisterState,
   auth: AuthState,
@@ -24,4 +26,5 @@ export default interface StateSchema {
   // Sorting page (/card-sorter/sort) state
   sortingBoard: SortingBoardState,
   sortingUi: SortingUIState,
+  settings: SettingsState,
 }

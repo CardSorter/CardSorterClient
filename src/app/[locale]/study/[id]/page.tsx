@@ -16,6 +16,22 @@ export default function Page() {
   const sub = useSelector((state: StateSchema) => state.study.participants.completed);
   const total = useSelector((state: StateSchema) => state.study.participants.total);
   const data = useSelector((state: StateSchema) => state.study.participants.data);
+  const sortType = useSelector((state: StateSchema) => state.sortingUi?.sortType ?? 'open');
+
+
+
+  let headers;
+
+      if (sortType === "closed") {
+         headers = [t("participant no"), t("time taken"), t("cards sorted"), t("predefined categories")];
+      } else if (sortType === "hybrid") {
+         headers = [t("participant no"), t("time taken"), t("cards sorted"), t("all categories")];
+      } else {
+        headers = [t("participant no"), t("time taken"), t("cards sorted"), t("categories created")];
+      }
+      
+
+
 
   return (
     <div className="content">
@@ -28,8 +44,9 @@ export default function Page() {
                   action={t("completed the study")}
         />
       }
-      <DataTable headers={[t("participant no"), t("time taken"), t("cards sorted"), t("categories created")]}
-                 data={data} />
+
+      <DataTable headers={headers} data={data} />
+
     </div>
   );
 }

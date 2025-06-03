@@ -4,6 +4,10 @@ import React, {useRef} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "i18n/navigation";
 
+
+
+
+
 import * as studyCreationAction from "actions/studyCreationAction";
 import StateSchema from "reducers/StateSchema";
 import {useTranslations} from "next-intl";
@@ -20,14 +24,35 @@ export default function Page() {
   const description = useSelector((state: StateSchema) => (state.studyCreation.description));
   const titleError = useSelector((state: StateSchema) => (state.studyCreation.errorTitle));
   const descriptionError = useSelector((state: StateSchema) => (state.studyCreation.errorDescription));
+  const sortType = useSelector((state: StateSchema) => state.studyCreation.sortType);
+  const existingStudies = useSelector((state: StateSchema) => state.studies.studies);
+  const existingTitles = existingStudies?.map((s) => s.title.toLowerCase()) || [];
+
 
   // Dispatch
   const dispatch = useDispatch();
+  const [titleSuggestion, setTitleSuggestion] = React.useState<string | null>(null);
+
+  function UniqueTitle(baseTitle: string, existingTitles: string[]): string {
+    let suggestion = baseTitle;
+    let counter = 2;
+  
+    while (existingTitles.includes(suggestion.toLowerCase())) {
+      suggestion = `${baseTitle} (${counter})`;
+      counter++;
+    }
+  
+    return suggestion;
+  }
+
+
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     dispatch(studyCreationAction.toggleTitleError({status: false}));
-    dispatch(studyCreationAction.changeTitle({title: value}));
+    const suggestedNew = UniqueTitle(value, existingTitles);
+    setTitleSuggestion(suggestedNew !== value ? suggestedNew : null);
+    dispatch(studyCreationAction.changeTitle({title: suggestedNew}));
   }
 
   const onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -57,7 +82,7 @@ export default function Page() {
 
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent the default Enter behavior (form submission)
+      e.preventDefault(); 
 
       if (e.target === titleInputRef.current) {
         descriptionInputRef.current?.focus();
@@ -78,9 +103,10 @@ export default function Page() {
             placeholder={t("study title")}
             defaultValue={title}
             onChange={onTitleChange}
-            onKeyDown={handleEnterKey} // Handle Enter key here
+            onKeyDown={handleEnterKey} 
           />
           {titleError && <div className="error-message"><p>{t("error empty field")}</p></div>}
+          {titleSuggestion && <div className="info-message"><p>{t("error field")} {titleSuggestion}</p></div>}
         </div>
         <div className="error-holder">
           <textarea
@@ -93,6 +119,40 @@ export default function Page() {
           ></textarea>
           {descriptionError && <div className="error-message"><p>{t("error empty field")}</p></div>}
         </div>
+        <div className="sort-type-section">
+          <label className="sort-type-label"><strong>Sort Type</strong></label>
+          <div className="sort-type-options">
+            <label className="sort-type-option">
+             <input
+               type="radio"
+               value="open"
+               checked={sortType === "open"}
+               onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "open" }))}
+             />
+             <span><strong>Open</strong> (Participants define and label their own groups)</span>
+            </label>
+
+            <label className="sort-type-option">
+             <input
+              type="radio"
+              value="closed"
+              checked={sortType === "closed"}
+              onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "closed" }))}
+             />
+             <span><strong>Closed</strong> (You define all groups; participants sort only)</span>
+            </label>
+            
+            <label className="sort-type-option">
+             <input
+              type="radio"
+              value="hybrid"
+              checked={sortType === "hybrid"}
+              onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "hybrid" }))}
+             />
+            <span><strong>Hybrid</strong> (You define initial groups; participants can add or edit)</span>
+           </label>
+        </div>
+      </div>
       </form>
       <div className="bottom-container">
         <div className="btn-container">

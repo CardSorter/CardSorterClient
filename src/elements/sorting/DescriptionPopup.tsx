@@ -20,7 +20,7 @@ export default function DescriptionPopup() {
         <h1>{title}</h1>
         <h3>{description}</h3>
         <div className="btn-container">
-          <button type="button" className="btn--secondary cancel" onClick={onClose}>close</button>
+          <button type="button" className="btn--main submit" onClick={onClose}>Close</button>
         </div>
       </div>
     </div >

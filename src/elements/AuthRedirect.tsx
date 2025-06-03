@@ -12,14 +12,23 @@ export default function AuthRedirect() {
 
   // Redirect in case the token has been set to undefined
   useEffect(() => {
-    if (!authToken && !(pathname.includes('/login') || pathname.includes('/register'))) {
+    console.log('🔍 Current pathname:', pathname); // ✅ Add this
+  
+    const isPublicRoute =
+      pathname === '/' ||
+      pathname.startsWith('/login') ||
+      pathname.startsWith('/register');
+  
+    if (!authToken && !isPublicRoute) {
       router.push('/login');
     }
-
-    if (authToken && (pathname.includes('/login') || pathname.includes('/register'))) {
-      router.push('/');
+  
+    if (authToken && isPublicRoute) {
+      router.push('/dashboard');
     }
-  }, [authToken, pathname, router])
+  }, [authToken, pathname, router]);
+  
 
   return <></>;
+
 }

@@ -19,9 +19,10 @@ const ConfirmPopUp = () => {
 
   const handleConfirmFinish = () => {
     const categoryRequest: Record<number, CategoryRequest> = {};
-    for (const category of Object.values(categories)) {
+    for (const category of Object.values(categories)){
       categoryRequest[category.id] = {id: category.id, title: category.title || "", cards: category.cards.map((c) => c.id)};
     }
+    
 
     dispatch(sendSort(
       studyId || "",
@@ -44,11 +45,11 @@ const ConfirmPopUp = () => {
             : <p>{t("confirm finish")}</p>}
         </div>
         <div className="button-container">
-          <button className="confirm-btn" onClick={handleConfirmFinish}>
-            {t("confirm")}
+          <button className="cancel-btn" onClick={handleConfirmFinish}>
+            {t("finish sorting")}
           </button>
-          <button className="cancel-btn" onClick={onClose}>
-            {t("cancel")}
+          <button className="confirm-btn" onClick={onClose}>
+            {t("continue sorting")}
           </button>
         </div>
       </div>

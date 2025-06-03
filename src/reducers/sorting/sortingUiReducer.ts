@@ -1,5 +1,11 @@
 import {createReducer} from '@reduxjs/toolkit';
 import * as uiAction from 'actions/sorting/uiAction';
+import { setTimeStarted } from 'actions/sorting/uiAction';
+
+
+
+
+
 
 export interface SortingUIState {
   showOnBoarding: boolean;
@@ -12,14 +18,22 @@ export interface SortingUIState {
   showCommentPopup: boolean;
   userComment: string;
   showDescriptionPopup: boolean;
+  showInstructionsPopup: boolean;
   showConfirmPopUp: boolean;
   timeStarted?: Date;
+  sortType: 'open' | 'closed' | 'hybrid';
+  predefinedCategories: Record<string, string>;
   errors: {
     categoryMissingTitle: boolean;
     categoriesHaveTheSameName: boolean;
     sameCategoryList: string[];
     noCategoriesCreated: boolean;
   };
+  commentSaved: boolean;
+  
+ 
+  
+
 }
 
 const initialState: SortingUIState = {
@@ -28,14 +42,21 @@ const initialState: SortingUIState = {
   showOnBoarding: true,
   showConfirmPopUp: false,
   showDescriptionPopup: false,
+  showInstructionsPopup: false,
   showCommentPopup: false,
   userComment: "",
+  sortType: "open",
+  predefinedCategories: {},
   errors: {
     categoryMissingTitle: false,
     noCategoriesCreated: false,
     categoriesHaveTheSameName: false,
     sameCategoryList: [],
-  }
+  },
+  commentSaved: false,
+  timeStarted: undefined,
+  
+
 };
 
 const sortingUiReducer = createReducer(initialState, (builder) => {
@@ -60,6 +81,9 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
     })
     .addCase(uiAction.toggleDescriptionPopup, (state, action) => {
       state.showDescriptionPopup = action.payload;
+    })
+    .addCase(uiAction.toggleInstructionsPopup, (state, action) => {
+      state.showInstructionsPopup = action.payload;
     })
     .addCase(uiAction.showConfirmPopUp, (state, action) => {
       state.showConfirmPopUp = true;
@@ -107,6 +131,28 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
       state.studyID = action.payload.studyID;
       state.userComment = action.payload.userComment || "";
     })
+    .addCase(uiAction.setSortType, (state, action) => {
+    state.sortType=action.payload;
+    })
+    .addCase(uiAction.setCategories, (state, action) => {
+    state.predefinedCategories = action.payload.categories;
+    })
+    .addCase(uiAction.showCommentSaved, (state) => {
+      state.commentSaved = true;
+    })
+    .addCase(uiAction.hideCommentSaved, (state) => {
+      state.commentSaved = false;
+    })
+    .addCase(uiAction.setCommentSaved, (state, action) => {
+      state.commentSaved = action.payload;
+    })
+    .addCase(setTimeStarted, (state, action) => {
+      state.timeStarted = action.payload;
+    })
+    
+    
+
+
 });
 
 export default sortingUiReducer;

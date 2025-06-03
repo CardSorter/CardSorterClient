@@ -1,24 +1,26 @@
-"use client"
-
+"use client";
 
 import GetInitialStateFromServer from "./GetInitialStateFromServer";
 import AuthRedirect from "./AuthRedirect";
 import Header from "./Header";
 import React from "react";
-import {usePathname} from "i18n/navigation";
+import { usePathname } from "i18n/navigation";
 import initializeStore from "../Store";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 
 const store = initializeStore();
 
-export default function MainContent({locale,children}: {locale: string, children: React.ReactNode}) {
+export default function MainContent({ locale, children }: { locale: string, children: React.ReactNode }) {
   const pathname = usePathname();
+  const isHomePage = pathname === '/'; 
 
   return (
     <Provider store={store}>
-
-        {
-          (!pathname.includes("sort") || pathname.includes("sorting")) &&
+      {isHomePage ? (
+        <>{children}</> 
+      ) : (
+        <>
+          {(!pathname.includes("sort") || pathname.includes("sorting")) ? (
             <>
               <GetInitialStateFromServer />
               <AuthRedirect />
@@ -29,16 +31,14 @@ export default function MainContent({locale,children}: {locale: string, children
                 </main>
               </div>
             </>
-        }
-        {
-          (pathname.includes("sort")) &&
+          ) : (
             <div id="root">
-              <main>
-                {children}
-              </main>
+              <main>{children}</main>
             </div>
-        }
-
+          )}
+        </>
+      )}
     </Provider>
-  )
+  );
 }
+

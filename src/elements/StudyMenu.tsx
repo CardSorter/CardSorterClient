@@ -4,12 +4,19 @@ import React, {useEffect, useState} from 'react';
 
 import {usePathname, useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
+import { useSelector } from "react-redux";
+import StateSchema  from "reducers/StateSchema"; 
+
+
+
 
 const StudyMenu: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("StudyPage");
+  const sortType = useSelector((state: StateSchema) => state.sortingUi.sortType);
 
+  
   const [selectedItem, setSelectedItem] = useState(0);
 
   // Figure out selected item on page load
@@ -57,7 +64,7 @@ const StudyMenu: React.FC = () => {
         navigationPath = "/similarity";
         break
       case 5:
-        navigationPath = "/clusters";
+        navigationPath = sortType === "closed" ? "/frequencymatrix" : "/clusters";
         break
     }
 
@@ -72,7 +79,7 @@ const StudyMenu: React.FC = () => {
       <button className={(selectedItem == 2) ? "selected" : ""} onClick={() => onItemClicked(2)}>{t("cards")}</button>
       <button className={(selectedItem == 3) ? "selected" : ""} onClick={() => onItemClicked(3)}>{t("categories")}</button>
       <button className={(selectedItem == 4) ? "selected" : ""} onClick={() => onItemClicked(4)}>{t("similarity matrix")}</button>
-      <button className={(selectedItem == 5) ? "selected" : ""} onClick={() => onItemClicked(5)}>{t("clusters")}</button>
+      <button className={(selectedItem == 5) ? "selected" : ""} onClick={() => onItemClicked(5)}>{sortType === "closed" ? t("placement frequency matrix") : t("clusters")}</button>
     </div>);
 };
 

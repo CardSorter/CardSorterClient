@@ -79,10 +79,17 @@ const Register: React.FC = () => {
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <p>{t("title")}</p>
-        <button className="back" onClick={onBack}>
-          <span className="material-symbols-outlined">arrow_back</span>
-        </button>
+        <div className="auth-header">
+          <div className="back-button">
+           <button className="back" onClick={onBack}>
+            <span className="material-symbols-outlined">arrow_back</span>
+           </button>
+          </div>
+          <div className="center-title">
+           <p className="auth-title">{t("title")}</p>
+          </div>
+          <div className="spacer" />
+        </div>
         <form onKeyUp={onFormKeyPress}>
           <div className="error-holder">
             <input

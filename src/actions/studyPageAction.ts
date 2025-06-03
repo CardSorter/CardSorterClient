@@ -2,12 +2,18 @@ import {createAction} from '@reduxjs/toolkit';
 import fetch from 'cross-fetch';
 import * as ActionStatus from 'actions/ActionStatus';
 import {setAuthToken} from "./authAction";
+import { setSortType } from './sorting/uiAction';
+
+
+
+
+
 
 export interface SortingDataItem {
   cards: string[],
   category: string,
   comment: string,
-  no: string, // The number of category e.g. "#1"
+  no: string, // number of categories
 }
 
 // TODO type the anys here
@@ -54,8 +60,13 @@ export const changeHoveredCards = createAction<{ index1: number, index2: number 
 export const togglePopup = createAction<{ toggle: boolean }>("studyPage/togglePopup");
 export const loadStudy = createAction<{ status: string, study?: FetchStudyResponse, error: boolean }>("studyPage/loadStudy");
 export const loadClusters = createAction<{ status: string, clusters?: any, error: boolean }>("studyPage/loadClusters");
-export const downloadXLSX = createAction<{ studyId: string }>("studyPage/downloadXLSX");
+//export const downloadXLSX = createAction<{ studyId: string }>("studyPage/downloadXLSX");
 export const toggleEditPopup = createAction<{ toggle: boolean }>("studyPage/toggleEditPopup");
+export const downloadXLSX = createAction<{ studyId: string; }>("studyPage/downloadXLSX");
+
+
+
+
 
 /* Thunk actions */
 
@@ -81,6 +92,7 @@ export function fetchStudy(id: string) {
             dispatch(setAuthToken(undefined));
           } else {
             dispatch(loadStudy({status: ActionStatus.SUCCESS, study: json.study, error: false}));
+           dispatch(setSortType(json.study.sortType));
           }
         })
       );

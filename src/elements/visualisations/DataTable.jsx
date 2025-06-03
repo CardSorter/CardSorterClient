@@ -121,7 +121,7 @@ const DataTable = ({ headers, data }) => {
         </thead>
         <tbody>
           {sortedData.map((line, index) => (
-            <tr key={'line' + index}>
+            <tr key={'line' + index} className={index % 2 === 0 ? 'row-white' : 'row-gray'}>
               {line.map((item, index) => {
                 if (item instanceof Array) {
                   return (

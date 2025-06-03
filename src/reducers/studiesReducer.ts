@@ -21,6 +21,9 @@ export interface StudyState {
   isFetching?: boolean;
   didInvalidate: any,
   filteredBy: StudyFilters | undefined;
+  searchTerm: string;
+  sortOption: string;
+
 }
 
 const initialState: StudyState = {
@@ -28,6 +31,9 @@ const initialState: StudyState = {
   isFetching: false,
   didInvalidate: false,
   filteredBy: undefined,
+  searchTerm: "",
+  sortOption: "editDateDesc",
+
 };
 
 const studiesReducer = createReducer(initialState, (builder) => {
@@ -75,6 +81,14 @@ const studiesReducer = createReducer(initialState, (builder) => {
     .addCase(studyActions.setStudyFilter, (state, action) => {
       state.filteredBy = action.payload.filter;
     })
+    
+    .addCase(studyActions.setSearchTerm, (state, action) => {
+      state.searchTerm = action.payload;
+    })
+    .addCase(studyActions.setSortOption, (state, action) => {
+      state.sortOption = action.payload;
+    });
+    
 });
 
 export default studiesReducer;

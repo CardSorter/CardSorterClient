@@ -1,18 +1,25 @@
 {
+
+  "HomePage": {
+      "welcome": "Welcome to your personal remote Card Sorting tool",
+      "cardSorts": "Card Sorts",
+      "description": "Revolutionize how you organize with our one-of-a-kind card sorting tool.Experience a seamless way to structure your content and gain valuable insights into your users’ needs. Simplify your design process like never before.",
+      "whatWeOffer": "WHAT WE OFFER"
+    },
   "LoginPage": {
-    "login title": "hi again!",
+    "login title": "Welcome back",
     "username": "username",
     "password": "password",
-    "forgot password": "forgot your password?",
+    "forgot password": "Forgot your password?",
     "login": "log in",
-    "register": "register",
+    "register": "Register",
     "error username not found": "username not found",
     "error wrong password": "Wrong password",
     "error empty password": "Password cannot be empty",
     "error empty username": "Username cannot be empty"
   },
   "RegisterPage": {
-    "title": "hi there!",
+    "title": "Welcome to CardSorter",
     "username": "username",
     "password": "password",
     "email": "email",
@@ -31,7 +38,9 @@
   "SortingHeader": {
     "show description": "Show Description",
     "add comment": "Add a comment",
-    "finish": "Finish"
+    "finish": "Finish",
+    "instructions": "Instructions"
+    
   },
   "StudiesListPage": {
     "filters all": "all",
@@ -69,17 +78,20 @@
     "categories": "categories",
     "similarity matrix": "similarity matrix",
     "clusters": "clusters",
+    "placement frequency matrix": "placement frequency matrix",
     "edit study": "Edit Study",
     "title": "Title",
     "description": "Description",
-    "is live": "Is Live:",
-    "on": "on",
-    "off": "off",
+    "is live": "Status:",
+    "on": "Active",
+    "off": "Inactive",
     "save": "save",
     "delete": "delete",
     "confirm delete": "Are you sure you want to delete this study?",
     "confirm": "Confirm",
     "cancel": "Cancel",
+    
+
     "users": "users",
     "completion": "completion",
     "completed the study": "completed the study",
@@ -87,6 +99,10 @@
     "time taken": "time taken",
     "cards sorted": "cards sorted",
     "categories created": "categories created",
+    "predefined categories": "predefined categories",
+    "predefined used": "predefined used",
+    "created by user": "created by user",
+    "all categories": "All Categories",
     "average sort": "average sort",
     "were sorted in average": "were sorted in average",
     "card": "card",
@@ -120,8 +136,9 @@
     "title": "Create a new study",
     "basic information": "Basic Information",
     "study title": "Study Title",
-    "study description": "Description",
+    "study description": "Description about your study page",
     "error empty field": "Empty field",
+    "error field": "INFO: This title already exists. Rename to: ",
     "of": "of",
     "total cards": "Total cards: ",
     "error empty card name": "Empty card name",
@@ -132,16 +149,24 @@
     "card description": "Description",
     "message": "Message",
     "external survey": "Optionally, provide a link to a questionnaire that the user will be able to access.",
-    "thanks message": "Thanks message",
+    "thanks message": "Thanks message.This message will be shown to participants after they complete the study.",
     "creating study": "Creating study...",
     "create": "create",
     "study created": "Study created",
     "go to study": "Go to study",
-    "share url": "Share this url with the participants"
+    "share url": "Share this url with the participants",
+    "total categories": "Total Categories",
+    "category name": "Category Name",
+    "error empty category name": "Please enter a name for all categories.",
+    "error duplicate category names": "Duplicate category names found.",
+    "categories": "Categories"
+   
   },
+
+  
   "SortingPage": {
     "error no categories created": "No categories were created",
-    "error empty title": "Please fill in all the titles",
+    "error empty title": "Each category needs a title - click ‘Click to rename’ to edit it.",
     "error duplicate titles": "Duplicate Category Titles Are Not Allowed. Duplicates: ",
     "study not found": "Study not found",
     "drop to create category": "drop to create a category",
@@ -149,11 +174,40 @@
     "confirm finish": "Are you sure you want to finish? Sorting will not be continued.",
     "confirm": "Confirm",
     "cancel": "Cancel",
+    "finish sorting": "Finish Sorting",
+    "continue sorting": "Continue Sorting",
     "questionnaire": "You can optionally complete the questionnaire by clicking on the following link: ",
     "click to rename": "click here to rename",
     "drop to add": "drop to add",
     "add comment": "add a comment",
-    "you can close this tab": "you can close this tab"
-  }
+    "you can close this tab": "you can close this tab",
+    "instructions": "INSTRUCTIONS",
+    "step1": "Take a quick look at the items to the left.",
+    "step2": "Drag an item into one of the categories on the right.",
+    "step3": "Click “Finish” when you're done.",
+    "close": "Close",
+    "write your comment here": "Share why you grouped the cards this way or any feedback you have about the task.",
+    "comment saved": "Your comment has been saved",
+    "confirm cancellation" : "confirm cancellation",
+    "yes": "Yes",
+    "no" : "No",
+    "are you sure you want to discard changes": "Are you sure you want to discard changes?"
+
+    
+
+  },
+
+  "SettingsPage": {
+  "settings": "PROFILE",
+  "current username": "Current Username",
+  "new username": "Enter new username",
+  "current password": "Current Password",
+  "new password": "Enter new Password",
+  "current email": "Current Email",
+  "new email": "Enter new Email",
+  "save": "Save changes",
+  "Your changes have been saved" : "Your changes have been saved!",
+  "update":"Fill in what you want to change"
+}
 }
 

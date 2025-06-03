@@ -11,6 +11,8 @@ import loginReducer from "reducers/loginReducer";
 import registerReducer from "reducers/registerReducer";
 import sortingBoardReducer from "./reducers/sorting/sortingBoardReducer";
 import sortingUiReducer from "./reducers/sorting/sortingUiReducer";
+import settingsReducer from "reducers/settingsReducer";
+
 
 export function clearPersistedState() {
   localStorage.removeItem('auth');
@@ -32,6 +34,7 @@ export default function initializeStore(): Store<StateSchema> {
 
     sortingBoard: sortingBoardReducer,
     sortingUi: sortingUiReducer,
+    settings: settingsReducer,
   }
 
   const persistedAuth = () => {

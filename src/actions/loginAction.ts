@@ -2,6 +2,7 @@ import {createAction} from '@reduxjs/toolkit';
 import fetch from 'cross-fetch';
 import * as ActionStatus from 'actions/ActionStatus';
 import {setAuthToken} from "./authAction";
+import * as authAction from 'actions/authAction';
 
 export const changeUsername = createAction<{ username: string }>('login/changeUsername');
 export const changePassword = createAction<{ password: string }>('login/changePassword');
@@ -33,9 +34,26 @@ export function sendLoginCredentials(username: string, password: string) {
     })
       .then((response) =>
         response.json().then((json) => {
-          // Append the new token
+          
           dispatch(setAuthToken(json.auth_token));
-
+          if (json.auth_token) {
+            localStorage.setItem("authToken", json.auth_token);
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_endpoint`, {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${json.auth_token}`,
+              },
+            })
+            .then(profileResponse => profileResponse.json())
+            .then(profileData => {
+              if (profileData.username) {
+                dispatch(authAction.setAuthUsername(profileData.username));
+              }
+            })
+            .catch(error => {
+              console.error("Failed to fetch profile:", error);
+            });
+          }
           dispatch(
             sendingCredentials({
               status: ActionStatus.SUCCESS,

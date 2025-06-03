@@ -2,11 +2,19 @@ import {createReducer} from '@reduxjs/toolkit';
 import * as ActionStatus from 'actions/ActionStatus';
 import * as studyCreationActions from 'actions/studyCreationAction';
 import {StudyCreationResponse} from "actions/studyCreationAction";
+import * as studyCreationAction from "actions/studyCreationAction";
+
+
+
 
 export interface Card {
   id: number;
   name?: string;
   description?: string;
+}
+export interface Category{
+  id: number;
+  name: string;
 }
 
 interface UIState {
@@ -26,11 +34,24 @@ export interface StudyCreationState {
   cards: Record<number, Card>;
   ui: UIState;
   createdStudy?: StudyCreationResponse;
+  sortType?: string;
+  categories: Record<number, Category>;
+  errorCategories: {
+    status: boolean;
+    type: "empty" | "duplicate" | null;
+};
+
 }
 
 const initialState: StudyCreationState = {
   cards: {},
-  ui: {},
+  categories: {},
+  errorCategories: {
+    status: false,
+    type: null
+  },
+  ui: {}
+
 };
 
 // Keep in mind that the study creation state is saved and preloaded from local storage
@@ -109,6 +130,35 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
     .addCase(studyCreationActions.toggleThanksError, (state, action) => {
       state.errorMessage = action.payload.status;
     })
+    .addCase(studyCreationAction.changeSortType, (state, action) => {
+      state.sortType = action.payload.sortType;
+    })
+    .addCase(studyCreationActions.addXCategories, (state, action) => {
+      if (!state.categories) state.categories = {};
+      const id = Date.now();
+      for (let i = 0; i < action.payload.no; i++) {
+        state.categories[id + i] = {
+          id: id + i,
+          name: "", 
+        };
+      }
+    })
+    .addCase(studyCreationActions.deleteCategory, (state, action) => {
+      delete state.categories[action.payload.id];
+    })
+    .addCase(studyCreationActions.changeCategoryName, (state, action) => {
+      const category = state.categories[action.payload.id];
+      if (category) {
+        category.name = action.payload.name;
+      }
+    })
+    .addCase(studyCreationAction.toggleCategoryError, (state, action) => {
+      state.errorCategories = {
+        status: action.payload.status,
+        type: action.payload.type || null,
+      };
+      
+    })
     .addCase(studyCreationActions.createStudy, (state, action) => {
       if (action.payload.status === ActionStatus.SUCCESS) {
         state.createdStudy = action.payload.study;
@@ -120,9 +170,12 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
         state.thanksMessage = undefined;
         state.externalSurveyLink = undefined;
         state.cards = {};
+        state.categories= {};
       }
       state.ui.studySendingStatus = action.payload.status;
     })
+    
+    
 });
 
 export default studyCreationReducer;
