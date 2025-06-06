@@ -37,7 +37,7 @@ const ConfirmPopUp = () => {
   const onClose = () => dispatch(closeConfirmPopUp());
 
   return (
-    <div className="popup-container" onClick={onClose}>
+    <div className="popup-container finish-sorting-popup" onClick={onClose}>
       <div className="popup" onClick={(e) => e.stopPropagation()}>
         <div className="content">
           {unsortedCards.length > 0 ?
@@ -45,11 +45,11 @@ const ConfirmPopUp = () => {
             : <p>{t("confirm finish")}</p>}
         </div>
         <div className="button-container">
-          <button className="cancel-btn" onClick={handleConfirmFinish}>
-            {t("finish sorting")}
+          <button className="btn--main finish" onClick={handleConfirmFinish}>
+            <span>{t("finish sorting")}</span>
           </button>
-          <button className="confirm-btn" onClick={onClose}>
-            {t("continue sorting")}
+          <button className="btn--secondary continue" onClick={onClose}>
+            <span>{t("continue sorting")}</span>
           </button>
         </div>
       </div>

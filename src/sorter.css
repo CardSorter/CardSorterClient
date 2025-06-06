@@ -105,6 +105,49 @@
   position: relative;
   z-index: 2;
 }
+.finish-sorting-popup .btn-container {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  margin-top: 2rem !important;
+}
+.finish-sorting-popup .btn--main {
+  margin-right: 1rem; 
+}
+.finish-sorting-popup .btn--main,
+.finish-sorting-popup .btn--secondary {
+  border: 0;
+  border-radius: 0.2rem;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  height: 4rem;
+  font-weight: bold;
+  padding: 0 2rem;
+  background: none; 
+  position: relative; 
+  right: auto;
+  width: auto;
+  height: 4rem;
+  width:15rem;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 3rem;
+  
+}
+
+
+.finish-sorting-popup .btn--main {
+  background-color: #9370DB; 
+}
+
+.finish-sorting-popup .btn--secondary {
+  background-color: #A0522D; 
+}
+
+
+
+
 
 
 
@@ -824,9 +867,7 @@ li.card.minimized button.desc-btn::before {
     height: 4rem;
     width: 15rem;
 }
-.cancel-btn{
-  background-color: #938ABA !important;
-}
+
 
 .button-container {
 
