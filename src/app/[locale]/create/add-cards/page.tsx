@@ -33,6 +33,8 @@ const Card: React.FC<CardProps> = ({name, description, onNameChange, onDescripti
         placeholder={t("card description")}
         defaultValue={description}
         onChange={(e) => onDescriptionChange(e)}
+        title={description}
+        
       />
       <button type="button" onClick={onDelete}>
         <span className="material-symbols-outlined">delete</span>
@@ -50,9 +52,13 @@ export default function Page()  {
 
   // State
   const title = useSelector((state: StateSchema) => state.studyCreation.title);
-  const cards = useSelector((state: StateSchema) => (state.studyCreation.cards));
+  const cards = useSelector((state: StateSchema) => (state.studyCreation?.cards));
   const errorCards = useSelector((state: StateSchema) => state.studyCreation.errorCards);
   const errorDuplicates = useSelector((state: StateSchema) => state.studyCreation.errorDuplicate);
+  const sortType = useSelector((state: StateSchema) => state.studyCreation.sortType);
+  const totalSteps = (sortType === "open") ? 3 : 4;
+
+
 
   // Dispatch
   const dispatch = useDispatch();
@@ -112,7 +118,11 @@ export default function Page()  {
       return;
     }
 
-    router.push("/create/final")
+    if (sortType === "closed" || sortType === "hybrid") {
+      router.push("/create/add-categories");
+    } else {
+      router.push("/create/final");
+    }
   }
 
   const onPrev = () => {
@@ -134,7 +144,7 @@ export default function Page()  {
       <form className="cards">
         <div className="error-holder">
           <div className="card-container">
-            { Object.values(cards).map((card) => (
+            { cards && Object.values(cards).map((card) => (
               <Card
                 key={'card' + card.id}
                 name={card.name || ""}
@@ -189,7 +199,7 @@ export default function Page()  {
         <div className="page-no-container">
           <p>2</p>
           <p>{t("of")}</p>
-          <p>3</p>
+          <p>{totalSteps}</p>
         </div>
       </div>
     </div>

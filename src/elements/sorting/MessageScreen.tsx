@@ -12,11 +12,12 @@ interface MessageScreenProps {
 
 const MessageScreen: React.FC<MessageScreenProps> = ({message, link, image, subMessage}) => {
   const t = useTranslations("SortingPage");
+  const hasValidLink = link && link.trim() !== "" ;
 
-  if (link) {
-    link = link.startsWith('http://') || link.startsWith('https://') ? link : `http://${link}`;
-  }
-
+  if (hasValidLink && !(link!.startsWith('http://') || link!.startsWith('https://'))) {
+  link = `http://${link}`;
+}
+   
   return (
 
     <div className="message-screen" >
@@ -25,13 +26,13 @@ const MessageScreen: React.FC<MessageScreenProps> = ({message, link, image, subM
 
       <h2>{message}</h2>
       <br></br>
-      {link &&
+      {hasValidLink && 
         <div className="share-container">
           <p>{t("questionnaire")}</p>
           <div className="url-container">
-            <a className="url" href={link} target="_blank">{link}</a>
+            <a className="url" href={link!} target="_blank">{link}</a>
 
-            <button className="copy" type="button" onClick={() => copyToClipboard(link)}></button>
+            <button className="copy" type="button" onClick={() => copyToClipboard(link!)}></button>
           </div>
         </div>
       }

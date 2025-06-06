@@ -26,6 +26,11 @@ export default function Page() {
     (state.studyCreation.errorMessage));
   const studySendingStatus = useSelector((state: StateSchema) =>
     (state.studyCreation.ui.studySendingStatus));
+  const sortType = useSelector((state: StateSchema) => state.studyCreation.sortType);
+  const categories = useSelector((state: StateSchema) => state.studyCreation.categories);
+  const currentPage = (sortType === "open") ? 3 : 4;
+  const totalSteps = (sortType === "open") ? 3 : 4;
+
 
   // Dispatch
   const dispatch: Dispatch<any> = useDispatch();
@@ -47,19 +52,33 @@ export default function Page() {
       setTimeout(() => studyCreationAction.toggleThanksError({status: false}), 5000);
       return;
     }
+    const categoryMap: Record<string, string> = {};
+    Object.values(categories).forEach((cat) => {
+      categoryMap[cat.id] = cat.name;
+    });
+    const sanitizedLink = (link && link.trim() !== "" && link !== "undefined") ? link.trim() : "";
+
 
     dispatch(studyCreationAction.sendStudy({
       title: studyTitle || "",
       description: studyDescription || "",
       cards: studyCards,
       message: studyMessage,
-      link: link,
+      sortType: sortType || "open",
+      categories: categoryMap,
+      link: sanitizedLink,
+
     }));
   }
 
   const onPrev = () => {
-    router.push("/create/add-cards");
-  }
+    if (sortType === "open") {
+      router.push("/create/add-cards");
+    } else {
+      router.push("/create/add-categories");
+    }
+  };
+  
 
   useEffect(() => {
     if(studySendingStatus === ActionStatus.SUCCESS) {
@@ -118,9 +137,9 @@ export default function Page() {
           </button>
         </div>
         <div className="page-no-container">
-          <p>3</p>
+          <p>{currentPage}</p>
           <p>{t("of")}</p>
-          <p>3</p>
+          <p>{totalSteps}</p>
         </div>
       </div>
     </div>

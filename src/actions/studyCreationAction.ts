@@ -22,6 +22,13 @@ export const toggleDescriptionError = createAction<{ status: boolean }>('studyCr
 export const toggleCardError = createAction<{ status: boolean }>('studyCreation/toggleCardError');
 export const toggleCardDuplicate = createAction<{ status: boolean }>('studyCreation/toggleCardDuplicate');
 export const toggleThanksError = createAction<{ status: boolean }>('studyCreation/toggleThanksError');
+export const changeSortType = createAction<{ sortType: string }>('studyCreation/changeSortType');
+export const addXCategories = createAction<{ no: number }>('studyCreation/addXCategories');
+export const changeCategoryName = createAction<{ id: number; name: string }>('studyCreation/changeCategoryName');
+export const deleteCategory = createAction<{ id: number }>('studyCreation/deleteCategory');
+export const toggleCategoryError = createAction<{ status: boolean; type?: "empty" | "duplicate" | null }>('studyCreation/toggleCategoryError');
+
+
 export const createFromExistingStudy = createAction<{
   title: string;
   description: string;
@@ -44,8 +51,8 @@ export const createStudy = createAction<{
   error: boolean
 }>('studyCreation/createStudy');
 
-export function sendStudy(study: {title: string, description: string, cards: Record<number, Card>, message: string,
-  link?: string}): ThunkAction<void, StateSchema, unknown, UnknownAction> {
+export function sendStudy(study: {title: string, description: string, cards: Record<number, Card>, message: string, sortType: string,
+   link?: string, categories?: Record<string, string>; }): ThunkAction<void, StateSchema, unknown, UnknownAction> {
   return function (dispatch: Dispatch, getState: () => StateSchema) {
     dispatch(createStudy({status: ActionStatus.IS_FETCHING, error: false}));
     fetch(process.env.NEXT_PUBLIC_API_URL + '/studies_endpoint', {

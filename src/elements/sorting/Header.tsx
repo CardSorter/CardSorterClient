@@ -6,9 +6,11 @@ import {useTranslations} from "next-intl";
 
 const Header = () => {
   const t = useTranslations("SortingHeader");
+  
 
   // State
   const categories = useSelector((state: StateSchema) => state.sortingBoard.categories);
+  
 
   // Dispatch
   const dispatch = useDispatch();
@@ -67,10 +69,15 @@ const Header = () => {
 
   const onDescriptionClick = () => dispatch(uiAction.toggleDescriptionPopup(true));
 
+  const onInstructionsClick = () => dispatch(uiAction.toggleInstructionsPopup(true));
+
 
   return (
     <header className="sorting-header">
       <div className="left-buttons">
+        <button className="btn--left" onClick={onInstructionsClick}>
+          <p>{t("instructions")}</p>
+        </button>
         {/*<button className="undo"></button>*/}
         {/*<button className="help"></button>*/}
       </div>

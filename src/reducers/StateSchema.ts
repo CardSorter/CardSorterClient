@@ -7,6 +7,7 @@ import {LoginState} from "./loginReducer";
 import {RegisterState} from "./registerReducer";
 import {SortingUIState} from "./sorting/sortingUiReducer";
 import {SortingBoardState} from "./sorting/sortingBoardReducer";
+import { SettingsState } from "./settingsReducer";
 
 interface SortingState {
   board: SortingBoardState;
@@ -24,4 +25,5 @@ export default interface StateSchema {
   // Sorting page (/card-sorter/sort) state
   sortingBoard: SortingBoardState,
   sortingUi: SortingUIState,
+  settings: SettingsState,
 }

@@ -7,6 +7,7 @@ import StateSchema from "reducers/StateSchema";
 import * as sortingBoardAction from "actions/sorting/sortingBoardAction";
 import {SortingCard} from "../../reducers/sorting/sortingBoardReducer";
 import {useTranslations} from "next-intl";
+import * as uiActions from "actions/sorting/uiAction";
 
 interface CategoryProps {
   id: number;
@@ -14,11 +15,18 @@ interface CategoryProps {
   cards: SortingCard[];
 }
 
+
 const Category: React.FC<CategoryProps> = ({id, title, cards}) => {
   const t = useTranslations("SortingPage");
 
   const [preliminaryTitle, setPreliminaryTitle] = useState(title || "");
   const [showEditTitle, setShowEditTitle] = useState(false);
+
+  const categories = useSelector((state: StateSchema) => state.sortingBoard.categories);
+  const existingTitles = Object.values(categories)
+    .filter((cat) => cat.id !== id) // exclude the current one
+    .map((cat) => cat.title?.trim().toLowerCase());
+
 
   // State
   const isMinimized = useSelector((state: StateSchema) => (state.sortingBoard.categories[id].isMinimized));
@@ -38,17 +46,21 @@ const Category: React.FC<CategoryProps> = ({id, title, cards}) => {
   }
 
   const onTitleFinish = (event?: KeyboardEvent<HTMLInputElement>) => {
-    if (!event) {
-      dispatch(sortingBoardAction.renameCategory({categoryID: id, title: preliminaryTitle}));
-      setShowEditTitle(false);
+    if (event) {
+      event.stopPropagation();
+      if (event.code !== "Enter") return;
+    }
+  
+    const normalizedNewTitle = preliminaryTitle.trim().toLowerCase();
+  
+    if (existingTitles.includes(normalizedNewTitle)) {
+      dispatch(uiActions.showCategoriesWithSameNameError({ categoriesList: [preliminaryTitle] }));
       return;
+      
     }
-
-    event.stopPropagation();
-    if (event.code === "Enter") {
-      dispatch(sortingBoardAction.renameCategory({categoryID: id, title: preliminaryTitle}));
-      setShowEditTitle(false);
-    }
+  
+    dispatch(sortingBoardAction.renameCategory({ categoryID: id, title: preliminaryTitle }));
+    setShowEditTitle(false);
   }
 
   const onMinimized = (event: MouseEvent<HTMLButtonElement>) => {
@@ -98,8 +110,9 @@ const Category: React.FC<CategoryProps> = ({id, title, cards}) => {
           </div>
         ) : (
           <>
-            <h3 onClick={onTitleClick}>
+            <h3 onClick={onTitleClick} title={title}>
               {title || t("click to rename")}</h3>
+              
             <button className="minimize" onClick={onMinimized}>
               <span className="material-symbols-outlined">minimize</span>
             </button>
@@ -120,6 +133,9 @@ const Category: React.FC<CategoryProps> = ({id, title, cards}) => {
                     showDescription={card.descriptionShowing}/>
         ))}
       </ul>
+      <div className="card-count-footer">
+       {cards.length} {cards.length === 1 ? "card" : "cards"}
+      </div>
     </li>
   );
 };

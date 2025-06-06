@@ -9,34 +9,42 @@
   color: var(--color-black);
   cursor: pointer;
   height: 4rem;
+  width:15rem;
   font-weight: bold;
   padding: 10px;
   position: absolute;
 }
+.btn--secondary
 
 .btn--main > p,
 .btn--secondary > p,
 .btn--third > p{
   position: relative;
   z-index: 2;
+  
 }
+
 
 .btn--main:hover,
 .btn--secondary:hover,
 .btn--third:hover {
   transition: .3s;
+  
 }
 
 .btn--main::before,
 .btn--secondary::before,
 .btn--third::before {
+  
   box-sizing: border-box;
   border-radius: .2rem;
   content: '';
-  height: 4rem; width: 0;
+  height: 4rem; 
+  width: 0;
   position: absolute;
   transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   z-index: 0;
+  
 }
 
 .btn--main:hover::before,
@@ -44,17 +52,21 @@
 .btn--third:hover::before {
   right: auto;
   width: 100%;
+  
 }
 
+
 .btn--main {
-  background: radial-gradient(circle at 10%, #D1C3FF, #BAA5FF);
+  background: radial-gradient(circle at 10%, var(--color-secondary) );
   color: white;
-  right: 4rem;
-  width: 10rem;
+  right: 0.5rem;
+  width: 15rem;
+  
+  
 }
 
 .btn--main::before {
-  background: black;
+  background: rgb(129, 38, 15);
   opacity: .2;
   right: 0; top: 0;
 }
@@ -69,12 +81,15 @@
   box-sizing: border-box;
   right: calc(4rem + 10rem + 2rem); /* right_finish_button + width_finish_button + whitespace */
   width: 15rem;
+  overflow: hidden;
+
 }
 
 .btn--secondary:hover,
 .btn--third:hover {
   color: white;
 }
+
 
 .btn--secondary::before,
 .btn--third::before {
@@ -86,16 +101,104 @@
 .btn--third:hover::before {
   left: 0;
 }
+.btn--secondary span {
+  position: relative;
+  z-index: 2;
+}
+.finish-sorting-popup .btn-container {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  margin-top: 2rem !important;
+}
+.finish-sorting-popup .btn--main {
+  margin-right: 1rem; 
+}
+.finish-sorting-popup .btn--main,
+.finish-sorting-popup .btn--secondary {
+  border: 0;
+  border-radius: 0.2rem;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  height: 4rem;
+  font-weight: bold;
+  padding: 0 2rem;
+  background: none; 
+  position: relative; 
+  right: auto;
+  width: auto;
+  height: 4rem;
+  width:15rem;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 3rem;
+  
+}
+
+
+.finish-sorting-popup .btn--main {
+  background-color: #9370DB; 
+}
+
+.finish-sorting-popup .btn--secondary {
+  background-color: #A0522D; 
+}
+
+
+
+
+
+
 
 .btn--third {
   background: 0;
   border: solid 2px var(--color-secondary);
   box-sizing: border-box;
-  right: calc(4rem + 10rem + 2rem + 15rem + 2rem); /* right_finish_button + width_finish_button + whitespace + secondary + whitespace */
+  right: calc(4rem + 10rem + 2rem + 15rem + 1rem); /* right_finish_button + width_finish_button + whitespace + secondary + whitespace */
   width: 15rem;
 }
+.btn--left {
+  background: 0;
+  border: solid 2px var(--color-secondary);
+  box-sizing: border-box;
+  color: var(--color-black);
+  cursor: pointer;
+  height: 4rem;
+  font-weight: bold;
+  padding: 10px;
+  position: absolute;
+  left: 0;
+  width: 15rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
+.btn--left:hover {
+  color: white;
+}
 
+.btn--left::before {
+  background-color: var(--color-secondary);
+  border-radius: .2rem;
+  content: '';
+  height: 4rem;
+  width: 0;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  z-index: 0;
+}
+
+.btn--left:hover::before {
+  width: 100%;
+  left: 0;
+}
+.btn--left > p {
+  position: relative;
+  z-index: 2;
+}
 
 /* Header */
 .sorting-header {
@@ -114,7 +217,7 @@ header .left-buttons {
   position: absolute;
 }
 
-header .left-buttons button {
+header .left-buttons button.icon-button {
   background-color: transparent;
   background-size: 100%;
   background-position: center;
@@ -147,7 +250,10 @@ ul#list {
   flex-wrap: wrap;
 }
 
+
+
 /* The popup */
+
 
 .popup-container {
   align-items: flex-start;
@@ -159,14 +265,21 @@ ul#list {
   z-index: 1000;
 }
 
+
 .popup-container > .popup {
+  display: flex;
+  flex-direction: column;
   background: white;
-  border-radius: .2rem;
-  height: 50vh; width: 50vw;
+  border-radius: 0.5rem;
+  height: 65vh; width: 60vw;
   margin-top: 2rem;
   padding: 2rem;
   position: relative;
 
+
+}
+.instructions-content {
+  flex: 1; /* Fill available space */
 }
 
 .popup-container > .popup > h1 {
@@ -190,48 +303,71 @@ ul#list {
   text-transform: capitalize;
 }
 .popup-container > .popup  > .btn-container {
-  bottom: 2rem; right: 2rem;
+  bottom: 0rem; right: 0rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  position: absolute;
+  position: relative;
   width: 100%;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
 }
 
 .popup-container > .popup > .btn-container > button {
   left: 0;right: 0;top: 0;
   position: relative;
-  width: 10rem;
+  width: 15rem;
 }
+
+
 .popup-container > .popup > form > textarea {
   box-sizing: border-box;
-  height: 30vh; width: 100%;
-  margin-top: 2rem;
+  height: 40vh; width: 100%;
+  margin-top: 0;
   resize: none;
 }
 
 .popup-container > .popup > form > .btn-container {
-  bottom: 2rem; right: 2rem;
+  bottom: 1rem; right: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   position: absolute;
   width: 100%;
+  
 }
 
 .popup-container > .popup > form > .btn-container > button {
   left: 0;right: 0;top: 0;
   position: relative;
-  width: 10rem;
+  width: 15rem;
+ 
 }
+
 
 .popup-container > .popup > form > .btn-container > button::first-letter {
   text-transform: capitalize;
 }
 
 .popup-container > .popup > form > .btn-container > button.submit {
-  margin-left: 2rem;
+  margin-left: 0rem;
 }
+
+.popup p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.popup .btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; 
+}
+
+
+
+
 
 /* This is the container of the Categories */
 #board {
@@ -319,6 +455,17 @@ li.card.minimized button.desc-btn::before {
   left: .29rem; top: .5rem;
   position: absolute;
 }
+/* Counting the number of cards in each category */
+.card-count-footer {
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: right;
+  color: grey;
+  border-top: 3px solid #ddd;
+  background-color: #fafafa;
+}
+
 
 /* Category */
 .category {
@@ -357,6 +504,7 @@ li.card.minimized button.desc-btn::before {
   display: flex;
   padding: 0 2rem;
   width: 100%;
+  
 }
 
 .category .header button.minimize {
@@ -373,6 +521,13 @@ li.card.minimized button.desc-btn::before {
   font-size: 1.5rem;
   margin: 1rem 0;
   text-decoration: underline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%; 
+  display: inline-block;
+  vertical-align: middle;
+
 }
 
 .category .header h3::first-letter {
@@ -634,7 +789,7 @@ li.card.minimized button.desc-btn::before {
 
 .toast {
   animation-name: slide-up;
-  animation-duration: .3s;
+  animation-duration: .5s;
   animation-timing-function: ease-out;
   position: fixed;
   bottom: 30px;
@@ -698,17 +853,22 @@ li.card.minimized button.desc-btn::before {
 
 
 .confirm-btn, .cancel-btn {
-    background-color: red;
+    background-color: #B0561A;
     border: none;
     border-radius: 4px;
-    padding: 7px 12px;
+    padding: 10px 16px;
     cursor: pointer;
     margin-top: 5px;
     margin-right: 10px;
+    min-width: 150px;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: center;
+    height: 4rem;
+    width: 15rem;
 }
-.cancel-btn{
-  background-color: green !important;
-}
+
+
 .button-container {
 
    align-items: center;

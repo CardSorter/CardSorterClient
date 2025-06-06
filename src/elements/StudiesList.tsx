@@ -19,19 +19,40 @@ export default function StudiesList() {
   const studies = useSelector((state: StateSchema) => state.studies.studies);
   const isFetching = useSelector((state: StateSchema) => state.studies.isFetching);
   const filteredBy = useSelector((state: StateSchema) => state.studies.filteredBy);
+  const searchTerm = useSelector((state: StateSchema) => state.studies.searchTerm);
+  const sortOption = useSelector((state: StateSchema) => state.studies.sortOption);
+
 
   useEffect(() => {
     if (!studies) {
       return;
     }
+    // it helps us to keep the array of the card untouched(Clone of the array)
+    let filtered= [...studies];
 
-    if (filteredBy === "active")
-      setFilteredStudies(studies.filter(study => study.isLive))
-    else if (filteredBy === "inactive")
-      setFilteredStudies(studies.filter(study => !study.isLive))
-    else setFilteredStudies(studies)
+    if (filteredBy === "active") {
+      filtered = filtered.filter((study) => study.isLive);
+    } else if (filteredBy === "inactive") {
+      filtered = filtered.filter((study) => !study.isLive);
+    }
+    
+    
+    if (searchTerm && searchTerm.trim() !== "") {
+      filtered = filtered.filter((study) =>
+        study.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    if (sortOption === "titleAsc") {
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortOption === "titleDesc") {
+      filtered.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sortOption === "launchDateDesc") {
+      filtered.sort((a, b) => b.launchedDate.getTime() - a.launchedDate.getTime());
+    } 
+    
+    setFilteredStudies(filtered);
 
-  }, [isFetching, filteredBy]);
+  }, [studies,isFetching, filteredBy, searchTerm, sortOption]);
 
   return (
     <ul className="studies-container">

@@ -15,13 +15,13 @@ export default function LoadSortData({id}: {id: string}) {
     const dateMinus24hours = Date.now() - 24 * 60 * 60 * 1000;
     const latestSortingSave = localStorage.getItem("latestSortingSave");
     if (!latestSortingSave) {
-      console.log("Latest Sorting Save");
+      dispatch(uiAction.setTimeStarted(new Date()));
       dispatch(uiAction.fetchStudyForSorting({studyID: id, preloaded: false}));
       return;
     }
 
     if (Date.parse(latestSortingSave) < dateMinus24hours) {
-      console.log("Latest Sorting Save <");
+      dispatch(uiAction.setTimeStarted(new Date())); //Currently timer resets when the user closes an unfinished cardsort. We can find a way to calculate total time
       dispatch(uiAction.fetchStudyForSorting({studyID: id, preloaded: false}));
       return;
     }
@@ -30,7 +30,7 @@ export default function LoadSortData({id}: {id: string}) {
     const sortingUI = localStorage.getItem('sortingUi');
 
     if (!sortingUI || !sortingBoard) {
-      console.log("UI or Board")
+      dispatch(uiAction.setTimeStarted(new Date()));
       dispatch(uiAction.fetchStudyForSorting({studyID: id, preloaded: false}));
       return;
     }
@@ -40,14 +40,14 @@ export default function LoadSortData({id}: {id: string}) {
 
     // Don't preload if the id in the url doesn't match the saved it
     if (!id || id !== sortingUIPreloaded.studyID) {
-      console.log("ID")
+      dispatch(uiAction.setTimeStarted(new Date()));
       dispatch(uiAction.fetchStudyForSorting({studyID: id, preloaded: false}));
       return;
     }
 
     // Don't preload if the user didn't start the sort or if they started it more than 24 hours ago
     if (!sortingUIPreloaded.timeStarted || Date.parse(sortingUIPreloaded.timeStarted) < dateMinus24hours) {
-      console.log("time started")
+      dispatch(uiAction.setTimeStarted(new Date()));
       dispatch(uiAction.fetchStudyForSorting({studyID: id, preloaded: false}));
       return;
     }

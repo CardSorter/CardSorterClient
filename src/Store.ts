@@ -11,11 +11,15 @@ import loginReducer from "reducers/loginReducer";
 import registerReducer from "reducers/registerReducer";
 import sortingBoardReducer from "./reducers/sorting/sortingBoardReducer";
 import sortingUiReducer from "./reducers/sorting/sortingUiReducer";
+import settingsReducer from "reducers/settingsReducer";
+import  { initialState as studyCreationInitialState } from "reducers/studyCreationReducer";
+
 
 export function clearPersistedState() {
   localStorage.removeItem('auth');
   localStorage.removeItem('studyCreation');
   localStorage.removeItem('latestSave');
+  localStorage.removeItem('settings');
   window.location.reload();
 }
 
@@ -32,6 +36,7 @@ export default function initializeStore(): Store<StateSchema> {
 
     sortingBoard: sortingBoardReducer,
     sortingUi: sortingUiReducer,
+    settings: settingsReducer,
   }
 
   const persistedAuth = () => {
@@ -48,7 +53,7 @@ export default function initializeStore(): Store<StateSchema> {
       // Exit if we are in the server environment
       return undefined;
     }
-
+    
     // Invalidate previous state if it was saved more than 24 hours ago
     const dateMinus24hours = Date.now() - 24 * 60 * 60 * 1000;
     const latestSortingSave = localStorage.getItem("latestSortingSave");
@@ -69,7 +74,14 @@ export default function initializeStore(): Store<StateSchema> {
     reducer: rootReducer,
     preloadedState: {
       auth: persistedAuth(),
-      studyCreation: persistedStudyCreation(),
+       studyCreation: (() => {
+        const persisted = persistedStudyCreation();
+        return {
+          ...studyCreationInitialState,
+         ...persisted,
+         sortType: persisted?.sortType ?? "open",  
+        };
+       })(),
     },
     middleware: (getDefaultMiddleware) => {
       if (process.env.NODE_ENV !== 'production') {

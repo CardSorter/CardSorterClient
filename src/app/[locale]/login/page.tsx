@@ -8,7 +8,7 @@ import * as LoginActions from "actions/loginAction";
 import {useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const t = useTranslations("LoginPage");
 
@@ -17,6 +17,7 @@ export default function page() {
   const password = useSelector((state: StateSchema) => (state.login.password));
   const usernameError = useSelector((state: StateSchema) => (state.login.usernameError));
   const passwordError = useSelector((state: StateSchema) => (state.login.passwordError));
+  const authToken = useSelector((state: StateSchema) => state.auth.token);
 
   // Dispatch
   const dispatch = useDispatch<any>();
@@ -41,6 +42,7 @@ export default function page() {
     dispatch(LoginActions.clearPasswordError());
 
     dispatch(LoginActions.sendLoginCredentials(username || "", password || ""));
+    
   }
 
   const onRegister = () => {
@@ -67,6 +69,8 @@ export default function page() {
     }
 
   }, [usernameError, passwordError]);
+
+  
 
   return (
     <div className="auth-page">

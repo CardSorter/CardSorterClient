@@ -9,9 +9,11 @@ import * as headerActions from "actions/headerAction";
 import * as authActions from "actions/authAction";
 import {Link, usePathname} from "i18n/navigation";
 import {useTranslations} from "next-intl";
+import { useRouter } from 'i18n/navigation';
 
 const Header = () => {
   const t = useTranslations("Header");
+  const router = useRouter();
 
   const [showBackButton, setShowBackButton] = useState(false);
   const [showProfileSettings, setShowProfileSettings] = useState(false);
@@ -19,7 +21,7 @@ const Header = () => {
   const pathname = usePathname();
 
   // State
-  const username = useSelector((state: StateSchema) => state.header.username);
+  const username = useSelector((state: StateSchema) => state.auth.username); /*have the same as in authReducer so it will be updated dynamically */
   const profilePic = useSelector((state: StateSchema) => state.header.profilePic);
   const profileUnfold = useSelector((state: StateSchema) => state.header.profileUnfold);
 
@@ -32,6 +34,7 @@ const Header = () => {
 
   const onLogoutClick = () => {
     dispatch(authActions.logout());
+    router.push('/login');
   }
 
   // Figure out which items to render
@@ -44,7 +47,7 @@ const Header = () => {
   }, [pathname])
 
   return (<header>
-    <Link className="logo-container" href='/'>
+    <Link className="logo-container" href='/dashboard'>
       <p id="logo">Card Sorter</p>
       {
         showBackButton &&
@@ -61,12 +64,12 @@ const Header = () => {
         <div className={(!profileUnfold) ? 'profile' : 'profile unfold'} onClick={() => onProfileClick(profileUnfold)}>
           <div className="header">
             <p>{username}</p>
-            <Image src={"/card-sorter/images/sample-user.svg"} alt="Profile Avatar" height={40} width={40}/>
+            <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
           </div>
           {
             profileUnfold &&
               <div className="content">
-                  <button className="unfunctional">{t("settings")}</button>
+                  <button onClick={() => router.push('/settings')}>{t("settings")}</button>
                   <button onClick={onLogoutClick}>{t("log out")}</button>
               </div>
           }

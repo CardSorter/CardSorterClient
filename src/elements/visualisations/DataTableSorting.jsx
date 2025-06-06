@@ -338,18 +338,31 @@ const DataTableSorting = ({ headers, data }) => {
                         </tr>
                     ))} */}
                     {
-                        sortedData.map((row, index, array) => (
-                            <tr key={index}>
+                        (() => {
+                          let  lastParticipant = null;
+                          let groupIndex = -1;
+
+
+                          return sortedData.map((row, index, array) => {
+
+                            if(index === 0 || row[0] !== array[index-1][0]) {
+                              groupIndex++;
+                            }
+
+                            const rowClass=groupIndex%2 === 0? 'row-white' : 'row-gray';
+                            return (
+                            <tr key={index} className={rowClass}>
                                 {index === 0 || row[0] !== array[index - 1][0] ? (
                                     <td rowSpan={array.filter((el) => el[0] === row[0]).length}>
                                         {row[0]}
                                     </td>
                                 ) : null}
+
                                 <td>{row[1]}</td>
                                 <td>{Array.isArray(row[2]) ? (
                                     <ul>
-                                        {row[2].map((desc, index) => (
-                                            <li key={index}>{desc}</li>
+                                        {row[2].map((desc, i) => (
+                                            <li key={i}>{desc}</li>
                                         ))}
                                     </ul>
                                 ) : (
@@ -358,12 +371,10 @@ const DataTableSorting = ({ headers, data }) => {
                                 }</td>
                                 <td>{row[3]}</td>
                             </tr>
-                        )
-                        )
-
-
-
-                    }
+                        );
+                      });
+                    })()
+                   }
 
                 </tbody>
             </table>

@@ -30,6 +30,9 @@ export default function Layout({children}: {children: React.ReactNode }) {
   const cards = useSelector((state: StateSchema) => state.study.cards);
   const isLive = useSelector((state: StateSchema) => state.study.isLive);
   const launchedDate = useSelector((state: StateSchema) => state.study.launchedDate);
+  const sortType = useSelector((state: StateSchema) => state.sortingUi?.sortType ?? 'open');
+
+
 
 
   // Dispatch
@@ -73,14 +76,14 @@ export default function Layout({children}: {children: React.ReactNode }) {
         {/* Header */}
         <span className="header">
           <h1>{title}</h1>
-          <button className="edit" onClick={openEditPopup}><span className="material-symbols-outlined">edit</span></button>
-          <button className="share" onClick={openPopup}><span className="material-symbols-outlined">share</span></button>
-          <button className="copy" onClick={onDuplicateStudy}>
+          <button className="edit" onClick={openEditPopup} title="Edit study"><span className="material-symbols-outlined">edit</span></button>
+          <button className="share" onClick={openPopup} title="Share study"><span className="material-symbols-outlined">share</span></button>
+          <button className="copy" onClick={onDuplicateStudy} title="Duplicate study">
             <span className="material-symbols-outlined">content_paste_go</span>
           </button>
           {!NoParticipantsInStudy && (
             <>
-              <button className="download" onClick={downloadXLSX}>
+              <button className="download" onClick={downloadXLSX} title="Download study Data">
                 <span className="material-symbols-outlined">download</span>
               </button>
             </>

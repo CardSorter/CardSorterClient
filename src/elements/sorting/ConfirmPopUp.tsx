@@ -19,9 +19,10 @@ const ConfirmPopUp = () => {
 
   const handleConfirmFinish = () => {
     const categoryRequest: Record<number, CategoryRequest> = {};
-    for (const category of Object.values(categories)) {
+    for (const category of Object.values(categories)){
       categoryRequest[category.id] = {id: category.id, title: category.title || "", cards: category.cards.map((c) => c.id)};
     }
+    
 
     dispatch(sendSort(
       studyId || "",
@@ -36,7 +37,7 @@ const ConfirmPopUp = () => {
   const onClose = () => dispatch(closeConfirmPopUp());
 
   return (
-    <div className="popup-container" onClick={onClose}>
+    <div className="popup-container finish-sorting-popup" onClick={onClose}>
       <div className="popup" onClick={(e) => e.stopPropagation()}>
         <div className="content">
           {unsortedCards.length > 0 ?
@@ -44,11 +45,11 @@ const ConfirmPopUp = () => {
             : <p>{t("confirm finish")}</p>}
         </div>
         <div className="button-container">
-          <button className="confirm-btn" onClick={handleConfirmFinish}>
-            {t("confirm")}
+          <button className="btn--main finish" onClick={handleConfirmFinish}>
+            <span>{t("finish sorting")}</span>
           </button>
-          <button className="cancel-btn" onClick={onClose}>
-            {t("cancel")}
+          <button className="btn--secondary continue" onClick={onClose}>
+            <span>{t("continue sorting")}</span>
           </button>
         </div>
       </div>

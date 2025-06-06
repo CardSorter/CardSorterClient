@@ -10,6 +10,11 @@ const List: React.FC = () => {
   // State
   const unsortedCards = useSelector((state: StateSchema) => state.sortingBoard.unsortedCards);
   const categories = useSelector((state: StateSchema) => state.sortingBoard.categories);
+  const sortType = useSelector((state: StateSchema) => state.sortingUi?.sortType ?? 'open');
+
+
+
+
 
   // Dispatch
   const dispatch = useDispatch();
@@ -20,7 +25,7 @@ const List: React.FC = () => {
       // If the card is already in container
       if (item.position === -1) return;
 
-      dispatch(sortingBoardAction.removeCardFromCategory({cardID: item.id, categoryID: item.position}));
+      dispatch(sortingBoardAction.removeCardFromCategory({cardID: item.id, categoryID: item.position, preserve: sortType === "closed" }));
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
