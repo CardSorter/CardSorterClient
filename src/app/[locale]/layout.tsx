@@ -23,7 +23,6 @@ export default async function RootLayout(
         <html lang={locale}>
           <head>
               <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet"/>
-              <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
               <title>CardSorter</title>
           </head>
           <body className={lato.className}>

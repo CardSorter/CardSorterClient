@@ -56,6 +56,7 @@ export default function Page() {
     Object.values(categories).forEach((cat) => {
       categoryMap[cat.id] = cat.name;
     });
+    const sanitizedLink = (link && link.trim() !== "" && link !== "undefined") ? link.trim() : "";
 
 
     dispatch(studyCreationAction.sendStudy({
@@ -65,7 +66,8 @@ export default function Page() {
       message: studyMessage,
       sortType: sortType || "open",
       categories: categoryMap,
-      link: link,
+      link: sanitizedLink,
+
     }));
   }
 

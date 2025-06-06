@@ -2,9 +2,11 @@ import fetch from 'cross-fetch';
 import * as ActionStatus from 'actions/ActionStatus';
 import {createAction} from '@reduxjs/toolkit';
 import {setAuthToken} from "./authAction";
+import { requestingUsername } from "actions/authAction";
+
 
 export const toggleProfileSettings = createAction<{ toggle: boolean }>("header/toggleProfileSettings");
-export const requestingUsername = createAction<{ status: string; username: string }>("header/requestingUsername");
+
 
 /* Thunk actions */
 

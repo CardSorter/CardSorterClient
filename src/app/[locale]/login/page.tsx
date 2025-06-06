@@ -42,7 +42,7 @@ export default function Page() {
     dispatch(LoginActions.clearPasswordError());
 
     dispatch(LoginActions.sendLoginCredentials(username || "", password || ""));
-    router.push('/dashboard');
+    
   }
 
   const onRegister = () => {

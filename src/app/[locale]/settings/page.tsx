@@ -15,12 +15,14 @@ const SettingsPage: React.FC = () => {
 
   // State
   const currentUsername = useSelector((state: StateSchema) => (state.settings.username || "" ));
-  const currentPassword = useSelector((state: StateSchema) => (state.settings.password || "" ));
+  
   const currentEmail = useSelector((state: StateSchema) => (state.settings.email || ""));
+  const token = useSelector((state: StateSchema) => state.auth.token);
 
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
   const settingsSaved = useSelector((state: StateSchema) => state.settings.settingsSaved);
 
  
@@ -29,33 +31,11 @@ const SettingsPage: React.FC = () => {
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
-    const fetchUserProfile = async() => {
-        try{
-            const token = localStorage.getItem("authToken");
-            console.log("Token fetched from localStorage:", token);
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_endpoint`, {
-                method: "GET",
-                headers:{
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            if (response.ok){
-                const data=await response.json();
-                dispatch(settingsActions.changeUsername({ username: data.username }));
-                dispatch(settingsActions.changeEmail({ email: data.email }));
-                
-                
-            }else{
-                console.error("Failed to fetch user profile:", response.statusText);
-
-            }
-        } catch(error){
-            console.error("Error fetching user profile:",error );
-
-        }
-    };
-    fetchUserProfile();
-  },[dispatch]);
+     if (token) {
+    dispatch(settingsActions.fetchUserProfile());
+     }
+}, [dispatch, token]);
+        
   
 
   const onBack = () => {

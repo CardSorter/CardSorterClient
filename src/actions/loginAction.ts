@@ -37,7 +37,6 @@ export function sendLoginCredentials(username: string, password: string) {
           
           dispatch(setAuthToken(json.auth_token));
           if (json.auth_token) {
-            localStorage.setItem("authToken", json.auth_token);
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_endpoint`, {
               method: 'GET',
               headers: {
@@ -49,6 +48,10 @@ export function sendLoginCredentials(username: string, password: string) {
               if (profileData.username) {
                 dispatch(authAction.setAuthUsername(profileData.username));
               }
+              dispatch(sendingCredentials({
+                status: ActionStatus.SUCCESS,
+                error: json.error?.message,
+             }));
             })
             .catch(error => {
               console.error("Failed to fetch profile:", error);

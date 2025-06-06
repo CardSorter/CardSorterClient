@@ -15,7 +15,6 @@ interface SortingState {
 }
 
 export default interface StateSchema {
-  ui: any;
   login: LoginState,
   register: RegisterState,
   auth: AuthState,

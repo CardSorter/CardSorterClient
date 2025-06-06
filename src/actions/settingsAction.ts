@@ -43,7 +43,7 @@ export const saveSettings = (updatedProperties: {
               if (updatedProperties.newEmail) {
                 dispatch(changeEmail({ email: updatedProperties.newEmail }));
               }
-              console.log('Settings updated successfully');
+              
 
               dispatch(setSettingsSaved(true));
               setTimeout(() => {
@@ -71,4 +71,39 @@ export const setUserProfile = createAction<{
     username: string;
     email: string;
 }>("settings/setUserProfile");
+export const fetchUserProfile = () => {
+    return async (dispatch: Function, getState: Function) => {
+        try {
+            const token = getState().auth.token;
+            if (!token) {
+                console.warn("No auth token found — skipping fetch.");
+                return;
+            }
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_endpoint`, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                console.error("Failed to fetch user profile:", response.statusText);
+                return;
+            }
+
+            const data = await response.json();
+
+            // Dispatch actions with the fetched data
+            dispatch(changeUsername({ username: data.username }));
+            dispatch(changeEmail({ email: data.email }));
+
+            // Alternatively, if you want to dispatch everything at once:
+            // dispatch(setUserProfile({ username: data.username, email: data.email }));
+
+        } catch (error) {
+            console.error("Error fetching user profile:", error);
+        }
+    };
+};
 

@@ -52,7 +52,7 @@ export default function Page()  {
 
   // State
   const title = useSelector((state: StateSchema) => state.studyCreation.title);
-  const cards = useSelector((state: StateSchema) => (state.studyCreation.cards));
+  const cards = useSelector((state: StateSchema) => (state.studyCreation?.cards));
   const errorCards = useSelector((state: StateSchema) => state.studyCreation.errorCards);
   const errorDuplicates = useSelector((state: StateSchema) => state.studyCreation.errorDuplicate);
   const sortType = useSelector((state: StateSchema) => state.studyCreation.sortType);
@@ -144,7 +144,7 @@ export default function Page()  {
       <form className="cards">
         <div className="error-holder">
           <div className="card-container">
-            { Object.values(cards).map((card) => (
+            { cards && Object.values(cards).map((card) => (
               <Card
                 key={'card' + card.id}
                 name={card.name || ""}

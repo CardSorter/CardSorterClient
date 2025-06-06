@@ -1,6 +1,8 @@
 import {createReducer} from "@reduxjs/toolkit";
 import * as authAction from "../actions/authAction";
 import {clearPersistedState} from "../Store";
+import * as ActionStatus from "actions/ActionStatus";
+
 
 export interface AuthState {
   token: string | undefined,
@@ -25,6 +27,12 @@ const authReducer = createReducer(initialState, (builder) => {
         state.username = undefined;
         clearPersistedState();
       })
+      .addCase(authAction.requestingUsername, (state, action) => {
+      state.username = action.payload?.status === ActionStatus.SUCCESS ? action.payload.username : '';
+      });
+      
+      
+
 })
 
 export default authReducer;

@@ -42,10 +42,10 @@ const CommentPopup = () => {
           <textarea placeholder={t("write your comment here")} value={preliminaryComment} onChange={(e) => setPreliminaryComment(e.target.value)}>
           </textarea>
           <div className="btn-container">
-            <button type="button" className="btn--secondary cancel" onClick={onCancel}
+            <button type="button" className="btn--secondary cancel" onClick={onCancel}>
+               <span>{t("cancel")}</span>
+            
               
-            >
-              {t("cancel")}
             </button>
             <button type="button" className="btn--main submit" onClick={onSubmit}>
               {t("confirm")}
@@ -62,10 +62,10 @@ const CommentPopup = () => {
           <div className="btn-container">
             <button
               type="button"
-              className="btn--secondary"
+              className="btn--secondary "
               onClick={() => setShowCancelConfirm(false)}
             >
-              {t("no")}
+              <span>{t("no")}</span>
             </button>
             <button
               type="button"

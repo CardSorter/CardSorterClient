@@ -5,10 +5,6 @@ import {setAuthToken} from "./authAction";
 import { setSortType } from './sorting/uiAction';
 
 
-
-
-
-
 export interface SortingDataItem {
   cards: string[],
   category: string,

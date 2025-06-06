@@ -53,14 +53,17 @@ export default function Filters(){
 
   return (
     <div className="filter-container">
+     <div className="filter-buttons">
       <button className={!filteredBy? "active" : ""} onClick={onAllClick}>{t("filters all")}</button>
       <button className={(filteredBy === "active"? "active" : "")} onClick={onOngoingClick}>{t("filters ongoing")}</button>
       <button className={(filteredBy === "inactive"? "active" : "")} onClick={onInactiveClick}>{t("filters completed")}</button>
-      <div className="search-container"><img src="/card-sorter/images/search-icon.png" alt="Remote Icon" />
+    </div>
+    <div className="search-container"><img src="/card-sorter/images/search-icon.png" alt="Remote Icon" />
+     
       <input
         type="text"
         className="search-input"
-        placeholder="Search your study..."
+        placeholder={t("searchbar")}
         value={searchTerm}
         onChange={handleSearchChange}
       />
@@ -71,9 +74,9 @@ export default function Filters(){
        onChange={handleSortChange}
       >
        
-       <option value="titleAsc">Title A–Z</option>
-       <option value="titleDesc">Title Z–A</option>
-       <option value="launchDateDesc">Launched (Newest)</option>
+       <option value="titleAsc">{t("title a-z")}</option>
+       <option value="titleDesc">{t("title z-a")}</option>
+       <option value="launchDateDesc">{t("launched")}</option>
       </select>
       
     </div>

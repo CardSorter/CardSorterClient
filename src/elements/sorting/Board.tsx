@@ -15,10 +15,7 @@ import { sort } from 'd3';
 const Board = () => {
   const t = useTranslations("SortingPage");
   const state = useSelector((state: StateSchema) => state);
-  console.log('Full Redux state:', state); 
   
-
-
   // State
   const categories = useSelector((state: StateSchema) => state.sortingBoard.categories);
 

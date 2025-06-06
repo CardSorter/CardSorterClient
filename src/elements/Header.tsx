@@ -34,6 +34,7 @@ const Header = () => {
 
   const onLogoutClick = () => {
     dispatch(authActions.logout());
+    router.push('/login');
   }
 
   // Figure out which items to render
@@ -63,7 +64,7 @@ const Header = () => {
         <div className={(!profileUnfold) ? 'profile' : 'profile unfold'} onClick={() => onProfileClick(profileUnfold)}>
           <div className="header">
             <p>{username}</p>
-            <Image src={"/card-sorter/images/sample-user.svg"} alt="Profile Avatar" height={40} width={40}/>
+            <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
           </div>
           {
             profileUnfold &&

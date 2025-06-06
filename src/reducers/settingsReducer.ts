@@ -16,7 +16,6 @@ import {
 export interface SettingsState{
     username?: string;
     newUsername?: string;
-    password?: string;
     newPassword?: string;
     email?: string;
     newEmail?: string;
@@ -25,7 +24,6 @@ export interface SettingsState{
 
 const initialState: SettingsState = {
     username: "",
-    password: "",
     email: "",
     newUsername: "",
     newPassword: "",
@@ -41,9 +39,7 @@ const settingsReducer = createReducer(initialState, (builder) => {
       .addCase(changeNewUsername, (state, action) => {
         state.newUsername = action.payload.username;
       })
-      .addCase(changePassword, (state, action) => {
-        state.password = action.payload.password;
-      })
+      
       .addCase(changeNewPassword, (state, action) => {
         state.newPassword = action.payload.password;
       })

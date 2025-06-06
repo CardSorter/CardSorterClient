@@ -120,7 +120,7 @@ export default function Page() {
           {descriptionError && <div className="error-message"><p>{t("error empty field")}</p></div>}
         </div>
         <div className="sort-type-section">
-          <label className="sort-type-label"><strong>Sort Type</strong></label>
+          <label className="sort-type-label"><strong>{t("sort type")}</strong></label>
           <div className="sort-type-options">
             <label className="sort-type-option">
              <input
@@ -129,7 +129,7 @@ export default function Page() {
                checked={sortType === "open"}
                onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "open" }))}
              />
-             <span><strong>Open</strong> (Participants define and label their own groups)</span>
+             <span><strong>{t("open")}</strong> {t("open description")}</span>
             </label>
 
             <label className="sort-type-option">
@@ -139,7 +139,7 @@ export default function Page() {
               checked={sortType === "closed"}
               onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "closed" }))}
              />
-             <span><strong>Closed</strong> (You define all groups; participants sort only)</span>
+             <span><strong>{t("closed")}</strong> {t("closed description")}</span>
             </label>
             
             <label className="sort-type-option">
@@ -149,7 +149,7 @@ export default function Page() {
               checked={sortType === "hybrid"}
               onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "hybrid" }))}
              />
-            <span><strong>Hybrid</strong> (You define initial groups; participants can add or edit)</span>
+            <span><strong>{t("hybrid")}</strong>{t("hybrid description")}</span>
            </label>
         </div>
       </div>

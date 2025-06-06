@@ -2,7 +2,6 @@ import {createReducer} from '@reduxjs/toolkit';
 import * as ActionStatus from 'actions/ActionStatus';
 import * as studyCreationActions from 'actions/studyCreationAction';
 import {StudyCreationResponse} from "actions/studyCreationAction";
-import * as studyCreationAction from "actions/studyCreationAction";
 
 
 
@@ -43,14 +42,18 @@ export interface StudyCreationState {
 
 }
 
-const initialState: StudyCreationState = {
+export const initialState: StudyCreationState = {
   cards: {},
   categories: {},
   errorCategories: {
     status: false,
     type: null
   },
-  ui: {}
+  ui: {},
+  sortType: "open",
+  externalSurveyLink: "",
+  
+  
 
 };
 
@@ -78,6 +81,7 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
       state.description = action.payload.description;
     })
     .addCase(studyCreationActions.addCard, (state, action) => {
+       if (!state.cards) state.cards = {};
       state.cards[action.payload.id] = {
         id: action.payload.id,
         name: undefined,
@@ -85,6 +89,7 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
       };
     })
     .addCase(studyCreationActions.addXCards, (state, action) => {
+       if (!state.cards) state.cards = {};
       const id = Date.now();
       for (let i = 0; i < action.payload.no; i++) {
         state.cards[id + i] = {
@@ -130,7 +135,7 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
     .addCase(studyCreationActions.toggleThanksError, (state, action) => {
       state.errorMessage = action.payload.status;
     })
-    .addCase(studyCreationAction.changeSortType, (state, action) => {
+    .addCase(studyCreationActions.changeSortType, (state, action) => {
       state.sortType = action.payload.sortType;
     })
     .addCase(studyCreationActions.addXCategories, (state, action) => {
@@ -152,7 +157,7 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
         category.name = action.payload.name;
       }
     })
-    .addCase(studyCreationAction.toggleCategoryError, (state, action) => {
+    .addCase(studyCreationActions.toggleCategoryError, (state, action) => {
       state.errorCategories = {
         status: action.payload.status,
         type: action.payload.type || null,
@@ -174,6 +179,7 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
       }
       state.ui.studySendingStatus = action.payload.status;
     })
+    
     
     
 });

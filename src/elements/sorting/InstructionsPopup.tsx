@@ -12,12 +12,12 @@ const InstructionsPopup = () => {
       <div className="popup">
         <h1>{t("instructions")}</h1>
         <div className="instructions-content">
-          <h3>Step 1</h3>
-          <p>Take a quick look at the items to the left.</p>
-          <h3>Step 2</h3>
-          <p>Drag an item into one of the categories on the right.</p>
-          <h3>Step 3</h3>
-          <p>Click “Finish” when you're done.</p>
+          <h3>{t("instructions step1")}</h3>
+          <p>{t("step1")}</p>
+          <h3>{t("instructions step2")}</h3>
+          <p>{t("step2")}</p>
+          <h3>{t("instructions step3")}</h3>
+          <p>{t("step3")}</p>
         </div>
         <div className="btn-container">
           <button

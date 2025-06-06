@@ -83,7 +83,6 @@ export const fetchStudyForSorting = createAsyncThunk<
     dispatch(requestCards({ status: ActionStatus.SUCCESS, response: json }));
     dispatch(addTitleDescription({ title: json.title, description: json.description }));
     dispatch(setSortType(json.sortType));
-    console.log("Dispatched sortType:", json.sortType);
     dispatch(toggleOnBoarding(true));
 
     
@@ -124,14 +123,6 @@ export function sendSort(
     const ms = (timeEnded.getTime() - timeStarted.getTime());
     const sortType = getState().sortingUi.sortType;
 
-    console.log("🛰️ Sending to backend:", {
-      studyID,
-      categories,
-      container: unsortedCards,
-      time: ms,
-      comment,
-      sortType,
-    });
     
 // get sorttype and predefinedCategories
     dispatch(sendingSort({status: ActionStatus.IS_FETCHING}));

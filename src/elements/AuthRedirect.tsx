@@ -12,10 +12,10 @@ export default function AuthRedirect() {
 
   // Redirect in case the token has been set to undefined
   useEffect(() => {
-    console.log('🔍 Current pathname:', pathname); // ✅ Add this
+    
   
     const isPublicRoute =
-      pathname === '/' ||
+      
       pathname.startsWith('/login') ||
       pathname.startsWith('/register');
   

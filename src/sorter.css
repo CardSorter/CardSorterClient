@@ -14,6 +14,7 @@
   padding: 10px;
   position: absolute;
 }
+.btn--secondary
 
 .btn--main > p,
 .btn--secondary > p,
@@ -22,9 +23,7 @@
   z-index: 2;
   
 }
-.btn--secondary:hover > p {
-  color: white;  /* Change color on hover */
-}
+
 
 .btn--main:hover,
 .btn--secondary:hover,
@@ -40,7 +39,8 @@
   box-sizing: border-box;
   border-radius: .2rem;
   content: '';
-  height: 4rem; width: 0;
+  height: 4rem; 
+  width: 0;
   position: absolute;
   transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   z-index: 0;
@@ -55,11 +55,13 @@
   
 }
 
+
 .btn--main {
   background: radial-gradient(circle at 10%, var(--color-secondary) );
   color: white;
   right: 0.5rem;
   width: 15rem;
+  
   
 }
 
@@ -79,6 +81,8 @@
   box-sizing: border-box;
   right: calc(4rem + 10rem + 2rem); /* right_finish_button + width_finish_button + whitespace */
   width: 15rem;
+  overflow: hidden;
+
 }
 
 .btn--secondary:hover,
@@ -97,6 +101,12 @@
 .btn--third:hover::before {
   left: 0;
 }
+.btn--secondary span {
+  position: relative;
+  z-index: 2;
+}
+
+
 
 .btn--third {
   background: 0;
@@ -201,6 +211,7 @@ ul#list {
 
 /* The popup */
 
+
 .popup-container {
   align-items: flex-start;
   background-color: rgba(0, 0, 0, 30%);
@@ -211,14 +222,21 @@ ul#list {
   z-index: 1000;
 }
 
+
 .popup-container > .popup {
+  display: flex;
+  flex-direction: column;
   background: white;
-  border-radius: .2rem;
-  height: 50vh; width: 50vw;
+  border-radius: 0.5rem;
+  height: 65vh; width: 60vw;
   margin-top: 2rem;
   padding: 2rem;
   position: relative;
 
+
+}
+.instructions-content {
+  flex: 1; /* Fill available space */
 }
 
 .popup-container > .popup > h1 {
@@ -242,13 +260,15 @@ ul#list {
   text-transform: capitalize;
 }
 .popup-container > .popup  > .btn-container {
-  bottom: 2rem; right: 2rem;
+  bottom: 0rem; right: 0rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  position: absolute;
+  position: relative;
   width: 100%;
-  gap: 1 rem;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
 }
 
 .popup-container > .popup > .btn-container > button {
@@ -256,9 +276,11 @@ ul#list {
   position: relative;
   width: 15rem;
 }
+
+
 .popup-container > .popup > form > textarea {
   box-sizing: border-box;
-  height: 30vh; width: 100%;
+  height: 40vh; width: 100%;
   margin-top: 0;
   resize: none;
 }
@@ -299,6 +321,8 @@ ul#list {
   justify-content: center;
   gap: 1rem; 
 }
+
+
 
 
 
@@ -786,7 +810,7 @@ li.card.minimized button.desc-btn::before {
 
 
 .confirm-btn, .cancel-btn {
-    background-color: red;
+    background-color: #B0561A;
     border: none;
     border-radius: 4px;
     padding: 10px 16px;
@@ -801,7 +825,7 @@ li.card.minimized button.desc-btn::before {
     width: 15rem;
 }
 .cancel-btn{
-  background-color: green !important;
+  background-color: #938ABA !important;
 }
 
 .button-container {
