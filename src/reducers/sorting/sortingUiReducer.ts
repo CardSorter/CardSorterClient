@@ -130,6 +130,7 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
       state.timeStarted = action.payload.timeStarted;
       state.studyID = action.payload.studyID;
       state.userComment = action.payload.userComment || "";
+      state.sortType = action.payload.sortType;
     })
     .addCase(uiAction.setSortType, (state, action) => {
     state.sortType=action.payload;

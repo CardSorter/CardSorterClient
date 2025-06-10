@@ -22,7 +22,7 @@ export function clearPersistedState() {
   localStorage.removeItem('settings');
   window.location.reload();
 }
-
+  
 export default function initializeStore(): Store<StateSchema> {
 
   const rootReducer = {
@@ -94,6 +94,7 @@ export default function initializeStore(): Store<StateSchema> {
       });
     },
   });
+  
 
   // Save state to localStorage on changes
   // If saving something in the localStorage make sure to remove it in clearPersistedState() called on logout

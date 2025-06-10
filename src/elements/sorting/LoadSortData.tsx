@@ -63,6 +63,7 @@ export default function LoadSortData({id}: {id: string}) {
       showOnBoarding: sortingUIPreloaded.showOnboarding,
       timeStarted: new Date(sortingUIPreloaded.timeStarted), // TODO: Calculate only active time
       studyID: sortingUIPreloaded.studyID,
+      sortType: sortingUIPreloaded.sortType,
     }));
   }, [id]);
 

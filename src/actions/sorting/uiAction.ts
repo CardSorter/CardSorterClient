@@ -53,6 +53,7 @@ export const loadSavedState = createAction<{
   timeStarted?: Date;
   studyID?: string;
   userComment?: string;
+  sortType: 'open' | 'closed' | 'hybrid';
 
 }>("ui/loadSavedState");
 
