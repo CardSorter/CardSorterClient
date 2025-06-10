@@ -27,7 +27,6 @@ export default function StudiesList() {
   const searchTerm = useSelector((state: StateSchema) => state.studies.searchTerm);
   const sortOption = useSelector((state: StateSchema) => state.studies.sortOption);
 
-    
 
   useEffect(() => {
     if (!studies) {
