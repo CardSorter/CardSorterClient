@@ -34,8 +34,9 @@ const Header = () => {
 
   const onLogoutClick = () => {
     dispatch(authActions.logout());
-    router.push('/login');
+    router.push('/login'); 
   }
+  
 
   // Figure out which items to render
   useEffect(() => {

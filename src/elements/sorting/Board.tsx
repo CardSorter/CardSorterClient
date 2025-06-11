@@ -39,7 +39,7 @@ const Board = () => {
           }
           dispatch(sortingBoardAction.createCategory({categoryID: undefined, cardID:card.id}));
       }
-
+     
       // Remove empty categories
       if(sortType === "open"  ){
        for (const i in categories) {

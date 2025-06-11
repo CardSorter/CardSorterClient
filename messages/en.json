@@ -142,7 +142,7 @@
     "study title": "Study Title",
     "study description": "Description about your study page",
     "error empty field": "Empty field",
-    "error field": "INFO: This title already exists. Rename to: ",
+    "error field": "INFO: This title already exists. Will be renamed to: ",
     "of": "of",
     "total cards": "Total cards: ",
     "error empty card name": "Empty card name",

@@ -8,10 +8,15 @@ import {Study} from "reducers/studiesReducer";
 import {useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
 
+
+
+
+
 export default function StudiesList() {
   // TODO: Convert to Link
   const router = useRouter();
   const t = useTranslations("StudiesListPage");
+   
 
   const [filteredStudies, setFilteredStudies] = useState<Study[]>([]);
 
