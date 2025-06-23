@@ -13,10 +13,11 @@ interface CategoryProps {
   id: number;
   title?: string;
   cards: SortingCard[];
+  predefined?: boolean;
 }
 
 
-const Category: React.FC<CategoryProps> = ({id, title, cards}) => {
+const Category: React.FC<CategoryProps> = ({id, title, cards, predefined}) => {
   const t = useTranslations("SortingPage");
 
   const [preliminaryTitle, setPreliminaryTitle] = useState(title || "");
@@ -35,6 +36,7 @@ const Category: React.FC<CategoryProps> = ({id, title, cards}) => {
   const dispatch = useDispatch();
 
   const onTitleClick = (event: MouseEvent<HTMLHeadingElement>) => {
+    if (predefined) return;
     event.stopPropagation();
     setShowEditTitle(true);
   }

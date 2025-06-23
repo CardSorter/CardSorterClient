@@ -72,6 +72,8 @@ const Board = () => {
          id={category.id}
          title={category.title}
          cards={category.cards}
+         predefined={category.predefined}
+         
         />
       ))}
       {isOver && (sortType === "open" || sortType === "hybrid") && (

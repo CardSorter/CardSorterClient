@@ -28,7 +28,30 @@ export default function Page() {
         />
       }
       <DataTable headers={[t("category"), t("cards no"), t("cards"), t("frequency"), t("participants")]}
-                 data={data} />
-    </div>
-  );
+                 data={data.map(cat => [
+             <div
+               key={cat[0]}
+               style={{
+               color: cat[5] === 1 ? "orange" : "inherit",    // check if predefined categories cat[5] is true(1)
+               fontWeight: cat[5] === 1 ? "bold" : "normal",
+              }}
+             >
+             {cat[0]}
+            </div>,
+            cat[1], // cards no
+            <div>
+             {cat[2].map((card: string, idx: number) => (
+              <div key={idx}>{card}</div>
+             ))}
+             </div>,
+             <div>
+              {cat[3].map((freq: number, idx: number) => (
+               <div key={idx}>{freq}</div>
+              ))}
+               </div>,
+              cat[4] // participants
+              ])}
+             />
+            </div>
+           );
 }

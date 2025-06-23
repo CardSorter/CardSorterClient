@@ -12,6 +12,7 @@ export interface SortingCard {
 export interface SortingCategory {
   id: number;
   title?: string;
+  display_title?: string;
   isMinimized?: boolean;
   cards: SortingCard[];
   predefined: boolean;

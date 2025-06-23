@@ -8,9 +8,12 @@ import {useTranslations} from "next-intl";
 
 export default function Page() {
   const t = useTranslations("StudyPage");
+   
 
   // State
   const data = useSelector((state: StateSchema) => state.study.sorting.data);
+
+  
 
   return (
     <div className='sorting'>

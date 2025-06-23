@@ -128,6 +128,7 @@ const studyPageReducer = createReducer(initialState, (builder) => {
     .addCase(studyActions.togglePopup, (state, action) => {
       state.popupShowing = action.payload?.toggle;
     })
+    
     .addCase(studyActions.toggleEditPopup, (state, action) => {
       state.editPopupOpen = action.payload?.toggle;
     })
