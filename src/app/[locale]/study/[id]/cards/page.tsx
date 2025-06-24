@@ -20,7 +20,7 @@ export default function Page() {
   
   const predefinedSet = new Set(
     categories
-      .filter(cat => Number(cat[5]) === 1)        // cat[1] is the predefined flag
+      .filter(cat => Number(cat[5]) === 1)        // cat[5] is the predefined flag
       .map(cat => typeof cat[0] === "string" ? cat[0].trim() : "")         
   );
 
