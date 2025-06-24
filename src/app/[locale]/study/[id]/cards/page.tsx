@@ -20,8 +20,8 @@ export default function Page() {
   
   const predefinedSet = new Set(
     categories
-      .filter(cat => cat[5] === 1)        // cat[1] is the predefined flag
-      .map(cat => cat[0]?.trim())         
+      .filter(cat => Number(cat[5]) === 1)        // cat[1] is the predefined flag
+      .map(cat => typeof cat[0] === "string" ? cat[0].trim() : "")         
   );
 
   return (
@@ -43,18 +43,22 @@ export default function Page() {
           <div>
             {item.category_names.map((name, idx) => {
               const isPredefined = predefinedSet.has(name?.trim());
+              console.log("Checking if", name?.trim(), "is predefined:", isPredefined);
               return (
-               <div
-                 key={idx}
-                style={{
+               <div key={idx}>
+                <span
+                 style={{
                   color: isPredefined ? "orange" : "inherit",
                   fontWeight: isPredefined ? "bold" : "normal",
                 }}
-              >
-                {name}
-              </div>
+                >
+                 {name}
+                </span>
+
+               </div>
              );
-            })}
+            })
+            }
           </div>,
           <div>
             {item.frequencies.map((freq, idx) => (
