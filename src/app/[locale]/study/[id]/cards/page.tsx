@@ -21,7 +21,7 @@ export default function Page() {
   const predefinedSet = new Set(
     categories
       .filter(cat => Number(cat[5]) === 1)        // cat[5] is the predefined flag
-      .map(cat => typeof cat[0] === "string" ? cat[0].trim() : "")         
+      .map(cat => typeof cat[0] === "string" ? cat[0].trim().toLowerCase() : "")         
   );
 
   return (
@@ -42,7 +42,7 @@ export default function Page() {
           item.categories_no,
           <div>
             {item.category_names.map((name, idx) => {
-              const isPredefined = predefinedSet.has(name?.trim());
+              const isPredefined = predefinedSet.has(name?.trim().toLowerCase());
               console.log("Checking if", name?.trim(), "is predefined:", isPredefined);
               return (
                <div key={idx}>
