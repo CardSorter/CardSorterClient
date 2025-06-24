@@ -92,6 +92,7 @@ export const fetchStudyForSorting = createAsyncThunk<
 
       const formattedCategories = Object.entries(json.categories)
        .filter(([id, title]) => !isNaN(Number(id)) && typeof title === "string")
+
        .map(([id, title]) => ({
          id: Number(id),
          title,

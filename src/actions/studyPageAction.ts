@@ -10,7 +10,10 @@ export interface SortingDataItem {
   category: string,
   comment: string,
   no: string, // number of categories
+  
 }
+
+
 
 // TODO type the anys here
 interface FetchStudyResponse {
@@ -39,6 +42,7 @@ interface FetchStudyResponse {
       category_names: string[],
       frequencies: number[],
       description: string,
+      
     }[]; // Data related to cards
   };
   categories: {
@@ -87,6 +91,7 @@ export function fetchStudy(id: string) {
           if (response.status === 401) {
             dispatch(setAuthToken(undefined));
           } else {
+            
             dispatch(loadStudy({status: ActionStatus.SUCCESS, study: json.study, error: false}));
            dispatch(setSortType(json.study.sortType));
           }
