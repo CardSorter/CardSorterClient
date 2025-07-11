@@ -15,7 +15,6 @@ export default function AuthRedirect() {
     
   
     const isPublicRoute =
-      
       pathname.startsWith('/login') ||
       pathname.startsWith('/register');
   
