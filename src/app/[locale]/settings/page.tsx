@@ -7,6 +7,7 @@ import * as settingsActions from "actions/settingsAction";
 import {useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
 import ErrorToast from "elements/sorting/ErrorToast";
+import "./settings.scss";
 
 
 const SettingsPage: React.FC = () => {

@@ -230,7 +230,6 @@ header .left-buttons button.icon-button {
 #logo {
   color: var(--color-black);
   font-family: 'Dancing Script', cursive;
-  font-size: 2.5rem;
 }
 
 /* This panel splits the screen into two peices */
@@ -284,7 +283,6 @@ ul#list {
 
 .popup-container > .popup > h1 {
   color: var(--color-black);
-  font-size: 2rem;
   margin: 2rem;
   justify-content: center;
   align-items: center;
@@ -293,7 +291,6 @@ ul#list {
 
 .popup-container > .popup > h3 {
   color: var(--color-black);
-  font-size: 1.5rem;
   margin-top: 2rem;
     margin-bottom: 2rem; /* Change this line */
 
@@ -355,7 +352,6 @@ ul#list {
 }
 
 .popup p {
-  font-size: 1.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -374,7 +370,6 @@ ul#list {
   width: 90%;
   align-items: flex-start;
   display: grid;
-  font-size: 1.3rem;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   padding: 2rem;
@@ -402,10 +397,6 @@ li.card {
   text-align: center;
 }
 
-li.card h4 {
-  font-size: 1.5rem;
-}
-
 li.card.minimized {
   border-radius: 0;
   box-shadow: none;
@@ -419,16 +410,6 @@ li.card.minimized {
   justify-content: flex-start;
 }
 
-li.card.minimized h4 {
-  font-family: 'LatoWeb';
-  font-size: 1.2rem;
-}
-
-li.card.minimized p {
-  font-family: 'LatoWebLight';
-  font-size: 1.2rem;
-}
-
 li.card.minimized .titles p {
   margin-top: .5rem;
 }
@@ -439,7 +420,6 @@ li.card.minimized button.desc-btn {
   border-radius: 50%;
   color: white;
   cursor: pointer;
-  font-size: 1.2rem;
   height: 1.5rem; width: 1.5rem;
   margin-left: auto;
   position: relative;
@@ -458,7 +438,6 @@ li.card.minimized button.desc-btn::before {
 /* Counting the number of cards in each category */
 .card-count-footer {
   padding: 0.5rem;
-  font-size: 1rem;
   font-weight: bold;
   text-align: right;
   color: grey;
@@ -518,7 +497,6 @@ li.card.minimized button.desc-btn::before {
 
 .category .header h3 {
   cursor: pointer;
-  font-size: 1.5rem;
   margin: 1rem 0;
   text-decoration: underline;
   white-space: nowrap;
@@ -575,7 +553,6 @@ li.card.minimized button.desc-btn::before {
   background-color: white;
   display: flex;
   flex-direction: column;
-  font-size: 1.3rem;
   justify-content: center;
   height: 100%; width: 100%;
   left: 0; top: 0;
@@ -603,10 +580,6 @@ li.card.minimized button.desc-btn::before {
 .category.drop-to-create img {
   height: auto; width: 50%;
   opacity: .7;
-}
-
-.category.drop-to-create p {
-  font-size: 1.3rem;
 }
 
 /* Message (thanks, not found) screen */
@@ -644,13 +617,7 @@ li.card.minimized button.desc-btn::before {
 
 .message-screen h2 {
   color: var(--color-black);
-  font-size: 3rem;
 }
-
-.message-screen h3 {
-  font-size: 1.2rem;
-}
-
 .message-screen h2::first-letter {
   text-transform: uppercase;
 }
@@ -676,10 +643,6 @@ li.card.minimized button.desc-btn::before {
 
 .on-boarding-screen img {
   height: 40vh; width: auto;
-}
-
-.on-boarding-screen h2 {
-  font-size: 3rem;
 }
 
 .on-boarding-screen .arrow {

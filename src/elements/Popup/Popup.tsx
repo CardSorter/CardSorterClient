@@ -1,5 +1,6 @@
 import React from 'react';
 import copyToClipboard from "utils/copyToClipboard";
+import styles from "./Popup.module.scss";
 
 interface PopupProps {
   title: string | undefined;
@@ -15,14 +16,14 @@ const Popup: React.FC<PopupProps> = ({title, iconClass, url, close}) => {
   }
 
   return (
-    <div className="popup-container" onClick={close}>
-      <div className="popup" onClick={(e) => e.stopPropagation()}>
-        <div className="header">
+    <div className={styles.container} onClick={close}>
+      <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.header}>
           {iconClass && <span className="material-symbols-outlined">{iconClass}</span>}
           <h2>{title}</h2>
-          <button className="close-btn" onClick={close}>&#10005;</button>
+          <button className={styles.closeBtn} onClick={close}>&#10005;</button>
         </div>
-        <div className="content">
+        <div className={styles.content}>
           {url &&
             <div className="share-container">
               <div className="url-container">

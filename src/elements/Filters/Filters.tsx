@@ -5,6 +5,7 @@ import {useTranslations} from "next-intl";
 import {useDispatch, useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
 import * as studiesActions from "actions/studiesAction";
+import styles from './Filters.module.scss';
 
 export default function Filters(){
   const t = useTranslations("StudiesListPage");
@@ -52,24 +53,25 @@ export default function Filters(){
 
 
   return (
-    <div className="filter-container">
-     <div className="filter-buttons">
-      <button className={!filteredBy? "active" : ""} onClick={onAllClick}>{t("filters all")}</button>
-      <button className={(filteredBy === "active"? "active" : "")} onClick={onOngoingClick}>{t("filters ongoing")}</button>
-      <button className={(filteredBy === "inactive"? "active" : "")} onClick={onInactiveClick}>{t("filters completed")}</button>
+    <div className={styles.filterContainer}>
+     <div className={styles.filterButtons}>
+      <button className={!filteredBy? styles.active : ""} onClick={onAllClick}>{t("filters all")}</button>
+      <button className={(filteredBy === "active"? styles.active : "")} onClick={onOngoingClick}>{t("filters ongoing")}</button>
+      <button className={(filteredBy === "inactive"? styles.active : "")} onClick={onInactiveClick}>{t("filters completed")}</button>
     </div>
-    <div className="search-container"><img src="/card-sorter/images/search-icon.png" alt="Remote Icon" />
+
+    <div className={styles.searchContainer}><img src="/card-sorter/images/search-icon.png" alt="Remote Icon" />
      
       <input
         type="text"
-        className="search-input"
+        className={styles.searchInput}
         placeholder={t("searchbar")}
         value={searchTerm}
         onChange={handleSearchChange}
       />
       </div>
       <select
-       className="sort-dropdown"
+       className={styles.sortDropdown}
        value={sortOption}
        onChange={handleSortChange}
       >

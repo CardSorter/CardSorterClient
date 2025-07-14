@@ -1,0 +1,23 @@
+ul.studiesList {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10%;
+
+  & > * {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.createStudyCard {
+  background-color: white;
+  border: solid 2px black;
+  box-shadow: 0 2px 6px rgb(0, 0, 0, .16);
+  color: var(--color-black);
+  cursor: pointer;
+  height: 14rem; width: 14rem;
+
+  &:hover {
+    border: solid 2px black;
+  }
+}

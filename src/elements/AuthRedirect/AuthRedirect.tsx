@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import StateSchema from "../reducers/StateSchema";
+import StateSchema from "../../reducers/StateSchema";
 import {useEffect} from "react";
 import {usePathname, useRouter} from "i18n/navigation";
 

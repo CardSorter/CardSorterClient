@@ -1,12 +1,13 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 
-import StudyItem from './StudyItem';
+import StudyItem from '../StudyItem/StudyItem';
 import {useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
 import {Study} from "reducers/studiesReducer";
 import {useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
+import styles from "./StudiesList.module.scss";
 
 
 
@@ -60,7 +61,7 @@ export default function StudiesList() {
   }, [studies,isFetching, filteredBy, searchTerm, sortOption]);
 
   return (
-    <ul className="studies-container">
+    <ul className={styles.studiesList}>
 
       {
         filteredStudies?.map((study, index) =>
@@ -70,7 +71,7 @@ export default function StudiesList() {
             endDate={study.endDate} />)
       }
 
-      <button className="create-study-card" onClick={() => router.push("/create")}>
+      <button className={styles.createStudyCard} onClick={() => router.push("/create")}>
           <span className="material-symbols-outlined">add</span>
           <p>{t("create study")}</p>
       </button>

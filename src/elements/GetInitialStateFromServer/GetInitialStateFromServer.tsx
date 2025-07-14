@@ -7,7 +7,7 @@ import {fetchUsername} from "actions/headerAction";
 import {fetchStudies} from "actions/studiesAction";
 import {getCookie} from "utils/cookies";
 import {Dispatch} from "@reduxjs/toolkit";
-import StateSchema from "../reducers/StateSchema";
+import StateSchema from "../../reducers/StateSchema";
 
 export default function GetInitialStateFromServer() {
     const dispatch: Dispatch<any> = useDispatch();

@@ -75,8 +75,8 @@ export const fetchUserProfile = () => {
     return async (dispatch: Function, getState: Function) => {
         try {
             const token = getState().auth.token;
-            if (!token) {
-                console.warn("No auth token found — skipping fetch.");
+            if (!token || process.env.NODE_ENV !== 'production') {
+                // console.warn("No auth token found — skipping fetch.");
                 return;
             }
 

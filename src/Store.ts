@@ -13,6 +13,7 @@ import sortingBoardReducer from "./reducers/sorting/sortingBoardReducer";
 import sortingUiReducer from "./reducers/sorting/sortingUiReducer";
 import settingsReducer from "reducers/settingsReducer";
 import  { initialState as studyCreationInitialState } from "reducers/studyCreationReducer";
+import applicationAlertsReducer from "./reducers/applicationAlertsReducer";
 
 
 export function clearPersistedState() {
@@ -26,6 +27,7 @@ export function clearPersistedState() {
 export default function initializeStore(): Store<StateSchema> {
 
   const rootReducer = {
+    applicationAlerts: applicationAlertsReducer,
     login: loginReducer,
     register: registerReducer,
     auth: authReducer,
@@ -77,9 +79,7 @@ export default function initializeStore(): Store<StateSchema> {
        studyCreation: (() => {
         const persisted = persistedStudyCreation();
         return {
-          ...studyCreationInitialState,
          ...persisted,
-         sortType: persisted?.sortType ?? "open",  
         };
        })(),
     },

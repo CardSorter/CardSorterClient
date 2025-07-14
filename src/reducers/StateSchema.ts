@@ -8,13 +8,10 @@ import {RegisterState} from "./registerReducer";
 import {SortingUIState} from "./sorting/sortingUiReducer";
 import {SortingBoardState} from "./sorting/sortingBoardReducer";
 import { SettingsState } from "./settingsReducer";
-
-interface SortingState {
-  board: SortingBoardState;
-  ui: SortingUIState;
-}
+import { ApplicationAlertsState } from "./applicationAlertsReducer";
 
 export default interface StateSchema {
+  applicationAlerts: ApplicationAlertsState,
   login: LoginState,
   register: RegisterState,
   auth: AuthState,

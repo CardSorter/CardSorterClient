@@ -1,10 +1,10 @@
 import React from 'react';
-import 'index.css'
+import 'index.scss'
 import 'App.css';
 import { Lato } from 'next/font/google'
 import 'material-symbols';
 import {NextIntlClientProvider} from 'next-intl';
-import MainContent from "elements/MainContent";
+import MainContent from "elements/MainContent/MainContent";
 
 const lato = Lato({weight: ["100", "300", "400", "700", "900"], subsets:['latin-ext']});
 

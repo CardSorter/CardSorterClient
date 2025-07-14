@@ -1,24 +1,28 @@
 "use client"
 
+import "./study.scss";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as studyAction from "actions/studyPageAction";
-import EditStudyPopup from "elements/EditStudyPopup";
-import Popup from "elements/Popup";
-import StudyMenu from "elements/StudyMenu";
+import EditStudyPopup from "elements/EditStudyPopup/EditStudyPopup";
+import Popup from "elements/Popup/Popup";
+import StudyMenu from "elements/StudyMenu/StudyMenu";
 import StateSchema from "reducers/StateSchema";
 import {useParams} from "next/navigation";
-import {useRouter} from "i18n/navigation";
+import {usePathname, useRouter} from "i18n/navigation";
 import monthToString from "utils/monthToString";
 import Image from "next/image";
 import copyToClipboard from "utils/copyToClipboard";
 import {createFromExistingStudy} from "actions/studyCreationAction";
 import {useTranslations} from "next-intl";
+import ApplicationAlerts from "../../../../elements/ApplicationAlerts/ApplicationAlerts";
+import {ApplicationAlertContext} from "../../../../reducers/applicationAlertsReducer";
 
 
 export default function Layout({children}: {children: React.ReactNode }) {
   const {id} = useParams<{ id: string }>();
   const router = useRouter();
+  const pathname = usePathname();
   const t = useTranslations("StudyPage");
 
   // State
@@ -40,8 +44,6 @@ export default function Layout({children}: {children: React.ReactNode }) {
 
   const loadStudy =  (id: string) => dispatch(studyAction.fetchStudy(id));
   const loadClusters = (id: string) => dispatch(studyAction.fetchClusters(id));
-
-  const openEditPopup = () => dispatch(studyAction.toggleEditPopup({toggle: true}));
 
   const openPopup = () => dispatch(studyAction.togglePopup({toggle: true}));
   const closePopup = () => dispatch(studyAction.togglePopup({toggle: false}));
@@ -70,47 +72,57 @@ export default function Layout({children}: {children: React.ReactNode }) {
     loadClusters(id);
   }, [id]);
 
+  const studyHeader = (
+    <>
+      <span className="header">
+        <h1>{title}</h1>
+        <button className="edit" onClick={() => router.push(`${id}/edit`)} title="Edit study"><span className="material-symbols-outlined">edit</span></button>
+        <button className="share" onClick={openPopup} title="Share study"><span className="material-symbols-outlined">share</span></button>
+        <button className="copy" onClick={onDuplicateStudy} title="Duplicate study">
+          <span className="material-symbols-outlined">content_paste_go</span>
+        </button>
+        {!NoParticipantsInStudy && (
+          <>
+            <button className="download" onClick={downloadXLSX} title="Download study Data">
+              <span className="material-symbols-outlined">download</span>
+            </button>
+          </>
+        )}
+      </span>
+      <span className="active">
+        {isLive ? (
+          <div className="active-container">
+            <span className="activeSquare isLive"></span>
+            <p>{t("active")}</p>
+          </div>
+        ) : (
+          <div className="active-container">
+            <span className="activeSquare notLive"></span>
+            <p>{t("inactive")}</p>
+          </div>
+        )}
+        <h2 className="date">
+          {t("launched on")} {launchedDate?.getDate()}
+          <span className="capitalize">
+            <> </>
+            {monthToString(launchedDate?.getMonth(), t)}
+          </span>
+          <> </>
+          {launchedDate?.getFullYear()}
+        </h2>
+      </span>
+    </>
+  )
+
   return (
     <>
       <div className="study-page">
-        {/* Header */}
-        <span className="header">
-          <h1>{title}</h1>
-          <button className="edit" onClick={openEditPopup} title="Edit study"><span className="material-symbols-outlined">edit</span></button>
-          <button className="share" onClick={openPopup} title="Share study"><span className="material-symbols-outlined">share</span></button>
-          <button className="copy" onClick={onDuplicateStudy} title="Duplicate study">
-            <span className="material-symbols-outlined">content_paste_go</span>
-          </button>
-          {!NoParticipantsInStudy && (
-            <>
-              <button className="download" onClick={downloadXLSX} title="Download study Data">
-                <span className="material-symbols-outlined">download</span>
-              </button>
-            </>
-          )}
-        </span>
-        <span className="active">
-          {isLive ? (
-            <div className="active-container">
-              <span className="activeSquare isLive"></span>
-              <p>{t("active")}</p>
-            </div>
-          ) : (
-            <div className="active-container">
-              <span className="activeSquare notLive"></span>
-              <p>{t("inactive")}</p>
-            </div>
-          )}
-          <h2 className="date">
-            {t("launched on")} {launchedDate?.getDate()}
-            <span className="capitalize">
-              <> </>
-              {monthToString(launchedDate?.getMonth(), t)}
-            </span>
-            <> </>
-            {launchedDate?.getFullYear()}
-          </h2>
-        </span>
+        <ApplicationAlerts context={ApplicationAlertContext.studyPage} />
+
+        {
+          !pathname.includes("edit") &&
+            studyHeader
+        }
 
         {showPopup && (
           <Popup
@@ -125,7 +137,7 @@ export default function Layout({children}: {children: React.ReactNode }) {
         )}
 
         {
-          NoParticipantsInStudy &&
+          NoParticipantsInStudy && !pathname.includes("edit") &&
             <div className="no-participants-page">
               <h1>{t("no participants")}</h1>
               <Image src="/card-sorter/images/empty.svg" alt="Nothing found" height={150} width={150} />
@@ -147,6 +159,10 @@ export default function Layout({children}: {children: React.ReactNode }) {
               <StudyMenu/>
               {children}
             </>
+        }
+        {
+          pathname.includes("edit") &&
+          <>{children}</>
         }
       </div>
     </>

@@ -16,7 +16,6 @@ const headerReducer = createReducer(initialState, (builder) => {
     .addCase(headerActions.toggleProfileSettings, (state, action) => {
       state.profileUnfold = action.payload?.toggle || false;
     })
-    
 });
 
 export default headerReducer;

@@ -5,9 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "i18n/navigation";
 
 
-
-
-
 import * as studyCreationAction from "actions/studyCreationAction";
 import StateSchema from "reducers/StateSchema";
 import {useTranslations} from "next-intl";

@@ -1,0 +1,58 @@
+.studyItem {
+  align-items: center;
+  border: solid 2px white;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 14rem;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  justify-content: flex-start;
+
+  &:hover {
+    border: solid 2px var(--color-primary);
+  }
+
+  > * {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .participants {
+    .completed {
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+  }
+
+  .dates {
+    align-self: flex-start;
+    font-weight: 300;
+    margin: auto 0 3rem 1rem;
+
+    .launched {
+      border-right: solid 1px black;
+      padding-right: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.activeSquare {
+  border-radius: 0.5rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  margin-left: 1.5rem;
+
+  &.isLive {
+    background: radial-gradient(circle at 20%, var(--color-light-green), var(--color-green));
+  }
+
+  &.notLive {
+    background: radial-gradient(circle at 20%, var(--color-light-red), var(--color-red));
+  }
+}

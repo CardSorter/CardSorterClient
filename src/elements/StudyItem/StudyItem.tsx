@@ -1,8 +1,9 @@
 import React from 'react';
 import {useRouter} from "i18n/navigation";
 
-import monthToString from '../utils/monthToString';
+import monthToString from '../../utils/monthToString';
 import {useTranslations} from "next-intl";
+import styles from "./StudyItem.module.scss";
 
 interface StudyItemProps {
   id: string;
@@ -23,25 +24,25 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
   // TODO: Convert to Link or add link for accessibility
   return(
       <div>
-        <li className='studyItem' onClick={() => router.push('/study/' + id)} >
-          <div className='header'>
+        <li className={styles.studyItem} onClick={() => router.push('/study/' + id)} >
+          <div className={styles.header}>
             <h3>{title}{" "}</h3>
             {
                 isLive &&
-                <span className='activeSquare isLive'></span>
+                <span className={`${styles.activeSquare} ${styles.isLive}`}></span>
             }
             {
                 !isLive &&
-                <span className='activeSquare notLive'></span>
+                <span className={`${styles.activeSquare} ${styles.notLive}`}></span>
 
             }
           </div>
-          <div className='participants'>
-            <p className='completed'>{completedNo} {t("completed")}</p>
-            <p className='abandoned'>{abandonedNo} {t("abandoned")}</p>
+          <div className={styles.participants}>
+            <p className={styles.completed}>{completedNo} {t("completed")}</p>
+            <p>{abandonedNo} {t("abandoned")}</p>
           </div>
-          <div className='dates'>
-            <p className='launched'>
+          <div className={styles.dates}>
+            <p className={styles.launched}>
               {t("launched on")}&nbsp;<time
                 dateTime={launchedDate.toDateString()}>{launchedDate.getDate()}
               <span className="capitalize">
@@ -52,7 +53,7 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
             {/* If the endDate is defined show only the end and the launched date */}
             {
                 (!endDate && editDate) &&
-                <p className='edited'>
+                <p>
                   {t("edited on")}&nbsp;
                   <time dateTime={editDate.toDateString()}>{editDate.getDate()}
                   <span className="capitalize">
@@ -63,7 +64,7 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
             }
             {
               (endDate && editDate) &&
-                <p className='ended'>
+                <p>
                   {t("ended on")}
                   <time dateTime={endDate.toDateString()}>{endDate.getDate()}
                   <span className="capitalize">
