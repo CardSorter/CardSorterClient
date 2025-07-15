@@ -66,13 +66,13 @@ const Header = () => {
       showProfileSettings &&
         <div className={(!profileUnfold) ? styles.profile : `${styles.profile} ${styles.unfold}`} onClick={() => onProfileClick(profileUnfold)}>
           <div className={styles.profileHeader}>
+            <span className={`material-symbols-outlined ${styles.arrow}`}>arrow_drop_down</span>
             <p>{username}</p>
-            <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
           </div>
           {
             profileUnfold &&
               <div className={styles.content}>
-                  <button onClick={() => router.push('/settings')}>{t("settings")}</button>
+                  <button onClick={() => router.push('/settings')}>{t("edit profile")}</button>
                   <button onClick={onLogoutClick}>{t("log out")}</button>
               </div>
           }

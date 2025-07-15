@@ -2,12 +2,18 @@
 
 import React, {useEffect} from 'react';
 
-import Image from "next/image";
 import {useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
 import {useRouter} from "i18n/navigation";
 import copyToClipboard from "utils/copyToClipboard";
 import {useTranslations} from "next-intl";
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from "@mui/material/IconButton";
+import InputWithCopy from "../../../../elements/InputWithCopy/InputWithCopy";
 
 export default function Page() {
   const t = useTranslations("CreateStudyPage");
@@ -33,23 +39,17 @@ export default function Page() {
 
   return (
     <div className="success-page">
-      <h1>{t("study created")}</h1>
-      <Image src={"/card-sorter/images/success.svg"} alt={"Study Created"} height={150} width={150} />
-      <div className="actions-container">
-        <div className="button-container">
-          <button onClick={onButtonClick}>{t("go to study")}</button>
-        </div>
-        <div className="share-container">
-          <div className="url-container">
-            <a className="url" href={`${process.env.NEXT_PUBLIC_BASE_URL}/sort/${createdStudy?.id}`} target="_blank" rel="noopener noreferrer">
-              {`${process.env.NEXT_PUBLIC_BASE_URL}/sort/${createdStudy?.id}`}
-            </a>
-            <button className="copy" type="button" onClick={onCopy}>
-              <span className="material-symbols-outlined">content_copy</span>
-            </button>
-          </div>
-          <p>{t("share url")}</p>
-        </div>
+      <h1>{createdStudy?.title}</h1>
+
+      <div className="success-ribbon">
+        <span className="material-symbols-outlined">check_circle</span>
+        <p>{t("study created")}</p>
+      </div>
+
+      <InputWithCopy inputText={`${process.env.NEXT_PUBLIC_BASE_URL}/sort/${createdStudy?.id}`} title={t("share url")} />
+
+      <div className="button-container">
+        <Button variant="contained" onClick={onButtonClick} size="large">{t("go to study")}</Button>
       </div>
     </div>
   );

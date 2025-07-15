@@ -1,27 +1,51 @@
+@use "utils/var" as var;
+
 .studyItem {
   align-items: center;
   border: solid 2px white;
-  box-shadow: var(--shadow);
+  box-shadow: var.$shadow-md;
+  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 14rem;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
   justify-content: flex-start;
+  overflow: hidden;
+  padding: var.$padding-card;
+  position: relative;
+  width: 100%;
 
   &:hover {
-    border: solid 2px var(--color-primary);
+    border: solid 2px var.$color-primary;
   }
 
-  > * {
-    align-items: center;
+  .header {
+    align-items:  center;
     display: flex;
-    flex-direction: row;
+    gap: var.$gap-grid;
+
+    h3 {
+      margin: 0;
+    }
+
+    .activeSquare {
+      border-radius: 4px;
+      display: inline-block;
+      height: 1.4rem;
+      width: 1.4rem;
+      margin-left: 1.5rem;
+
+      &.isLive {
+        background: var.$color-success;
+      }
+
+      &.notLive {
+        background: var.$color-error;
+      }
+    }
   }
 
   .participants {
+    display: flex;
     .completed {
       font-weight: bold;
       margin-right: 1rem;
@@ -30,29 +54,13 @@
 
   .dates {
     align-self: flex-start;
+    display: flex;
     font-weight: 300;
-    margin: auto 0 3rem 1rem;
 
     .launched {
       border-right: solid 1px black;
       padding-right: 0.5rem;
       margin-right: 0.5rem;
     }
-  }
-}
-
-.activeSquare {
-  border-radius: 0.5rem;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  margin-left: 1.5rem;
-
-  &.isLive {
-    background: radial-gradient(circle at 20%, var(--color-light-green), var(--color-green));
-  }
-
-  &.notLive {
-    background: radial-gradient(circle at 20%, var(--color-light-red), var(--color-red));
   }
 }

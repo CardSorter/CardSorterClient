@@ -47,11 +47,11 @@ export default function Page() {
   }
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-      setEditTitle(event.target.value);
+    setEditTitle(event.target.value);
   };
 
   const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-      setEditDescription(event.target.value);
+    setEditDescription(event.target.value);
   };
 
   const handleIsLiveChange = (event: MouseEvent<HTMLElement>, value: any) => {
@@ -61,23 +61,20 @@ export default function Page() {
   };
 
   const handleEditSubmit = () => {
-      if (!id) {
-          return;
-      }
-
-      dispatch(studyAction.updateStudy(id, { title: editTitle, isLive: editIsLive, description: editDescription }));
-      dispatch(studyAction.toggleEditPopup({toggle: false}));
+    if (!id) {
+      return;
+    }
+    dispatch(studyAction.updateStudy(id, {title: editTitle, isLive: editIsLive, description: editDescription}));
   };
 
   const handleConfirmDelete = () => {
-      if (!id) {
-          return;
-      }
+    if (!id) {
+      return;
+    }
 
-      dispatch(studyAction.deleteStudy(id));
-      dispatch(studyAction.toggleEditPopup({toggle: false}));
+    dispatch(studyAction.deleteStudy(id));
 
-      router.push("/");
+    router.push("/");
   };
 
   const onDeleteDialogClose = () => {
@@ -88,13 +85,15 @@ export default function Page() {
     <div className={styles.editStudyContainer}>
       <div>
         <h1>{t("edit study")}: {title}</h1>
-        <Button variant="text" startIcon={<span className="material-symbols-outlined">arrow_back</span>} onClick={goBack}>Back</Button>
+        <Button variant="text" startIcon={<span className="material-symbols-outlined">arrow_back</span>}
+                onClick={goBack}>Back</Button>
       </div>
 
       <div className={styles.form}>
-        <TextField label="Study title" variant="outlined" value={editTitle} onChange={handleTitleChange} />
+        <TextField label="Study title" variant="outlined" value={editTitle} onChange={handleTitleChange}/>
 
-        <TextField label="Description" variant="outlined" value={editDescription} onChange={handleDescriptionChange} multiline />
+        <TextField label="Description" variant="outlined" value={editDescription} onChange={handleDescriptionChange}
+                   multiline/>
 
         <div>
           <p>Accepting Replies</p>
@@ -110,13 +109,13 @@ export default function Page() {
       </div>
 
 
-
       <div className={styles.actions}>
         <Button variant="contained" onClick={handleEditSubmit}>Save changes</Button>
         <Button variant="outlined" onClick={() => setDeleteDialogOpen(true)} color="error">Delete study</Button>
       </div>
 
-      <Dialog open={deleteDialogOpen} onClose={onDeleteDialogClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+      <Dialog open={deleteDialogOpen} onClose={onDeleteDialogClose} aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description">
         <DialogTitle id="alert-dialog-title">
           {t("confirm delete")} {title}?
         </DialogTitle>
@@ -130,6 +129,6 @@ export default function Page() {
           <Button onClick={handleConfirmDelete} variant="outlined" color="error">{t("button delete")}</Button>
         </DialogActions>
       </Dialog>
-  </div>
+    </div>
   );
 }

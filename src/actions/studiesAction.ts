@@ -8,7 +8,7 @@ import {StudyFilters} from "../reducers/studiesReducer";
 
 export const loadStudies = createAction<{ status: string, studies: any }>("studies/loadStudies");
 export const addStudy = createAction<{ study: any }>("studies/addStudy");
-export const setStudyFilter = createAction<{ filter: StudyFilters | undefined }>("studies/setStudyFilter");
+export const setStudyFilter = createAction<{ filter: StudyFilters }>("studies/setStudyFilter");
 export const setSearchTerm = createAction<string>("studies/setSearchTerm");
 export const setSortOption = createAction<string>("studies/setSortOption");
 

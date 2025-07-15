@@ -1,43 +1,46 @@
 import React from 'react';
 import copyToClipboard from "utils/copyToClipboard";
 import styles from "./Popup.module.scss";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import InputWithCopy from "../InputWithCopy/InputWithCopy";
 
 interface PopupProps {
-  title: string | undefined;
-  iconClass?: string;
+  title?: string;
   url?: string;
-  close: () => void;
+  onClose: () => void;
+  open: boolean,
 }
 
-const Popup: React.FC<PopupProps> = ({title, iconClass, url, close}) => {
+const Popup: React.FC<PopupProps> = ({title, url, onClose, open}) => {
 
   function onCopy() {
     copyToClipboard(url || "");
   }
 
   return (
-    <div className={styles.container} onClick={close}>
-      <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.header}>
-          {iconClass && <span className="material-symbols-outlined">{iconClass}</span>}
-          <h2>{title}</h2>
-          <button className={styles.closeBtn} onClick={close}>&#10005;</button>
-        </div>
-        <div className={styles.content}>
-          {url &&
-            <div className="share-container">
-              <div className="url-container">
-                <a className="url" href={url} target="_blank" >{url}</a>
-                <button className="copy" type="button" onClick={onCopy}>
-                    <span className="material-symbols-outlined">content_copy</span>
-                </button>
-              </div>
-            </div>
-          }
-        </div>
-      </div>
-    </div>
-  );
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-description"
+    >
+      <DialogTitle id="dialog-title">
+        {title}
+      </DialogTitle>
+
+      <DialogContent>
+        {
+          url &&
+            <InputWithCopy inputText={url}/>
+        }
+      </DialogContent>
+    </Dialog>
+  )
 };
 
 export default Popup;

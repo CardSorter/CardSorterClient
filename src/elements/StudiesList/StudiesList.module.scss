@@ -1,23 +1,18 @@
+@use "utils/var" as var;
+
+.studiesListContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var.$gap-grid;
+  padding: 0 var.$padding-page;
+  padding-top: var.$spacing-md;
+}
+
 ul.studiesList {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 0 10%;
-
-  & > * {
-    margin-bottom: 2.5rem;
-  }
-}
-
-.createStudyCard {
-  background-color: white;
-  border: solid 2px black;
-  box-shadow: 0 2px 6px rgb(0, 0, 0, .16);
-  color: var(--color-black);
-  cursor: pointer;
-  height: 14rem; width: 14rem;
-
-  &:hover {
-    border: solid 2px black;
-  }
+  gap: var.$gap-grid;
+  padding: 0;
 }

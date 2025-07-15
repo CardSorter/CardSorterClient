@@ -26,7 +26,6 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
       <div>
         <li className={styles.studyItem} onClick={() => router.push('/study/' + id)} >
           <div className={styles.header}>
-            <h3>{title}{" "}</h3>
             {
                 isLive &&
                 <span className={`${styles.activeSquare} ${styles.isLive}`}></span>
@@ -36,11 +35,14 @@ export default function StudyItem({ id, title, isLive, completedNo, abandonedNo,
                 <span className={`${styles.activeSquare} ${styles.notLive}`}></span>
 
             }
+            <h3>{title}{" "}</h3>
           </div>
+
           <div className={styles.participants}>
             <p className={styles.completed}>{completedNo} {t("completed")}</p>
             <p>{abandonedNo} {t("abandoned")}</p>
           </div>
+
           <div className={styles.dates}>
             <p className={styles.launched}>
               {t("launched on")}&nbsp;<time

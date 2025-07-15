@@ -43,8 +43,6 @@ export interface StudyPageState {
   clusters?: Record<string, unknown>;
   clustersFetching?: boolean;
   selectedCards?: boolean[];
-  popupShowing?: boolean;
-  editPopupOpen?: boolean;
   editPopupTitle: any,
   editPopupDescription: any,
   editPopupIsLive: any,
@@ -67,8 +65,6 @@ const initialState: StudyPageState = {
   clusters: undefined,
   clustersFetching: undefined,
   selectedCards: undefined,
-  popupShowing: undefined,
-  editPopupOpen: undefined,
   editPopupTitle: undefined,
   editPopupDescription: undefined,
   editPopupIsLive: undefined,
@@ -124,13 +120,6 @@ const studyPageReducer = createReducer(initialState, (builder) => {
       state.selectedCards = state.similarityMatrix.map((_, i) =>
         i === action.payload?.index1 || i === action.payload?.index2
       );
-    })
-    .addCase(studyActions.togglePopup, (state, action) => {
-      state.popupShowing = action.payload?.toggle;
-    })
-    
-    .addCase(studyActions.toggleEditPopup, (state, action) => {
-      state.editPopupOpen = action.payload?.toggle;
     })
     .addCase(studyActions.downloadXLSX, (state) => {
       const wb = XLSX.utils.book_new();

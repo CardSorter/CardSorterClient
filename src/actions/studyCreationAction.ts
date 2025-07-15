@@ -17,17 +17,10 @@ export const changeCardDescription = createAction<{
 }>('studyCreation/changeCardDescription');
 export const changeThanksMessage = createAction<{ message: string }>('studyCreation/changeThanksMessage');
 export const changeExternalSurveyLink = createAction<{ link: string }>('studyCreation/changeExternalSurveyLink');
-export const toggleTitleError = createAction<{ status: boolean }>('studyCreation/toggleTitleError');
-export const toggleDescriptionError = createAction<{ status: boolean }>('studyCreation/toggleDescriptionError');
-export const toggleCardError = createAction<{ status: boolean }>('studyCreation/toggleCardError');
-export const toggleCardDuplicate = createAction<{ status: boolean }>('studyCreation/toggleCardDuplicate');
-export const toggleThanksError = createAction<{ status: boolean }>('studyCreation/toggleThanksError');
 export const changeSortType = createAction<{ sortType: string }>('studyCreation/changeSortType');
 export const addXCategories = createAction<{ no: number }>('studyCreation/addXCategories');
 export const changeCategoryName = createAction<{ id: number; name: string }>('studyCreation/changeCategoryName');
 export const deleteCategory = createAction<{ id: number }>('studyCreation/deleteCategory');
-export const toggleCategoryError = createAction<{ status: boolean; type?: "empty" | "duplicate" | null }>('studyCreation/toggleCategoryError');
-
 
 export const createFromExistingStudy = createAction<{
   title: string;

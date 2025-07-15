@@ -1,0 +1,16 @@
+@use "utils/var" as var;
+
+.shareContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var.$spacing-xxs;
+
+  .input {
+    width: 100%;
+  }
+
+  p {
+    margin: 0;
+  }
+}

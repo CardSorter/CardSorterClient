@@ -3,7 +3,8 @@ import * as applicationAlertsActions from "actions/applicationAlertsAction";
 
 export enum ApplicationAlertContext {
   application,
-  studyPage
+  studyPage,
+  settingsPage,
 }
 export interface ApplicationAlert {
   id: string | undefined;

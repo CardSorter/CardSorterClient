@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import * as studyCreationAction from "actions/studyCreationAction";
 import type {Category} from "reducers/studyCreationReducer";
 import {useTranslations} from "next-intl";
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 
 interface CategoryProps {
   name: string;
@@ -19,7 +21,7 @@ const CategoryInput: React.FC<CategoryProps> = ({name, onNameChange, onDelete}) 
   const t = useTranslations("CreateStudyPage");
 
   return (
-    <div className="category-row" >
+    <div className="category-row">
       <input
         type="text"
         placeholder={t("category name")}
@@ -37,13 +39,14 @@ export default function Page() {
   const t = useTranslations("CreateStudyPage");
 
   const addRef = useRef<HTMLInputElement>(null);
-  
+  const [categoryError, setCategoryError] = useState<boolean>(false);
+  const [duplicateCategoryName, setDuplicateCategoryName] = useState<string | undefined>(undefined);
+
   const router = useRouter();
 
   // State
   const title = useSelector((state: StateSchema) => state.studyCreation.title);
   const categories = useSelector((state: StateSchema) => state.studyCreation.categories || {});
-  const errorCategories = useSelector((state: StateSchema) => state.studyCreation.errorCategories);
   const sortType = useSelector((state: StateSchema) => state.studyCreation.sortType);
   const totalSteps = (sortType === "open") ? 3 : 4;
   const categoryCount = Object.keys(categories).length;
@@ -53,57 +56,53 @@ export default function Page() {
 
   const onCreateXCategories = () => {
     if (addRef.current) {
-        const count = parseInt(addRef.current.value || "0", 10);
-        if (count >= 1) {
-          dispatch(studyCreationAction.addXCategories({ no: count }));
-        }
+      const count = parseInt(addRef.current.value || "0", 10);
+      if (count >= 1) {
+        dispatch(studyCreationAction.addXCategories({no: count}));
       }
+    }
   };
 
   const onCategoryNameChange = (id: number, event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(studyCreationAction.toggleCategoryError({status: false}));
+    setCategoryError(false);
+    setDuplicateCategoryName(undefined);
+
     const name = event.target.value;
     dispatch(studyCreationAction.changeCategoryName({id, name}));
   };
 
   const onDeleteCategory = (id: number) => {
+    setCategoryError(false);
+    setDuplicateCategoryName(undefined);
     dispatch(studyCreationAction.deleteCategory({id}));
   };
 
   const onNext = () => {
-    let hasEmpty = false;
-  const seen = new Set<string>();
-  let hasDuplicate = false;
+    const seen = new Set<string>();
+    let error = false;
 
-  Object.values(categories).forEach((cat) => {
-    const name = cat.name?.trim();
-    const normalized = name?.toLowerCase();
+    Object.values(categories).forEach((cat) => {
+      const name = cat.name?.trim();
+      const normalized = name?.toLowerCase();
 
-    if (!name) {
-      hasEmpty = true;
-    } else if (seen.has(normalized)) {
-      hasDuplicate = true;
-    } else {
-      seen.add(normalized);
+      if (!name) {
+        setCategoryError(true);
+        error = true;
+        return;
+      } else if (seen.has(normalized)) {
+        setDuplicateCategoryName(name);
+        error = true;
+        return;
+      } else {
+        seen.add(normalized);
+      }
+    });
+
+    if (!error) {
+      router.push("/create/final");
     }
-  });
+  };
 
-  if (hasEmpty) {
-    dispatch(studyCreationAction.toggleCategoryError({ status: true, type: "empty" }));
-    setTimeout(() => dispatch(studyCreationAction.toggleCategoryError({ status: false, type: null })), 5000);
-    return;
-  }
-
-  if (hasDuplicate) {
-    dispatch(studyCreationAction.toggleCategoryError({ status: true, type: "duplicate" }));
-    setTimeout(() => dispatch(studyCreationAction.toggleCategoryError({ status: false, type: null })), 5000);
-    return;
-  }
-
-  router.push("/create/final");
-};
-    
-  
 
   const onPrev = () => {
     router.push("/create/add-cards");
@@ -116,33 +115,35 @@ export default function Page() {
   }, [router, title]);
 
   return (
-    <div className="study-creation-card">
+    <div className="study-creation-page">
       <h1>{t("title")}</h1>
       <h2>{t("total categories")} {categoryCount}</h2>
 
       <form className="cards">
-        <div className="error-holder">
-          <div className="category-container">
-            {Object.values(categories).map((cat) => (
-             
-              <CategoryInput
-                key={"cat" + cat.id}
-                name={cat.name || ""}
-                onNameChange={(e) => onCategoryNameChange(cat.id, e)}
-                onDelete={() => {
-                  onDeleteCategory(cat.id);
-                }}
-              />
-             
-            ))}
-          </div>
-          {errorCategories?.status && (
-           <div className="error-message-cards">
-            {errorCategories.type === "empty" && <p>{t("error empty category name")}</p>}
-            {errorCategories.type === "duplicate" && <p>{t("error duplicate category names")}</p>}
-           </div>
-          )}
+        <div className="category-container">
+          {Object.values(categories).map((cat) => (
 
+            <CategoryInput
+              key={"cat" + cat.id}
+              name={cat.name || ""}
+              onNameChange={(e) => onCategoryNameChange(cat.id, e)}
+              onDelete={() => {
+                onDeleteCategory(cat.id);
+              }}
+            />
+
+          ))}
+        </div>
+
+        <div className="error-holder">
+          {categoryError &&
+            <Alert severity="error">{t("error empty category name")}</Alert>
+          }
+
+          {
+            duplicateCategoryName &&
+              <Alert severity="error">{t("error duplicate category names")} {duplicateCategoryName}</Alert>
+          }
         </div>
 
         <div className="add-buttons-container">
@@ -150,27 +151,21 @@ export default function Page() {
             <p>{t("add")}</p>
             <input defaultValue="1" ref={addRef}></input>
             <p>{t("categories")}</p>
-            <button
-              className="btn-secondary"
-              type="button"
-              onClick={onCreateXCategories}
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: "32px" }}>add</span>
-                
-              
-            </button>
+            <Button variant="contained" onClick={onCreateXCategories}>
+              <span className="material-symbols-outlined">add</span>
+            </Button>
           </div>
         </div>
       </form>
 
       <div className="bottom-container">
         <div className="btn-container">
-          <button className="prev" onClick={onPrev}>
+          <Button aria-label="Previous step" variant="outlined" onClick={onPrev}>
             <span className="material-symbols-outlined">arrow_back</span>
-          </button>
-          <button className="next" onClick={onNext}>
+          </Button>
+          <Button aria-label="Next step" variant="contained" onClick={onNext}>
             <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
+          </Button>
         </div>
         <div className="page-no-container">
           <p>3</p>

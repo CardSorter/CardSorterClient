@@ -49,17 +49,12 @@ b {
   font-weight: bold;
 }
 
-h1::first-letter {
-  text-transform: capitalize;
+button {
+  cursor: pointer;
 }
 
-button {
-  border: 0;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  height: 3rem; width: 10rem;
-  position: relative;
+h1::first-letter {
+  text-transform: capitalize;
 }
 
 .btn-primary, .btn-secondary {
@@ -131,36 +126,6 @@ button {
 
 .btn-secondary:hover::before {
   left: 0;
-}
-
-.url-container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-left: 5rem;
-
-  input {
-    margin: 0;
-    margin-right: 1rem;
-  }
-
-  a {
-    border: none;
-    height: auto; width: 30rem;
-    margin-right: 2rem;
-    outline: none;
-    overflow: auto;
-    resize: none;
-    text-align: center;
-  }
-
-  button.copy {
-    background: 0;
-    border: 0;
-    color: var(--color-black);
-    cursor: pointer;
-    height: 3rem; width: 3rem;
-  }
 }
 
 .back-button,

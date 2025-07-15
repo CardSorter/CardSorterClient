@@ -2,7 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import * as studyActions from '../actions/studiesAction';
 import * as ActionStatus from 'actions/ActionStatus';
 
-export type StudyFilters = "active" | "inactive";
+export type StudyFilters = "all" | "active" | "inactive";
 
 export interface Study {
   id: string;
@@ -20,7 +20,7 @@ export interface StudyState {
   studies?: Study[];
   isFetching?: boolean;
   didInvalidate: any,
-  filteredBy: StudyFilters | undefined;
+  filteredBy: StudyFilters;
   searchTerm: string;
   sortOption: string;
 
@@ -30,7 +30,7 @@ const initialState: StudyState = {
   studies: [],
   isFetching: false,
   didInvalidate: false,
-  filteredBy: undefined,
+  filteredBy: "all",
   searchTerm: "",
   sortOption: "editDateDesc",
 

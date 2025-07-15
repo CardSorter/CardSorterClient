@@ -8,7 +8,7 @@ import {Study} from "reducers/studiesReducer";
 import {useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
 import styles from "./StudiesList.module.scss";
-
+import Button from '@mui/material/Button';
 
 
 
@@ -61,20 +61,22 @@ export default function StudiesList() {
   }, [studies,isFetching, filteredBy, searchTerm, sortOption]);
 
   return (
-    <ul className={styles.studiesList}>
+    <div className={styles.studiesListContainer}>
+      <Button variant="outlined" startIcon={<span className="material-symbols-outlined">add</span>} onClick={() => router.push("/create")}>
+        {t("create study")}
+      </Button>
 
-      {
-        filteredStudies?.map((study, index) =>
-          <StudyItem id={study.id} key={'studyItem' + index} title={study.title} isLive={study.isLive}
-            completedNo={study.completedNo} abandonedNo={study.abandonedNo}
-            launchedDate={study.launchedDate} editDate={study.editDate}
-            endDate={study.endDate} />)
-      }
+      <ul className={styles.studiesList}>
 
-      <button className={styles.createStudyCard} onClick={() => router.push("/create")}>
-          <span className="material-symbols-outlined">add</span>
-          <p>{t("create study")}</p>
-      </button>
-    </ul>
+        {
+          filteredStudies?.map((study, index) =>
+            <StudyItem id={study.id} key={'studyItem' + index} title={study.title} isLive={study.isLive}
+              completedNo={study.completedNo} abandonedNo={study.abandonedNo}
+              launchedDate={study.launchedDate} editDate={study.editDate}
+              endDate={study.endDate} />)
+        }
+      </ul>
+    </div>
+
   );
 }

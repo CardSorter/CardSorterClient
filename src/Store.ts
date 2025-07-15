@@ -79,7 +79,8 @@ export default function initializeStore(): Store<StateSchema> {
        studyCreation: (() => {
         const persisted = persistedStudyCreation();
         return {
-         ...persisted,
+          ...studyCreationInitialState,
+          ...persisted,
         };
        })(),
     },

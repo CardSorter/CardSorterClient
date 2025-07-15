@@ -1,62 +1,23 @@
-.study-creation-card {
+@use "utils/var" as var;
+
+.study-creation-page {
   align-items: center;
   background-color: white;
   display: flex;
   flex-direction: column;
   height: auto;
-  margin: 1rem 10% 1rem 10%;
-  padding-bottom: 10rem;
+  margin: var.$spacing-md var.$padding-page;
   position: relative;
-
-  h1 {
-    padding: 1rem;
-    font-weight: bold;
-  }
 
   h2 {
     font-weight: 300;
-    margin-top: .2rem;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 3rem;
-    width: 40%;
-
-    .error-holder {
-      position: relative;
-      width: 100%;
-      z-index: 1;
-
-      .error-message {
-        align-items: center;
-        background: var(--color-error);
-        border-radius: 0 0 .5rem .5rem;
-        color: white;
-        display: flex;
-        height: 3rem;
-        width: 100%;
-        justify-content: center;
-        position: absolute;
-        text-align: center;
-        z-index: -1;
-      }
-
-      .info-message {
-        align-items: center;
-        background: #90C3D4;
-        border-radius: 0 0 .5rem .5rem;
-        color: #083E59;
-        display: flex;
-        height: 3rem;
-        width: 100%;
-        justify-content: center;
-        position: absolute;
-        text-align: center;
-        z-index: -1;
-      }
-    }
+    margin-top: var.$spacing-md;
+    width: 100%;
 
     input {
       background-color: white;
@@ -81,23 +42,21 @@
       align-items: stretch;
       display: flex;
       flex-direction: column;
-      width: 80%;
       position: relative;
+      width: 100%;
 
       .add-buttons-container {
         display: flex;
-        margin-top: 1.5rem;
+        margin-top: var.$spacing-lg;
         justify-content: center;
 
         .multi-add-container {
           align-items: center;
-          background-color: #90C3D4;
-          border-radius: .2rem;
+          background-color: var.$color-accent-1;
+          border-radius: 8px;
           display: flex;
-          flex-direction: row;
           font-weight: bold;
-          margin-right: 7rem;
-          padding-left: 1rem;
+          padding-left: var.$spacing-md;
 
           p:first-child::first-letter {
             text-transform: capitalize;
@@ -109,20 +68,8 @@
           }
 
           button {
-            height: 4rem;
-            width: 4rem;
-            margin-left: 1rem;
-
-            > svg {
-              fill: white;
-              height: 100%;
-              width: 100%;
-
-              &:hover {
-                fill: black;
-                transition: .3s;
-              }
-            }
+            height: 2rem; width: 2rem;
+            margin-left: var.$spacing-md;
           }
         }
       }
@@ -144,24 +91,14 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin-top: 0.3rem;
+    margin-top: var.$spacing-3xl;
     margin-bottom: 1rem;
     width: 100%;
 
     .btn-container {
       align-items: center;
       display: flex;
-      margin-bottom: .5rem;
-
-      button {
-        background-color: #90C3D4;
-        border: 0;
-        border-radius: 50%;
-        cursor: pointer;
-        height: 4rem;
-        width: 4rem;
-        position: relative;
-      }
+      gap: var.$gap-grid;
     }
 
     .page-no-container {
@@ -169,47 +106,42 @@
       display: flex;
       font-weight: 300;
       justify-content: space-between;
-      width: 4rem;
+      margin-top: var.$spacing-md;
+
+      p {
+        margin-left: var.$spacing-xs;
+      }
     }
   }
 
-  button.prev {
-    background-color: #90C3D4;
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    height: 3rem;
-    width: 3rem;
-    margin-right: 1rem;
-    position: relative;
-  }
-
   .sort-type-section {
-    margin-top: 2rem;
+    margin-top: var.$spacing-xl;
     width: 100%;
 
     .sort-type-label {
       font-weight: bold;
       display: block;
-      margin-bottom: 1.5rem;
+      margin-bottom: var.$spacing-md;
     }
 
     .sort-type-options {
+
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: var.$gap-grid;
 
       .sort-type-option {
+        align-items: center;
+        column-gap: var.$gap-grid;
         display: grid;
         grid-template-columns: auto 1fr;
-        align-items: center;
-        column-gap: 1rem;
         line-height: 1.5;
 
         input[type="radio"] {
-          margin-top: 0.3rem;
+          accent-color: var.$color-primary;
+          height: auto;
+          margin-top: var.$spacing-xs;
           transform: scale(1.3);
-          accent-color: #90C3D4;
         }
 
         span {
@@ -220,22 +152,15 @@
   }
 
   .error-holder {
+    align-items: center;
+    display: flex;
     height: 100%;
+    justify-content: center;
+  }
 
-    .error-message-cards {
-      align-items: center;
-      background: var(--color-error);
-      border-radius: 0 0 .5rem .5rem;
-      color: white;
-      display: flex;
-      height: 3rem;
-      width: 100%;
-      justify-content: center;
-      position: absolute;
-      text-align: center;
-      z-index: -1;
-      margin-top: -2rem;
-    }
+  .input-with-error {
+    display: flex;
+    flex-direction: column;
   }
 
   .card-container {
@@ -261,23 +186,26 @@
 
       button {
         background-color: transparent;
+        border: 0;
         height: 2rem;
         width: 4rem;
         min-height: 0;
 
         .material-symbols-outlined {
-          font-weight: bold;
-          color: #90C3D4;
+          color: var.$color-text-primary;
         }
       }
     }
+  }
+
+  .category-container {
+    width: 100%;
   }
 
   .category-row {
     display: flex;
     align-items: center;
     margin: 0 auto 1rem auto;
-    max-width: 500px;
     width: 100%;
     gap: 0.25rem;
 
@@ -300,99 +228,39 @@
       margin: 0;
 
       .material-symbols-outlined {
-        color: #90C3D4;
-        font-weight: bold;
+        color: var.$color-text-primary;
       }
     }
-  }
-
-  button.create {
-    border-radius: 2rem;
-    color: white;
-    font-weight: bold;
-    width: 8rem;
   }
 }
 
 .success-page {
   align-items: center;
-  height: calc(100% - var(--height-header));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: var.$spacing-4xl;
 
   h1 {
-    margin-bottom: 3rem;
-    font-weight: bold;
+    margin-bottom: var.$spacing-4xl;
   }
 
-  img {
-    height: 50vh;
-    width: auto;
-  }
-
-  .actions-container {
+  .success-ribbon {
     align-items: center;
+    background-color: var.$color-success-light;
+    border-radius: 8px;
+    color: var.$color-success-dark;
     display: flex;
-    margin-top: 3rem;
-
-    .button-container {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-
-      button {
-        background-color: var(--color-primary-dark);
-        border: 1px solid #000;
-      }
-    }
-
-    .share-container {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-
-      p {
-        margin-top: 1rem;
-      }
-
-      > button {
-        border-radius: 1.2rem;
-        height: 4rem;
-        margin-right: 2rem;
-      }
-    }
-  }
-
-  .url-container {
-    align-items: center;
-    display: flex;
+    flex-direction: column;
+    height: 8rem; width: 8rem;
+    padding: var.$spacing-md;
     justify-content: center;
-    margin-left: 5rem;
 
-    input {
+    span {
+      font-size: 2rem;
+    }
+
+    p {
       margin: 0;
-      margin-right: 1rem;
-    }
-
-    a {
-      border: none;
-      height: auto;
-      width: 30rem;
-      margin-right: 2rem;
-      outline: none;
-      overflow: auto;
-      resize: none;
-      text-align: center;
-    }
-
-    button.copy {
-      background: 0;
-      border: 0;
-      color: var(--color-black);
-      cursor: pointer;
-      height: 3rem;
-      width: 3rem;
     }
   }
 }

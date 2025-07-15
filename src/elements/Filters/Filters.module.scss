@@ -1,10 +1,12 @@
+@use "utils/var" as var;
+
 .filterContainer {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: var.$spacing-md var.$padding-page;
   margin: 0 auto;
   box-sizing: border-box;
 

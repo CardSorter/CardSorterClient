@@ -1,18 +1,18 @@
+@use "utils/var" as var;
+
 .header {
+  align-items: center;
   background-color: white;
+  box-sizing:  border-box;
   display: flex;
   flex-direction: row;
+  padding: 0 var.$padding-page;
   width: 100%;
-  height: max-content;
-  min-height: var(--height-header);
-  justify-content: center;
+
   .logoContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 3rem;
-    margin-left: 3rem;
     text-decoration: none;
 
     .logo {
@@ -27,16 +27,14 @@
 
   .profile {
     align-content: center;
-    border: solid 5px var(--color-washed-primary);
-    border-radius: 2rem;
+    border: solid 2px var.$color-border;
+    border-radius: 8px;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 2rem;
-    margin-right: 3rem;
-    padding: 0.4rem;
+    margin-left: auto;
+    padding: var.$spacing-xxs ;
     position: relative;
-    width: minmax(12rem, auto);
 
     &.unfold {
       height: max-content;
@@ -45,22 +43,16 @@
     .profileHeader {
       align-items: center;
       display: flex;
-      justify-content: space-evenly;
+      gap: var.$spacing-xs;
+      padding: 0 var.$spacing-sm;
       position: relative;
 
-      &::after {
-        border-left: 1rem solid transparent;
-        border-right: 1rem solid transparent;
-        border-top: 1rem solid rgba(0, 0, 0, 0.8);
-        content: '';
-        cursor: pointer;
-        height: 0;
-        width: 0;
-        order: -1;
+      .arrow {
+        font-size: 2rem;
       }
     }
 
-    &.unfold .header::after {
+    &.unfold .arrow {
       transform: rotate(180deg);
     }
 
@@ -68,24 +60,18 @@
       align-items: center;
       display: flex;
       flex-direction: column;
-      margin-top: 0.6rem;
+      margin-top: var.$spacing-xs;
 
       > button {
         background: 0;
-        color: var(--color-black);
-        font-weight: 300;
-        margin-top: 0.4rem;
+        border: 0;
+        color: var.$color-background-dark;
+        cursor: pointer;
+        font-weight: 500;
+        height: auto; width: auto;
+        margin-top: var.$spacing-sm;
+        padding: var.$spacing-sm;
       }
-    }
-
-    p {
-      padding: 0.6rem;
-    }
-
-    img {
-      border-radius: 50%;
-      height: 4rem;
-      width: auto;
     }
   }
 }

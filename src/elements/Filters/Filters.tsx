@@ -4,6 +4,8 @@ import React, {useEffect, useState} from 'react';
 import {useTranslations} from "next-intl";
 import {useDispatch, useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import * as studiesActions from "actions/studiesAction";
 import styles from './Filters.module.scss';
 
@@ -22,43 +24,29 @@ export default function Filters(){
     setSearchTerm("");
   }, []);
 
-  function onAllClick() {
-    dispatch(studiesActions.setStudyFilter({filter: undefined}));
-  }
-
-  function onOngoingClick() {
-    if (filteredBy !== "active") {
-      dispatch(studiesActions.setStudyFilter({filter: "active"}));
-    } else {
-      dispatch(studiesActions.setStudyFilter({filter: undefined}));
-    }
-  }
-
-  function onInactiveClick() {
-    if (filteredBy !== "inactive") {
-      dispatch(studiesActions.setStudyFilter({filter: "inactive"}));
-    } else {
-      dispatch(studiesActions.setStudyFilter({filter: undefined}));
-    }
-  }
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>){
     setSearchTerm(e.target.value);
     dispatch(studiesActions.setSearchTerm(e.target.value));
   }
+
   function handleSortChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value;
     setSortOption(value);
     dispatch(studiesActions.setSortOption(value));
   }
 
+  const handleFilterChange = (event: React.SyntheticEvent, newValue: "all" | "active" | "inactive") => {
+    dispatch(studiesActions.setStudyFilter({filter: newValue}));
+  };
+
 
   return (
     <div className={styles.filterContainer}>
-     <div className={styles.filterButtons}>
-      <button className={!filteredBy? styles.active : ""} onClick={onAllClick}>{t("filters all")}</button>
-      <button className={(filteredBy === "active"? styles.active : "")} onClick={onOngoingClick}>{t("filters ongoing")}</button>
-      <button className={(filteredBy === "inactive"? styles.active : "")} onClick={onInactiveClick}>{t("filters completed")}</button>
-    </div>
+      <Tabs value={filteredBy} onChange={handleFilterChange} aria-label="basic tabs example">
+        <Tab label={t("filters all")} value="all" />
+        <Tab label={t("filters ongoing")} value="active" />
+        <Tab label={t("filters completed")} value="inactive" />
+      </Tabs>
 
     <div className={styles.searchContainer}><img src="/card-sorter/images/search-icon.png" alt="Remote Icon" />
      
