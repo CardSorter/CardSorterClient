@@ -3,9 +3,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import StateSchema from "reducers/StateSchema";
-
-
-
+import styles from "./PlacementFrequencyMatrix.module.scss";
 
 export default function PlacementFrequencyMatrix() {
     const cards = useSelector((state: StateSchema) => state.study.cards.data);
@@ -19,7 +17,7 @@ export default function PlacementFrequencyMatrix() {
       );
 
       return (
-        <div className="frequency-placement-matrix">
+        <div className={styles.frequencyPlacementMatrix}>
           <table>
             <thead>
               <tr>

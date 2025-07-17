@@ -32,7 +32,6 @@
       display: inline-block;
       height: 1.4rem;
       width: 1.4rem;
-      margin-left: 1.5rem;
 
       &.isLive {
         background: var.$color-success;
@@ -46,9 +45,14 @@
 
   .participants {
     display: flex;
+
+    p {
+      font-size: .8rem;
+    }
+
     .completed {
       font-weight: bold;
-      margin-right: 1rem;
+      margin-right: var.$spacing-md;
     }
   }
 
@@ -59,8 +63,8 @@
 
     .launched {
       border-right: solid 1px black;
-      padding-right: 0.5rem;
-      margin-right: 0.5rem;
+      padding-right: var.$spacing-md;
+      margin-right: var.$spacing-md;
     }
   }
 }

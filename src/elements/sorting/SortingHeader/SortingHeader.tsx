@@ -1,10 +1,12 @@
 import React from 'react';
-import StateSchema from "../../reducers/StateSchema";
+import StateSchema from "../../../reducers/StateSchema";
 import {useDispatch, useSelector} from "react-redux";
 import * as uiAction from "actions/sorting/uiAction";
 import {useTranslations} from "next-intl";
+import Button from '@mui/material/Button';
+import styles from "./SortingHeader.module.scss";
 
-const Header = () => {
+const SortingHeader = () => {
   const t = useTranslations("SortingHeader");
   
 
@@ -73,26 +75,20 @@ const Header = () => {
 
 
   return (
-    <header className="sorting-header">
-      <div className="left-buttons">
-        <button className="btn--left" onClick={onInstructionsClick}>
-          <p>{t("instructions")}</p>
-        </button>
+    <header className={styles.sortingHeader}>
+      <div className={styles.btnContainer}>
+        <Button variant="text" onClick={onInstructionsClick}>{t("instructions")}</Button>
+        <Button variant="text" onClick={onDescriptionClick}>{t("show description")}</Button>
         {/*<button className="undo"></button>*/}
         {/*<button className="help"></button>*/}
       </div>
-      <h1 id="logo">Card Sorter</h1>
-      <button className="btn--third" onClick={onDescriptionClick}>
-        <p>{t("show description")}</p>
-      </button>
-      <button className="btn--secondary" onClick={onCommentClick}>
-        <p>{t("add comment")}</p>
-      </button>
-      <button className="btn--main" onClick={onFinishClick} >
-        <p>{t("finish")}</p>
-      </button>
+      <h1 className={styles.logo}>Card Sorter</h1>
+      <div className={styles.btnContainer}>
+        <Button variant="outlined" onClick={onCommentClick}>{t("add comment")}</Button>
+        <Button variant="contained" onClick={onFinishClick}>{t("finish")}</Button>
+      </div>
     </header>
   );
 }
 
-export default Header;
+export default SortingHeader;

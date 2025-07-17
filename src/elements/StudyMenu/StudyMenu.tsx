@@ -5,10 +5,8 @@ import React, {useEffect, useState} from 'react';
 import {usePathname, useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
 import { useSelector } from "react-redux";
-import StateSchema  from "reducers/StateSchema"; 
-
-
-
+import StateSchema  from "reducers/StateSchema";
+import styles from "./StudyMenu.module.scss";
 
 const StudyMenu: React.FC = () => {
   const router = useRouter();
@@ -73,13 +71,13 @@ const StudyMenu: React.FC = () => {
   }
 
   return (
-    <div className="study-menu">
-      <button className={(selectedItem == 0) ? "selected" : ""} onClick={() => onItemClicked(0)}>{t("participant")}</button>
-      <button className={(selectedItem == 1) ? "selected" : ""} onClick={() => onItemClicked(1)}>{t("sorting")}</button>
-      <button className={(selectedItem == 2) ? "selected" : ""} onClick={() => onItemClicked(2)}>{t("cards")}</button>
-      <button className={(selectedItem == 3) ? "selected" : ""} onClick={() => onItemClicked(3)}>{t("categories")}</button>
-      <button className={(selectedItem == 4) ? "selected" : ""} onClick={() => onItemClicked(4)}>{t("similarity matrix")}</button>
-      <button className={(selectedItem == 5) ? "selected" : ""} onClick={() => onItemClicked(5)}>{sortType === "closed" ? t("placement frequency matrix") : t("clusters")}</button>
+    <div className={styles.studyMenu}>
+      <button className={(selectedItem == 0) ? styles.selected : ""} onClick={() => onItemClicked(0)}>{t("participant")}</button>
+      <button className={(selectedItem == 1) ? styles.selected : ""} onClick={() => onItemClicked(1)}>{t("sorting")}</button>
+      <button className={(selectedItem == 2) ? styles.selected : ""} onClick={() => onItemClicked(2)}>{t("cards")}</button>
+      <button className={(selectedItem == 3) ? styles.selected : ""} onClick={() => onItemClicked(3)}>{t("categories")}</button>
+      <button className={(selectedItem == 4) ? styles.selected : ""} onClick={() => onItemClicked(4)}>{t("similarity matrix")}</button>
+      <button className={(selectedItem == 5) ? styles.selected : ""} onClick={() => onItemClicked(5)}>{sortType === "closed" ? t("placement frequency matrix") : t("clusters")}</button>
     </div>);
 };
 

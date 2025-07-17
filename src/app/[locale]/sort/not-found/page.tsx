@@ -7,6 +7,6 @@ export default function NotFound() {
   const t = useTranslations("SortingPage");
 
   return (
-    <MessageScreen message={t("study not found")} image={"/card-sorter/images/not-found.svg"} />
+    <MessageScreen message={t("study not found")} success={false} />
   )
 }

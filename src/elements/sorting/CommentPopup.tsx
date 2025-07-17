@@ -4,14 +4,23 @@ import {useDispatch, useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
 import * as uiActions from "actions/sorting/uiAction";
 import {useTranslations} from "next-intl";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import TextField from '@mui/material/TextField';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+import DialogContentText from "@mui/material/DialogContentText";
 
 const CommentPopup = () => {
   const t = useTranslations("SortingPage");
 
   const [preliminaryComment, setPreliminaryComment] = useState('');
-  const [ showCancelConfirm, setShowCancelConfirm] = useState(false);
+  const [showCancelConfirm, setShowCancelConfirm] = useState(false);
+
   // State
   const userComment = useSelector((state: StateSchema) => state.sortingUi.userComment);
+  const showCommentPopup = useSelector((state: StateSchema) => state.sortingUi.showCommentPopup);
 
   // Dispatch
   const dispatch = useDispatch();
@@ -22,67 +31,76 @@ const CommentPopup = () => {
     dispatch(uiActions.showCommentSaved());
     dispatch(uiActions.setCommentSaved(true));
   }
+
   const onCancel = () => {
     if (preliminaryComment.trim() !== userComment.trim()) {
       setShowCancelConfirm(true);
       return;
     }
+
     dispatch(uiActions.toggleCommentPopup(false));
   }
+
+  const onDiscardChanges = () => {
+    setPreliminaryComment('');
+    setShowCancelConfirm(false);
+    dispatch(uiActions.toggleCommentPopup(false));
+  }
+
   useEffect(() => {
     setPreliminaryComment(userComment);
   }, [userComment]);
 
   return (
-    <div>
-    <div className="popup-container">
-      <div className="popup">
-        <h1>{t("add comment")}</h1>
-        <form>
-          <textarea placeholder={t("write your comment here")} value={preliminaryComment} onChange={(e) => setPreliminaryComment(e.target.value)}>
-          </textarea>
-          <div className="btn-container">
-            <button type="button" className="btn--secondary cancel" onClick={onCancel}>
-               <span>{t("cancel")}</span>
-            
-              
-            </button>
-            <button type="button" className="btn--main submit" onClick={onSubmit}>
-              {t("confirm")}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    {showCancelConfirm && (
-      <div className="popup-container">
-        <div className="popup">
-          <h1>{t("confirm cancellation")}</h1>
-          <p>{t("are you sure you want to discard changes")}</p>
-          <div className="btn-container">
-            <button
-              type="button"
-              className="btn--secondary "
-              onClick={() => setShowCancelConfirm(false)}
-            >
-              <span>{t("no")}</span>
-            </button>
-            <button
-              type="button"
-              className="btn--main"
-              onClick={() => {
-                setShowCancelConfirm(false);
-                dispatch(uiActions.toggleCommentPopup(false));
-              }}
-            >
-              {t("yes")}
-            </button>
-          </div>
-        </div>
-      </div>
-    )}
-  </div>
-);
+    <>
+      {/* Main Comment Dialog */}
+      <Dialog open={showCommentPopup} onClose={onCancel} fullWidth maxWidth="sm">
+        <DialogTitle>{t("add comment")}</DialogTitle>
+        <DialogContent>
+          <TextField
+            multiline
+            fullWidth
+            rows={4}
+            variant="outlined"
+            placeholder={t("write your comment here")}
+            value={preliminaryComment}
+            onChange={(e) => setPreliminaryComment(e.target.value)}
+            sx={{ marginTop: 2 }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onCancel} variant="outlined">
+            {t("cancel")}
+          </Button>
+          <Button onClick={onSubmit} variant="contained">
+            {t("confirm")}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Cancel Confirmation Dialog */}
+      <Dialog
+        open={showCancelConfirm}
+        onClose={() => setShowCancelConfirm(false)}
+        maxWidth="xs"
+      >
+        <DialogTitle>{t("confirm cancellation")}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {t("are you sure you want to discard changes")}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowCancelConfirm(false)} variant="outlined">
+            {t("no")}
+          </Button>
+          <Button onClick={onDiscardChanges} color="primary" variant="contained">
+            {t("yes")}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
 };
 
 

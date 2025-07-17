@@ -1,6 +1,6 @@
 "use client"
 
-import Dendrogram from "elements/visualisations/Dendrogram";
+import Dendrogram from "elements/visualisations/Dendrogram/Dendrogram";
 import React from "react";
 import {useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";

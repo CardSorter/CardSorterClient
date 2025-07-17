@@ -50,7 +50,7 @@ const Dendrogram: React.FC<DendrogramProps> = ({data, fetching}) => {
       .attr('transform', 'translate(40,0)'); // bit of margin on the left = 40
 
     // Create the cluster layout:
-    const clusterWidth = width - 200;
+    const clusterWidth = width - 250;
     const cluster = d3.cluster().size([height, clusterWidth]);
 
     // Give the data to this cluster layout:
@@ -108,7 +108,7 @@ const Dendrogram: React.FC<DendrogramProps> = ({data, fetching}) => {
       .style('transform', 'scaleX(-1)')
       //@ts-ignore
       .text(function (d: NodeData) {
-        return d.data.name;
+        return d.data.name?.toLowerCase();
       });
 
     return () => {
@@ -118,8 +118,8 @@ const Dendrogram: React.FC<DendrogramProps> = ({data, fetching}) => {
 
   return (
     <div className="dendrogram">
-      <div id="aggreement-axis">
-        <p>100% aggreement</p>
+      <div id="agreement-axis">
+        <p>100% agreement</p>
         <p>0%</p>
       </div>
       <div className="" id="data"></div>

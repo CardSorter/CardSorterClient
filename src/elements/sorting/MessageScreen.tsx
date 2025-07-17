@@ -6,40 +6,49 @@ import {useTranslations} from "next-intl";
 interface MessageScreenProps {
   message: string,
   link?: string,
-  image: string,
+  success: boolean,
   subMessage?: string,
 }
 
-const MessageScreen: React.FC<MessageScreenProps> = ({message, link, image, subMessage}) => {
+const MessageScreen: React.FC<MessageScreenProps> = ({message, link, success, subMessage}) => {
   const t = useTranslations("SortingPage");
-  const hasValidLink = link && link.trim() !== "" ;
+  const hasValidLink = link && link.trim() !== "";
 
   if (hasValidLink && !(link!.startsWith('http://') || link!.startsWith('https://'))) {
-  link = `http://${link}`;
-}
-   
+    link = `http://${link}`;
+  }
+
   return (
 
-    <div className="message-screen" >
-      <h1 id="logo">Card Sorter</h1>
-      <Image src={image} alt='Study not found' width={150} height={150} />
+    <div className="message-screen">
+      <h1 className="logo">Card Sorter</h1>
 
-      <h2>{message}</h2>
-      <br></br>
-      {hasValidLink && 
-        <div className="share-container">
-          <p>{t("questionnaire")}</p>
-          <div className="url-container">
-            <a className="url" href={link!} target="_blank">{link}</a>
-
-            <button className="copy" type="button" onClick={() => copyToClipboard(link!)}></button>
+      {
+        success &&
+          <div className="success-ribbon">
+            <span className="material-symbols-outlined">check_circle</span>
+            <p>Study submitted</p>
           </div>
-        </div>
       }
 
-      <br/>
+      {
+        !success &&
+          <Image src="/card-sorter/images/not-found.svg" alt='Study not found' width={300} height={300} />
+      }
+
+      <h2>{message}</h2>
+      {hasValidLink &&
+          <div className="share-container">
+              <p>{t("questionnaire")}</p>
+              <div className="url-container">
+                  <a className="url" href={link!} target="_blank">{link}</a>
+
+                  <button className="copy" type="button" onClick={() => copyToClipboard(link!)}></button>
+              </div>
+          </div>
+      }
       <h3>{subMessage}</h3>
-    </div >
+    </div>
   );
 };
 

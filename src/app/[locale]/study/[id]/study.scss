@@ -2,7 +2,7 @@
 
 .study-page {
   align-items: center;
-  color: var(--color-black);
+  color: var.$color-text-primary;
   display: flex;
   flex-direction: column;
   height: calc(100% - var(--height-header));
@@ -18,7 +18,7 @@
       background-position: bottom;
       background-repeat: no-repeat;
       border: 0;
-      color: var(--color-black);
+      color: var.$color-text-primary;
       height: 2rem;
       width: 2rem;
       margin-left: .7rem;
@@ -38,29 +38,9 @@
       justify-content: center;
 
       p {
-        border-right: solid 1px var(--color-black);
+        border-right: solid 1px var.$color-text-primary;
         margin-right: .5rem;
         padding: 0 .5rem 0 1rem;
-      }
-    }
-  }
-
-  .study-menu {
-    color: var(--color-black);
-    margin-top: 1rem;
-
-    button {
-      background: 0;
-      border: 0;
-      color: var(--color-black);
-      cursor: pointer;
-      font-weight: 400;
-      height: auto;
-      width: auto;
-      text-transform: capitalize;
-
-      &.selected {
-        font-weight: 700;
       }
     }
   }
@@ -68,7 +48,7 @@
   .content {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 3fr 5fr;
+    grid-template-columns: 2fr 5fr;
     grid-gap: 1rem;
     height: calc(100% - var(--height-header) - 1rem);
     max-height: calc(100% - var(--height-header) - 1rem);
@@ -86,7 +66,7 @@
         box-shadow: var(--shadow);
         display: block;
         height: 80%;
-        width: 10rem;
+        width: 7rem;
         position: relative;
 
         .completion {
@@ -95,16 +75,16 @@
           bottom: 0;
           display: block;
           position: absolute;
-          width: 10rem;
+          width: 7rem;
         }
 
         .index {
-          border-bottom: dashed 1px var(--color-black);
+          border-bottom: dashed 1px var.$color-text-primary;
           position: absolute;
-          width: 17rem;
+          width: 10rem;
 
           &::after {
-            background: var(--color-black);
+            background: var.$color-text-primary;
             border-radius: 50%;
             content: '';
             display: block;
@@ -125,128 +105,12 @@
       .description {
         font-weight: 300;
         text-align: center;
-      }
-    }
 
-    .data-container {
-      box-shadow: var(--shadow);
-      overflow: auto;
-      padding: 0 0 2rem 0;
-      position: relative;
-
-      table {
-        width: 100%;
-
-        th {
-          text-align: left;
-
-          &::first-letter {
-            text-transform: capitalize;
-          }
-        }
-
-        td {
-          font-weight: 300;
-          padding: 2rem 1rem;
-          text-align: left;
-
-          ul li:not(:first-child) {
-            margin-top: 1rem;
-          }
+        p {
+          margin: 0;
         }
       }
     }
-  }
-
-  .similarirty-matrix {
-    align-items: flex-start;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    height: minmax(calc(100% - var(--height-header) - 5rem), max-content);
-    width: auto;
-    margin: 2rem;
-    padding-top: 2rem;
-    position: relative;
-
-    table {
-      margin: auto 5rem 2rem 5rem;
-      margin-top: minmax(2rem, auto);
-
-      tr {
-        height: 3.5rem;
-      }
-
-      td {
-        border: solid 2px white;
-        cursor: default;
-        text-align: center;
-        vertical-align: middle;
-        width: 3.5rem;
-
-        &:not(:last-child):hover {
-          background-color: var(--color-primary);
-        }
-
-        &.hovered {
-          background-color: var(--color-primary);
-        }
-
-        &:last-child {
-          align-items: center;
-          display: flex;
-          position: absolute;
-          height: 3rem;
-          width: auto;
-          justify-content: center;
-          white-space: nowrap;
-        }
-      }
-    }
-  }
-
-  // Color classes for similarity matrix
-  td {
-    &.color-20 { background-color: #F5F5F5; }
-    &.color-40 { background-color: #DCDCDC; }
-    &.color-60 { background-color: #C8C8C8; }
-    &.color-80 { background-color: #B0B0B0; }
-    &.color-100 { background-color: #989898; }
-  }
-}
-
-.frequency-placement-matrix {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  margin: 2rem;
-  box-shadow: var(--shadow, 0 0 10px rgba(0,0,0,0.1));
-
-  h2 {
-    margin-bottom: 1rem;
-  }
-
-  table {
-    border-collapse: collapse;
-    margin: auto;
-
-    th, td {
-      border: 2px solid #ddd;
-      padding: 1rem 1.5rem;
-      text-align: center;
-      min-width: 5rem;
-      height: 4rem;
-    }
-  }
-
-  // Color classes for frequency placement matrix
-  td {
-    &.color-0 { background-color: transparent; color: black; }
-    &.color-20 { background-color: rgba(0, 123, 255, 0.2); color: black; }
-    &.color-40 { background-color: rgba(0, 123, 255, 0.4); color: white; }
-    &.color-60 { background-color: rgba(0, 123, 255, 0.6); color: white; }
-    &.color-80 { background-color: rgba(0, 123, 255, 0.8); color: white; }
-    &.color-100 { background-color: rgba(0, 123, 255, 1); color: white; }
   }
 }
 
@@ -263,19 +127,21 @@
   }
 }
 
+// We keep the Dendrogram here to easily override the nodes
 .dendrogram {
-  box-shadow: var(--shadow);
-  margin: 2rem 0;
+  box-shadow: var.$shadow-md;
+  margin: var.$spacing-xxl 0;
+  position: relative;
 
-  #aggreement-axis {
+  #agreement-axis {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 2rem;
-    margin-left: 15rem;
-    margin-right: 4rem;
+    margin-left: 220px;
+    margin-right: 50px;
     opacity: .8;
-    width: calc(100% - (15rem + 4rem));
   }
 
   #data {
@@ -285,15 +151,15 @@
 
   .node {
     text {
-      color: var(--color-black);
+      color: var.$color-text-primary;
     }
 
     circle {
-      fill: var(--color-black);
+      fill: var.$color-text-primary;
     }
 
     &--internal circle {
-      fill: var(--color-black);
+      fill: var.$color-text-primary;
     }
   }
 
@@ -314,23 +180,6 @@
     cursor: pointer;
     padding-top: 1.5rem;
     padding-bottom: 1rem;
-  }
-}
-
-.toggle-button {
-  border: none;
-  background: none;
-  color: white;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 4px;
-
-  &.active {
-    background-color: #4caf50; // Green when on
-  }
-
-  &.inactive {
-    background-color: #ff0000; // Red when off
   }
 }
 
@@ -387,24 +236,6 @@
   margin-right: 10px;
 }
 
-.confirm-btn {
-  background-color: var(--color-green);
-}
-
-.cancel-btn {
-  background-color: #ff0000;
-}
-
-.popup {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  width: 90%;
-  text-align: left;
-}
-
 .instructions-content {
   margin-top: 1rem;
 
@@ -424,43 +255,11 @@
 
 .sorting {
   margin: 0;
-  width: 100%;
   box-sizing: border-box;
   display: grid;
   height: calc(100% - var(--height-header) - 1rem);
   max-height: calc(100% - var(--height-header) - 1rem);
   width: 100%;
-
-  table {
-    text-align: left;
-    width: 100%;
-
-    th::first-letter {
-      text-transform: capitalize;
-    }
-
-    td {
-      font-weight: 300;
-      padding-top: 10px !important;
-      padding-bottom: 10px !important;
-      text-align: left;
-
-      ul li:not(:first-child) {
-        margin-top: 1rem;
-      }
-    }
-  }
-
-  .data-container {
-    align-items: center;
-    box-shadow: var(--shadow);
-    overflow: auto;
-    max-height: 100vh;
-    padding: 2rem;
-    position: relative;
-    border: 2rem;
-    margin: 2rem;
-  }
 }
 
 .study-page {
@@ -480,18 +279,17 @@
 }
 
 span.activeSquare {
-  border-radius: 0.5rem;
+  border-radius: 8px;
   display: inline-block;
-  height: 2rem; width: 2rem;
-  margin-left: 1.5rem;
+  height: 1.4rem; width: 1.4rem;
 }
 
 span.activeSquare.isLive {
-  background: radial-gradient(circle at 20%, var(--color-light-green), var(--color-green));
+  background: var.$color-success;
 }
 
 span.activeSquare.notLive {
-  background: radial-gradient(circle at 20%, var(--color-light-red), var(--color-red));
+  background: var.$color-error;
 }
 
 .date {
@@ -500,9 +298,25 @@ span.activeSquare.notLive {
   margin: 0;
 }
 
-.row-white{
-  background-color: white;
-}
-.row-gray{
-  background-color: #f5f5f5;
+// Color classes for frequency placement matrix
+td {
+  &.color-20 {
+    background-color: #F5F5F5;
+  }
+
+  &.color-40 {
+    background-color: #DCDCDC;
+  }
+
+  &.color-60 {
+    background-color: #C8C8C8;
+  }
+
+  &.color-80 {
+    background-color: #B0B0B0;
+  }
+
+  &.color-100 {
+    background-color: #989898;
+  }
 }

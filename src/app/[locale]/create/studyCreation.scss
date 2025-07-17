@@ -243,24 +243,4 @@
   h1 {
     margin-bottom: var.$spacing-4xl;
   }
-
-  .success-ribbon {
-    align-items: center;
-    background-color: var.$color-success-light;
-    border-radius: 8px;
-    color: var.$color-success-dark;
-    display: flex;
-    flex-direction: column;
-    height: 8rem; width: 8rem;
-    padding: var.$spacing-md;
-    justify-content: center;
-
-    span {
-      font-size: 2rem;
-    }
-
-    p {
-      margin: 0;
-    }
-  }
 }

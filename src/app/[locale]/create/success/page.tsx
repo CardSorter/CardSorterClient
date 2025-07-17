@@ -8,11 +8,6 @@ import {useRouter} from "i18n/navigation";
 import copyToClipboard from "utils/copyToClipboard";
 import {useTranslations} from "next-intl";
 import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from "@mui/material/IconButton";
 import InputWithCopy from "../../../../elements/InputWithCopy/InputWithCopy";
 
 export default function Page() {

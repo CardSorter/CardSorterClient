@@ -22,7 +22,7 @@
     "react-redux": "^9.2.0",
     "react-split-pane": "^0.1.92",
     "redux": "^5.0.1",
-    "xlsx": "^0.18.5"
+    "write-excel-file": "^2.3.2"
   },
   "scripts": {
     "dev": "next dev --turbopack",

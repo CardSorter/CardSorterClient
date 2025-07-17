@@ -58,7 +58,6 @@ interface FetchStudyResponse {
 
 }
 
-export const changeHoveredCards = createAction<{ index1: number, index2: number }>("studyPage/changeHoveredCards");
 export const loadStudy = createAction<{ status: string, study?: FetchStudyResponse, error: boolean }>("studyPage/loadStudy");
 export const loadClusters = createAction<{ status: string, clusters?: any, error: boolean }>("studyPage/loadClusters");
 export const downloadXLSX = createAction<{ studyId: string; }>("studyPage/downloadXLSX");

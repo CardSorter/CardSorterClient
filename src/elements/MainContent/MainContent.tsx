@@ -52,44 +52,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'inherit',
-    h1: {
-      color: '#24212C',
-      fontWeight: 500,
-    },
-    h2: {
-      color: '#24212C',
-      fontWeight: 500,
-    },
-    h3: {
-      color: '#24212C',
-      fontWeight: 500,
-    },
-    h4: {
-      color: '#24212C',
-      fontWeight: 500,
-    },
-    h5: {
-      color: '#24212C',
-      fontWeight: 500,
-    },
-    h6: {
-      color: '#24212C',
-      fontWeight: 500,
-    },
-    subtitle1: {
-      color: '#56535E',
-    },
-    subtitle2: {
-      color: '#56535E',
-    },
-    body1: {
-      color: '#24212C',
-    },
-    body2: {
-      color: '#56535E',
-    },
     button: {
       textTransform: 'none',
+      fontSize: "16px",
     },
   },
   components: {
@@ -157,7 +122,7 @@ export default function MainContent({ locale, children }: { locale: string, chil
               </>
             ) : (
               <div id="root">
-                <main>{children}</main>
+                <main className="sorter-main">{children}</main>
               </div>
             )}
           </>

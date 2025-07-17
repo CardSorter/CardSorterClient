@@ -28,11 +28,7 @@ export default function page() {
  
 
   // State
-  const showCommentPopup = useSelector((state: StateSchema) => state.sortingUi.showCommentPopup);
-  const showDescriptionPopup = useSelector((state: StateSchema) => state.sortingUi.showDescriptionPopup);
-  const showConfirmPopUp = useSelector((state: StateSchema) => (state.sortingUi.showConfirmPopUp));
   const showOnboarding = useSelector((state: StateSchema) => state.sortingUi.showOnBoarding);
-  const showInstructionsPopup = useSelector((state: StateSchema) => state.sortingUi.showInstructionsPopup);
   const errorNoCategories = useSelector((state: StateSchema) => state.sortingUi.errors.noCategoriesCreated);
   const errorNoTitle = useSelector((state: StateSchema) => (state.sortingUi.errors.categoryMissingTitle));
   const errorSameCategories = useSelector((state: StateSchema) => (state.sortingUi.errors?.categoriesHaveTheSameName));
@@ -66,7 +62,7 @@ export default function page() {
             split="vertical"
             minSize={200}
             maxSize={-300}
-            defaultSize={'22rem'}
+            defaultSize={'18rem'}
           >
             <List/>
             <Board/>
@@ -74,27 +70,14 @@ export default function page() {
         </div>
       </DndProvider>
 
-      {
-        showCommentPopup &&
-          <CommentPopup />
-      }
+      <CommentPopup />
+      <DescriptionPopup />
+      <InstructionsPopup />
+      <ConfirmPopUp />
 
       {
          showOnboarding &&
          <OnBoarding />
-      }
-
-      {
-        showDescriptionPopup &&
-          <DescriptionPopup />
-      }
-      { showInstructionsPopup &&
-          <InstructionsPopup />
-      }
-
-      {
-        showConfirmPopUp &&
-          <ConfirmPopUp />
       }
 
       {

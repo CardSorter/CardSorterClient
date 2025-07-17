@@ -1,0 +1,24 @@
+@use "utils/var" as var;
+
+.sortingHeader {
+  align-items: center;
+  box-shadow: var.$shadow-sm;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: var.$spacing-lg var.$padding-page;
+  position: relative;
+  z-index: 1;
+
+  .btnContainer {
+    display: flex;
+    gap: var.$gap-grid;
+  }
+
+  .logo {
+    color: var.$color-text-primary;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
