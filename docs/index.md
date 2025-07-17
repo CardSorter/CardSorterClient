@@ -98,7 +98,6 @@ When thinking of adding a new feature, it is helpful to use this workflow:
 - Identify if new actions, reducers, or selectors are needed.
 
 #### Create new Redux files or append to existing ones (if needed):
-
 - **Actions**: Define action types and action creators (src/actions/).
 - **Reducers**: Create or update reducers to handle the new state (e.g., src/reducers/).
 - **Thunks**: Write async logic using Redux Thunk (e.g., API calls).
@@ -124,6 +123,12 @@ One simple way to find the icon name is by:
 2. Selecting the desired icon
 3. Scrolling to the bottom of the right pane and copying the icon name
 
+### Styles (SCSS)
+- Styles are written in SCSS.
+- Generally SCSS modules are preferred (i.e. moduleName.module.scss) over plain scss files.
+- Colours and spaces are defined is `src/utils/var.scss` and should be imported in any new scss file `@use "utils/var" as var;`.
+
+For an example of an SCSS file take a look at `src/elements/StudyItem/StudyItem.module.scss`.
 
 ### Internationalisation
 To enable rendering the app in different languages the following process should be followed  when adding text (including hidden 

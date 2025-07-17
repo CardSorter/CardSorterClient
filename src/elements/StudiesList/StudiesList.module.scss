@@ -1,0 +1,18 @@
+@use "utils/var" as var;
+
+.studiesListContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var.$gap-grid;
+  padding: 0 var.$padding-page;
+  padding-top: var.$spacing-md;
+}
+
+ul.studiesList {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var.$gap-grid;
+  padding: 0;
+}

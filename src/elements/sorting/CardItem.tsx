@@ -2,6 +2,7 @@ import React, {MouseEvent} from 'react';
 import {useDrag} from 'react-dnd';
 import {useDispatch} from "react-redux";
 import * as sortingBoardAction from "../../actions/sorting/sortingBoardAction";
+import IconButton from '@mui/material/IconButton';
 
 interface CardItemProps {
   id: number;
@@ -48,6 +49,7 @@ const CardItem: React.FC<CardItemProps> = ({id, title, description, minimized, p
           <p>{description}</p>
         </>
       )}
+
       {minimized && (
         <div className="titles">
           <h4>{title}</h4>
@@ -56,7 +58,9 @@ const CardItem: React.FC<CardItemProps> = ({id, title, description, minimized, p
       )}
       {/* Show the description button */}
       {minimized && description && (
-        <button onClick={onClick} className="desc-btn"></button>
+        <IconButton aria-label="Expand description" onClick={onClick} className={showDescription ? "open" : ""}>
+          <span className="material-symbols-outlined">arrow_drop_down</span>
+        </IconButton>
       )}
       {/* The "drag to add" action */}
     </li>

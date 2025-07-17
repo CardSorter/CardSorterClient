@@ -28,7 +28,8 @@
   },
   "include": [
     "src",
-    "build/types/**/*.ts"
+    "build/types/**/*.ts",
+    "**/*.d.ts"
   ],
   "exclude": [
     "node_modules"

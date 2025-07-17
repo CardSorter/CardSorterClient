@@ -1,0 +1,24 @@
+.frequencyPlacementMatrix {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: var(--shadow, 0 0 10px rgba(0, 0, 0, 0.1));
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: auto;
+
+    th, td {
+      border: 2px solid #ddd;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      min-width: 5rem;
+      height: 4rem;
+    }
+  }
+}

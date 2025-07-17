@@ -1,0 +1,22 @@
+@use "utils/var" as var;
+
+.studyMenu {
+  color: var.$color-text-primary;
+  margin-top: 1rem;
+
+  button {
+    background: 0;
+    border: 0;
+    color: var.$color-text-primary;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: 400;
+    height: auto;
+    width: auto;
+
+    &.selected {
+      font-weight: 700;
+    }
+  }
+}

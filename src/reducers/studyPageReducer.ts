@@ -1,8 +1,8 @@
 import * as studyActions from '../actions/studyPageAction';
 import * as ActionStatus from 'actions/ActionStatus';
-import * as XLSX from 'xlsx';
 import {createReducer} from '@reduxjs/toolkit';
 import {SortingDataItem} from "../actions/studyPageAction";
+import exportToXLXS from "utils/exportToXLSX";
 
 export interface StudyPageState {
   title: string;
@@ -42,9 +42,6 @@ export interface StudyPageState {
   isFetching?: boolean;
   clusters?: Record<string, unknown>;
   clustersFetching?: boolean;
-  selectedCards?: boolean[];
-  popupShowing?: boolean;
-  editPopupOpen?: boolean;
   editPopupTitle: any,
   editPopupDescription: any,
   editPopupIsLive: any,
@@ -66,9 +63,6 @@ const initialState: StudyPageState = {
   isFetching: undefined,
   clusters: undefined,
   clustersFetching: undefined,
-  selectedCards: undefined,
-  popupShowing: undefined,
-  editPopupOpen: undefined,
   editPopupTitle: undefined,
   editPopupDescription: undefined,
   editPopupIsLive: undefined,
@@ -120,55 +114,8 @@ const studyPageReducer = createReducer(initialState, (builder) => {
       state.clusters = action.payload?.status === ActionStatus.SUCCESS ? action.payload.clusters : {};
       state.clustersFetching = action.payload?.status !== ActionStatus.SUCCESS;
     })
-    .addCase(studyActions.changeHoveredCards, (state, action) => {
-      state.selectedCards = state.similarityMatrix.map((_, i) =>
-        i === action.payload?.index1 || i === action.payload?.index2
-      );
-    })
-    .addCase(studyActions.togglePopup, (state, action) => {
-      state.popupShowing = action.payload?.toggle;
-    })
-    
-    .addCase(studyActions.toggleEditPopup, (state, action) => {
-      state.editPopupOpen = action.payload?.toggle;
-    })
     .addCase(studyActions.downloadXLSX, (state) => {
-      const wb = XLSX.utils.book_new();
-
-      const participants = [...state.participants.data];
-      participants.unshift(["Participant no", 'Time taken', 'Cards sorted', 'Categories created']);
-      const ws1 = XLSX.utils.aoa_to_sheet(participants);
-      XLSX.utils.book_append_sheet(wb, ws1, 'Participants');
-
-      const customHeaders= ["no", "category", "cards", "comment"];
-      //@ts-ignore
-      const sortedData = state.sorting.data.map(item => customHeaders.map(header => item[header]));
-      customHeaders[0] = "Participant no";
-      sortedData.unshift(customHeaders);
-      const flattenedSorting = sortedData.map(row =>
-        row.map(cell => (Array.isArray(cell) ? cell.join(", ") : cell))
-      );
-      const ws2 = XLSX.utils.aoa_to_sheet(flattenedSorting);
-      XLSX.utils.book_append_sheet(wb, ws2, 'Sorting');
-
-      const cards = [...state.cards.data];
-      const flattenedCards = cards.map(row =>
-        [row.name, row.categories_no, row.category_names.join(", "), row.frequencies, row.description]
-      );
-      flattenedCards.unshift(["Card", 'Categories No', '	Categories', 'Frequency', 'Description']);
-
-      const ws3 = XLSX.utils.aoa_to_sheet(flattenedCards);
-      XLSX.utils.book_append_sheet(wb, ws3, 'Cards');
-
-      const categories = [...state.categories.data];
-      categories.unshift(["Category", 'Cards no', 'Cards', 'Frequency', 'Participants']);
-      const flattenedCategories = categories.map(row =>
-        row.map((cell: any) => (Array.isArray(cell) ? cell.join(", ") : cell))
-      );
-      const ws4 = XLSX.utils.aoa_to_sheet(flattenedCategories);
-      XLSX.utils.book_append_sheet(wb, ws4, 'Categories');
-
-      XLSX.writeFile(wb, 'data.xlsx', {compression: true});
+      exportToXLXS(state, state.title);
     });
 });
 

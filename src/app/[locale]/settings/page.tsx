@@ -1,12 +1,16 @@
 "use client"
-import React, {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 import {useDispatch, useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
 import * as settingsActions from "actions/settingsAction";
 import {useRouter} from "i18n/navigation";
 import {useTranslations} from "next-intl";
-import ErrorToast from "elements/sorting/ErrorToast";
+import "./settings.scss";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import ApplicationAlerts from "../../../elements/ApplicationAlerts/ApplicationAlerts";
+import {ApplicationAlertContext} from "../../../reducers/applicationAlertsReducer";
 
 
 const SettingsPage: React.FC = () => {
@@ -14,145 +18,68 @@ const SettingsPage: React.FC = () => {
   const t = useTranslations("SettingsPage");
 
   // State
-  const currentUsername = useSelector((state: StateSchema) => (state.settings.username || "" ));
-  
+  const currentUsername = useSelector((state: StateSchema) => (state.settings.username || ""));
+
   const currentEmail = useSelector((state: StateSchema) => (state.settings.email || ""));
   const token = useSelector((state: StateSchema) => state.auth.token);
 
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const settingsSaved = useSelector((state: StateSchema) => state.settings.settingsSaved);
 
- 
-  
 
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
-     if (token) {
-    dispatch(settingsActions.fetchUserProfile());
-     }
-}, [dispatch, token]);
-        
-  
+    if (token) {
+      dispatch(settingsActions.fetchUserProfile());
+    }
+  }, [dispatch, token]);
+
 
   const onBack = () => {
-      dispatch(settingsActions.clearCredentials());
-      router.push('/dashboard');
-    }
-    const onSaveSettings = () => {
-        dispatch(
-          settingsActions.saveSettings({
-            currentUsername: currentUsername || "",
-            newUsername: newUsername || "",
-            currentPassword: currentPassword || "",
-            newPassword: newPassword || "",
-            currentEmail: currentEmail || "",
-            newEmail: newEmail || ""
-          })
-        )
-        
-          
-          
-      };
+    dispatch(settingsActions.clearCredentials());
+    router.push('/dashboard');
+  }
+  const onSaveSettings = () => {
+    dispatch(
+      settingsActions.saveSettings({
+        newUsername: newUsername,
+        newPassword: newPassword,
+        newEmail: newEmail
+      })
+    )
+  };
 
-      return (
-        <div className="settings-page">
-          <div className="settings-container">
-           <div className="settings-icon">
-             <img src="/card-sorter/images/profile-icon.png" alt="Profile Icon" />
-            </div>
-            <div className="auth-header">
-              <div className="back-button">
-               <button className="back" onClick={onBack}>
-                <span className="material-symbols-outlined">arrow_back</span>
-               </button>
-              </div>
-              <div className="center-title">
-               <p className="auth-title">{t("settings")}</p>
-              </div>
-              <div className="spacer" />
-            </div>
-            <p className="info-text">
-               {t("update")} 
-            </p>
-            <form>
-              <div className="error-holder">
-                <input
-                  type="text"
-                  className="username"
-                  value={currentUsername}
-                  placeholder={t("current username")}
-                  disabled
-                />
-              </div>
-              <div className="error-holder">
-                <input
-                  type="text"
-                  className="username"
-                  value={newUsername}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUsername(e.target.value)}
-                  placeholder={t("new username")}
-                />
-              </div>
-              <div className="error-holder">
-                <input
-                  type="password"
-                  className="password"
-                  value={"•".repeat(9)}
-                  placeholder={t("current password")}
-                  disabled
-                />
-              </div>
-              <div className="error-holder">
-                <input
-                  type="password"
-                  className="password"
-                  value={newPassword}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
-                  placeholder={t("new password")}
-                />
-              </div>
-              <div className="error-holder">
-                <input
-                  type="email"
-                  className="email"
-                  value={currentEmail}
-                  placeholder={t("current email")}
-                  disabled
-                />
-              </div>
-              <div className="error-holder">
-                <input
-                  type="email"
-                  className="email"
-                  value={newEmail}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setNewEmail(e.target.value)}
-                  placeholder={t("new email")}
-                />
-              </div>
-              <button
-                type="button"
-                className="action save"
-                onClick={onSaveSettings}
-              >
-                <p>{t("save")}</p>
-              </button>
-            </form>
-            {settingsSaved && (
-            <div className="settings-toast">
-             <ErrorToast  message={t("Your changes have been saved")} />
-            </div>
-            )}
-         </div>
-         
-        </div>
-      );
-    };
-    
-    export default SettingsPage;
+  return (
+    <div className="settings-page">
+
+      <div>
+        <h1>{t("title")}</h1>
+        <Button variant="text" startIcon={<span className="material-symbols-outlined">arrow_back</span>} onClick={onBack}>Back</Button>
+      </div>
+
+      <ApplicationAlerts context={ApplicationAlertContext.settingsPage} />
+
+      <p>{t("fill in")}</p>
+
+      <p>Username</p>
+      <TextField label={t("current username")} variant="filled" value={currentUsername} disabled />
+      <TextField label={t("new username")} variant="outlined" value={newUsername} onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUsername(e.target.value)} />
+
+      <p>Password</p>
+      <TextField label={t("new password")} type="password" variant="outlined" value={newPassword} onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)} />
+
+      <p>Email</p>
+      <TextField label={t("current email")} type="email" variant="filled" value={currentEmail} disabled />
+      <TextField label={t("new email")} variant="outlined" value={newEmail} onChange={(e: ChangeEvent<HTMLInputElement>) => setNewEmail(e.target.value)} />
+
+      <Button variant="contained" onClick={onSaveSettings}>{t("save")}</Button>
+    </div>
+  );
+};
+
+export default SettingsPage;
 
 
 

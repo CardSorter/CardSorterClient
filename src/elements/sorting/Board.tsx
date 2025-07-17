@@ -8,13 +8,8 @@ import * as sortingBoardAction from "actions/sorting/sortingBoardAction";
 import {useTranslations} from "next-intl";
 import { sort } from 'd3';
 
-
-
-
-
 const Board = () => {
   const t = useTranslations("SortingPage");
-  const state = useSelector((state: StateSchema) => state);
   
   // State
   const categories = useSelector((state: StateSchema) => state.sortingBoard.categories);

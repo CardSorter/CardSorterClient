@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import styles from "./DataTable/Datatable.module.scss";
 
 const DataTableSorting = ({ headers, data }) => {
     const dataContainerRef = useRef(null);
@@ -282,7 +282,7 @@ const DataTableSorting = ({ headers, data }) => {
 
 
     return (
-        <div className="data-container" ref={dataContainerRef}>
+        <div className={styles.dataContainer} ref={dataContainerRef}>
             <table>
                 <colgroup>
                     <col style={{ width: '50px' }} />
@@ -298,45 +298,8 @@ const DataTableSorting = ({ headers, data }) => {
                             </th>
                         ))}
                     </tr>
-                    {
-                        // <tr>
-                        //     <th>Participant no</th>
-                        //     <th>Categories</th>
-                        //     <th>Cards</th>
-                        //     <th>Comments</th>
-                        // </tr>
-                    }
                 </thead>
                 <tbody>
-                    {/* {sortedData.map((item, index, array) => (
-                        <tr key={item[0]}>
-                            {index === 0 || item[0] !== array[index - 1][0] ? (
-                                <td rowSpan={array.filter((el) => el[0] === item[0]).length}>
-                                    {item[0]}
-                                </td>
-                            ) : null}
-                            <td>{item[1]}
-                            </td>
-                            <td>
-                                {
-                                    Array.isArray(item[2]) ? (
-                                        <ul>
-                                            {item[2].map((desc, index) => (
-                                                <li key={index}>{desc}</li>
-                                            ))}
-                                        </ul>
-                                    ) : (
-                                        item[2]
-                                    )
-                                }
-                            </td>
-                            {index === 0 || item[0] !== array[index - 1][0] ? (
-                                <td rowSpan={array.filter((el) => el[0] === item[0]).length}>
-                                    {item[3]}
-                                </td>
-                            ) : null}
-                        </tr>
-                    ))} */}
                     {
                         (() => {
                           let  lastParticipant = null;
@@ -349,7 +312,7 @@ const DataTableSorting = ({ headers, data }) => {
                               groupIndex++;
                             }
 
-                            const rowClass=groupIndex%2 === 0? 'row-white' : 'row-gray';
+                            const rowClass=groupIndex%2 === 0? styles.rowWhite : styles.rowGray;
                             return (
                             <tr key={index} className={rowClass}>
                                 {index === 0 || row[0] !== array[index - 1][0] ? (

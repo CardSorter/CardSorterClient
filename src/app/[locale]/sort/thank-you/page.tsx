@@ -17,7 +17,7 @@ export default function page() {
     <MessageScreen
       message={thanksMessage || ""}
       link={link}
-      image={"/card-sorter/images/thank-you.svg"}
+      success={true}
       subMessage={`(${t("you can close this tab")})`}
     />
   )

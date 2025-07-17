@@ -19,7 +19,6 @@ export interface SettingsState{
     newPassword?: string;
     email?: string;
     newEmail?: string;
-    settingsSaved?: boolean;
 }
 
 const initialState: SettingsState = {
@@ -28,7 +27,6 @@ const initialState: SettingsState = {
     newUsername: "",
     newPassword: "",
     newEmail: "",
-    settingsSaved: false
 };
 
 const settingsReducer = createReducer(initialState, (builder) => {
@@ -54,9 +52,6 @@ const settingsReducer = createReducer(initialState, (builder) => {
         state.newUsername = undefined;
         state.newPassword = undefined;
         state.newEmail = undefined;
-      })
-      .addCase(settingsActions.setSettingsSaved, (state, action) => {
-        state.settingsSaved = action.payload;
       })
   });
   

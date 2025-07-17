@@ -1,7 +1,7 @@
 "use client"
 
-import Filters from "elements/Filters";
-import StudiesList from "elements/StudiesList";
+import Filters from "elements/Filters/Filters";
+import StudiesList from "elements/StudiesList/StudiesList";
 import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchStudies} from "actions/studiesAction";

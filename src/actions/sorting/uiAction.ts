@@ -67,17 +67,18 @@ export const fetchStudyForSorting = createAsyncThunk<
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sort_endpoint?cards=true&study_id=${studyID}`);
     const json = await response.json();
-    console.log("Dispatched sortType:", json.sortType);
 
 
-    if (response.status === 404) {
+    if (response.status === 404 || response.status === 400) {
       dispatch(requestCards({ status: ActionStatus.SUCCESS }));
       dispatch(toggleNotFound());
       return;
     }
 
     if (preloaded) {
-      // We already have the data from the localstorage
+      // We already have some data from the localstorage (see: src/elements/sorting/LoadSortData.tsx)
+      dispatch(requestCards({ status: ActionStatus.SUCCESS }));
+      dispatch(addTitleDescription({ title: json.title, description: json.description }));
       return;
     }
 

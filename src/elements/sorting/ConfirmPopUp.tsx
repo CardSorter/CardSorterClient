@@ -3,6 +3,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {sendSort, closeConfirmPopUp, CategoryRequest} from 'actions/sorting/uiAction';
 import StateSchema from "reducers/StateSchema";
 import {useTranslations} from "next-intl";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
 
 const ConfirmPopUp = () => {
   const t = useTranslations("SortingPage");
@@ -13,16 +19,21 @@ const ConfirmPopUp = () => {
   const categories = useSelector((state: StateSchema) => (state.sortingBoard.categories));
   const timeStarted = useSelector((state: StateSchema) => state.sortingUi.timeStarted);
   const comment = useSelector((state: StateSchema) => state.sortingUi.userComment);
+  const showConfirmPopUp = useSelector((state: StateSchema) => (state.sortingUi.showConfirmPopUp));
 
   // Dispatch
   const dispatch = useDispatch<any>();
 
   const handleConfirmFinish = () => {
     const categoryRequest: Record<number, CategoryRequest> = {};
-    for (const category of Object.values(categories)){
-      categoryRequest[category.id] = {id: category.id, title: category.title || "", cards: category.cards.map((c) => c.id)};
+    for (const category of Object.values(categories)) {
+      categoryRequest[category.id] = {
+        id: category.id,
+        title: category.title || "",
+        cards: category.cards.map((c) => c.id)
+      };
     }
-    
+
 
     dispatch(sendSort(
       studyId || "",
@@ -37,23 +48,30 @@ const ConfirmPopUp = () => {
   const onClose = () => dispatch(closeConfirmPopUp());
 
   return (
-    <div className="popup-container finish-sorting-popup" onClick={onClose}>
-      <div className="popup" onClick={(e) => e.stopPropagation()}>
-        <div className="content">
-          {unsortedCards.length > 0 ?
-            <p>{t("confirm finish unsorted")}</p>
-            : <p>{t("confirm finish")}</p>}
-        </div>
-        <div className="button-container">
-          <button className="btn--main finish" onClick={handleConfirmFinish}>
-            <span>{t("finish sorting")}</span>
-          </button>
-          <button className="btn--secondary continue" onClick={onClose}>
-            <span>{t("continue sorting")}</span>
-          </button>
-        </div>
-      </div>
-    </div>
+    <Dialog
+      open={showConfirmPopUp}
+      onClose={onClose}
+      maxWidth="sm"
+      fullWidth
+      onClick={onClose}
+    >
+      <DialogContent>
+        <DialogContentText>
+          {unsortedCards.length > 0
+            ? t("confirm finish unsorted")
+            : t("confirm finish")}
+        </DialogContentText>
+      </DialogContent>
+
+      <DialogActions>
+        <Button variant="outlined" color="primary" onClick={onClose}>
+          {t("continue sorting")}
+        </Button>
+        <Button variant="contained" color="primary" onClick={handleConfirmFinish}>
+          {t("finish sorting")}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

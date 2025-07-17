@@ -3,6 +3,8 @@ import fetch from 'cross-fetch';
 import * as ActionStatus from 'actions/ActionStatus';
 import {setAuthToken} from "./authAction";
 import { setSortType } from './sorting/uiAction';
+import {displayTemporaryAlert} from "./applicationAlertsAction";
+import {ApplicationAlertContext} from "../reducers/applicationAlertsReducer";
 
 
 export interface SortingDataItem {
@@ -56,12 +58,8 @@ interface FetchStudyResponse {
 
 }
 
-export const changeHoveredCards = createAction<{ index1: number, index2: number }>("studyPage/changeHoveredCards");
-export const togglePopup = createAction<{ toggle: boolean }>("studyPage/togglePopup");
 export const loadStudy = createAction<{ status: string, study?: FetchStudyResponse, error: boolean }>("studyPage/loadStudy");
 export const loadClusters = createAction<{ status: string, clusters?: any, error: boolean }>("studyPage/loadClusters");
-//export const downloadXLSX = createAction<{ studyId: string }>("studyPage/downloadXLSX");
-export const toggleEditPopup = createAction<{ toggle: boolean }>("studyPage/toggleEditPopup");
 export const downloadXLSX = createAction<{ studyId: string; }>("studyPage/downloadXLSX");
 
 
@@ -91,9 +89,9 @@ export function fetchStudy(id: string) {
           if (response.status === 401) {
             dispatch(setAuthToken(undefined));
           } else {
-            
+
             dispatch(loadStudy({status: ActionStatus.SUCCESS, study: json.study, error: false}));
-           dispatch(setSortType(json.study.sortType));
+            dispatch(setSortType(json.study.sortType));
           }
         })
       );
@@ -141,24 +139,20 @@ export const updateStudy = (studyId: string, updatedProperties: Record<string, a
       body: JSON.stringify(updatedProperties),
     })
       .then((response) => {
-        // TODO: Router here
         if (response.ok) {
           dispatch(fetchStudy(studyId));
+          dispatch(displayTemporaryAlert('Study updated', ApplicationAlertContext.studyPage, "success"));
         } else {
-          alert('Failed to update study');
+          dispatch(displayTemporaryAlert('An error occurred while updating the study', ApplicationAlertContext.studyPage, "error"));
         }
       })
       .catch((error) => {
-        alert('An error occurred: ' + error);
+        dispatch(displayTemporaryAlert('An error occurred while updating the study', ApplicationAlertContext.studyPage, "error"));
       });
   };
 };
 
 export const deleteStudy = (studyId: string) => {
-  let redirectUrl = '/';
-  if (process.env.NODE_ENV === 'production') {
-    redirectUrl = '/card-sorter/';
-  }
   return (dispatch: Function, getState: Function) => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/studies_endpoint?id=${studyId}`, {
       method: 'DELETE',
@@ -170,15 +164,14 @@ export const deleteStudy = (studyId: string) => {
       },
     })
       .then((response) => {
-        // TODO nextJS router here
         if (response.ok) {
-          window.location.replace(redirectUrl);
+          dispatch(displayTemporaryAlert('Study deleted', ApplicationAlertContext.application, "success"));
         } else {
-          alert('Failed to delete study');
+          dispatch(displayTemporaryAlert('An error occurred while deleting the study', ApplicationAlertContext.application, "error"));
         }
       })
       .catch((error) => {
-        alert('An error occurred: ' + error);
+        dispatch(displayTemporaryAlert('An error occurred while deleting the study', ApplicationAlertContext.application, "error"));
       });
   };
 };

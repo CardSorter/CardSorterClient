@@ -1,0 +1,67 @@
+@use "utils/var" as var;
+
+.similarityMatrix {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding-top: var.$spacing-xxl;
+  position: relative;
+
+  table {
+    margin: 0 var.$padding-page;
+
+    tr {
+      height: 50px;
+    }
+
+    td {
+      border: solid 2px white;
+      cursor: default;
+      text-align: center;
+      vertical-align: middle;
+      height: 50px; width: 50px;
+
+      &:not(:last-child):hover {
+        background-color: var.$color-accent-2;
+      }
+
+      &.hovered {
+        background-color: var.$color-accent-2;
+      }
+
+      &:last-child {
+        align-items: center;
+        display: flex;
+        position: absolute;
+        height: 3rem;
+        width: auto;
+        justify-content: center;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+// Color classes for similarity matrix
+td {
+  &.color20 {
+    background-color: #F5F5F5;
+  }
+
+  &.color40 {
+    background-color: #DCDCDC;
+  }
+
+  &.color60 {
+    background-color: #C8C8C8;
+  }
+
+  &.color80 {
+    background-color: #B0B0B0;
+  }
+
+  &.color100 {
+    background-color: #989898;
+  }
+}

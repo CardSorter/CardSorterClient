@@ -25,36 +25,19 @@ export interface StudyCreationState {
   description?: string;
   thanksMessage?: string;
   externalSurveyLink?: string;
-  errorTitle?: boolean;
-  errorDescription?: boolean;
-  errorCards?: boolean;
-  errorDuplicate?: boolean;
-  errorMessage?: boolean;
   cards: Record<number, Card>;
   ui: UIState;
   createdStudy?: StudyCreationResponse;
   sortType?: string;
   categories: Record<number, Category>;
-  errorCategories: {
-    status: boolean;
-    type: "empty" | "duplicate" | null;
-};
-
 }
 
 export const initialState: StudyCreationState = {
   cards: {},
   categories: {},
-  errorCategories: {
-    status: false,
-    type: null
-  },
   ui: {},
   sortType: "open",
   externalSurveyLink: "",
-  
-  
-
 };
 
 // Keep in mind that the study creation state is saved and preloaded from local storage
@@ -120,21 +103,6 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
     .addCase(studyCreationActions.changeExternalSurveyLink, (state, action) => {
       state.externalSurveyLink = action.payload.link;
     })
-    .addCase(studyCreationActions.toggleTitleError, (state, action) => {
-      state.errorTitle = action.payload.status;
-    })
-    .addCase(studyCreationActions.toggleDescriptionError, (state, action) => {
-      state.errorDescription = action.payload.status;
-    })
-    .addCase(studyCreationActions.toggleCardError, (state, action) => {
-      state.errorCards = action.payload.status;
-    })
-    .addCase(studyCreationActions.toggleCardDuplicate, (state, action) => {
-      state.errorDuplicate = action.payload.status;
-    })
-    .addCase(studyCreationActions.toggleThanksError, (state, action) => {
-      state.errorMessage = action.payload.status;
-    })
     .addCase(studyCreationActions.changeSortType, (state, action) => {
       state.sortType = action.payload.sortType;
     })
@@ -157,13 +125,6 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
         category.name = action.payload.name;
       }
     })
-    .addCase(studyCreationActions.toggleCategoryError, (state, action) => {
-      state.errorCategories = {
-        status: action.payload.status,
-        type: action.payload.type || null,
-      };
-      
-    })
     .addCase(studyCreationActions.createStudy, (state, action) => {
       if (action.payload.status === ActionStatus.SUCCESS) {
         state.createdStudy = action.payload.study;
@@ -179,9 +140,6 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
       }
       state.ui.studySendingStatus = action.payload.status;
     })
-    
-    
-    
 });
 
 export default studyCreationReducer;

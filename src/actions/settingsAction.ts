@@ -1,7 +1,7 @@
 import {createAction} from "@reduxjs/toolkit";
-import * as ActionStatus from "actions/ActionStatus";
-import {setAuthToken} from "./authAction";
-import { setAuthUsername } from "./authAction";
+import {setAuthUsername} from "./authAction";
+import {displayTemporaryAlert} from "./applicationAlertsAction";
+import {ApplicationAlertContext} from "../reducers/applicationAlertsReducer";
 
 export const changeUsername = createAction<{ username: string }>("settings/changeUsername");
 export const changeNewUsername = createAction<{ username: string }>("settings/changeNewUsername");
@@ -12,15 +12,11 @@ export const changeNewPassword = createAction<{ password: string }>("settings/ch
 export const changeEmail = createAction<{ email: string }>("settings/changeEmail");
 export const changeNewEmail = createAction<{ email: string }>("settings/changeNewEmail");
 export const clearCredentials = createAction("settings/clearCredentials");
-export const setSettingsSaved = createAction<boolean>("settings/setSettingsSaved");
 
 export const saveSettings = (updatedProperties: {
-    currentUsername: string;
-    newUsername: string;
-    currentPassword: string;
-    newPassword: string;
-    currentEmail: string;
-    newEmail: string;
+    newUsername?: string;
+    newPassword?: string;
+    newEmail?: string;
 }) => {
     return (dispatch: Function, getState: Function) => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_endpoint`, {
@@ -45,25 +41,19 @@ export const saveSettings = (updatedProperties: {
               }
               
 
-              dispatch(setSettingsSaved(true));
-              setTimeout(() => {
-                dispatch(setSettingsSaved(false));
-              }, 3000);
+              dispatch(displayTemporaryAlert("Profile updated", ApplicationAlertContext.settingsPage, "success"));
               return Promise.resolve();
               
               
             } else {
               response.json().then((data) => {
-                console.error('Failed to update settings:', data.error || response.statusText);
-                alert('Failed to update settings: ' + (data.error || response.statusText));
+                dispatch(displayTemporaryAlert("Profile update failed", ApplicationAlertContext.settingsPage, "error"));
                 return Promise.reject();
-                
               });
             }
           })
           .catch((error) => {
-            console.error('An error occurred while updating settings:', error);
-            alert('An error occurred while updating settings: ' + error);
+            dispatch(displayTemporaryAlert("Profile update failed", ApplicationAlertContext.settingsPage, "error"));
           });
       };
     };
@@ -71,13 +61,20 @@ export const setUserProfile = createAction<{
     username: string;
     email: string;
 }>("settings/setUserProfile");
+
 export const fetchUserProfile = () => {
     return async (dispatch: Function, getState: Function) => {
         try {
             const token = getState().auth.token;
             if (!token) {
-                console.warn("No auth token found — skipping fetch.");
+                // console.warn("No auth token found — skipping fetch.");
                 return;
+            }
+
+            if (process.env.NODE_ENV !== 'production') {
+              dispatch(changeUsername({ username: "developer" }));
+              dispatch(changeEmail({ email: "developer@thankyou.com" }));
+              return;
             }
 
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user_endpoint`, {

@@ -1,0 +1,38 @@
+@use 'utils/var' as var;
+
+.dataContainer {
+  align-items: center;
+  box-shadow: var.$shadow-md;
+  overflow: auto;
+  max-height: 100vh;
+  position: relative;
+  border: 2rem;
+  margin: 2rem;
+
+  table {
+    text-align: left;
+    width: 100%;
+
+    th::first-letter {
+      text-transform: capitalize;
+    }
+
+    td {
+      font-weight: 300;
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      text-align: left;
+
+      ul li:not(:first-child) {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+.rowWhite{
+  background-color: white;
+}
+.rowGray{
+  background-color: #f5f5f5;
+}

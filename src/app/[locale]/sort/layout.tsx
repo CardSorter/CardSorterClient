@@ -1,5 +1,5 @@
 import React from "react";
-import "sorter.css";
+import "app/[locale]/sort/sorter.scss";
 
 export default function Layout({children}: {children: React.ReactNode}) {
 

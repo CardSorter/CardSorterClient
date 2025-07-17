@@ -1,0 +1,246 @@
+@use "utils/var" as var;
+
+.study-creation-page {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin: var.$spacing-md var.$padding-page;
+  position: relative;
+
+  h2 {
+    font-weight: 300;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: var.$spacing-md;
+    width: 100%;
+
+    input {
+      background-color: white;
+      border: solid 1px rgba(0,0,0, .7);
+      box-sizing: border-box;
+      height: 3rem;
+      margin-top: 3rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    textarea {
+      background-color: white;
+      border: solid 1px rgba(0,0,0, .7);
+      box-sizing: border-box;
+      margin-top: 4rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    &.cards {
+      align-items: stretch;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+
+      .add-buttons-container {
+        display: flex;
+        margin-top: var.$spacing-lg;
+        justify-content: center;
+
+        .multi-add-container {
+          align-items: center;
+          background-color: var.$color-accent-1;
+          border-radius: 8px;
+          display: flex;
+          font-weight: bold;
+          padding-left: var.$spacing-md;
+
+          p:first-child::first-letter {
+            text-transform: capitalize;
+          }
+
+          input {
+            margin: 0 .4rem;
+            width: 3rem;
+          }
+
+          button {
+            height: 2rem; width: 2rem;
+            margin-left: var.$spacing-md;
+          }
+        }
+      }
+
+      button {
+        align-self: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        min-height: 4rem;
+        width: 11rem;
+        position: relative;
+      }
+    }
+  }
+
+  .bottom-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: var.$spacing-3xl;
+    margin-bottom: 1rem;
+    width: 100%;
+
+    .btn-container {
+      align-items: center;
+      display: flex;
+      gap: var.$gap-grid;
+    }
+
+    .page-no-container {
+      align-items: center;
+      display: flex;
+      font-weight: 300;
+      justify-content: space-between;
+      margin-top: var.$spacing-md;
+
+      p {
+        margin-left: var.$spacing-xs;
+      }
+    }
+  }
+
+  .sort-type-section {
+    margin-top: var.$spacing-xl;
+    width: 100%;
+
+    .sort-type-label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: var.$spacing-md;
+    }
+
+    .sort-type-options {
+
+      display: flex;
+      flex-direction: column;
+      gap: var.$gap-grid;
+
+      .sort-type-option {
+        align-items: center;
+        column-gap: var.$gap-grid;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        line-height: 1.5;
+
+        input[type="radio"] {
+          accent-color: var.$color-primary;
+          height: auto;
+          margin-top: var.$spacing-xs;
+          transform: scale(1.3);
+        }
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .error-holder {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .input-with-error {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-container {
+    height: 100%;
+    height: auto;
+
+    .card {
+      align-items: center;
+      background-color: white;
+      display: flex;
+      height: 4rem;
+      margin-bottom: 2rem;
+
+      input {
+        box-sizing: border-box;
+        margin: 0;
+        width: 50%;
+
+        &:nth-child(1) {
+          border-right: 0;
+        }
+      }
+
+      button {
+        background-color: transparent;
+        border: 0;
+        height: 2rem;
+        width: 4rem;
+        min-height: 0;
+
+        .material-symbols-outlined {
+          color: var.$color-text-primary;
+        }
+      }
+    }
+  }
+
+  .category-container {
+    width: 100%;
+  }
+
+  .category-row {
+    display: flex;
+    align-items: center;
+    margin: 0 auto 1rem auto;
+    width: 100%;
+    gap: 0.25rem;
+
+    input {
+      flex: 1;
+      margin: 0;
+      padding: 0.5rem 0.75rem;
+    }
+
+    button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      height: 100%;
+      margin: 0;
+
+      .material-symbols-outlined {
+        color: var.$color-text-primary;
+      }
+    }
+  }
+}
+
+.success-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var.$spacing-4xl;
+
+  h1 {
+    margin-bottom: var.$spacing-4xl;
+  }
+}

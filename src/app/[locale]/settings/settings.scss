@@ -1,0 +1,10 @@
+@use "utils/var" as var;
+
+.settings-page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var.$padding-page;
+  gap: var.$gap-grid;
+  width: 100%;
+}

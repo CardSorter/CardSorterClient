@@ -1,6 +1,6 @@
 "use client"
 
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 import {useDispatch, useSelector} from "react-redux";
 import StateSchema from "reducers/StateSchema";
@@ -10,10 +10,14 @@ import {Dispatch} from "@reduxjs/toolkit";
 import {useRouter} from "i18n/navigation";
 import {createStudy} from "actions/studyCreationAction";
 import {useTranslations} from "next-intl";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 
 export default function Page() {
   const t = useTranslations("CreateStudyPage");
   const router = useRouter();
+
+  const [errorMessage, setErrorMessage] = useState(false);
 
   // State
   const message = useSelector((state: StateSchema) => (state.studyCreation.thanksMessage));
@@ -22,8 +26,6 @@ export default function Page() {
   const studyCards = useSelector((state: StateSchema) => state.studyCreation.cards);
   const studyMessage = useSelector((state: StateSchema) => state.studyCreation.thanksMessage);
   const link = useSelector((state: StateSchema) => state.studyCreation.externalSurveyLink);
-  const errorMessage = useSelector((state: StateSchema) =>
-    (state.studyCreation.errorMessage));
   const studySendingStatus = useSelector((state: StateSchema) =>
     (state.studyCreation.ui.studySendingStatus));
   const sortType = useSelector((state: StateSchema) => state.studyCreation.sortType);
@@ -36,7 +38,7 @@ export default function Page() {
   const dispatch: Dispatch<any> = useDispatch();
 
   const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(studyCreationAction.toggleThanksError({status: false})); // Clear errors
+    setErrorMessage(false); // Clear errors
     dispatch(studyCreationAction.changeThanksMessage({message: e.target.value}));
   }
 
@@ -48,8 +50,7 @@ export default function Page() {
 
     // Check for errors
     if (!studyMessage || studyMessage.length === 0) {
-      dispatch(studyCreationAction.toggleThanksError({status: true}));
-      setTimeout(() => studyCreationAction.toggleThanksError({status: false}), 5000);
+      setErrorMessage(true);
       return;
     }
     const categoryMap: Record<string, string> = {};
@@ -98,43 +99,34 @@ export default function Page() {
 
 
   return (
-    <div className="study-creation-card">
+    <div className="study-creation-page">
       <h1>{t("title")}</h1>
       <h2>{t("message")}</h2>
 
       <form>
-        <div className="error-holder">
-          <textarea className='userForm' cols={30} rows={5} onChange={(e) => onLink(e)}
-            placeholder={t("external survey")}>
-          </textarea>
-          <textarea className="thanks message" cols={30} rows={10}
-            onChange={(e) => onMessageChange(e)}
-            placeholder={t("thanks message")}
-            defaultValue={message}>
-          </textarea>
-          {
-            errorMessage &&
-            <div className="error-message"><p>{t("error empty field")}</p></div>
-          }
-        </div>
+        <textarea className='userForm' cols={30} rows={5} onChange={(e) => onLink(e)}
+          placeholder={t("external survey")}>
+        </textarea>
+        <textarea className="thanks message" cols={30} rows={10}
+          onChange={(e) => onMessageChange(e)}
+          placeholder={t("thanks message")}
+          defaultValue={message}>
+        </textarea>
+        {
+          errorMessage &&
+            <Alert severity="error">{t("error empty field")}</Alert>
+        }
       </form>
 
       <div className="bottom-container">
 
         <div className="btn-container">
-          <button className="prev" onClick={onPrev} disabled={studySendingStatus === ActionStatus.IS_FETCHING}>
+          <Button aria-label="Previous step" variant="outlined" onClick={onPrev} disabled={studySendingStatus === ActionStatus.IS_FETCHING}>
             <span className="material-symbols-outlined">arrow_back</span>
-          </button>
-          <button className="create" onClick={onNext}  disabled={studySendingStatus === ActionStatus.IS_FETCHING}>
-            {
-              studySendingStatus === ActionStatus.IS_FETCHING &&
-                <span>{t("creating study")}</span>
-            }
-            {
-              studySendingStatus !== ActionStatus.IS_FETCHING &&
-                t("create")
-            }
-          </button>
+          </Button>
+          <Button aria-label="Create study" variant="contained" onClick={onNext} loading={studySendingStatus === ActionStatus.IS_FETCHING}>
+            {t("create")}
+          </Button>
         </div>
         <div className="page-no-container">
           <p>{currentPage}</p>

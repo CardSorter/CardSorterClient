@@ -8,6 +8,8 @@ import * as sortingBoardAction from "actions/sorting/sortingBoardAction";
 import {SortingCard} from "../../reducers/sorting/sortingBoardReducer";
 import {useTranslations} from "next-intl";
 import * as uiActions from "actions/sorting/uiAction";
+import TextField from '@mui/material/TextField';
+import IconButton from "@mui/material/IconButton";
 
 interface CategoryProps {
   id: number;
@@ -42,12 +44,13 @@ const Category: React.FC<CategoryProps> = ({id, title, cards, predefined}) => {
   }
 
   const onTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event);
     let title = event.target.value || "";
     title = title.replace(/\s\s+/g, ' ');
-    setPreliminaryTitle((title.length > 0) ? title : t("click to rename"));
+    setPreliminaryTitle((title.length > 0) ? title : "");
   }
 
-  const onTitleFinish = (event?: KeyboardEvent<HTMLInputElement>) => {
+  const onTitleFinish = (event?: KeyboardEvent<HTMLInputElement | HTMLDivElement>) => {
     if (event) {
       event.stopPropagation();
       if (event.code !== "Enter") return;
@@ -99,25 +102,27 @@ const Category: React.FC<CategoryProps> = ({id, title, cards, predefined}) => {
       <div className="header">
         {showEditTitle ? (
           <div className="title-input">
-            <input autoFocus type="text"
-                   placeholder={title || t("click to rename")}
-                   defaultValue={title}
-                   onBlur={() => onTitleFinish()}
-                   onChange={onTitleChange}
-                   onKeyUp={onTitleFinish}
-                   onClick={(e) => e.stopPropagation()}/>
-            <button type="button" onClick={() => onTitleFinish()}>
+            <TextField label="Title"
+                       variant="outlined"
+                       autoFocus
+                       value={preliminaryTitle}
+                       onBlur={() => onTitleFinish()}
+                       onChange={onTitleChange}
+                       onKeyUp={onTitleFinish}
+            />
+
+            <IconButton aria-label="Expand description" onClick={() => onTitleFinish}>
               <span className="material-symbols-outlined">check</span>
-            </button>
+            </IconButton>
           </div>
         ) : (
           <>
             <h3 onClick={onTitleClick} title={title}>
               {title || t("click to rename")}</h3>
-              
-            <button className="minimize" onClick={onMinimized}>
-              <span className="material-symbols-outlined">minimize</span>
-            </button>
+
+            <IconButton aria-label="Expand description" onClick={onMinimized} className="minimize">
+              <span className="material-symbols-outlined">{isMinimized ? "expand_content" : "minimize"}</span>
+            </IconButton>
           </>
         )}
       </div>

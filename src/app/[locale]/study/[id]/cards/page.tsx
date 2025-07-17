@@ -1,7 +1,7 @@
 "use client"
 
 import BarGraph from "elements/visualisations/BarGraph";
-import DataTable from "elements/visualisations/DataTable";
+import DataTable from "elements/visualisations/DataTable/DataTable";
 import React from "react";
 import { useSelector } from "react-redux";
 import StateSchema from "reducers/StateSchema";

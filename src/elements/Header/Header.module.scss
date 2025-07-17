@@ -1,0 +1,77 @@
+@use "utils/var" as var;
+
+.header {
+  align-items: center;
+  background-color: white;
+  box-sizing:  border-box;
+  display: flex;
+  flex-direction: row;
+  padding: 0 var.$padding-page;
+  width: 100%;
+
+  .logoContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+
+    .logo {
+      color: var.$color-text-primary;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-family: 'Dancing Script', cursive;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  .profile {
+    align-content: center;
+    border: solid 2px var.$color-border;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    padding: var.$spacing-xxs ;
+    position: relative;
+
+    &.unfold {
+      height: max-content;
+    }
+
+    .profileHeader {
+      align-items: center;
+      display: flex;
+      gap: var.$spacing-xs;
+      padding: 0 var.$spacing-sm;
+      position: relative;
+
+      .arrow {
+        font-size: 2rem;
+      }
+    }
+
+    &.unfold .arrow {
+      transform: rotate(180deg);
+    }
+
+    .content {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-top: var.$spacing-xs;
+
+      > button {
+        background: 0;
+        border: 0;
+        color: var.$color-background-dark;
+        cursor: pointer;
+        font-weight: 500;
+        height: auto; width: auto;
+        margin-top: var.$spacing-sm;
+        padding: var.$spacing-sm;
+      }
+    }
+  }
+}

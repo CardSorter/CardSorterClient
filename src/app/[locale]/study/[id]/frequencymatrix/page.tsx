@@ -1,7 +1,7 @@
 "use client"
 
 
-import PlacementFrequencyMatrix from "elements/visualisations/PlacementFrequencyMatrix";
+import PlacementFrequencyMatrix from "elements/visualisations/PlacementFrequencyMatrix/PlacementFrequencyMatrix";
 import React from "react";
 
 

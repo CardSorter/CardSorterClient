@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.2.0",
     "@reduxjs/toolkit": "^2.5.1",
     "@types/redux-logger": "^3.0.13",
     "cross-fetch": "^4.1.0",
@@ -19,7 +22,7 @@
     "react-redux": "^9.2.0",
     "react-split-pane": "^0.1.92",
     "redux": "^5.0.1",
-    "xlsx": "^0.18.5"
+    "write-excel-file": "^2.3.2"
   },
   "scripts": {
     "dev": "next dev --turbopack",
@@ -38,6 +41,7 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "redux-logger": "^3.0.6",
+    "sass": "^1.89.2",
     "typescript": "^5.7.3"
   }
 }

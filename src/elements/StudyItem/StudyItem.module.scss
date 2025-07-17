@@ -1,0 +1,70 @@
+@use "utils/var" as var;
+
+.studyItem {
+  align-items: center;
+  border: solid 2px white;
+  box-shadow: var.$shadow-md;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: var.$padding-card;
+  position: relative;
+  width: 100%;
+
+  &:hover {
+    border: solid 2px var.$color-primary;
+  }
+
+  .header {
+    align-items:  center;
+    display: flex;
+    gap: var.$gap-grid;
+
+    h3 {
+      margin: 0;
+    }
+
+    .activeSquare {
+      border-radius: 4px;
+      display: inline-block;
+      height: 1.4rem;
+      width: 1.4rem;
+
+      &.isLive {
+        background: var.$color-success;
+      }
+
+      &.notLive {
+        background: var.$color-error;
+      }
+    }
+  }
+
+  .participants {
+    display: flex;
+
+    p {
+      font-size: .8rem;
+    }
+
+    .completed {
+      font-weight: bold;
+      margin-right: var.$spacing-md;
+    }
+  }
+
+  .dates {
+    align-self: flex-start;
+    display: flex;
+    font-weight: 300;
+
+    .launched {
+      border-right: solid 1px black;
+      padding-right: var.$spacing-md;
+      margin-right: var.$spacing-md;
+    }
+  }
+}
