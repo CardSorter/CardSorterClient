@@ -3,7 +3,7 @@ import styles from "./Datatable.module.scss";
 
 interface DataTableProps {
   headers: string[];
-  data: (string | number | (string | number)[])[][];
+  data: (string | number | React.ReactNode | (string | number)[])[][];
 }
 
 const DataTable: React.FC<DataTableProps> = ({ headers, data }) => {

@@ -43,7 +43,6 @@ export default function Page() {
           <div>
             {item.category_names.map((name, idx) => {
               const isPredefined = predefinedSet.has(name?.trim().toLowerCase());
-              console.log("Checking if", name?.trim(), "is predefined:", isPredefined);
               return (
                <div key={idx}>
                 <span
