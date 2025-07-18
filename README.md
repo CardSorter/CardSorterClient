@@ -3,6 +3,9 @@ The open source card sorting tool.
 
 [https://usability.csd.auth.gr/card-sorter/en](https://usability.csd.auth.gr/card-sorter/en)
 
+---
+
+
 The full paper this tool was based on can be found on the [ACM's directory](https://dl.acm.org/doi/abs/10.1145/3437120.3437279)
 Original authors: [Georgios Melissourgos](https://scholar.google.com/citations?user=ZcEnV9oAAAAJ&hl=en&oi=ao), [Christos Katsanos](https://scholar.google.com/citations?hl=en&user=_6k57BEAAAAJ)
 
