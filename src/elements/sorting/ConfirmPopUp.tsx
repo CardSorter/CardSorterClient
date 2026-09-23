@@ -46,6 +46,7 @@ const ConfirmPopUp = () => {
         title: category.title || "",
         color: category.color || "#ffffff",
         cards: category.cards.map((c) => c.id),
+        insertAtIndex: category.insertAtIndex,
       };
     }
 
