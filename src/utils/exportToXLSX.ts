@@ -1,5 +1,11 @@
 import {StudyPageState} from "../reducers/studyPageReducer";
-import writeXlsxFile from 'write-excel-file';
+import writeXlsxFile, {getSheetData} from 'write-excel-file/browser';
+
+// Helper: builds a bold header cell
+const getHeader = (text: string) => ({
+  value: text,
+  fontWeight: 'bold' as const
+});
 
 export default async (state: StudyPageState, title: string) => {
 
@@ -11,11 +17,23 @@ export default async (state: StudyPageState, title: string) => {
     categoriesCreated: p[3]
   }));
 
-  const participantsSchema = [
-    {column: 'Participant no', type: String, value: (row: typeof participantsRows[0]) => row.participantNo},
-    {column: 'Time taken', type: String, value: (row: typeof participantsRows[0]) => row.timeTaken},
-    {column: 'Cards sorted', type: String, value: (row: typeof participantsRows[0]) => row.cardsSorted},
-    {column: 'Categories created', type: Number, value: (row: typeof participantsRows[0]) => row.categoriesCreated}
+  const participantsColumns = [
+    {
+      header: getHeader('Participant no'),
+      cell: (row: typeof participantsRows[0]) => ({ value: row.participantNo, type: String })
+    },
+    {
+      header: getHeader('Time taken'),
+      cell: (row: typeof participantsRows[0]) => ({ value: row.timeTaken, type: String })
+    },
+    {
+      header: getHeader('Cards sorted'),
+      cell: (row: typeof participantsRows[0]) => ({ value: row.cardsSorted, type: String })
+    },
+    {
+      header: getHeader('Categories created'),
+      cell: (row: typeof participantsRows[0]) => ({ value: row.categoriesCreated, type: Number })
+    }
   ];
 
   // Sorting Sheet
@@ -26,11 +44,23 @@ export default async (state: StudyPageState, title: string) => {
     comment: item.comment
   }));
 
-  const sortingSchema = [
-    {column: 'Participant no', type: String, value: (row: typeof sortingRows[0]) => row.no},
-    {column: 'Category', type: String, value: (row: typeof sortingRows[0]) => row.category},
-    {column: 'Cards', type: String, value: (row: typeof sortingRows[0]) => row.cards},
-    {column: 'Comment', type: String, value: (row: typeof sortingRows[0]) => row.comment}
+  const sortingColumns = [
+    {
+      header: getHeader('Participant no'),
+      cell: (row: typeof sortingRows[0]) => ({ value: row.no, type: String })
+    },
+    {
+      header: getHeader('Category'),
+      cell: (row: typeof sortingRows[0]) => ({ value: row.category, type: String })
+    },
+    {
+      header: getHeader('Cards'),
+      cell: (row: typeof sortingRows[0]) => ({ value: row.cards, type: String })
+    },
+    {
+      header: getHeader('Comment'),
+      cell: (row: typeof sortingRows[0]) => ({ value: row.comment, type: String })
+    }
   ];
 
   // Cards Sheet
@@ -42,12 +72,27 @@ export default async (state: StudyPageState, title: string) => {
     description: item.description
   }));
 
-  const cardsSchema = [
-    {column: 'Card', type: String, value: (row: typeof cardsRows[0]) => row.card},
-    {column: 'Categories No', type: Number, value: (row: typeof cardsRows[0]) => row.categories_no},
-    {column: 'Categories', type: String, value: (row: typeof cardsRows[0]) => row.category_names},
-    {column: 'Frequency', type: String, value: (row: typeof cardsRows[0]) => row.frequencies},
-    {column: 'Description', type: String, value: (row: typeof cardsRows[0]) => row.description}
+  const cardsColumns = [
+    {
+      header: getHeader('Card'),
+      cell: (row: typeof cardsRows[0]) => ({ value: row.card, type: String })
+    },
+    {
+      header: getHeader('Categories No'),
+      cell: (row: typeof cardsRows[0]) => ({ value: row.categories_no, type: Number })
+    },
+    {
+      header: getHeader('Categories'),
+      cell: (row: typeof cardsRows[0]) => ({ value: row.category_names, type: String })
+    },
+    {
+      header: getHeader('Frequency'),
+      cell: (row: typeof cardsRows[0]) => ({ value: row.frequencies, type: String })
+    },
+    {
+      header: getHeader('Description'),
+      cell: (row: typeof cardsRows[0]) => ({ value: row.description, type: String })
+    }
   ];
 
   // Categories Sheet
@@ -58,21 +103,36 @@ export default async (state: StudyPageState, title: string) => {
     frequency: (Array.isArray(item[3]) ? item[3].join(", ") : item[3]),
     participants: item[4]
   }));
-  console.log(categoriesRows);
 
-  const categoriesSchema = [
-    {column: 'Category', type: String, value: (row: typeof categoriesRows[0]) => row.category},
-    {column: 'Cards no', type: Number, value: (row: typeof categoriesRows[0]) => row.cards_no},
-    {column: 'Cards', type: String, value: (row: typeof categoriesRows[0]) => row.cards},
-    {column: 'Frequency', type: String, value: (row: typeof categoriesRows[0]) => row.frequency},
-    {column: 'Participants', type: Number, value: (row: typeof categoriesRows[0]) => row.participants}
+  const categoriesColumns = [
+    {
+      header: getHeader('Category'),
+      cell: (row: typeof categoriesRows[0]) => ({ value: row.category, type: String })
+    },
+    {
+      header: getHeader('Cards no'),
+      cell: (row: typeof categoriesRows[0]) => ({ value: row.cards_no, type: Number })
+    },
+    {
+      header: getHeader('Cards'),
+      cell: (row: typeof categoriesRows[0]) => ({ value: row.cards, type: String })
+    },
+    {
+      header: getHeader('Frequency'),
+      cell: (row: typeof categoriesRows[0]) => ({ value: row.frequency, type: String })
+    },
+    {
+      header: getHeader('Participants'),
+      cell: (row: typeof categoriesRows[0]) => ({ value: row.participants, type: Number })
+    }
   ];
+  
 
   // Export All Sheets
-  // @ts-ignore
-  await writeXlsxFile([participantsRows, sortingRows, cardsRows, categoriesRows], {
-    schema: [participantsSchema, sortingSchema, cardsSchema, categoriesSchema],
-    sheets: ["Participant", "Sorting", "cards", "categories"],
-    fileName: `raw-data-${title}.xlsx`
-  });
+  await writeXlsxFile([
+    { data: getSheetData(participantsRows, participantsColumns), sheet: "Participant" },
+    { data: getSheetData(sortingRows, sortingColumns),           sheet: "Sorting" },
+    { data: getSheetData(cardsRows, cardsColumns),               sheet: "cards" },
+    { data: getSheetData(categoriesRows, categoriesColumns),     sheet: "categories" },
+  ]).toFile(`raw-data-${title}.xlsx`);
 };
