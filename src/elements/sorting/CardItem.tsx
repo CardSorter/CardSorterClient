@@ -1,8 +1,8 @@
-import React, {MouseEvent} from 'react';
-import {useDrag} from 'react-dnd';
-import {useDispatch} from "react-redux";
+import React, { MouseEvent } from "react";
+import { useDrag } from "react-dnd";
+import { useDispatch } from "react-redux";
 import * as sortingBoardAction from "../../actions/sorting/sortingBoardAction";
-import IconButton from '@mui/material/IconButton';
+import IconButton from "@mui/material/IconButton";
 
 interface CardItemProps {
   id: number;
@@ -13,8 +13,14 @@ interface CardItemProps {
   showDescription?: boolean;
 }
 
-const CardItem: React.FC<CardItemProps> = ({id, title, description, minimized, position, showDescription}) => {
-
+const CardItem: React.FC<CardItemProps> = ({
+  id,
+  title,
+  description,
+  minimized,
+  position,
+  showDescription,
+}) => {
   // Dispatch
   const dispatch = useDispatch();
 
@@ -22,13 +28,13 @@ const CardItem: React.FC<CardItemProps> = ({id, title, description, minimized, p
     e.stopPropagation();
 
     if (description && description.length > 0) {
-      dispatch(sortingBoardAction.toggleDescription({cardID: id}));
+      dispatch(sortingBoardAction.toggleDescription({ cardID: id }));
     }
-  }
+  };
 
-  const [{isDragging}, dragRef] = useDrag(() => ({
+  const [{ isDragging }, dragRef] = useDrag(() => ({
     type: "card-drag",
-    item: {id, position},
+    item: { id, position },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -38,8 +44,8 @@ const CardItem: React.FC<CardItemProps> = ({id, title, description, minimized, p
     <li
       // @ts-ignore
       ref={dragRef}
-      className={`${!minimized ? 'card' : 'card minimized'} ${
-        isDragging ? 'dragging' : ''
+      className={`${!minimized ? "card" : "card minimized"} ${
+        isDragging ? "dragging" : ""
       }`}
     >
       {/* Show the description */}
@@ -58,7 +64,11 @@ const CardItem: React.FC<CardItemProps> = ({id, title, description, minimized, p
       )}
       {/* Show the description button */}
       {minimized && description && (
-        <IconButton aria-label="Expand description" onClick={onClick} className={showDescription ? "open" : ""}>
+        <IconButton
+          aria-label="Expand description"
+          onClick={onClick}
+          className={showDescription ? "open" : ""}
+        >
           <span className="material-symbols-outlined">arrow_drop_down</span>
         </IconButton>
       )}

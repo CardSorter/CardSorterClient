@@ -1,14 +1,14 @@
-import React, {ChangeEvent, KeyboardEvent, MouseEvent, useState} from 'react';
-import {useDrop} from 'react-dnd';
-import {useDispatch, useSelector} from "react-redux";
+import React, { ChangeEvent, KeyboardEvent, MouseEvent, useState } from "react";
+import { useDrop } from "react-dnd";
+import { useDispatch, useSelector } from "react-redux";
 
-import CardItem from './CardItem';
+import CardItem from "./CardItem";
 import StateSchema from "reducers/StateSchema";
 import * as sortingBoardAction from "actions/sorting/sortingBoardAction";
-import {SortingCard} from "../../reducers/sorting/sortingBoardReducer";
-import {useTranslations} from "next-intl";
+import { SortingCard } from "../../reducers/sorting/sortingBoardReducer";
+import { useTranslations } from "next-intl";
 import * as uiActions from "actions/sorting/uiAction";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 
 interface CategoryProps {
@@ -18,21 +18,28 @@ interface CategoryProps {
   predefined?: boolean;
 }
 
-
-const Category: React.FC<CategoryProps> = ({id, title, cards, predefined}) => {
+const Category: React.FC<CategoryProps> = ({
+  id,
+  title,
+  cards,
+  predefined,
+}) => {
   const t = useTranslations("SortingPage");
 
   const [preliminaryTitle, setPreliminaryTitle] = useState(title || "");
   const [showEditTitle, setShowEditTitle] = useState(false);
 
-  const categories = useSelector((state: StateSchema) => state.sortingBoard.categories);
+  const categories = useSelector(
+    (state: StateSchema) => state.sortingBoard.categories,
+  );
   const existingTitles = Object.values(categories)
     .filter((cat) => cat.id !== id) // exclude the current one
     .map((cat) => cat.title?.trim().toLowerCase());
 
-
   // State
-  const isMinimized = useSelector((state: StateSchema) => (state.sortingBoard.categories[id].isMinimized));
+  const isMinimized = useSelector(
+    (state: StateSchema) => state.sortingBoard.categories[id].isMinimized,
+  );
 
   // Dispatch
   const dispatch = useDispatch();
@@ -41,59 +48,82 @@ const Category: React.FC<CategoryProps> = ({id, title, cards, predefined}) => {
     if (predefined) return;
     event.stopPropagation();
     setShowEditTitle(true);
-  }
+  };
 
   const onTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event);
     let title = event.target.value || "";
-    title = title.replace(/\s\s+/g, ' ');
-    setPreliminaryTitle((title.length > 0) ? title : "");
-  }
+    title = title.replace(/\s\s+/g, " ");
+    setPreliminaryTitle(title.length > 0 ? title : "");
+  };
 
-  const onTitleFinish = (event?: KeyboardEvent<HTMLInputElement | HTMLDivElement>) => {
+  const onTitleFinish = (
+    event?: KeyboardEvent<HTMLInputElement | HTMLDivElement>,
+  ) => {
     if (event) {
       event.stopPropagation();
       if (event.code !== "Enter") return;
     }
-  
+
     const normalizedNewTitle = preliminaryTitle.trim().toLowerCase();
-  
+
     if (existingTitles.includes(normalizedNewTitle)) {
-      dispatch(uiActions.showCategoriesWithSameNameError({ categoriesList: [preliminaryTitle] }));
+      dispatch(
+        uiActions.showCategoriesWithSameNameError({
+          categoriesList: [preliminaryTitle],
+        }),
+      );
       return;
-      
     }
-  
-    dispatch(sortingBoardAction.renameCategory({ categoryID: id, title: preliminaryTitle }));
+
+    dispatch(
+      sortingBoardAction.renameCategory({
+        categoryID: id,
+        title: preliminaryTitle,
+      }),
+    );
     setShowEditTitle(false);
-  }
+  };
 
   const onMinimized = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    dispatch(sortingBoardAction.minimizeCategory({id}));
-  }
+    dispatch(sortingBoardAction.minimizeCategory({ id }));
+  };
 
-  const [{isOver}, drop] = useDrop(() => ({
-    accept: "card-drag",
-    drop: (card: { id: number; position: number }) => {
-      // Remove card from any other category it may belong
-      if (card.position > -1) {
-        dispatch(sortingBoardAction.removeCardFromCategory({cardID: card.id, categoryID: card.position}));
-      }
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: "card-drag",
+      drop: (card: { id: number; position: number }) => {
+        // Remove card from any other category it may belong
+        if (card.position > -1) {
+          dispatch(
+            sortingBoardAction.removeCardFromCategory({
+              cardID: card.id,
+              categoryID: card.position,
+            }),
+          );
+        }
 
-      dispatch(sortingBoardAction.addCardToCategory({categoryID: id, cardID: card.id}));
-    },
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
+        dispatch(
+          sortingBoardAction.addCardToCategory({
+            categoryID: id,
+            cardID: card.id,
+          }),
+        );
+      },
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+      }),
     }),
-  }), [id]);
+    [id],
+  );
 
-  let classString = 'category';
+  let classString = "category";
   if (isOver) {
-    classString += ' max-height';
+    classString += " max-height";
   }
   if (isMinimized) {
-    classString += ' minimized';
+    classString += " minimized";
   }
 
   return (
@@ -102,26 +132,37 @@ const Category: React.FC<CategoryProps> = ({id, title, cards, predefined}) => {
       <div className="header">
         {showEditTitle ? (
           <div className="title-input">
-            <TextField label="Title"
-                       variant="outlined"
-                       autoFocus
-                       value={preliminaryTitle}
-                       onBlur={() => onTitleFinish()}
-                       onChange={onTitleChange}
-                       onKeyUp={onTitleFinish}
+            <TextField
+              label="Title"
+              variant="outlined"
+              autoFocus
+              value={preliminaryTitle}
+              onBlur={() => onTitleFinish()}
+              onChange={onTitleChange}
+              onKeyUp={onTitleFinish}
             />
 
-            <IconButton aria-label="Expand description" onClick={() => onTitleFinish}>
+            <IconButton
+              aria-label="Expand description"
+              onClick={() => onTitleFinish}
+            >
               <span className="material-symbols-outlined">check</span>
             </IconButton>
           </div>
         ) : (
           <>
             <h3 onClick={onTitleClick} title={title}>
-              {title || t("click to rename")}</h3>
+              {title || t("click to rename")}
+            </h3>
 
-            <IconButton aria-label="Expand description" onClick={onMinimized} className="minimize">
-              <span className="material-symbols-outlined">{isMinimized ? "expand_content" : "minimize"}</span>
+            <IconButton
+              aria-label="Expand description"
+              onClick={onMinimized}
+              className="minimize"
+            >
+              <span className="material-symbols-outlined">
+                {isMinimized ? "expand_content" : "minimize"}
+              </span>
             </IconButton>
           </>
         )}
@@ -134,14 +175,19 @@ const Category: React.FC<CategoryProps> = ({id, title, cards, predefined}) => {
       )}
       <ul>
         {cards.map((card) => (
-          <CardItem key={card.id} id={card.id} title={card.name}
-                    description={card.description} minimized={true}
-                    position={id}
-                    showDescription={card.descriptionShowing}/>
+          <CardItem
+            key={card.id}
+            id={card.id}
+            title={card.name}
+            description={card.description}
+            minimized={true}
+            position={id}
+            showDescription={card.descriptionShowing}
+          />
         ))}
       </ul>
       <div className="card-count-footer">
-       {cards.length} {cards.length === 1 ? "card" : "cards"}
+        {cards.length} {cards.length === 1 ? "card" : "cards"}
       </div>
     </li>
   );

@@ -1,5 +1,6 @@
-
-
+:root {
+  color-scheme: light;
+}
 
 /* SortingHeader */
 
@@ -154,7 +155,7 @@
 /*  margin-bottom: 2.5rem;*/
 /*}*/
 
-/* StudyCard */ 
+/* StudyCard */
 
 /*li.studyItem {*/
 /*  align-items: center;*/
@@ -637,8 +638,6 @@
 /*  font-weight: bold;*/
 /*}*/
 
-
-
 /*!* Page 3 *!*/
 
 /*.study-creation-card button.create {*/
@@ -891,7 +890,6 @@
 /*.data-container {*/
 /*padding-top: 0 !important;*/
 /*}*/
-
 
 /*.study-page .content .data-container table {*/
 /*  width: 100%;*/
@@ -1171,7 +1169,6 @@
 /*  justify-content: center;*/
 /*}*/
 
-
 /*#table_header {*/
 /*  position: sticky;*/
 /*  top: 0;*/
@@ -1274,7 +1271,6 @@
 /*  font-weight: bold;*/
 /*}*/
 
-
 /*.content input[type="text"],*/
 /*.content input[type="description"] {*/
 /*  width: 100%; !* Adjust the width as needed *!*/
@@ -1320,7 +1316,6 @@
 /*  margin-top: 1rem;*/
 /*}*/
 
-
 /*.sorting .data-container{*/
 
 /*  align-Items: center;*/
@@ -1351,17 +1346,19 @@
 .auth-page {
   align-items: center;
   display: flex;
-  height: 100%; width: 100%;
+  height: 100%;
+  width: 100%;
   justify-content: center;
 }
 
 .auth-container {
-  background-color: #90C3D4;
+  background-color: #90c3d4;
   border-radius: 1rem;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  height: 45rem; width: 45rem;
+  height: 45rem;
+  width: 45rem;
   padding: 3rem;
 }
 
@@ -1370,10 +1367,12 @@
   background-color: white;
   background-position: center;
   background-size: cover;
-  content: '';
-  height: 100%; width: 100%;
+  content: "";
+  height: 100%;
+  width: 100%;
   position: absolute;
-  top:0; left: 0;
+  top: 0;
+  left: 0;
   z-index: -1;
 }
 
@@ -1383,7 +1382,6 @@
   text-align: center;
   font-weight: bold;
 }
-
 
 .auth-container > p::first-letter {
   text-transform: capitalize;
@@ -1403,7 +1401,6 @@
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
-  
 }
 
 .auth-container form .error-holder {
@@ -1415,11 +1412,12 @@
 .auth-container form .error-holder .error-message {
   align-items: center;
   background: var(--color-error);
-  border-radius: 0 0 .5rem .5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
   color: white;
   display: flex;
   font-size: 1.5rem;
-  height: 3rem; width: 100%;
+  height: 3rem;
+  width: 100%;
   justify-content: center;
   position: absolute;
   text-align: center;
@@ -1427,17 +1425,15 @@
   z-index: -1;
 }
 
-
 .auth-container form input {
   background: white;
-  border: solid 2px rgba(0, 0, 0, .5);
-  border-radius: .2rem;
+  border: solid 2px rgba(0, 0, 0, 0.5);
+  border-radius: 0.2rem;
   font-size: 1.4rem;
   height: 4.5rem;
   text-indent: 2rem;
   width: 100%;
   z-index: 2;
-  
 }
 
 .auth-container form input {
@@ -1450,11 +1446,12 @@
 
 .auth-container form button.action {
   background: transparent;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   box-sizing: border-box;
   color: var(--color-black);
   cursor: pointer;
-  height: 4rem; width: 15rem;
+  height: 4rem;
+  width: 15rem;
   font-weight: bold;
   position: relative;
   padding: 10px;
@@ -1471,32 +1468,34 @@
 
 .auth-container form button.action:hover {
   color: white;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .auth-container form button.action::before {
   box-sizing: border-box;
-  border-radius: .2rem;
-  content: '';
-  height: 4rem; width: 0;
+  border-radius: 0.2rem;
+  content: "";
+  height: 4rem;
+  width: 0;
   position: absolute;
-  right: -3px; top: -3px;
+  right: -3px;
+  top: -3px;
   transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   z-index: 0;
 }
 
 .auth-container form button.action:hover::before {
-  left: -3px; right: auto;
+  left: -3px;
+  right: auto;
   width: 15rem;
 }
 
 .auth-container form button.action.login {
-  border: solid 2px rgba(0, 0, 0, .5);
-  
+  border: solid 2px rgba(0, 0, 0, 0.5);
 }
 
 .auth-container form button.action.login::before {
-  background: radial-gradient(circle at 10%, grey , grey);
+  background: radial-gradient(circle at 10%, grey, grey);
 }
 
 .auth-container button.register {
@@ -1507,17 +1506,13 @@
 
 /* Register Page */
 
-
 .auth-container form button.action.signup {
-  border: solid 2px rgba(0, 0, 0, .5);
-
-  
+  border: solid 2px rgba(0, 0, 0, 0.5);
 }
 
 .auth-container form button.action.signup::before {
-  background: radial-gradient(circle at 0% 90%, grey,grey);
-  
-} 
+  background: radial-gradient(circle at 0% 90%, grey, grey);
+}
 .auth-header {
   display: flex;
   align-items: center;
@@ -1535,7 +1530,7 @@
 }
 
 .back-button {
-  background: transparent;  /* make it match container’s background */
+  background: transparent; /* make it match container’s background */
 }
 
 .spacer {
@@ -1556,9 +1551,7 @@
   margin: 0;
   white-space: nowrap;
   font-weight: bold;
-  
-} 
-
+}
 
 /*!* Settings Page *!*/
 
@@ -1597,7 +1590,6 @@
 /*  white-space: nowrap;*/
 /*  */
 /*}*/
-
 
 /*.settings-header {*/
 /*  position: relative;*/
@@ -1730,7 +1722,6 @@
 /*  font-style: italic;*/
 /*}*/
 
-
 /*!* Counting the number of cards in each category *!*/
 /*.card-count {*/
 /*  font-size: 1.3rem;*/
@@ -1739,7 +1730,6 @@
 /*  margin-left: 0.4rem;*/
 /*}*/
 
-
 /*Home Page */
 
 .homepage {
@@ -1747,7 +1737,6 @@
   max-width: 100vw;
   overflow-x: hidden;
 }
-
 
 .homepage-header {
   display: flex;
@@ -1764,9 +1753,8 @@
   box-sizing: border-box;
 }
 
-
 .logo {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 24px;
   font-weight: bold;
   color: #181818;
@@ -1777,7 +1765,6 @@
   gap: 2px;
   flex-shrink: 0;
   margin-right: 0rem;
-  
 }
 
 .nav-buttons button {
@@ -1787,21 +1774,18 @@
   font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
-  border: 2px solid #90C3D4;
+  border: 2px solid #90c3d4;
   background: white;
-  color: #90C3D4;
+  color: #90c3d4;
   transition: 0.2s;
-  width:12rem;
-  height:3rem;
-  
+  width: 12rem;
+  height: 3rem;
 }
 
 .nav-buttons button.signup {
-  background-color: #90C3D4;
+  background-color: #90c3d4;
   color: white;
-  
 }
-
 
 .homepage-main {
   max-width: 960px;
@@ -1830,7 +1814,7 @@
 }
 
 .intro p {
-  border: 3px solid #90C3D4;
+  border: 3px solid #90c3d4;
   padding: 32px;
   margin-top: 32px;
   font-size: 2rem;
@@ -1851,23 +1835,23 @@
   flex-wrap: nowrap;
 }
 .homepage-card {
-  background-color: #90C3D4;
-  padding: 32px 24px;        
+  background-color: #90c3d4;
+  padding: 32px 24px;
   border-radius: 12px;
   flex: 1;
   text-align: center;
-  min-width: 240px;            
-  min-height: 200px;           
-  font-size: 1rem;  
+  min-width: 240px;
+  min-height: 200px;
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;           
+  align-items: center;
 }
 .homepage-card p {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  margin:0;
+  margin: 0;
 }
 
 .homepage-card h4 {
@@ -1877,15 +1861,12 @@
   margin-bottom: 32px;
   font-size: 2.5rem;
   font-weight: bold;
-  
-  
 }
 
 .homepage-card h4 img {
   margin-right: px;
   width: 60px;
   height: 60px;
-  
 }
 
 .homepage-card ul {
@@ -1895,7 +1876,7 @@
 }
 
 .homepage-card ul li {
-  margin-bottom: 24px; 
+  margin-bottom: 24px;
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
@@ -1906,14 +1887,13 @@
   align-items: flex-start;
   justify-content: center;
   text-align: center;
-  
 }
 .homepage-card-header {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 100px; 
+  height: 100px;
   margin-bottom: 24px;
   text-align: center;
   white-space: nowrap;
@@ -1925,7 +1905,6 @@
 }
 
 .homepage-card-header h4 {
-
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
@@ -1936,8 +1915,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  padding: 2rem;
-}  
+  padding: 2rem 1rem;
+}
 /*Analysis data */
 /*.row-white{*/
 /*  background-color: white;*/
@@ -1961,29 +1940,3 @@
 /*.settings-section {*/
 /*  margin-bottom: 2rem;*/
 /*}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  

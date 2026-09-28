@@ -1,14 +1,13 @@
-import {createReducer} from '@reduxjs/toolkit';
-import * as uiAction from 'actions/sorting/uiAction';
-import { setTimeStarted } from 'actions/sorting/uiAction';
-
-
-
-
-
+import { createReducer } from "@reduxjs/toolkit";
+import * as uiAction from "actions/sorting/uiAction";
+import { setTimeStarted } from "actions/sorting/uiAction";
 
 export interface SortingUIState {
   showOnBoarding: boolean;
+  showOnBoardingPartOne: boolean;
+  showOnBoardingPartTwo: boolean;
+  onBoardingFinalStep: boolean;
+  showAllCards: boolean;
   studyID?: string;
   studyTitle: string;
   studyDescription: string;
@@ -21,7 +20,7 @@ export interface SortingUIState {
   showInstructionsPopup: boolean;
   showConfirmPopUp: boolean;
   timeStarted?: Date;
-  sortType: 'open' | 'closed' | 'hybrid';
+  sortType: "open" | "closed" | "hybrid";
   predefinedCategories: Record<string, string>;
   errors: {
     categoryMissingTitle: boolean;
@@ -30,16 +29,16 @@ export interface SortingUIState {
     noCategoriesCreated: boolean;
   };
   commentSaved: boolean;
-  
- 
-  
-
 }
 
 const initialState: SortingUIState = {
   studyTitle: "",
   studyDescription: "",
   showOnBoarding: true,
+  showOnBoardingPartOne: true,
+  showOnBoardingPartTwo: false,
+  onBoardingFinalStep: false,
+  showAllCards: false,
   showConfirmPopUp: false,
   showDescriptionPopup: false,
   showInstructionsPopup: false,
@@ -55,14 +54,24 @@ const initialState: SortingUIState = {
   },
   commentSaved: false,
   timeStarted: undefined,
-  
-
 };
 
 const sortingUiReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(uiAction.toggleOnBoarding, (state, action) => {
       state.showOnBoarding = action.payload;
+    })
+    .addCase(uiAction.toggleOnBoardingPartOne, (state, action) => {
+      state.showOnBoardingPartOne = action.payload;
+    })
+    .addCase(uiAction.toggleOnBoardingPartTwo, (state, action) => {
+      state.showOnBoardingPartTwo = action.payload;
+    })
+    .addCase(uiAction.toggleBoardingFinalStep, (state, action) => {
+      state.onBoardingFinalStep = action.payload;
+    })
+    .addCase(uiAction.showAllCards, (state, action) => {
+      state.showAllCards = action.payload;
     })
     .addCase(uiAction.saveStudyID, (state, action) => {
       state.studyID = action.payload.studyID;
@@ -133,10 +142,10 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
       state.sortType = action.payload.sortType;
     })
     .addCase(uiAction.setSortType, (state, action) => {
-    state.sortType=action.payload;
+      state.sortType = action.payload;
     })
     .addCase(uiAction.setCategories, (state, action) => {
-    state.predefinedCategories = action.payload.categories;
+      state.predefinedCategories = action.payload.categories;
     })
     .addCase(uiAction.showCommentSaved, (state) => {
       state.commentSaved = true;
@@ -149,11 +158,7 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setTimeStarted, (state, action) => {
       state.timeStarted = action.payload;
-    })
-    
-    
-
-
+    });
 });
 
 export default sortingUiReducer;

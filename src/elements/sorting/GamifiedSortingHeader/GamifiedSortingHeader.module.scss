@@ -1,0 +1,34 @@
+@use "utils/var" as var;
+
+.sortingHeader {
+  align-items: center;
+  box-shadow: var.$shadow-sm;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // padding: var.$spacing-lg var.$padding-page;
+  padding: 10px var.$padding-page;
+  position: relative;
+  z-index: 1;
+
+  .btnContainer {
+    display: flex;
+    gap: var.$gap-grid;
+  }
+
+  .logo {
+    color: var.$color-text-primary;
+    font-family: "Dancing Script", cursive;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .highlighted {
+    z-index: 1000;
+    box-shadow:
+      10px 5px 0 white,
+      -10px 5px 0 white,
+      10px -5px 0 white,
+      -10px -5px 0 white;
+  }
+}

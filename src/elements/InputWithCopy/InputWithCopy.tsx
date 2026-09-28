@@ -8,22 +8,21 @@ import styles from "./InputWithCopy.module.scss";
 import copyToClipboard from "../../utils/copyToClipboard";
 
 interface InputWithCopyProps {
-  title?: string,
-  inputText: string,
+  title?: string;
+  inputText: string;
 }
 
-export default function InputWithCopy({inputText, title}: InputWithCopyProps) {
-
+export default function InputWithCopy({
+  inputText,
+  title,
+}: InputWithCopyProps) {
   const onCopy = () => {
     copyToClipboard(inputText);
-  }
+  };
 
   return (
-    <div className={styles.shareContainer}>
-      {
-        title &&
-          <h3>{title}</h3>
-      }
+    <div className={styles.shareContainer} style={{ paddingTop: "0.25rem" }}>
+      {title && <h3>{title}</h3>}
 
       <FormControl variant="outlined" className={styles.input}>
         <InputLabel htmlFor="outlined-adornment-password">Share URL</InputLabel>
@@ -35,11 +34,7 @@ export default function InputWithCopy({inputText, title}: InputWithCopyProps) {
           fullWidth
           endAdornment={
             <InputAdornment position="end">
-              <IconButton
-                aria-label="Copy link"
-                onClick={onCopy}
-                edge="end"
-              >
+              <IconButton aria-label="Copy link" onClick={onCopy} edge="end">
                 <span className="material-symbols-outlined">content_copy</span>
               </IconButton>
             </InputAdornment>
@@ -48,5 +43,5 @@ export default function InputWithCopy({inputText, title}: InputWithCopyProps) {
         />
       </FormControl>
     </div>
-  )
+  );
 }

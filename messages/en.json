@@ -35,6 +35,7 @@
     "log out": "Log out"
   },
   "SortingHeader": {
+    "show all": "Show remaining cards",
     "show description": "Show Description",
     "add comment": "Add a comment",
     "finish": "Finish",
@@ -72,6 +73,7 @@
     "inactive": "Inactive",
     "launched on": "Launched on",
     "share url": "Share this url with the participants",
+    "share url (gamified)": "Share the gamified url with the participants",
     "no participants": "no participants yet",
     "participant": "participant",
     "sorting": "sorting",
@@ -184,6 +186,7 @@
     "drop to add": "drop to add",
     "add comment": "add a comment",
     "you can close this tab": "you can close this tab",
+    "show all": "Show remaining cards",
     "instructions": "INSTRUCTIONS",
     "instructions step1": "Step 1",
     "instructions step2": "Step 2",
@@ -191,6 +194,9 @@
     "step1": "Take a quick look at the items to the left.",
     "step2": "Drag an item into one of the categories on the right.",
     "step3": "Click “Finish” when you're done.",
+    "gamified step1": "Take a quick look at the cards. We'd like you to sort them into groups that make sense to you.",
+    "gamified step2": "Drag cards into categories or drop them onto open board space to create a new group. Click group titles to rename them, pick custom background colors and reorder groups.",
+    "gamified step3": "When you're done, click 'Finish' to submit your sorting.",
     "close": "Close",
     "write your comment here": "Share why you grouped the cards this way or any feedback you have about the task.",
     "comment saved": "Your comment has been saved",
@@ -212,4 +218,3 @@
     "fill in": "Fill in what you want to change"
   }
 }
-

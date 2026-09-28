@@ -20,7 +20,7 @@ export default async function RootLayout(
   const {locale} = await params;
 
   return (
-        <html lang={locale}>
+        <html lang={locale} data-theme="light">
           <head>
               <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet"/>
               <title>CardSorter</title>
