@@ -80,6 +80,9 @@ const GamifiedList: React.FC = () => {
     updateScrollButtons();
   }, [unsortedCards, spread, phase]);
 
+  const totalCards = unsortedCards.length;
+  const shadowSpreadDelay = totalCards * 30;
+
   useEffect(() => {
     setPhase("stacked");
 
@@ -91,7 +94,7 @@ const GamifiedList: React.FC = () => {
     const t2 = setTimeout(() => {
       setSpread(true);
       updateScrollButtons();
-    }, 1000);
+    }, shadowSpreadDelay);
     return () => {
       clearTimeout(t);
       clearTimeout(t2);
@@ -130,7 +133,6 @@ const GamifiedList: React.FC = () => {
       left: amount,
       behavior: "smooth",
     });
-    console.log("clicked", container);
   }
 
   return (
