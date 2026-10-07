@@ -12,7 +12,7 @@ const ShowAllCards = () => {
 
   const [close, setClose] = useState(false);
 
-  const [backgroundDuration, setBackgroundDuration] = useState(0.5);
+  const [backgroundDuration, setBackgroundDuration] = useState(500);
 
   const onStartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -21,7 +21,7 @@ const ShowAllCards = () => {
 
     const animationDelay = (totalCards - 1) * 35;
     const animationDuration = 300;
-    setBackgroundDuration(animationDelay + animationDuration);
+    setBackgroundDuration(animationDelay - 1000);
     setTimeout(() => {
       dispatch(uiAction.showAllCards(false));
       dispatch(uiAction.startSort());
@@ -53,7 +53,7 @@ const ShowAllCards = () => {
     <div
       className={close ? "show-all closed" : "show-all"}
       style={{
-        transition: `background-color ${backgroundDuration}s ease-in ${backgroundDuration}s`,
+        transition: `background-color 1s ease-in ${backgroundDuration}ms`,
       }}
     >
       <ul className={close ? "all-list closed " : "all-list"}>
