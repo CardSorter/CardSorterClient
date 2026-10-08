@@ -12,13 +12,16 @@ const ShowAllCards = () => {
 
   const [close, setClose] = useState(false);
 
+  const [backgroundDuration, setBackgroundDuration] = useState(500);
+
   const onStartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setClose(!close);
     playSound("flickthrough");
 
-    const animationDelay = (totalCards - 1) * 45;
+    const animationDelay = (totalCards - 1) * 35;
     const animationDuration = 300;
+    setBackgroundDuration(animationDelay - 1000);
     setTimeout(() => {
       dispatch(uiAction.showAllCards(false));
       dispatch(uiAction.startSort());
@@ -40,21 +43,26 @@ const ShowAllCards = () => {
         if (index % 3 === 0) {
           setTimeout(() => {
             playSound("open");
-          }, index * 55);
+          }, index * 40);
         }
       });
     }
   }, []);
 
   return (
-    <div className={close ? "show-all closed" : "show-all"}>
+    <div
+      className={close ? "show-all closed" : "show-all"}
+      style={{
+        transition: `background-color 1s ease-in ${backgroundDuration}ms`,
+      }}
+    >
       <ul className={close ? "all-list closed " : "all-list"}>
         {unsortedCards.map((card, index) => (
           <div
             key={card.id}
             className={close ? " closing" : "card-item"}
             style={{
-              animationDelay: `${(close ? totalCards - index : index) * 45}ms`,
+              animationDelay: `${(close ? totalCards - index : index) * 35}ms`,
             }}
           >
             <CardContent
