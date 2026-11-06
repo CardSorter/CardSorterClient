@@ -44,6 +44,9 @@ export default function Page() {
   const sortType = useSelector(
     (state: StateSchema) => state.studyCreation.sortType,
   );
+  const requireComment = useSelector(
+    (state: StateSchema) => state.studyCreation.requireComment,
+  );
   const categories = useSelector(
     (state: StateSchema) => state.studyCreation.categories,
   );
@@ -86,6 +89,7 @@ export default function Page() {
         cards: studyCards,
         message: studyMessage,
         sortType: sortType || "open",
+        requireComment: requireComment,
         categories: categoryMap,
         link: sanitizedLink,
       }),

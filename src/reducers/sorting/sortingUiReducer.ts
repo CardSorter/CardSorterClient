@@ -21,12 +21,14 @@ export interface SortingUIState {
   showConfirmPopUp: boolean;
   timeStarted?: Date;
   sortType: "open" | "closed" | "hybrid";
+  commentRequired: boolean;
   predefinedCategories: Record<string, string>;
   errors: {
     categoryMissingTitle: boolean;
     categoriesHaveTheSameName: boolean;
     sameCategoryList: string[];
     noCategoriesCreated: boolean;
+    noCommentAdded: boolean;
   };
   commentSaved: boolean;
 }
@@ -45,12 +47,14 @@ const initialState: SortingUIState = {
   showCommentPopup: false,
   userComment: "",
   sortType: "open",
+  commentRequired: false,
   predefinedCategories: {},
   errors: {
     categoryMissingTitle: false,
     noCategoriesCreated: false,
     categoriesHaveTheSameName: false,
     sameCategoryList: [],
+    noCommentAdded: false,
   },
   commentSaved: false,
   timeStarted: undefined,
@@ -102,6 +106,7 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
     })
     .addCase(uiAction.setUserComment, (state, action) => {
       state.userComment = action.payload.content;
+      state.errors.noCommentAdded = false;
     })
     .addCase(uiAction.startSort, (state) => {
       state.timeStarted = new Date();
@@ -116,11 +121,15 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
     .addCase(uiAction.showCategoryWithoutTitleError, (state, action) => {
       state.errors.categoryMissingTitle = true;
     })
+    .addCase(uiAction.showNoCommentAddedError, (state, action) => {
+      state.errors.noCommentAdded = true;
+    })
     .addCase(uiAction.hideErrors, (state) => {
       state.errors.categoryMissingTitle = false;
       state.errors.categoriesHaveTheSameName = false;
       state.errors.noCategoriesCreated = false;
       state.errors.sameCategoryList = [];
+      state.errors.noCommentAdded = false;
     })
     .addCase(uiAction.addTitleDescription, (state, action) => {
       state.studyTitle = action.payload.title;
@@ -132,6 +141,7 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
       state.showOnBoarding = true;
       state.showCommentPopup = false;
       state.userComment = "";
+      state.commentRequired = false;
       state.timeStarted = undefined;
     })
     .addCase(uiAction.loadSavedState, (state, action) => {
@@ -143,6 +153,9 @@ const sortingUiReducer = createReducer(initialState, (builder) => {
     })
     .addCase(uiAction.setSortType, (state, action) => {
       state.sortType = action.payload;
+    })
+    .addCase(uiAction.setCommentRequired, (state, action) => {
+      state.commentRequired = action.payload;
     })
     .addCase(uiAction.setCategories, (state, action) => {
       state.predefinedCategories = action.payload.categories;

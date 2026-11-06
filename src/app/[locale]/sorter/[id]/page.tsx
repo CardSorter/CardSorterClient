@@ -73,6 +73,9 @@ export default function page() {
   const errorNoTitle = useSelector(
     (state: StateSchema) => state.sortingUi.errors.categoryMissingTitle,
   );
+  const errorNoComment = useSelector(
+    (state: StateSchema) => state.sortingUi.errors.noCommentAdded,
+  );
   const errorSameCategories = useSelector(
     (state: StateSchema) => state.sortingUi.errors?.categoriesHaveTheSameName,
   );
@@ -163,6 +166,8 @@ export default function page() {
       )}
 
       {errorNoTitle && <ErrorToast message={t("error empty title")} />}
+
+      {errorNoComment && <ErrorToast message={t("comment required")} />}
 
       {errorSameCategories && (
         <ErrorToast

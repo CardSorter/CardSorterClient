@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   sendSort,
   closeConfirmPopUp,
+  showNoCommentAddedError,
   CategoryRequest,
 } from "actions/sorting/uiAction";
 import StateSchema from "reducers/StateSchema";
@@ -31,6 +32,9 @@ const ConfirmPopUp = () => {
   const comment = useSelector(
     (state: StateSchema) => state.sortingUi.userComment,
   );
+  const commentRequired = useSelector(
+    (state: StateSchema) => state.sortingUi.commentRequired,
+  );
   const showConfirmPopUp = useSelector(
     (state: StateSchema) => state.sortingUi.showConfirmPopUp,
   );
@@ -39,6 +43,12 @@ const ConfirmPopUp = () => {
   const dispatch = useDispatch<any>();
 
   const handleConfirmFinish = () => {
+    if (commentRequired && !comment.trim()) {
+      dispatch(closeConfirmPopUp());
+      dispatch(showNoCommentAddedError());
+      return;
+    }
+
     const categoryRequest: Record<number, CategoryRequest> = {};
     for (const category of Object.values(categories)) {
       categoryRequest[category.id] = {

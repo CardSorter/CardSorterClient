@@ -66,6 +66,9 @@ export const setCategories = createAction<{
 export const setSortType = createAction<"open" | "closed" | "hybrid">(
   "sortingUi/setSortType",
 );
+export const setCommentRequired = createAction<boolean>(
+  "sortingUi/setCommentRequired",
+);
 export const setTimeStarted = createAction<Date>("sortingUi/setTimeStarted");
 
 export const showNoCategoryCreatedError = createAction(
@@ -77,6 +80,11 @@ export const showCategoryWithoutTitleError = createAction(
 export const showCategoriesWithSameNameError = createAction<{
   categoriesList: string[];
 }>("ui/showCategoriesWithSameNameError");
+
+export const showNoCommentAddedError = createAction(
+  "ui/showNoCommentAddedError",
+);
+
 export const hideErrors = createAction("ui/hideErrors");
 export const clearState = createAction("ui/clearState");
 
@@ -108,6 +116,7 @@ export const fetchStudyForSorting = createAsyncThunk<
         `${process.env.NEXT_PUBLIC_API_URL}/sort_endpoint?cards=true&study_id=${studyID}`,
       );
       const json = await response.json();
+      dispatch(setCommentRequired(json.requireComment === true));
 
       if (response.status === 404 || response.status === 400) {
         dispatch(requestCards({ status: ActionStatus.SUCCESS }));
@@ -174,8 +183,16 @@ export function sendSort(
   comment: string,
 ) {
   return function (dispatch: any, getState: any) {
+    const sortingUi = getState().sortingUi;
+    const userComment = sortingUi.userComment.trim();
+
+    if (sortingUi.commentRequired && !userComment) {
+      dispatch(showNoCommentAddedError());
+      return;
+    }
+
     const ms = timeEnded.getTime() - timeStarted.getTime();
-    const sortType = getState().sortingUi.sortType;
+    const sortType = sortingUi.sortType;
 
     // get sorttype and predefinedCategories
     dispatch(sendingSort({ status: ActionStatus.IS_FETCHING }));
@@ -189,7 +206,7 @@ export function sendSort(
         categories: categories,
         container: unsortedCards,
         time: ms,
-        comment: comment,
+        comment: userComment || comment,
         sortType: sortType,
       }),
     }).then((response) =>

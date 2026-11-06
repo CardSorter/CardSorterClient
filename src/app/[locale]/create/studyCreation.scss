@@ -21,7 +21,7 @@
 
     input {
       background-color: white;
-      border: solid 1px rgba(0,0,0, .7);
+      border: solid 1px rgba(0, 0, 0, 0.7);
       box-sizing: border-box;
       height: 3rem;
       margin-top: 3rem;
@@ -31,7 +31,7 @@
 
     textarea {
       background-color: white;
-      border: solid 1px rgba(0,0,0, .7);
+      border: solid 1px rgba(0, 0, 0, 0.7);
       box-sizing: border-box;
       margin-top: 4rem;
       text-align: center;
@@ -63,12 +63,13 @@
           }
 
           input {
-            margin: 0 .4rem;
+            margin: 0 0.4rem;
             width: 3rem;
           }
 
           button {
-            height: 2rem; width: 2rem;
+            height: 2rem;
+            width: 2rem;
             margin-left: var.$spacing-md;
           }
         }
@@ -116,7 +117,7 @@
 
   .sort-type-section {
     margin-top: var.$spacing-xl;
-    width: 100%;
+    width: auto;
 
     .sort-type-label {
       font-weight: bold;
@@ -125,7 +126,6 @@
     }
 
     .sort-type-options {
-
       display: flex;
       flex-direction: column;
       gap: var.$gap-grid;
@@ -148,6 +148,32 @@
           display: block;
         }
       }
+    }
+  }
+
+  form .options {
+    display: flex;
+    flex-direction: row;
+    gap: var.$gap-grid;
+  }
+
+  form .comment-option {
+    display: flex;
+    margin-top: var.$spacing-lg;
+    flex-direction: column;
+  }
+
+  form .require-comment-option {
+    align-items: center;
+    display: flex;
+    gap: var.$gap-grid;
+    margin-top: var.$spacing-lg;
+
+    input[type="checkbox"] {
+      accent-color: var.$color-primary;
+      height: auto;
+      margin: 0;
+      width: auto;
     }
   }
 

@@ -13,6 +13,12 @@ const SortingHeader = () => {
   const categories = useSelector(
     (state: StateSchema) => state.sortingBoard.categories,
   );
+  const commentRequired = useSelector(
+    (state: StateSchema) => state.sortingUi.commentRequired,
+  );
+  const userComment = useSelector(
+    (state: StateSchema) => state.sortingUi.userComment,
+  );
 
   // Dispatch
   const dispatch = useDispatch();
@@ -65,6 +71,11 @@ const SortingHeader = () => {
 
     if (noCategoryCreated) {
       dispatch(uiAction.showNoCategoryCreatedError());
+      return;
+    }
+
+    if (commentRequired && !userComment.trim()) {
+      dispatch(uiAction.showNoCommentAddedError());
       return;
     }
 

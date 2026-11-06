@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import React, {useRef, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "i18n/navigation";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "i18n/navigation";
 import * as studyCreationAction from "actions/studyCreationAction";
 import StateSchema from "reducers/StateSchema";
-import {useTranslations} from "next-intl";
-import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
+import { useTranslations } from "next-intl";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 
 export default function Page() {
   const t = useTranslations("CreateStudyPage");
@@ -16,16 +16,27 @@ export default function Page() {
   const titleInputRef = useRef<HTMLInputElement>(null);
   const descriptionInputRef = useRef<HTMLTextAreaElement>(null);
   const [titleError, setTitleError] = useState<boolean>(false);
-  const [titleSuggestion, setTitleSuggestion] = React.useState<string | null>(null);
+  const [titleSuggestion, setTitleSuggestion] = React.useState<string | null>(
+    null,
+  );
   const [descriptionError, setDescriptionError] = useState<boolean>(false);
 
   // State
-  const title = useSelector((state: StateSchema) => (state.studyCreation.title));
-  const description = useSelector((state: StateSchema) => (state.studyCreation.description));
-  const sortType = useSelector((state: StateSchema) => state.studyCreation.sortType);
-  const existingStudies = useSelector((state: StateSchema) => state.studies.studies);
-  const existingTitles = existingStudies?.map((s) => s.title.toLowerCase()) || [];
-
+  const title = useSelector((state: StateSchema) => state.studyCreation.title);
+  const description = useSelector(
+    (state: StateSchema) => state.studyCreation.description,
+  );
+  const sortType = useSelector(
+    (state: StateSchema) => state.studyCreation.sortType,
+  );
+  const requireComment = useSelector(
+    (state: StateSchema) => state.studyCreation.requireComment,
+  );
+  const existingStudies = useSelector(
+    (state: StateSchema) => state.studies.studies,
+  );
+  const existingTitles =
+    existingStudies?.map((s) => s.title.toLowerCase()) || [];
 
   // Dispatch
   const dispatch = useDispatch();
@@ -33,12 +44,12 @@ export default function Page() {
   function UniqueTitle(baseTitle: string, existingTitles: string[]): string {
     let suggestion = baseTitle;
     let counter = 2;
-  
+
     while (existingTitles.includes(suggestion.toLowerCase())) {
       suggestion = `${baseTitle} (${counter})`;
       counter++;
     }
-  
+
     return suggestion;
   }
 
@@ -47,14 +58,14 @@ export default function Page() {
     setTitleError(false);
     const suggestedNew = UniqueTitle(value, existingTitles);
     setTitleSuggestion(suggestedNew !== value ? suggestedNew : null);
-    dispatch(studyCreationAction.changeTitle({title: suggestedNew}));
-  }
+    dispatch(studyCreationAction.changeTitle({ title: suggestedNew }));
+  };
 
   const onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setDescriptionError(false);
-    dispatch(studyCreationAction.changeDescription({description: value}));
-  }
+    dispatch(studyCreationAction.changeDescription({ description: value }));
+  };
 
   const onNextPage = () => {
     // Check for errors
@@ -68,12 +79,11 @@ export default function Page() {
     }
 
     router.push("/create/add-cards");
-  }
-
+  };
 
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      e.preventDefault(); 
+      e.preventDefault();
 
       if (e.target === titleInputRef.current) {
         descriptionInputRef.current?.focus();
@@ -82,7 +92,7 @@ export default function Page() {
   };
 
   return (
-    <div className='study-creation-page'>
+    <div className="study-creation-page">
       <h1>{t("title")}</h1>
       <h2>{t("basic information")}</h2>
 
@@ -90,14 +100,20 @@ export default function Page() {
         <div className="input-with-error">
           <input
             ref={titleInputRef}
-            type='text'
+            type="text"
             placeholder={t("study title")}
             defaultValue={title}
             onChange={onTitleChange}
-            onKeyDown={handleEnterKey} 
+            onKeyDown={handleEnterKey}
           />
-          {titleError && <Alert severity="error">{t("error empty field")}</Alert>}
-          {titleSuggestion && <Alert severity="info">{t("duplicate study title")} {titleSuggestion}</Alert>}
+          {titleError && (
+            <Alert severity="error">{t("error empty field")}</Alert>
+          )}
+          {titleSuggestion && (
+            <Alert severity="info">
+              {t("duplicate study title")} {titleSuggestion}
+            </Alert>
+          )}
         </div>
         <div className="input-with-error">
           <textarea
@@ -108,47 +124,98 @@ export default function Page() {
             cols={30}
             onChange={onDescriptionChange}
           ></textarea>
-          {descriptionError && <Alert severity="error">{t("error empty field")}</Alert>}
+          {descriptionError && (
+            <Alert severity="error">{t("error empty field")}</Alert>
+          )}
         </div>
-        <div className="sort-type-section">
-          <label className="sort-type-label"><strong>{t("sort type")}</strong></label>
-          <div className="sort-type-options">
-            <label className="sort-type-option">
-             <input
-               type="radio"
-               value="open"
-               checked={sortType === "open"}
-               onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "open" }))}
-             />
-             <span><strong>{t("open")}</strong> {t("open description")}</span>
+        <div className="options">
+          <div className="sort-type-section">
+            <label className="sort-type-label">
+              <strong>{t("sort type")}</strong>
             </label>
+            <div className="sort-type-options">
+              <label className="sort-type-option">
+                <input
+                  type="radio"
+                  value="open"
+                  checked={sortType === "open"}
+                  onChange={() =>
+                    dispatch(
+                      studyCreationAction.changeSortType({ sortType: "open" }),
+                    )
+                  }
+                />
+                <span>
+                  <strong>{t("open")}</strong> {t("open description")}
+                </span>
+              </label>
 
-            <label className="sort-type-option">
-             <input
-              type="radio"
-              value="closed"
-              checked={sortType === "closed"}
-              onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "closed" }))}
-             />
-             <span><strong>{t("closed")}</strong> {t("closed description")}</span>
+              <label className="sort-type-option">
+                <input
+                  type="radio"
+                  value="closed"
+                  checked={sortType === "closed"}
+                  onChange={() =>
+                    dispatch(
+                      studyCreationAction.changeSortType({
+                        sortType: "closed",
+                      }),
+                    )
+                  }
+                />
+                <span>
+                  <strong>{t("closed")}</strong> {t("closed description")}
+                </span>
+              </label>
+
+              <label className="sort-type-option">
+                <input
+                  type="radio"
+                  value="hybrid"
+                  checked={sortType === "hybrid"}
+                  onChange={() =>
+                    dispatch(
+                      studyCreationAction.changeSortType({
+                        sortType: "hybrid",
+                      }),
+                    )
+                  }
+                />
+                <span>
+                  <strong>{t("hybrid")}</strong>
+                  {t("hybrid description")}
+                </span>
+              </label>
+            </div>
+          </div>
+          <div className="comment-option">
+            <strong>{t("comment option")}</strong>
+
+            <label className="require-comment-option">
+              <input
+                type="checkbox"
+                checked={requireComment}
+                onChange={(event) =>
+                  dispatch(
+                    studyCreationAction.changeRequireComment({
+                      requireComment: event.target.checked,
+                    }),
+                  )
+                }
+              />
+              <span>{t("require comment")}</span>
             </label>
-            
-            <label className="sort-type-option">
-             <input
-              type="radio"
-              value="hybrid"
-              checked={sortType === "hybrid"}
-              onChange={() => dispatch(studyCreationAction.changeSortType({ sortType: "hybrid" }))}
-             />
-            <span><strong>{t("hybrid")}</strong>{t("hybrid description")}</span>
-           </label>
+          </div>
         </div>
-      </div>
       </form>
 
       <div className="bottom-container">
         <div className="btn-container">
-          <Button aria-label="Next step" variant="contained" onClick={onNextPage}>
+          <Button
+            aria-label="Next step"
+            variant="contained"
+            onClick={onNextPage}
+          >
             <span className="material-symbols-outlined">arrow_forward</span>
           </Button>
         </div>
@@ -160,4 +227,4 @@ export default function Page() {
       </div>
     </div>
   );
-};
+}

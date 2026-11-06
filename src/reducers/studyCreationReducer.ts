@@ -1,17 +1,14 @@
-import {createReducer} from '@reduxjs/toolkit';
-import * as ActionStatus from 'actions/ActionStatus';
-import * as studyCreationActions from 'actions/studyCreationAction';
-import {StudyCreationResponse} from "actions/studyCreationAction";
-
-
-
+import { createReducer } from "@reduxjs/toolkit";
+import * as ActionStatus from "actions/ActionStatus";
+import * as studyCreationActions from "actions/studyCreationAction";
+import { StudyCreationResponse } from "actions/studyCreationAction";
 
 export interface Card {
   id: number;
   name?: string;
   description?: string;
 }
-export interface Category{
+export interface Category {
   id: number;
   name: string;
 }
@@ -29,6 +26,7 @@ export interface StudyCreationState {
   ui: UIState;
   createdStudy?: StudyCreationResponse;
   sortType?: string;
+  requireComment: boolean;
   categories: Record<number, Category>;
 }
 
@@ -37,6 +35,7 @@ export const initialState: StudyCreationState = {
   categories: {},
   ui: {},
   sortType: "open",
+  requireComment: false,
   externalSurveyLink: "",
 };
 
@@ -63,8 +62,11 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
     .addCase(studyCreationActions.changeDescription, (state, action) => {
       state.description = action.payload.description;
     })
+    .addCase(studyCreationActions.changeRequireComment, (state, action) => {
+      state.requireComment = action.payload.requireComment;
+    })
     .addCase(studyCreationActions.addCard, (state, action) => {
-       if (!state.cards) state.cards = {};
+      if (!state.cards) state.cards = {};
       state.cards[action.payload.id] = {
         id: action.payload.id,
         name: undefined,
@@ -72,7 +74,7 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
       };
     })
     .addCase(studyCreationActions.addXCards, (state, action) => {
-       if (!state.cards) state.cards = {};
+      if (!state.cards) state.cards = {};
       const id = Date.now();
       for (let i = 0; i < action.payload.no; i++) {
         state.cards[id + i] = {
@@ -112,7 +114,7 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
       for (let i = 0; i < action.payload.no; i++) {
         state.categories[id + i] = {
           id: id + i,
-          name: "", 
+          name: "",
         };
       }
     })
@@ -128,18 +130,19 @@ const studyCreationReducer = createReducer(initialState, (builder) => {
     .addCase(studyCreationActions.createStudy, (state, action) => {
       if (action.payload.status === ActionStatus.SUCCESS) {
         state.createdStudy = action.payload.study;
-        state.ui.studySendingStatus = ActionStatus.SUCCESS
+        state.ui.studySendingStatus = ActionStatus.SUCCESS;
 
         // Clear state
         state.title = undefined;
         state.description = undefined;
         state.thanksMessage = undefined;
         state.externalSurveyLink = undefined;
+        state.requireComment = false;
         state.cards = {};
-        state.categories= {};
+        state.categories = {};
       }
       state.ui.studySendingStatus = action.payload.status;
-    })
+    });
 });
 
 export default studyCreationReducer;
