@@ -1,62 +1,71 @@
-import * as studyActions from '../actions/studyPageAction';
-import * as ActionStatus from 'actions/ActionStatus';
-import {createReducer} from '@reduxjs/toolkit';
-import {SortingDataItem} from "../actions/studyPageAction";
+import * as studyActions from "../actions/studyPageAction";
+import * as ActionStatus from "actions/ActionStatus";
+import { createReducer } from "@reduxjs/toolkit";
+import { SortingDataItem } from "../actions/studyPageAction";
 import exportToXLXS from "utils/exportToXLSX";
 
 export interface StudyPageState {
   title: string;
   description: string;
   cards: {
-    average: any,
-    total: any,
-    sorted: any,
+    average: any;
+    total: any;
+    sorted: any;
     data: {
-      name: string,
-      categories_no: number,
-      category_names: string[],
-      frequencies: number[],
-      description: string,
-    }[],
+      name: string;
+      categories_no: number;
+      category_names: string[];
+      frequencies: number[];
+      description: string;
+    }[];
   };
   participants: {
-    completion: any,
-    total: any,
-    completed: any,
+    completion: any;
+    total: any;
+    completed: any;
     data: (number | string)[][]; // 0: participant no, 1: time taken, 2: completion rate 3: categories created
   };
   sorting: { data: SortingDataItem[] };
   categories: {
-    similarity: any,
-    total: any,
-    similar: any,
-    merged: any,
-    data: any[],
+    similarity: any;
+    total: any;
+    similar: any;
+    merged: any;
+    data: any[];
   };
   similarityMatrix: any[];
   id?: string;
   isLive?: boolean;
+  requireComment?: boolean;
   launchedDate?: Date;
   ended?: Date;
   noParticipants?: boolean;
   isFetching?: boolean;
   clusters?: Record<string, unknown>;
   clustersFetching?: boolean;
-  editPopupTitle: any,
-  editPopupDescription: any,
-  editPopupIsLive: any,
+  editPopupTitle: any;
+  editPopupDescription: any;
+  editPopupIsLive: any;
+  editRequireComment?: boolean;
 }
 
 const initialState: StudyPageState = {
-  title: '',
-  description: '',
-  cards: {average: null, total: null, sorted: null, data: []},
-  participants: {completion: null, total: null, completed: null, data: []},
-  sorting: {data: []},
-  categories: {similarity: null, total: null, similar: null, merged: null, data: []},
+  title: "",
+  description: "",
+  cards: { average: null, total: null, sorted: null, data: [] },
+  participants: { completion: null, total: null, completed: null, data: [] },
+  sorting: { data: [] },
+  categories: {
+    similarity: null,
+    total: null,
+    similar: null,
+    merged: null,
+    data: [],
+  },
   similarityMatrix: [],
   id: undefined,
   isLive: undefined,
+  requireComment: undefined,
   launchedDate: undefined,
   ended: undefined,
   noParticipants: undefined,
@@ -66,6 +75,7 @@ const initialState: StudyPageState = {
   editPopupTitle: undefined,
   editPopupDescription: undefined,
   editPopupIsLive: undefined,
+  editRequireComment: undefined,
 };
 
 const studyPageReducer = createReducer(initialState, (builder) => {
@@ -81,26 +91,27 @@ const studyPageReducer = createReducer(initialState, (builder) => {
         state.title = study.title;
         state.description = study.description;
         state.isLive = study.isLive;
+        state.requireComment = study.requireComment;
         state.launchedDate = new Date(study.launchedDate);
         state.ended = study.ended ? new Date(study.ended) : undefined;
         state.noParticipants = study.participants === 0;
-        if (typeof study.participants !== 'number') {
+        if (typeof study.participants !== "number") {
           state.participants = {
-          completion: study.participants.completion || '0%',
-          total: study.participants.total || 0,
-          completed: study.participants.completed || 0,
-          data: study.participants.data || [],
-        };
+            completion: study.participants.completion || "0%",
+            total: study.participants.total || 0,
+            completed: study.participants.completed || 0,
+            data: study.participants.data || [],
+          };
         }
-        state.sorting = {data: study.sorting?.data || []};
+        state.sorting = { data: study.sorting?.data || [] };
         state.cards = {
-          average: study.cards?.average || '0%',
+          average: study.cards?.average || "0%",
           total: study.cards?.total || 0,
           sorted: study.cards?.sorted || 0,
           data: study.cards?.data || [],
         };
         state.categories = {
-          similarity: study.categories?.similarity || '0%',
+          similarity: study.categories?.similarity || "0%",
           total: study.categories?.total || 0,
           similar: study.categories?.similar || 0,
           merged: study.categories?.merged || 0,
@@ -111,7 +122,10 @@ const studyPageReducer = createReducer(initialState, (builder) => {
       state.isFetching = action.payload?.status !== ActionStatus.SUCCESS;
     })
     .addCase(studyActions.loadClusters, (state, action) => {
-      state.clusters = action.payload?.status === ActionStatus.SUCCESS ? action.payload.clusters : {};
+      state.clusters =
+        action.payload?.status === ActionStatus.SUCCESS
+          ? action.payload.clusters
+          : {};
       state.clustersFetching = action.payload?.status !== ActionStatus.SUCCESS;
     })
     .addCase(studyActions.downloadXLSX, (state) => {

@@ -21,8 +21,8 @@
       color: var.$color-text-primary;
       height: 2rem;
       width: 2rem;
-      margin-left: .7rem;
-      opacity: .8;
+      margin-left: 0.7rem;
+      opacity: 0.8;
     }
   }
 
@@ -39,8 +39,8 @@
 
       p {
         border-right: solid 1px var.$color-text-primary;
-        margin-right: .5rem;
-        padding: 0 .5rem 0 1rem;
+        margin-right: 0.5rem;
+        padding: 0 0.5rem 0 1rem;
       }
     }
   }
@@ -70,8 +70,12 @@
         position: relative;
 
         .completion {
-          background: rgb(57,57,57);
-          background: linear-gradient(243deg, rgb(80, 80, 80) 0%, rgba(189,189,189,1) 100%);
+          background: rgb(57, 57, 57);
+          background: linear-gradient(
+            243deg,
+            rgb(80, 80, 80) 0%,
+            rgba(189, 189, 189, 1) 100%
+          );
           bottom: 0;
           display: block;
           position: absolute;
@@ -86,7 +90,7 @@
           &::after {
             background: var.$color-text-primary;
             border-radius: 50%;
-            content: '';
+            content: "";
             display: block;
             float: right;
             height: 1rem;
@@ -123,7 +127,8 @@
   margin-top: var.$spacing-3xl;
 
   img {
-    height: 30vh; width: auto;
+    height: 30vh;
+    width: auto;
   }
 }
 
@@ -141,7 +146,7 @@
     margin-top: 2rem;
     margin-left: 220px;
     margin-right: 50px;
-    opacity: .8;
+    opacity: 0.8;
   }
 
   #data {
@@ -226,7 +231,8 @@
   margin-top: 10px;
 }
 
-.confirm-btn, .cancel-btn {
+.confirm-btn,
+.cancel-btn {
   color: white;
   border: none;
   border-radius: 4px;
@@ -281,7 +287,8 @@
 span.activeSquare {
   border-radius: 8px;
   display: inline-block;
-  height: 1.4rem; width: 1.4rem;
+  height: 1.4rem;
+  width: 1.4rem;
 }
 
 span.activeSquare.isLive {
@@ -301,22 +308,29 @@ span.activeSquare.notLive {
 // Color classes for frequency placement matrix
 td {
   &.color-20 {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
   }
 
   &.color-40 {
-    background-color: #DCDCDC;
+    background-color: #dcdcdc;
   }
 
   &.color-60 {
-    background-color: #C8C8C8;
+    background-color: #c8c8c8;
   }
 
   &.color-80 {
-    background-color: #B0B0B0;
+    background-color: #b0b0b0;
   }
 
   &.color-100 {
     background-color: #989898;
   }
+}
+
+.edit-comment-option {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
 }
